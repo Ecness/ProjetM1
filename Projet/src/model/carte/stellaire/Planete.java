@@ -15,7 +15,7 @@ public class Planete {
 		this.typePlanete = typePlanete;
 		// TRessource = fonction generation ressource sur planete ;
 		TBatiment = new EnumBatiment[2];
-		this.ville = new Ville();
+		this.ville = null;
 	}
 	
 	
