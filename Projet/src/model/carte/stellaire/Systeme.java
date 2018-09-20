@@ -3,6 +3,8 @@ package model.carte.stellaire;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.parametre.EnumAbondanceRessource;
+
 public class Systeme {
 	private List<Planete> TPlanete;
 	private int numJoueur;
@@ -10,13 +12,27 @@ public class Systeme {
 	
 	
 	
-	public Systeme() {
+	public Systeme(EnumAbondanceRessource nbRessource) {
 		TPlanete = new ArrayList<Planete>();
 		this.numJoueur = -1;
 		TAnomalie = new ArrayList<EnumAnomalie>();
+		generationSystem(nbRessource);
+		generationAnomalie();
 	}
 
+	private void generationSystem(EnumAbondanceRessource nbRessource) {
+		
+		int nbPlanette = (int) (5*Math.random());
+		
+		for( int i=0; i<nbPlanette; i++) {
+			TPlanete.add(new Planete(EnumTypePlanete.type(),nbRessource));
+		}	
+	}
 	
+	private void generationAnomalie() {
+		
+		
+	}
 	
 	
 	public List<Planete> getTPlanete() {
