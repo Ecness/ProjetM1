@@ -10,13 +10,14 @@ public enum EnumRessource {
 	CRISTAL(5);
 	
 	private int numero;
+	private static int nbRessource = 5;
 	
 	private EnumRessource(int numero) {
 		this.numero=numero;
 	}
 	
 	public static EnumRessource renvoit() {
-		int type = (int) (5*Math.random()+1);
+		int type = (int) (nbRessource*Math.random()+1);
 		for(EnumRessource e : values()) {
 			if(type==e.getNumero()) {
 				return e;

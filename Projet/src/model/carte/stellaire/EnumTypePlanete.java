@@ -9,13 +9,14 @@ public enum EnumTypePlanete {
 	OCEANIQUE(5);
 	
 	private int numero;
+	private static int nbPlanete = 5;
 	
 	private EnumTypePlanete(int numero) {
 		this.numero=numero;
 	}
 	
 	public static EnumTypePlanete type() {
-		int type = (int) (5*Math.random()+1);
+		int type = (int) (nbPlanete*Math.random()+1);
 		for(EnumTypePlanete e : values()) {
 			if(type==e.getNumero()) {
 				return e;

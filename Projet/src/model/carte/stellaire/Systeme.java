@@ -8,30 +8,34 @@ import model.parametre.EnumAbondanceRessource;
 public class Systeme {
 	private List<Planete> TPlanete;
 	private int numJoueur;
-	private List<EnumAnomalie> TAnomalie;
+	private List<Anomalie> TAnomalie;
 	
 	
 	
-	public Systeme(EnumAbondanceRessource nbRessource) {
+	public Systeme(EnumAbondanceRessource nbRessource, int maxPlanete, int maxAnomalie) {
 		TPlanete = new ArrayList<Planete>();
 		this.numJoueur = -1;
-		TAnomalie = new ArrayList<EnumAnomalie>();
-		generationSystem(nbRessource);
-		generationAnomalie();
+		TAnomalie = new ArrayList<Anomalie>();
+		generationSystem(nbRessource, maxPlanete);
+		generationAnomalie(maxAnomalie);
 	}
 
-	private void generationSystem(EnumAbondanceRessource nbRessource) {
+	private void generationSystem(EnumAbondanceRessource nbRessource,int maxPlanete) {
 		
-		int nbPlanette = (int) (5*Math.random());
+		int nbPlanette = (int) (maxPlanete*Math.random());
 		
 		for( int i=0; i<nbPlanette; i++) {
 			TPlanete.add(new Planete(EnumTypePlanete.type(),nbRessource));
 		}	
 	}
 	
-	private void generationAnomalie() {
+	private void generationAnomalie(int maxAnomalie) {
 		
+		int nbAnomalie = (int) (maxAnomalie*Math.random());
 		
+		for( int i=0; i<nbAnomalie; i++) {
+			TAnomalie.add(new Anomalie());
+		}	
 	}
 	
 	
@@ -51,11 +55,11 @@ public class Systeme {
 		this.numJoueur = numJoueur;
 	}
 
-	public List<EnumAnomalie> getTAnomalie() {
+	public List<Anomalie> getTAnomalie() {
 		return TAnomalie;
 	}
 
-	public void setTAnomalie(List<EnumAnomalie> tAnomalie) {
+	public void setTAnomalie(List<Anomalie> tAnomalie) {
 		TAnomalie = tAnomalie;
 	}
 	

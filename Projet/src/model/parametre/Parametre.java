@@ -8,18 +8,37 @@ public class Parametre {
 	private EnumTailleCarte tailleCarte;
 	private EnumAbondanceRessource abondanceRessource;
 	private int nbJoueur;
+	private int nbMaxPlanete;
+	private int nbMaxAnomalie;
 
-	public Parametre(List<EnumVictoire> tVictoire, EnumAbondanceRessource abondanceRessource, EnumTypeCarte typeCarte, EnumTailleCarte tailleCarte, int nbJoueur) {
+	public Parametre(List<EnumVictoire> tVictoire, EnumAbondanceRessource abondanceRessource, EnumTypeCarte typeCarte, 
+			EnumTailleCarte tailleCarte, int nbJoueur, int nbMaxPlanete, int nbMaxAnomalie) {
 		this.TVictoire = tVictoire;
 		this.typeCarte = typeCarte;
 		this.tailleCarte = tailleCarte;
 		this.nbJoueur = nbJoueur;
 		this.abondanceRessource = abondanceRessource;
+		this.nbMaxAnomalie = nbMaxAnomalie;
+		this.nbMaxPlanete = nbMaxPlanete;
 	}
 
 	
-	
-	
+	public int getNbMaxPlanete() {
+		return nbMaxPlanete;
+	}
+
+	public void setNbMaxPlanete(int nbMaxPlanete) {
+		this.nbMaxPlanete = nbMaxPlanete;
+	}
+
+	public int getNbMaxAnomalie() {
+		return nbMaxAnomalie;
+	}
+
+	public void setNbMaxAnomalie(int nbMaxAnomalie) {
+		this.nbMaxAnomalie = nbMaxAnomalie;
+	}
+
 	public EnumAbondanceRessource getAbondanceRessource() {
 		return abondanceRessource;
 	}

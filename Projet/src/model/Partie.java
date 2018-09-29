@@ -18,6 +18,12 @@ public class Partie {
 				this.parametrPartie.getAbondanceRessource());
 		this.nbTour = 0;
 	}
+	
+	
+	public static void main(String[] args) {
+		System.out.println("main");
+
+	}
 
 	public Joueur[] getTJoueur() {
 		return TJoueur;
