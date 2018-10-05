@@ -3,6 +3,7 @@ package model.parametre;
 import java.util.List;
 
 public class Parametre {
+	
 	private List<EnumVictoire> TVictoire;
 	private EnumTypeCarte typeCarte;
 	private EnumTailleCarte tailleCarte;
@@ -10,9 +11,10 @@ public class Parametre {
 	private int nbJoueur;
 	private int nbMaxPlanete;
 	private int nbMaxAnomalie;
+	private EnumTailleMapCombat tailleMapCombat;
 
 	public Parametre(List<EnumVictoire> tVictoire, EnumAbondanceRessource abondanceRessource, EnumTypeCarte typeCarte, 
-			EnumTailleCarte tailleCarte, int nbJoueur, int nbMaxPlanete, int nbMaxAnomalie) {
+			EnumTailleCarte tailleCarte, int nbJoueur, int nbMaxPlanete, int nbMaxAnomalie, EnumTailleMapCombat tailleMapCombat) {
 		this.TVictoire = tVictoire;
 		this.typeCarte = typeCarte;
 		this.tailleCarte = tailleCarte;
@@ -20,9 +22,18 @@ public class Parametre {
 		this.abondanceRessource = abondanceRessource;
 		this.nbMaxAnomalie = nbMaxAnomalie;
 		this.nbMaxPlanete = nbMaxPlanete;
+		this.tailleMapCombat = tailleMapCombat;
 	}
 
 	
+	public EnumTailleMapCombat getTailleMapCombat() {
+		return tailleMapCombat;
+	}
+
+	public void setTailleMapCombat(EnumTailleMapCombat tailleMapCombat) {
+		this.tailleMapCombat = tailleMapCombat;
+	}
+
 	public int getNbMaxPlanete() {
 		return nbMaxPlanete;
 	}

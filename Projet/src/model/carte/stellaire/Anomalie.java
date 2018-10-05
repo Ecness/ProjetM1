@@ -9,6 +9,9 @@ public class Anomalie {
 		super();
 		this.decouverte = false;
 		this.anomalie = EnumAnomalie.type();
+		if(this.anomalie==EnumAnomalie.PIRATE)
+			this.decouverte = true;
+		// todo ajouter une flote de pirate sur le systéme 
 	}
 	
 	public boolean isDecouverte() {

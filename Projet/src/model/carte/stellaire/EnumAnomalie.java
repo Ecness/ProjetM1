@@ -4,10 +4,13 @@ public enum EnumAnomalie {
 
 	NEBULEUSE(1),
 	EPAVE(2),
-	COMETE(3);
+	COMETE(3),
+	ASTEROIDE(4),
+	PIRATE(5),
+	SOLEIL_DOUBLE(6);
 	
 	private int numero;
-	private static int nbAnomalie = 3;
+	private static int nbAnomalie = 6;
 	
 	private EnumAnomalie(int numero) {
 		this.numero=numero;

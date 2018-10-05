@@ -3,12 +3,14 @@ package model.carte.stellaire;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.entity.vaisseau.Flotte;
 import model.parametre.EnumAbondanceRessource;
 
 public class Systeme {
 	private List<Planete> TPlanete;
 	private int numJoueur;
 	private List<Anomalie> TAnomalie;
+	private List<Flotte> flottes;
 	
 	
 	
@@ -16,6 +18,7 @@ public class Systeme {
 		TPlanete = new ArrayList<Planete>();
 		this.numJoueur = -1;
 		TAnomalie = new ArrayList<Anomalie>();
+		this.flottes = new ArrayList<Flotte>();
 		generationSystem(nbRessource, maxPlanete);
 		generationAnomalie(maxAnomalie);
 	}
@@ -62,5 +65,14 @@ public class Systeme {
 	public void setTAnomalie(List<Anomalie> tAnomalie) {
 		TAnomalie = tAnomalie;
 	}
+
+	public List<Flotte> getFlottes() {
+		return flottes;
+	}
+
+	public void setFlottes(List<Flotte> flottes) {
+		this.flottes = flottes;
+	}
+	
 	
 }
