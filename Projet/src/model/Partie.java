@@ -7,15 +7,14 @@ import model.parametre.Parametre;
 public class Partie {
 	
 	private Joueur[] TJoueur;
-	private Parametre parametrPartie;
+	private Parametre parametrePartie;
 	private Carte galaxie;
 	private int nbTour;
 	
-	public Partie(Parametre parametrPartie) {
-		this.parametrPartie = parametrPartie;
-		this.TJoueur = new Joueur[this.parametrPartie.getNbJoueur()];
-		this.galaxie = new Carte(this.parametrPartie.getTypeCarte(),this.parametrPartie.getTailleCarte(),
-				this.parametrPartie.getAbondanceRessource());
+	public Partie(Parametre parametrePartie) {
+		this.parametrePartie = parametrePartie;
+		this.TJoueur = new Joueur[parametrePartie.getNbJoueur()];
+		this.galaxie = new Carte(parametrePartie);
 		this.nbTour = 0;
 	}
 
@@ -28,11 +27,11 @@ public class Partie {
 	}
 
 	public Parametre getParametrPartie() {
-		return parametrPartie;
+		return parametrePartie;
 	}
 
 	public void setParametrPartie(Parametre parametrPartie) {
-		this.parametrPartie = parametrPartie;
+		this.parametrePartie = parametrPartie;
 	}
 
 	public Carte getGalaxie() {
