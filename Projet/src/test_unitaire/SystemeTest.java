@@ -1,4 +1,4 @@
-package test.carte.stellaire;
+package test_unitaire;
 
 import static org.junit.Assert.*;
 
@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.carte.stellaire.Systeme;
+import model.parametre.EnumAbondanceRessource;
 
 public class SystemeTest {
 	
@@ -13,11 +14,11 @@ public class SystemeTest {
 
 	@Before
 	public void setUp() {
-		systeme = new Systeme(0, 0);
-		systeme2 = new Systeme(1, 0);
-		systeme3 = new Systeme(1, 1);
-		systeme4 = new Systeme(2, 0);
-		systeme5 = new Systeme(3, 0);
+		systeme = new Systeme(EnumAbondanceRessource.NORMAL, 10, 10, 0, 0);
+		systeme2 = new Systeme(EnumAbondanceRessource.NORMAL, 10, 10, 1, 0);
+		systeme3 = new Systeme(EnumAbondanceRessource.NORMAL, 10, 10, 1, 1);
+		systeme4 = new Systeme(EnumAbondanceRessource.NORMAL, 10, 10, 2, 0);
+		systeme5 = new Systeme(EnumAbondanceRessource.NORMAL, 10, 10, 3, 0);
 	}
 	
 	@Test

@@ -55,17 +55,13 @@ public class Systeme {
 		}
 	}
 
-	public Systeme(int couche, int rang) {
-	
-	
-	public Systeme(EnumAbondanceRessource nbRessource, int maxPlanete, int maxAnomalie) {
+	public Systeme(EnumAbondanceRessource nbRessource, int maxPlanete, int maxAnomalie, int couche, int rang) {
 		TPlanete = new ArrayList<Planete>();
 		this.numJoueur = -1;
 		TAnomalie = new ArrayList<Anomalie>();
 		this.flottes = new ArrayList<Flotte>();
 		generationSystem(nbRessource, maxPlanete);
 		generationAnomalie(maxAnomalie);
-		TAnomalie = new ArrayList<EnumAnomalie>();
 		liens = new TreeMap<Systeme, Integer>(new Comparator<Systeme>() {
 			@Override
 			public int compare(Systeme o1, Systeme o2) {
@@ -92,6 +88,7 @@ public class Systeme {
 			TPlanete.add(new Planete(EnumTypePlanete.type(),nbRessource));
 		}	
 	}
+	
 	/**
 	 * Génération du nombre maximum de systèmes liés
 	 * 
@@ -114,6 +111,7 @@ public class Systeme {
 			TAnomalie.add(new Anomalie());
 		}	
 	}
+	
 	/**Fait le lien avec un autre système (distance aléatoire)*/
 	/*public void ajouterLien(Systeme systeme) {
 		this.liens.put(systeme, (int) Math.random()*12+1);
