@@ -1,0 +1,128 @@
+
+ * Exploitation Planetaire
+	- Donne accer a la construction de vaisseau de construction.
+	- Permetra la construction sur les autres planetes (juste exploitation des ressources).
+
+	* Déploiment d'unité de guerre
+		- Donne accer a la construction de destroyer/corvet ( 1 ére uniter militaire) avec les armes basic (cinetic tier 1).
+		
+	* Base Planetaire basic
+		- Donne accer a la construction des premiers batiment sur les planetes externe (+ credit + acier).
+		
+		* Base Planetaire intermediaire
+			- Deblock les batiments tier 2 ( + science + cristal)
+			
+			* Base Planetaire avancée
+				- Deblock les batiments tier 3 (+ gaz + Bonheur + production)
+				
+		
+	* Moteur WARP
+		- Permetra la construction de sonde + voyage dans d'autres systeme.
+	
+		* Arme laser basic(+Déploiment d'unité de guerre)
+			- delock les tier 1 laser.
+			
+			* Arme laser amelioré(+ chassis croiseur)
+				-delock tier 2
+				
+				* Arme laser focaliser(+ focalisateur de lumiére)
+					- delock tier 3
+					
+					* Laser minier
+						- delock l'exploitation d'asteroide
+						- + 2 au rendement des mines de metal
+						
+						* laser minier lourd
+							- degat des armes laser + 5%
+							- +2  au rendement des mines de cristal
+					
+					* armes laser perfectioner ( + chassis cuirassé)
+						- delock tier 4
+						
+						* armes laser de gros calibre
+							- delock tier 5
+							
+		* Arme cinetic amelioré(+ chassis croiseur)
+			-delock tier 2
+				
+			* Arme cinetic calibrer(+ calibreur de tire)
+				- delock tier 3
+				
+				* tourelle de proximiter
+					- delock les tourelle secondaire
+					
+					* tourelle amelioré
+						- +10% de prescision pour les tourelle secondaire
+				
+				* armes cinetic perfectioner ( + chassis cuirassé)
+					- delock tier 4
+						
+					* armes cinetic de gros calibre
+						- delock tier 5
+		
+		* Arme plasma basic(+Déploiment d'unité de guerre)
+			- delock les tier 1 plasma.
+			
+			* Arme plasma amelioré(+ chassis croiseur)
+				-delock tier 2
+				
+				* Arme plasma perforant(+ liquéfaction de la matiére)
+					- delock tier 3
+					
+					* exploitation des etoiles
+						- delock les réacteurs (+ crédit + science)
+						
+						* sublimation des roches
+							- +1 au tableau critique pour les armes plasma
+							- +1 en science par mines(acier et cristal)
+					
+					* armes plasma perfectioner ( + chassis cuirassé)
+						- delock tier 4
+						
+						* armes plasma de gros calibre
+							- delock tier 5
+							
+		* chassis croiseur (+ Arme plasma basic + Arme laser basic)
+			- delock le light cruser
+			
+			* chassis de croiseur lourd
+				- delock le croiseur lourd
+				
+				* chassis cuirassé
+					- delock le cuirassé
+					
+					* chassis cuirassé lourd
+						- delock cuirassé tier 2
+					
+				* Porte vaisseau
+					- delock le porte vaisseau + vaisseau tier 1
+					
+					* chasseur amelioré
+						- chasseur tier 2
+						
+					* torpileur amelioré
+						- torpileur tier 2
+						
+						* torpileur blinder
+							- torpileur tier 3
+			
+			* focalisateur de lumiére
+				- + 5% de dmg sur les armes laser
+			
+			* calibreur de tire
+				- +5% de prescision sur les armes cinetic
+				
+			* liquéfaction de la matiére
+				- +5% de crit sur les armes plasma
+			
+			* torpile basic
+			- delock les tier 1 torpile.
+			
+				* torpile amelioré(+ chassis croiseur lourd)
+					-delock tier 2
+				
+					* torpile perforant(+ liquéfaction de la matiére)
+						- + 5% dmg sur les torpile
+						
+					* vitesse torpile amelioré ( + calibreur de tire)
+						- + 5% de vitesse sur les torpile

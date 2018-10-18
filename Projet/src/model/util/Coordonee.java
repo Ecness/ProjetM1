@@ -1,4 +1,4 @@
-package model.carte.combat;
+package model.util;
 
 public class Coordonee {
 	
