@@ -8,7 +8,6 @@ public class General {
 	private EnumPassif[] Passif;
 	
 	public General(String nom) {
-		super();
 		this.nom = nom;
 		this.experience = 0;
 		this.grade = null; // a deffinir 

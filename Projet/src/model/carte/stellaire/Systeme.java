@@ -5,10 +5,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.TreeMap;
 
+import model.entity.vaisseau.Flotte;
+import model.parametre.EnumAbondanceRessource;
+
 public class Systeme {
 	private List<Planete> TPlanete;
 	private int numJoueur;
-	private List<EnumAnomalie> TAnomalie;
 	/**Nombre de liaison vers d'autres systèmes*/
 	private int nbLiens;
 	/**Nombre de liens maximum vers d'autres systèmes*/
@@ -17,6 +19,8 @@ public class Systeme {
 	private TreeMap<Systeme, Integer> liens;
 	/**Position du système*/
 	private Position position;
+	private List<Anomalie> TAnomalie;
+	private List<Flotte> flottes;
 	
 	/**Position du système selon un "pseudo-tableau"[couche][rang] utilisé pour la génération de la carte*/
 	class Position {
@@ -52,8 +56,15 @@ public class Systeme {
 	}
 
 	public Systeme(int couche, int rang) {
+	
+	
+	public Systeme(EnumAbondanceRessource nbRessource, int maxPlanete, int maxAnomalie) {
 		TPlanete = new ArrayList<Planete>();
 		this.numJoueur = -1;
+		TAnomalie = new ArrayList<Anomalie>();
+		this.flottes = new ArrayList<Flotte>();
+		generationSystem(nbRessource, maxPlanete);
+		generationAnomalie(maxAnomalie);
 		TAnomalie = new ArrayList<EnumAnomalie>();
 		liens = new TreeMap<Systeme, Integer>(new Comparator<Systeme>() {
 			@Override
@@ -73,6 +84,14 @@ public class Systeme {
 		}
 	}
 
+	private void generationSystem(EnumAbondanceRessource nbRessource,int maxPlanete) {
+		
+		int nbPlanette = (int) (maxPlanete*Math.random());
+		
+		for( int i=0; i<nbPlanette; i++) {
+			TPlanete.add(new Planete(EnumTypePlanete.type(),nbRessource));
+		}	
+	}
 	/**
 	 * Génération du nombre maximum de systèmes liés
 	 * 
@@ -87,6 +106,14 @@ public class Systeme {
 					x < 0.9 ? 4 : 5;
 	}
 	
+	private void generationAnomalie(int maxAnomalie) {
+		
+		int nbAnomalie = (int) (maxAnomalie*Math.random());
+		
+		for( int i=0; i<nbAnomalie; i++) {
+			TAnomalie.add(new Anomalie());
+		}	
+	}
 	/**Fait le lien avec un autre système (distance aléatoire)*/
 	/*public void ajouterLien(Systeme systeme) {
 		this.liens.put(systeme, (int) Math.random()*12+1);
@@ -156,13 +183,23 @@ public class Systeme {
 		this.numJoueur = numJoueur;
 	}
 
-	public List<EnumAnomalie> getTAnomalie() {
+	public List<Anomalie> getTAnomalie() {
 		return TAnomalie;
 	}
 
-	public void setTAnomalie(List<EnumAnomalie> tAnomalie) {
+	public void setTAnomalie(List<Anomalie> tAnomalie) {
 		TAnomalie = tAnomalie;
 	}
+
+	public List<Flotte> getFlottes() {
+		return flottes;
+	}
+
+	public void setFlottes(List<Flotte> flottes) {
+		this.flottes = flottes;
+	}
+	
+	
 
 	public TreeMap<Systeme, Integer> getLiens() {
 		return liens;

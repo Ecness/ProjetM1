@@ -17,6 +17,12 @@ public class Partie {
 		this.galaxie = new Carte(parametrePartie);
 		this.nbTour = 0;
 	}
+	
+	
+	public static void main(String[] args) {
+		System.out.println("main");
+
+	}
 
 	public Joueur[] getTJoueur() {
 		return TJoueur;

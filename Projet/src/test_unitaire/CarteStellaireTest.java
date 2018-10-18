@@ -1,4 +1,4 @@
-package test.carte.stellaire;
+package test_unitaire;
 
 import static org.junit.Assert.*;
 
@@ -7,18 +7,20 @@ import org.junit.Test;
 
 import model.carte.stellaire.Carte;
 import model.carte.stellaire.Systeme;
+import model.parametre.EnumAbondanceRessource;
 import model.parametre.EnumTailleCarte;
+import model.parametre.EnumTailleMapCombat;
 import model.parametre.Parametre;
 
 public class CarteStellaireTest {
 	
-	private EnumTailleCarte tailleCarte;
+	private Parametre parametre;
 	private Carte carte;
 
 	@Before
 	public void setUp() {
-		tailleCarte = EnumTailleCarte.PETITE;
-		carte = new Carte(new Parametre(null, null, null, tailleCarte, 0));
+		parametre = new Parametre(null, EnumAbondanceRessource.ABONDANT, null, EnumTailleCarte.MOYENNE, 2, 10, 10, EnumTailleMapCombat.MOYENNE);
+		carte = new Carte(parametre);
 	}
 	
 	@Test
@@ -29,7 +31,7 @@ public class CarteStellaireTest {
 	@Test
 	public void testGenerationSysteme() {
 		assertNotNull(carte.getListeSysteme());
-		assertEquals(tailleCarte.getQuantite(), carte.getListeSysteme().size());
+		assertEquals(parametre.getTailleCarte().getQuantite(), carte.getListeSysteme().size());
 		carte.affichage();
 		for (Systeme sys : carte.getListeSysteme()) {
 			assertTrue(sys.getNbLiens() <= sys.getNbLiensMax());

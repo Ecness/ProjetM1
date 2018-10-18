@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import model.carte.stellaire.Systeme.Position;
-import model.parametre.EnumTailleCarte;
 import model.parametre.Parametre;
 
 public class Carte {
@@ -17,8 +16,8 @@ public class Carte {
 	public Carte(Parametre parametres) {
 		listeSysteme = new ArrayList<Systeme>();
 
-		generationSysteme(parametres.getTailleCarte().name());
-		liaisonSysteme(parametres.getTailleCarte().name());
+		generationSystemes(parametres);
+		liaisonSystemes(parametres);
 	}
 
 	/**
@@ -26,19 +25,19 @@ public class Carte {
 	 * 
 	 * @param tailleSysteme		Nombre de systèmes de la partie
 	 */
-	private void generationSysteme(String tailleSysteme) {
+	private void generationSystemes(Parametre parametre) {
 		int index = 0, couche = 0, rang = 0;
 
 		//Génération du premier système
-		Systeme premierSysteme = new Systeme(couche, rang);
+		Systeme premierSysteme = new Systeme(parametre.getAbondanceRessource(), parametre.getNbMaxPlanete(), parametre.getNbMaxAnomalie(), couche, rang);
 		couche++;
 		listeSysteme.add(premierSysteme);
 		int systemeAGenerer = premierSysteme.getNbLiensMax();
 
 		//Génération des autres systèmes de la carte
-		while (listeSysteme.size() < EnumTailleCarte.valueOf(tailleSysteme).getQuantite()) {
+		while (listeSysteme.size() < parametre.getTailleCarte().getQuantite()) {
 			if (listeSysteme.get(index).getNbLiens() < listeSysteme.get(index).getNbLiensMax()) {
-				Systeme systeme = new Systeme(couche, rang);
+				Systeme systeme = new Systeme(parametre.getAbondanceRessource(), parametre.getNbMaxPlanete(), parametre.getNbMaxAnomalie(), couche, rang);
 				listeSysteme.add(systeme);
 				int distance = (int) Math.random()*10+1;
 				listeSysteme.get(index).faireLien(systeme, distance);
@@ -63,7 +62,7 @@ public class Carte {
 	 * 
 	 * @param tailleSysteme		Nombre de systèmes de la partie
 	 */
-	private void liaisonSysteme(String tailleSysteme) {
+	private void liaisonSystemes(Parametre parametre) {
 		//Ensemble des systèmes très selon leur position (couche, rang)
 		TreeMap<Position, Systeme> mapSysteme = new TreeMap<Position, Systeme>(new Comparator<Position>() {
 			@Override
