@@ -7,10 +7,11 @@ public enum EnumRessource {
 	SCIENCE(2),
 	GAZ(3),
 	ACIER(4),
-	CRISTAL(5);
+	CRISTAL(5),
+	PRODUCTION(6);
 	
 	private int numero;
-	private static int nbRessource = 5;
+	private static int nbRessource = 6;
 	
 	private EnumRessource(int numero) {
 		this.numero=numero;

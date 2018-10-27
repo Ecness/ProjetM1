@@ -4,14 +4,12 @@ public class General {
 	private String nom;
 	private int experience;
 	private EnumGrade grade;
-	private int puissance;
 	private EnumPassif[] Passif;
 	
 	public General(String nom) {
 		this.nom = nom;
 		this.experience = 0;
-		this.grade = null; // a deffinir 
-		this.puissance = 500; // a deffinir 
+		this.grade = EnumGrade.NOVIS;
 		Passif = new EnumPassif[5];// max a deffinir 
 	}
 
@@ -37,14 +35,6 @@ public class General {
 
 	public void setGrade(EnumGrade grade) {
 		this.grade = grade;
-	}
-
-	public int getPuissance() {
-		return puissance;
-	}
-
-	public void setPuissance(int puissance) {
-		this.puissance = puissance;
 	}
 
 	public EnumPassif[] getPassif() {

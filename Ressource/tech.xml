@@ -1,609 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.8.0_171" class="java.beans.XMLDecoder">
- <object class="model.entity.player.Technology" id="Technology0">
-  <void property="science">
+ <object class="model.entity.player.TechnologieEtBatiment" id="TechnologieEtBatiment0">
   
+  <!-- BatimentPlanete-->
+  <void property="batimentPlanete">
+   <!-- BatimentPlanete n°1-->
    <void method="put">
-    <int>0</int>
-    <object class="model.entity.player.Science">
+    <int>2</int>
+    <object class="model.batiment.BatimentVille">
+     <void property="bonus">
+      <object class="java.util.HashMap">
+       <void method="put">
+        <object class="java.lang.Enum" id="EnumRessource0" method="valueOf">
+         <class>model.EnumRessource</class>
+         <string>CRISTAL</string>
+        </object>
+        <int>1</int>
+       </void>
+       <void method="put">
+        <object class="java.lang.Enum" id="EnumRessource1" method="valueOf">
+         <class>model.EnumRessource</class>
+         <string>SCIENCE</string>
+        </object>
+        <int>1</int>
+       </void>
+       <void method="put">
+        <object class="java.lang.Enum" id="EnumRessource2" method="valueOf">
+         <class>model.EnumRessource</class>
+         <string>PRODUCTION</string>
+        </object>
+        <int>1</int>
+       </void>
+       <void method="put">
+        <object class="java.lang.Enum" id="EnumRessource3" method="valueOf">
+         <class>model.EnumRessource</class>
+         <string>ACIER</string>
+        </object>
+        <int>1</int>
+       </void>
+       <void method="put">
+        <object class="java.lang.Enum" id="EnumRessource4" method="valueOf">
+         <class>model.EnumRessource</class>
+         <string>CREDIT</string>
+        </object>
+        <int>1</int>
+       </void>
+       <void method="put">
+        <object class="java.lang.Enum" id="EnumRessource5" method="valueOf">
+         <class>model.EnumRessource</class>
+         <string>GAZ</string>
+        </object>
+        <int>1</int>
+       </void>
+      </object>
+     </void>
      <void property="cout">
       <int>10</int>
      </void>
-     <void property="dependanceDeux">
-      <int>-1</int>
-     </void>
-     <void property="dependanceUn">
-      <int>-1</int>
-     </void>
      <void property="description">
-      <string>La conquéte de l'espace commence, et avec elle la possibilité d'exploiter d'autre planete.
-	  - Donne accer a la construction des vaisseaux de construction extra-planetaire.</string>
+      <string>description ville</string>
      </void>
      <void property="nom">
-      <string>Exploitation Planetaire</string>
+      <string>nom ville</string>
      </void>
     </object>
    </void>
-   
+  </void>
+  
+  <!-- BatimentVille-->
+  <void property="batimentVille">
+   <!-- BatimentVille n°1-->
    <void method="put">
     <int>1</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>20</int>
+    <object class="model.batiment.BatimentPlanete">
+     <void property="bonus">
+      <object class="java.util.HashMap">
+       <void method="put">
+        <object idref="EnumRessource0"/>
+        <int>1</int>
+       </void>
+       <void method="put">
+        <object idref="EnumRessource1"/>
+        <int>1</int>
+       </void>
+       <void method="put">
+        <object idref="EnumRessource2"/>
+        <int>1</int>
+       </void>
+       <void method="put">
+        <object idref="EnumRessource3"/>
+        <int>1</int>
+       </void>
+       <void method="put">
+        <object idref="EnumRessource4"/>
+        <int>1</int>
+       </void>
+       <void method="put">
+        <object idref="EnumRessource5"/>
+        <int>1</int>
+       </void>
+      </object>
      </void>
-     <void property="dependanceDeux">
+     <void property="cout">
+      <object class="java.util.HashMap">
+       <void method="put">
+        <object idref="EnumRessource0"/>
+        <int>1</int>
+       </void>
+       <void method="put">
+        <object idref="EnumRessource1"/>
+        <int>1</int>
+       </void>
+       <void method="put">
+        <object idref="EnumRessource2"/>
+        <int>1</int>
+       </void>
+       <void method="put">
+        <object idref="EnumRessource3"/>
+        <int>1</int>
+       </void>
+       <void method="put">
+        <object idref="EnumRessource4"/>
+        <int>1</int>
+       </void>
+       <void method="put">
+        <object idref="EnumRessource5"/>
+        <int>1</int>
+       </void>
+      </object>
+     </void>
+     <void property="description">
+      <string>description planete</string>
+     </void>
+     <void property="nom">
+      <string>nom planete</string>
+     </void>
+     <void property="techNecessaire">
       <int>0</int>
      </void>
-     <void property="dependanceUn">
-      <int>-1</int>
-     </void>
-     <void property="description">
-      <string>La conquéte de l'espace continue et avec elle sont lot de danger, nous devrions pensser a notre defense.
-	  - Donne accer a la construction des vaisseaux de classe Destroyer et Corvet.</string>
-     </void>
-     <void property="nom">
-      <string>Déploiment d'unité de guerre</string>
-     </void>
     </object>
    </void>
-   
+  </void>
+  
+  <!-- Science-->
+  <void property="science">
+   <!-- Science n°1-->
    <void method="put">
-    <int>2</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>20</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>0</int>
-     </void>
-     <void property="dependanceUn">
-      <int>-1</int>
-     </void>
-     <void property="description">
-      <string>La construction de poste avancer sur certaine planete pourais s'avérer vital.
-	  - Donne accer a la construction des batiments de tier 1 sur les planete ne possedant pas de ville.</string>
-     </void>
-     <void property="nom">
-      <string>Base Planetaire basic</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>3</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>75</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>2</int>
-     </void>
-     <void property="dependanceUn">
-      <int>-1</int>
-     </void>
-     <void property="description">
-      <string>La construction de poste avancer sur certaine planete c'est avérer concluent, et nous devrion continuer dans se sens.
-	  - Donne accer a la construction des batiments de tier 2 sur les planete ne possedant pas de ville.</string>
-     </void>
-     <void property="nom">
-      <string>Base Planetaire intermediaire</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>4</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>125</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>3</int>
-     </void>
-     <void property="dependanceUn">
-      <int>-1</int>
-     </void>
-     <void property="description">
-      <string>Le recyclage de poste avancer en zone de production ou de loisir a l'interieur de nos frontiére renforcerais notre puissance.
-	  - Donne accer a la construction des batiments de tier 3 sur les planete ne possedant pas de ville.</string>
-     </void>
-     <void property="nom">
-      <string>Base Planetaire avancée</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>5</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>20</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>0</int>
-     </void>
-     <void property="dependanceUn">
-      <int>-1</int>
-     </void>
-     <void property="description">
-      <string>La puissance de nos moteurs est bien trop faible, de nouveau moteur pourais nous permettre de voyager vers d'autres systemes solaire.
-	  - Donne accer a la construction de sonde
-	  - Donne accer au voyage dans les autres systemes</string>
-     </void>
-     <void property="nom">
-      <string>Moteur à technologie VSL</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>6</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>35</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>5</int>
-     </void>
-     <void property="dependanceUn">
-      <int>1</int>
-     </void>
-     <void property="description">
-      <string>La technologie du laser a bien avancer et nous pouvons effectuer nos premier test pour un armement laser.
-	  - Donne accer a la construction d'arme laser tier 1</string>
-     </void>
-     <void property="nom">
-      <string>Arme laser basic</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>7</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>35</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>5</int>
-     </void>
-     <void property="dependanceUn">
-      <int>1</int>
-     </void>
-     <void property="description">
-      <string>La technologie de fission progresse et nous pouvons effectuer nos premier test pour un armement se basant sur le plasma.
-	  - Donne accer a la construction d'arme plasma tier 1</string>
-     </void>
-     <void property="nom">
-      <string>Arme plasma basic</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>8</int>
+    <int>0</int>
     <object class="model.entity.player.Science">
      <void property="cout">
       <int>50</int>
      </void>
      <void property="dependanceDeux">
-      <int>6</int>
-     </void>
-     <void property="dependanceUn">
-      <int>7</int>
-     </void>
-     <void property="description">
-      <string>Nos batiment de guerre commence à ne plus faire leur effet et la construction d'un navire plus grand pourais etre urgent d'ici quelle que temps.
-	  - Donne accer a la construction de vaisseaux de class Croiseur Léger et Frégate</string>
-     </void>
-     <void property="nom">
-      <string>Chassis de vaisseaux moyen</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>9</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>75</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>6</int>
-     </void>
-     <void property="dependanceUn">
-      <int>8</int>
-     </void>
-     <void property="description">
-      <string>Avec la modification des composent un simple laser peux devenir devastateur, la recherche dans se domaine pourais aider dans un futur proche.
-	  - Donne accer a la construction d'arme laser tier 2</string>
-     </void>
-     <void property="nom">
-      <string>Arme laser amelioré</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>10</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>75</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>7</int>
-     </void>
-     <void property="dependanceUn">
-      <int>8</int>
-     </void>
-     <void property="description">
-      <string>Avec la modification de la pression et de la chaleur les armes plasma deviendrons plus performant.
-	  - Donne accer a la construction d'arme plasma tier 2</string>
-     </void>
-     <void property="nom">
-      <string>Arme plasma amelioré</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>11</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>60</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>8</int>
+      <int>-1</int>
      </void>
      <void property="dependanceUn">
       <int>-1</int>
      </void>
      <void property="description">
-      <string>Avec la modification de la lentille de focus laser le rayon devien plus concentré.
-	  - Plus 5 point de dommage sur les armes laser</string>
+      <string>description Science</string>
      </void>
      <void property="nom">
-      <string>focalisateur de lumiére</string>
+      <string>Nom Science</string>
+     </void>
+     <void property="rechercher">
+      <boolean>false</boolean>
      </void>
     </object>
    </void>
-   
-   <void method="put">
-    <int>12</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>60</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>8</int>
-     </void>
-     <void property="dependanceUn">
-      <int>-1</int>
-     </void>
-     <void property="description">
-      <string>Avec la modification des systemes de visée nos armes cinetic sont plus préssise.
-	  - Plus 5% de pressision sur les armes cinetic</string>
-     </void>
-     <void property="nom">
-      <string>calibreur de tire</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>13</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>60</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>8</int>
-     </void>
-     <void property="dependanceUn">
-      <int>-1</int>
-     </void>
-     <void property="description">
-      <string>On as constater que si on utiliser les nouveaux principe de reaction de fission la matiére fonder.
-	  - Plus 5% de chance de crite sur les armes plasma</string>
-     </void>
-     <void property="nom">
-      <string>liquéfaction de la matiére</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>14</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>80</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>8</int>
-     </void>
-     <void property="dependanceUn">
-      <int>-1</int>
-     </void>
-     <void property="description">
-      <string>La miniaturisation des moteurs pouras etre utile pour la costruction de petit engins.
-	  - Permet la construction de torpille de tier 1</string>
-     </void>
-     <void property="nom">
-      <string>Miniaturisation des moteurs</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>15</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>100</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>9</int>
-     </void>
-     <void property="dependanceUn">
-      <int>11</int>
-     </void>
-     <void property="description">
-      <string>La création d'arme laser plus précise et plus puissante est un bon choix pour le futur.
-	  - Permet la construction d'arme laser de tier 3</string>
-     </void>
-     <void property="nom">
-      <string>Arme laser focaliser</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>16</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>100</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>10</int>
-     </void>
-     <void property="dependanceUn">
-      <int>13</int>
-     </void>
-     <void property="description">
-      <string>La création d'arme plasma plus perforant et plus puissante est un bon choix pour le futur.
-	  - Permet la construction d'arme plasma de tier 3</string>
-     </void>
-     <void property="nom">
-      <string>Arme plasma perforant</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>17</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>75</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>8</int>
-     </void>
-     <void property="dependanceUn">
-      <int>5</int>
-     </void>
-     <void property="description">
-      <string>La création d'arme cinetic plus puissante serais un bon choix.
-	  - Permet la construction d'arme cinetic de tier 2</string>
-     </void>
-     <void property="nom">
-      <string>Arme cinetic amelioré</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>18</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>100</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>17</int>
-     </void>
-     <void property="dependanceUn">
-      <int>12</int>
-     </void>
-     <void property="description">
-      <string>Recherche sur les armes cinetic a munition calibrer.
-	  - Permet la construction d'arme cinetic de tier 2</string>
-     </void>
-     <void property="nom">
-      <string>Arme cinetic calibrer</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>19</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>70</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>8</int>
-     </void>
-     <void property="dependanceUn">
-      <int>-1</int>
-     </void>
-     <void property="description">
-      <string>L'augmentation des blindage est une prioriter.
-	  - Debloque les chassies de Croiseur lourd</string>
-     </void>
-     <void property="nom">
-      <string>Amelioration du blindage des croiseurs</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>20</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>150</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>19</int>
-     </void>
-     <void property="dependanceUn">
-      <int>-1</int>
-     </void>
-     <void property="description">
-      <string>L'augmentation de la taille et du blindage des navires de guerre.
-	  - Debloque les chassies des Cuirasser</string>
-     </void>
-     <void property="nom">
-      <string>Chassie de vaisseaux Lourd</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>21</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>250</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>20</int>
-     </void>
-     <void property="dependanceUn">
-      <int>-1</int>
-     </void>
-     <void property="description">
-      <string>L'augmentation de la taille et du blindage des navires de guerre.
-	  - Debloque les chassies des Cuirasser Lourd</string>
-     </void>
-     <void property="nom">
-      <string>Chassie de vaisseaux lourd blindé</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>22</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>400</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>20</int>
-     </void>
-     <void property="dependanceUn">
-      <int>-1</int>
-     </void>
-     <void property="description">
-      <string>L'augmentation de la taille des vaisseaux permet de transporter des chasseurs et autres petits navires.
-	  - Debloque le chassie pour les Portes Vaisseaux
-	  - Debloque les chasseurs tier 1
-	  - Debloque les torpilleur tier 1</string>
-     </void>
-     <void property="nom">
-      <string>Chassie de porte vaisseaux</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>23</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>300</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>22</int>
-     </void>
-     <void property="dependanceUn">
-      <int>-1</int>
-     </void>
-     <void property="description">
-      <string>La maniabiliter et la puissance des chasseurs doit etre modifier.
-	  - Debloque les chasseurs de tier 2</string>
-     </void>
-     <void property="nom">
-      <string>Chasseur amélioré</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>24</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>300</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>22</int>
-     </void>
-     <void property="dependanceUn">
-      <int>-1</int>
-     </void>
-     <void property="description">
-      <string>La maniabiliter et la puissance des chasseurs doit etre modifier.
-	  - Debloque les chasseurs de tier 2</string>
-     </void>
-     <void property="nom">
-      <string>Chasseur amélioré</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>25</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>300</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>22</int>
-     </void>
-     <void property="dependanceUn">
-      <int>-1</int>
-     </void>
-     <void property="description">
-      <string>La maniabiliter et la puissance des torpilleur doit etre modifier.
-	  - Debloque les Torpilleur de tier 2</string>
-     </void>
-     <void property="nom">
-      <string>Torpilleur amélioré</string>
-     </void>
-    </object>
-   </void>
-   
-   <void method="put">
-    <int>26</int>
-    <object class="model.entity.player.Science">
-     <void property="cout">
-      <int>400</int>
-     </void>
-     <void property="dependanceDeux">
-      <int>25</int>
-     </void>
-     <void property="dependanceUn">
-      <int>-1</int>
-     </void>
-     <void property="description">
-      <string>Le blindage et la puissance des torpilleur doit etre modifier.
-	  - Debloque les torpilleur de tier 2</string>
-     </void>
-     <void property="nom">
-      <string>torpilleur blindé</string>
-     </void>
-    </object>
-   </void>
-   
-   
-   
-   
-   
   </void>
+  
  </object>
 </java>

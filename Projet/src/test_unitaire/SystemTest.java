@@ -29,8 +29,8 @@ public class SystemTest {
 			
 			//-----------------------------------------------
 			
-			if(s.getNumJoueur() != -1)
-				fail("numJoueur not egal -1");
+			if(s.getJoueur() != null)
+				fail("numJoueur not null");
 			
 			//-----------------------------------------------
 			
@@ -44,7 +44,7 @@ public class SystemTest {
 					if(t.getAnomalie() == null) {
 						fail("Anomalie " + i + " is type null");
 					}else {
-						System.out.println("	- Anomalie n� " + i + " est de type " + t.getAnomalie());
+						System.out.println("	- Anomalie " + i + " est de type " + t.getAnomalie());
 					}
 				}
 			}
@@ -62,6 +62,7 @@ public class SystemTest {
 					if(t.getTypePlanete() == null) {
 						fail("Planete " + i + " is type null");
 					}else {
+						System.out.println(t.getTypePlanete());
 						if(t.getTRessource() == null) {
 							fail("TRessource is null");
 						}else {
@@ -69,7 +70,6 @@ public class SystemTest {
 							for(Entry<EnumRessource, Integer> entry : t.getTRessource().entrySet()) {
 								EnumRessource key = entry.getKey();
 								int value = entry.getValue();
-								
 								System.out.println("		- Ressource " + key + " = " + value);
 							}
 						}

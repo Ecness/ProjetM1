@@ -5,12 +5,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.TreeMap;
 
+import model.entity.player.Joueur;
 import model.entity.vaisseau.Flotte;
 import model.parametre.EnumAbondanceRessource;
 
 public class Systeme {
 	private List<Planete> TPlanete;
-	private int numJoueur;
+	private Joueur joueur;
 	/**Nombre de liaison vers d'autres systèmes*/
 	private int nbLiens;
 	/**Nombre de liens maximum vers d'autres systèmes*/
@@ -57,7 +58,7 @@ public class Systeme {
 
 	public Systeme(EnumAbondanceRessource nbRessource, int maxPlanete, int maxAnomalie, int couche, int rang) {
 		TPlanete = new ArrayList<Planete>();
-		this.numJoueur = -1;
+		this.joueur = null;
 		TAnomalie = new ArrayList<Anomalie>();
 		this.flottes = new ArrayList<Flotte>();
 		generationSystem(nbRessource, maxPlanete);
@@ -79,14 +80,55 @@ public class Systeme {
 			nbLiensMax = 2;
 		}
 	}
+	
+	public boolean presenceVille() {
+		for (Planete planete : TPlanete) {
+			if(planete.getVille() != null) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean presencePlaneteHabitable() {
+		for (Planete planete : TPlanete) {
+			if(planete.getTypePlanete() != EnumTypePlanete.GAZEUSE) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean ajouterVille(Planete planete,String nomJoueur) {
+		
+		if(this.getJoueur() != null) {
+			if(!presenceVille() && presencePlaneteHabitable() && (nomJoueur == joueur.getName())) {
+				planete.setVille(new Ville(this.joueur));
+				joueur.ajoutVille(planete.getVille());
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		return false;
+	}
+	
+	public void ajoutPlanete(Planete p) {
+		this.TPlanete.add(p);
+	}
 
 	private void generationSystem(EnumAbondanceRessource nbRessource,int maxPlanete) {
+		double x=0,y=0;
 		
-		int nbPlanette = (int) (maxPlanete*Math.random());
+		do {
+			y = Math.random();
+			x = (int)(11*Math.random());			
+		}while(y > (1-Math.pow((((2*x)/maxPlanete )-1),2)));
 		
-		for( int i=0; i<nbPlanette; i++) {
+		for(int i=0; i<(int)x;i++) {				
 			TPlanete.add(new Planete(EnumTypePlanete.type(),nbRessource));
-		}	
+		}		
 	}
 	
 	/**
@@ -173,12 +215,15 @@ public class Systeme {
 		return liens.size() > 1 ? liens.higherKey(liens.firstKey()).position : liens.firstKey().position;
 	}
 
-	public int getNumJoueur() {
-		return numJoueur;
+	public Joueur getJoueur() {
+		return joueur;
 	}
 
-	public void setNumJoueur(int numJoueur) {
-		this.numJoueur = numJoueur;
+	public void setJoueur(Joueur joueur) {
+		this.joueur = joueur;
+		for (Planete planete : TPlanete) {
+			planete.setJoueur(joueur);
+		}
 	}
 
 	public List<Anomalie> getTAnomalie() {
@@ -197,8 +242,6 @@ public class Systeme {
 		this.flottes = flottes;
 	}
 	
-	
-
 	public TreeMap<Systeme, Integer> getLiens() {
 		return liens;
 	}

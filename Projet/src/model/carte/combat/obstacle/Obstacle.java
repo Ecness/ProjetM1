@@ -3,7 +3,7 @@ package model.carte.combat.obstacle;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.carte.combat.Coordonee;
+import model.util.Coordonee;
 
 public class Obstacle {
 

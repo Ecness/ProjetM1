@@ -1,45 +1,63 @@
 package model.carte.stellaire;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import model.EnumRessource;
-import model.batiment.EnumBatimenVille;
+import model.batiment.BatimentVille;
 import model.entity.player.Joueur;
 import model.entity.vaisseau.Vaisseau;
 import model.module.EnumModule;
 
 public class Ville {
-
 	
-	private Map<EnumRessource, Integer> TRessource;
-	private EnumBatimenVille[] TBatimentVille;
 	private int puissance;
-	private List<EnumModule> module;
-	private List<EnumBatimenVille> filleDeConstructionBattiment;
 	private Joueur joueur;
+	private Map<EnumRessource, Integer> TRessource;
+	private List<BatimentVille> TBatimentVille;
+	private EnumModule[] module;
+	private List<BatimentVille> filleDeConstructionBattiment;
 	private List<Vaisseau> filleDeConstructionUniter;
 	
-	
-	public Ville(Map<EnumRessource, Integer> tRessource, EnumBatimenVille[] tBatimentVille, int puissance,
-			List<EnumModule> module, Joueur joueur) {
+	public Ville(Joueur joueur) {
 		
-		// TODO
-		
-		TRessource = tRessource;
-		TBatimentVille = tBatimentVille;
-		this.puissance = puissance;
-		this.module = module;
-		this.filleDeConstructionBattiment = new ArrayList<EnumBatimenVille>();
+		this.puissance = 0;
 		this.joueur = joueur;
+		this.TRessource = new HashMap<EnumRessource, Integer>();
+		this.TBatimentVille = new ArrayList<BatimentVille>();
+		this.module = new EnumModule[5];
+		this.filleDeConstructionBattiment = new ArrayList<BatimentVille>();
 		this.filleDeConstructionUniter = new ArrayList<Vaisseau>();
-		
 	}
 
+	public boolean constructionBatiment(BatimentVille batiment) {
+		
+		if(joueur.getTechnology().getScience().get(batiment.getTechNecessaire()).isRechercher()==true) {
+			for (BatimentVille b : TBatimentVille) {
+				if(b.getNom()==batiment.getNom()) {
+					return false;
+				}
+			}
+			filleDeConstructionBattiment.add(new BatimentVille(batiment.getNom(), batiment.getDescription(), 
+					batiment.getTechNecessaire(), batiment.getBonus(), batiment.getCout()));
+			return true;
+		}
+		return false;
+	}
 	
-	
-	
+	public boolean testFinConstruction() {
+		if(TRessource.get(EnumRessource.PRODUCTION)>0 && !filleDeConstructionBattiment.isEmpty()) {		
+			filleDeConstructionBattiment.get(0).setCout(filleDeConstructionBattiment.get(0).getCout()-TRessource.get(EnumRessource.PRODUCTION));
+			if(filleDeConstructionBattiment.get(0).getCout()<=0) {
+				TBatimentVille.add(filleDeConstructionBattiment.get(0));
+				filleDeConstructionBattiment.remove(0);
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public Map<EnumRessource, Integer> getTRessource() {
 		return TRessource;
@@ -51,12 +69,12 @@ public class Ville {
 	}
 
 
-	public EnumBatimenVille[] getTBatimentVille() {
+	public List<BatimentVille> getTBatimentVille() {
 		return TBatimentVille;
 	}
 
 
-	public void setTBatimentVille(EnumBatimenVille[] tBatimentVille) {
+	public void setTBatimentVille(List<BatimentVille> tBatimentVille) {
 		TBatimentVille = tBatimentVille;
 	}
 
@@ -71,22 +89,25 @@ public class Ville {
 	}
 
 
-	public List<EnumModule> getModule() {
+	public EnumModule[] getModule() {
 		return module;
+	}
+	public EnumModule getModuleNum(int num) {
+		return module[num];
 	}
 
 
-	public void setModule(List<EnumModule> module) {
+	public void setModule(EnumModule[] module) {
 		this.module = module;
 	}
 
 
-	public List<EnumBatimenVille> getFilleDeConstructionBattiment() {
+	public List<BatimentVille> getFilleDeConstructionBattiment() {
 		return filleDeConstructionBattiment;
 	}
 
 
-	public void setFilleDeConstructionBattiment(List<EnumBatimenVille> filleDeConstructionBattiment) {
+	public void setFilleDeConstructionBattiment(List<BatimentVille> filleDeConstructionBattiment) {
 		this.filleDeConstructionBattiment = filleDeConstructionBattiment;
 	}
 
@@ -109,8 +130,5 @@ public class Ville {
 	public void setFilleDeConstructionUniter(List<Vaisseau> filleDeConstructionUniter) {
 		this.filleDeConstructionUniter = filleDeConstructionUniter;
 	}
-	
-	
-	
 	
 }
