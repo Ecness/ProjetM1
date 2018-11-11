@@ -5,11 +5,15 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.TreeMap;
 
+import model.EnumRessource;
+import model.batiment.BatimentPlanete;
+import model.batiment.BatimentVille;
 import model.entity.player.Joueur;
 import model.entity.vaisseau.Flotte;
 import model.parametre.EnumAbondanceRessource;
 
 public class Systeme {
+	private int idSysteme;
 	private List<Planete> TPlanete;
 	private Joueur joueur;
 	/**Nombre de liaison vers d'autres systèmes*/
@@ -22,6 +26,8 @@ public class Systeme {
 	private Position position;
 	private List<Anomalie> TAnomalie;
 	private List<Flotte> flottes;
+	private GenerationRessourceEtAnomalie ressourceEtAnomalie;
+	private EnumTypeSysteme typeSysteme;
 	
 	/**Position du système selon un "pseudo-tableau"[couche][rang] utilisé pour la génération de la carte*/
 	class Position {
@@ -56,12 +62,17 @@ public class Systeme {
 		}
 	}
 
-	public Systeme(EnumAbondanceRessource nbRessource, int maxPlanete, int maxAnomalie, int couche, int rang) {
+	public Systeme(EnumAbondanceRessource nbRessource, int maxPlanete, int maxAnomalie, int couche, int rang, int idSysteme) {
+		this.idSysteme=idSysteme;
+		this.ressourceEtAnomalie=new GenerationRessourceEtAnomalie();
+		this.typeSysteme=EnumTypeSysteme.type();
 		TPlanete = new ArrayList<Planete>();
 		this.joueur = null;
 		TAnomalie = new ArrayList<Anomalie>();
 		this.flottes = new ArrayList<Flotte>();
-		generationSystem(nbRessource, maxPlanete);
+		if(typeSysteme!=EnumTypeSysteme.NEBULEUSE && typeSysteme!=EnumTypeSysteme.TROU_NOIR) {
+			generationSystem(nbRessource, maxPlanete);
+		}
 		generationAnomalie(maxAnomalie);
 		liens = new TreeMap<Systeme, Integer>(new Comparator<Systeme>() {
 			@Override
@@ -99,12 +110,141 @@ public class Systeme {
 		return false;
 	}
 	
-	public boolean ajouterVille(Planete planete,String nomJoueur) {
+	public boolean rechercheAnomalie(int numero, Joueur joueur) {
 		
-		if(this.getJoueur() != null) {
-			if(!presenceVille() && presencePlaneteHabitable() && (nomJoueur == joueur.getName())) {
-				planete.setVille(new Ville(this.joueur));
-				joueur.ajoutVille(planete.getVille());
+		if(!TAnomalie.get(numero).isDecouverte()) {
+			TAnomalie.get(numero).giveBonus(joueur);
+			if(TAnomalie.get(numero).getAnomalie()==EnumAnomalie.EPAVE) {				
+				TAnomalie.remove(numero);
+			}
+		}
+		return false;
+	}
+	
+	//--------------------------------------
+	
+	public boolean constructionBatimentPlanete(Joueur joueur, BatimentPlanete batiment, Planete planete) {
+		
+		if(joueur.getName()==this.joueur.getName()) {
+			if(planete.constructionBatiment(batiment)) {				
+				planete.setJoueur(joueur);
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean deconstructionBatimentPlanete(Joueur joueur, BatimentPlanete batiment, Planete planete) {
+		
+		if(joueur.getName()==this.joueur.getName()) {
+			if(planete.deconstructionBatiment(batiment)) {				
+				if(planete.getTBatimentNum(1)==null && planete.getTBatimentNum(0)==null) {
+					planete.setJoueur(null);					
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	//--------------------------------------
+	
+	public boolean constructionBatimentVille(Joueur joueur, BatimentVille batiment, Ville ville) {
+		
+		if(joueur.getName()==this.joueur.getName() && ville.getJoueur().getName()==this.joueur.getName()) {
+			return ville.constructionBatiment(batiment);
+		}
+		return false;
+	}
+	
+	public boolean testFinConstructionVille(Joueur joueur, Ville ville) {
+		
+		if(joueur.getName()==this.joueur.getName()&& ville.getJoueur().getName()==this.joueur.getName()) {
+			return ville.testFinConstruction();
+		}
+		return false;
+	}
+	
+	//--------------------------------------
+	
+	public boolean testPriseDeVille(Joueur joueur, Ville ville, Flotte flotte) {
+		
+		int i=0;
+
+		if(this.joueur.getName()==joueur.getName()) {
+			return false;
+		}
+		if(ville.getPuissance()>0) {
+			attaqueVille(ville, flotte);
+		}
+		if(ville.getPuissance()==0) {
+			while(i<this.joueur.getSysteme().size() && this.joueur.getSysteme().get(i).getIdSysteme()!=this.idSysteme) {
+				i++;
+			}
+			if(i<this.joueur.getSysteme().size()) {
+				return false;
+			}
+			this.joueur.getSysteme().remove(i);
+			this.joueur.getTVille().remove(ville.getId());
+			joueur.getSysteme().add(this);
+			this.setJoueur(joueur);
+			ville.setJoueur(joueur);
+			ville.setId(joueur.getTVille().size());
+			joueur.ajoutVille(ville);
+			for(Planete planete : this.TPlanete) {
+				if(planete.getJoueur()!=null) {
+					planete.setJoueur(joueur);
+				}
+			}
+			ville.setPuissance((int)(ville.getPuissanceTotal()/2));
+			ville.setFilleDeConstructionBattiment(null);
+			ville.setFilleDeConstructionUniter(null);
+			return true;
+		} 
+		return false;
+	}
+	
+	private void attaqueVille(Ville ville, Flotte flotte) {
+
+		if(flotte.getPuissance()>10*ville.getPuissance()) {
+			ville.setPuissance(0);
+		}else {
+			ville.setPuissance(ville.getPuissance()-(int)(flotte.getPuissance()/10));
+		}
+		if(ville.getPuissance()<0) {
+			ville.setPuissance(0);
+		}
+	}
+	
+	public boolean pillage(Planete planete, Joueur joueur) {
+		
+		if(planete.getJoueur()==null) {
+			return false;
+		}
+		if(planete.getJoueur().getName()==joueur.getName()) {
+			return false;
+		}
+		
+		for (BatimentPlanete batiment : planete.getTBatiment()) {
+			if(batiment!=null) {
+				batiment=null;
+				joueur.getTRessource().put(EnumRessource.CREDIT, joueur.getTRessource().get(EnumRessource.CREDIT)+150);
+			}
+		}
+		planete.setJoueur(null);
+		return true;
+	}
+	
+	//--------------------------------------
+	
+	public boolean ajouterVille(Planete planete,Joueur joueur) {
+		
+		if(this.getJoueur() == null) {
+			if(!presenceVille() && presencePlaneteHabitable()) {
+				this.joueur=joueur;
+				planete.setVille(new Ville(this.joueur,planete));
+				planete.setJoueur(this.joueur);
+				this.joueur.ajoutVille(planete.getVille());
 				return true;
 			}
 			else {
@@ -123,11 +263,11 @@ public class Systeme {
 		
 		do {
 			y = Math.random();
-			x = (int)(11*Math.random());			
+			x = (int)((maxPlanete)*Math.random()+1);			
 		}while(y > (1-Math.pow((((2*x)/maxPlanete )-1),2)));
 		
 		for(int i=0; i<(int)x;i++) {				
-			TPlanete.add(new Planete(EnumTypePlanete.type(),nbRessource));
+			TPlanete.add(new Planete(EnumTypePlanete.type(),nbRessource,this.ressourceEtAnomalie));
 		}		
 	}
 	
@@ -149,8 +289,12 @@ public class Systeme {
 		
 		int nbAnomalie = (int) (maxAnomalie*Math.random());
 		
+		if(typeSysteme==EnumTypeSysteme.TROU_NOIR) {
+			nbAnomalie=1;
+		}
+		
 		for( int i=0; i<nbAnomalie; i++) {
-			TAnomalie.add(new Anomalie());
+			TAnomalie.add(new Anomalie(ressourceEtAnomalie.generationAnomalieSysteme(typeSysteme)));
 		}	
 	}
 	
@@ -245,4 +389,29 @@ public class Systeme {
 	public TreeMap<Systeme, Integer> getLiens() {
 		return liens;
 	}
+
+	public GenerationRessourceEtAnomalie getRessourceEtAnomalie() {
+		return ressourceEtAnomalie;
+	}
+
+	public void setRessourceEtAnomalie(GenerationRessourceEtAnomalie ressourceEtAnomalie) {
+		this.ressourceEtAnomalie = ressourceEtAnomalie;
+	}
+
+	public EnumTypeSysteme getTypeSysteme() {
+		return typeSysteme;
+	}
+
+	public int getIdSysteme() {
+		return idSysteme;
+	}
+
+	public void setIdSysteme(int idSysteme) {
+		this.idSysteme = idSysteme;
+	}
+
+	public void setTypeSysteme(EnumTypeSysteme typeSysteme) {
+		this.typeSysteme = typeSysteme;
+	}
+	
 }

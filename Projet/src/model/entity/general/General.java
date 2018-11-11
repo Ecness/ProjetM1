@@ -1,18 +1,32 @@
 package model.entity.general;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class General {
 	private String nom;
 	private int experience;
 	private EnumGrade grade;
-	private EnumPassif[] Passif;
+	private List<EnumPassif> Passif;
 	
 	public General(String nom) {
 		this.nom = nom;
 		this.experience = 0;
 		this.grade = EnumGrade.NOVIS;
-		Passif = new EnumPassif[5];// max a deffinir 
+		Passif = new ArrayList<EnumPassif>();// max a deffinir 
 	}
 
+	public boolean choixPassif(EnumPassif passif) {
+		
+		if(grade.getNumero()<passif.getGradeNecessaire().getNumero()) {
+			return false;
+		}else {
+			this.Passif.add(passif);
+			return true;
+		}
+	}
+	
+	
 	public String getNom() {
 		return nom;
 	}
@@ -37,11 +51,11 @@ public class General {
 		this.grade = grade;
 	}
 
-	public EnumPassif[] getPassif() {
+	public List<EnumPassif> getPassif() {
 		return Passif;
 	}
 
-	public void setPassif(EnumPassif[] passif) {
+	public void setPassif(List<EnumPassif> passif) {
 		Passif = passif;
 	}
 	

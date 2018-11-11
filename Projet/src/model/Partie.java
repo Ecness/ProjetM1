@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.carte.stellaire.Carte;
+import model.carte.stellaire.GenerationRessourceEtAnomalie;
 import model.carte.stellaire.Ville;
 import model.entity.player.Joueur;
 import model.parametre.Parametre;
@@ -24,6 +25,7 @@ public class Partie {
 		this.galaxie = new Carte(parametrePartie);
 		this.nbTour = 0;
 		this.villes = new ArrayList<Ville>();
+		
 	}
 	
 	

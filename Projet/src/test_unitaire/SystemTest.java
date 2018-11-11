@@ -11,6 +11,7 @@ import model.carte.stellaire.Anomalie;
 import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
 import model.parametre.EnumAbondanceRessource;
+import model.parametre.EnumRessourceDepart;
 import model.parametre.Parametre;
 
 public class SystemTest {
@@ -22,7 +23,7 @@ public class SystemTest {
 		
 		for(int j=0;j<10;j++) {
 			
-			Parametre p = new Parametre(null, EnumAbondanceRessource.NORMAL , null, null, 2, 10, 10, null);
+			Parametre p = new Parametre(null, EnumAbondanceRessource.NORMAL , null, null, 2, 10, 10, null,EnumRessourceDepart.NORMAL);
 			Systeme s = new Systeme(p.getAbondanceRessource(), p.getNbMaxPlanete(), p.getNbMaxAnomalie(), 0, 0);
 			int i = 0;
 			

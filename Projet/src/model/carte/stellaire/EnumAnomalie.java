@@ -7,10 +7,11 @@ public enum EnumAnomalie {
 	COMETE(3),
 	ASTEROIDE(4),
 	PIRATE(5),
-	SOLEIL_DOUBLE(6);
+	SOLEIL_SUPPLEMENTAIRE(6),
+	TROU_NOIR(7);
 	
 	private int numero;
-	private static int nbAnomalie = 6;
+	private static int nbAnomalie = 7;
 	
 	private EnumAnomalie(int numero) {
 		this.numero=numero;

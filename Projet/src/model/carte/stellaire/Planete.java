@@ -1,8 +1,6 @@
 package model.carte.stellaire;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import model.EnumRessource;
@@ -17,10 +15,14 @@ public class Planete {
 	private Ville ville;
 	private Joueur joueur;
 	
-	public Planete(EnumTypePlanete typePlanete, EnumAbondanceRessource ressource) {
+	
+	public Planete(EnumTypePlanete typePlanete, EnumAbondanceRessource ressource, GenerationRessourceEtAnomalie ressourcePlanete) {
 		this.typePlanete = typePlanete;
 		this.TRessource = new HashMap<EnumRessource, Integer>();
-		generationPlanete(ressource);
+		for (EnumRessource t : EnumRessource.values()) {
+			TRessource.put(t, 0);
+		}
+		generationPlanete(ressource,ressourcePlanete);
 		TBatiment = new BatimentPlanete[2];
 		this.ville = null;
 		this.joueur = null;
@@ -36,7 +38,9 @@ public class Planete {
 				if(b.getNom()==batiment.getNom()) {
 					for (EnumRessource e : EnumRessource.values()) {
 						this.joueur.getTRessource().put(e, (this.joueur.getTRessource().get(e)+(int)(b.getCout().get(e)/2)));
+						TRessource.put(e, TRessource.get(e)-b.getBonus().get(e));
 					}
+					b=null;
 					return true;
 				}				
 			}
@@ -47,6 +51,10 @@ public class Planete {
 	public boolean constructionBatiment(BatimentPlanete batiment) {
 		
 		if(TBatiment[0]!=null && TBatiment[1]!=null) {
+			return false;
+		}
+		
+		if(ville!=null) {
 			return false;
 		}
 		
@@ -63,6 +71,9 @@ public class Planete {
 				for(BatimentPlanete b : TBatiment) {
 					if(b == null) {
 						b = new BatimentPlanete(batiment.getNom(), batiment.getDescription(), batiment.getTechNecessaire(), batiment.getBonus(), batiment.getBonus());
+						for (EnumRessource e : EnumRessource.values()) {
+							TRessource.put(e, TRessource.get(e)+b.getBonus().get(e));
+						}
 						return true;
 					}
 				}
@@ -71,39 +82,15 @@ public class Planete {
 		return false;
 	}
 	
-	private EnumRessource choixRessorce() {
-	
-		List<EnumRessource> choix =new ArrayList<EnumRessource>();
-		
-		for(EnumRessource e : EnumRessource.values()) {
-			if(typePlanete==EnumTypePlanete.GAZEUSE) {
-				if(e!=EnumRessource.ACIER && e!=EnumRessource.CRISTAL) {
-					choix.add(e);
-				}
-			}
-			else {
-				choix.add(e);
-			}
-		}
-		int type = (int) ((choix.size())*Math.random()+1);
-		
-		for(EnumRessource e : choix) {
-			if(type==e.getNumero()) {
-				return e;
-			}
-		}
-		return null;
-	}
-	
 	/*
 	 * Génére les ressorce de base de la planete.
 	 * 5 ressource max, moin il y as de ressource plus les bonus sont grand.
 	 * 
 	 */
-	private void generationPlanete(EnumAbondanceRessource ressource) {
+	private void generationPlanete(EnumAbondanceRessource ressource,GenerationRessourceEtAnomalie ressourceEtAnomalie) {
 		
 		//donne le nombre de ressource sur la planete
-		int nbRessource = (int) (5*Math.random());
+		int nbRessource = (int) (4*Math.random()+1);
 		EnumRessource choix;
 		
 		switch (nbRessource) {
@@ -111,8 +98,9 @@ public class Planete {
 			//pour chaque ressource
 			for(int i=0;i<4;i++) {
 				
-				choix = choixRessorce();
+				choix = ressourceEtAnomalie.generationRessourcePlanete(typePlanete);
 				//l'ajoute au tableau
+
 				if(this.TRessource.get(choix)!=null) {
 					this.TRessource.put(choix,  Math.abs((int) (2*Math.random()+1+this.TRessource.get(choix)+ressource.getmodificateur())));
 				}
@@ -125,7 +113,7 @@ public class Planete {
 			//pour chaque ressource
 			for(int i=0;i<3;i++) {
 				
-				choix =  choixRessorce();
+				choix = ressourceEtAnomalie.generationRessourcePlanete(typePlanete);
 				//l'ajoute au tableau
 				if(this.TRessource.get(choix)!=null) {
 					this.TRessource.put(choix,  Math.abs((int) (3*Math.random()+1+this.TRessource.get(choix)+ressource.getmodificateur())));
@@ -139,7 +127,7 @@ public class Planete {
 			//pour chaque ressource
 			for(int i=0;i<2;i++) {
 				
-				choix =  choixRessorce();
+				choix = ressourceEtAnomalie.generationRessourcePlanete(typePlanete);
 				//l'ajoute au tableau
 				if(this.TRessource.get(choix)!=null) {
 					this.TRessource.put(choix,  Math.abs((int) (5*Math.random()+3+this.TRessource.get(choix)+ressource.getmodificateur())));
@@ -152,7 +140,7 @@ public class Planete {
 		case 1:
 			
 			//l'ajoute au tableau
-			this.TRessource.put( choixRessorce(),  Math.abs((int) (8*Math.random()+5+ressource.getmodificateur())));
+			this.TRessource.put( ressourceEtAnomalie.generationRessourcePlanete(typePlanete),  Math.abs((int) (8*Math.random()+5+ressource.getmodificateur())));
 			break;
 		
 		default:

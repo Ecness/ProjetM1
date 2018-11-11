@@ -12,10 +12,13 @@ public class Parametre {
 	private int nbMaxPlanete;
 	private int nbMaxAnomalie;
 	private EnumTailleMapCombat tailleMapCombat;
+	private EnumRessourceDepart ressourceDepart;
 
 	public Parametre(List<EnumVictoire> tVictoire, EnumAbondanceRessource abondanceRessource, EnumTypeCarte typeCarte, 
-			EnumTailleCarte tailleCarte, int nbJoueur, int nbMaxPlanete, int nbMaxAnomalie, EnumTailleMapCombat tailleMapCombat) {
+			EnumTailleCarte tailleCarte, int nbJoueur, int nbMaxPlanete, int nbMaxAnomalie, EnumTailleMapCombat tailleMapCombat,
+			 EnumRessourceDepart ressourceDepart) {
 		this.TVictoire = tVictoire;
+		this.ressourceDepart = ressourceDepart;
 		this.typeCarte = typeCarte;
 		this.tailleCarte = tailleCarte;
 		this.nbJoueur = nbJoueur;
@@ -25,7 +28,6 @@ public class Parametre {
 		this.tailleMapCombat = tailleMapCombat;
 	}
 
-	
 	public EnumTailleMapCombat getTailleMapCombat() {
 		return tailleMapCombat;
 	}
@@ -70,11 +72,9 @@ public class Parametre {
 		return tailleCarte;
 	}
 
-
 	public void setTailleCarte(EnumTailleCarte tailleCarte) {
 		this.tailleCarte = tailleCarte;
 	}
-
 
 	public List<EnumVictoire> getTVictoire() {
 		return TVictoire;
@@ -91,6 +91,12 @@ public class Parametre {
 	public void setTypeCarte(EnumTypeCarte typeCarte) {
 		this.typeCarte = typeCarte;
 	}
-	
-	
+
+	public EnumRessourceDepart getRessourceDepart() {
+		return ressourceDepart;
+	}
+
+	public void setRessourceDepart(EnumRessourceDepart ressourceDepart) {
+		this.ressourceDepart = ressourceDepart;
+	}
 }

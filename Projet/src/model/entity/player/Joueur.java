@@ -8,11 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 import model.EnumRessource;
+import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
 import model.carte.stellaire.Ville;
 import model.entity.general.General;
 import model.entity.vaisseau.Flotte;
 import model.entity.vaisseau.Vaisseau;
+import model.parametre.EnumRessourceDepart;
 
 public class Joueur {
 	
@@ -26,15 +28,20 @@ public class Joueur {
 	private List<General> TGeneral;
 	private Vaisseau[] patternVaisseau;
 	private List<Systeme> systeme;
+	private int scienceDepart;
 	
 	
-	public Joueur(String name, EnumNation nation, Systeme systeme) {
+	public Joueur(String name, EnumNation nation, Systeme systeme, EnumRessourceDepart ressourceDepart) {
 		
 		this.name = name;
 		this.systeme = new ArrayList<Systeme>();
 		this.systeme.add(systeme);
 		this.nation = nation;
 		TRessource = new HashMap<EnumRessource, Integer>();
+		for (EnumRessource t : EnumRessource.values()) {
+			TRessource.put(t, 0);
+		}
+		ressourceDepart(ressourceDepart);
 		TFlotte = new ArrayList<Flotte>();
 		TVille = new ArrayList<Ville>();
 		TGeneral = new ArrayList<General>();
@@ -53,13 +60,17 @@ public class Joueur {
 		technology.getScience().put(-1, new Science("Base", "Pour les techno de base", true, 0, -1, -1));
 	}
 
-	public Joueur(String name, EnumNation nation, Systeme systeme,TechnologieEtBatiment technology) {
+	public Joueur(String name, EnumNation nation, Systeme systeme,TechnologieEtBatiment technology, EnumRessourceDepart ressourceDepart) {
 		
 		this.name = name;
 		this.systeme = new ArrayList<Systeme>();
 		this.systeme.add(systeme);
 		this.nation = nation;
 		TRessource = new HashMap<EnumRessource, Integer>();
+		for (EnumRessource t : EnumRessource.values()) {
+			TRessource.put(t, 0);
+		}
+		ressourceDepart(ressourceDepart);
 		TFlotte = new ArrayList<Flotte>();
 		TVille = new ArrayList<Ville>();
 		TGeneral = new ArrayList<General>();
@@ -69,12 +80,120 @@ public class Joueur {
 		technology.getScience().put(-1, new Science("Base", "Pour les techno de base", true, 0, -1, -1));
 	}
 	
+	public void ressourceDepart(EnumRessourceDepart e) {
+		
+		switch (e) {
+		case DEPART_DIFFICILE:
+			for (EnumRessource t : EnumRessource.values()) {
+				switch (t) {
+				case SCIENCE:
+					this.TRessource.put(t, TRessource.get(t)+5);
+					this.scienceDepart=5;
+					testScience();
+					break;
+				case PRODUCTION:
+					this.TRessource.put(t, 0);
+					break;
+				case CREDIT:
+					this.TRessource.put(t, 20);
+					break;
+				default:
+					this.TRessource.put(t, 10);
+					break;
+				}
+			}
+			break;
+		case NORMAL:
+			for (EnumRessource t : EnumRessource.values()) {
+				switch (t) {
+				case SCIENCE:
+					this.TRessource.put(t, TRessource.get(t)+5);
+					this.scienceDepart=5;
+					testScience();
+					break;
+				case PRODUCTION:
+					this.TRessource.put(t, 0);
+					break;
+				case CREDIT:
+					this.TRessource.put(t, 50);
+					break;
+				default:
+					this.TRessource.put(t, 15);
+					break;
+				}
+			}
+			break;
+		case DEPART_FACILE:
+			for (EnumRessource t : EnumRessource.values()) {
+				switch (t) {
+				case SCIENCE:
+					this.TRessource.put(t, TRessource.get(t)+5);
+					this.scienceDepart=5;
+					testScience();
+					break;
+				case PRODUCTION:
+					this.TRessource.put(t, 0);
+					break;
+				case CREDIT:
+					this.TRessource.put(t, 100);
+					break;
+				default:
+					this.TRessource.put(t, 20);
+					break;
+				}
+			}
+			break;
+		case DEPART_RAPIDE:
+			for (EnumRessource t : EnumRessource.values()) {
+				switch (t) {
+				case SCIENCE:
+					this.TRessource.put(t, TRessource.get(t)+5);
+					this.scienceDepart=5;
+					testScience();
+					break;
+				case PRODUCTION:
+					this.TRessource.put(t, 0);
+					break;
+				case CREDIT:
+					this.TRessource.put(t, 500);
+					break;
+				default:
+					this.TRessource.put(t, 30);
+					break;
+				}
+			}
+			break;
+		default:
+			for (EnumRessource t : EnumRessource.values()) {
+				this.scienceDepart=0;
+				this.TRessource.put(t, 0);
+			}
+			testScience();
+			break;
+		}
+	}
+	
 	public boolean addRecherche(int numero) {
 		
 		if(technology.getScience().get(numero).isRechercher()==false) {
 			if(technology.getScience().get(technology.getScience().get(numero).getDependanceDeux()).isRechercher()==true
 					&& technology.getScience().get(technology.getScience().get(numero).getDependanceUn()).isRechercher()==true) {
 				fileTechnology.add(technology.getScience().get(numero));
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean testFinRechercheBonusScience(int bonus) {
+		
+		if(!fileTechnology.isEmpty()) {	
+			
+			fileTechnology.get(0).setCout(fileTechnology.get(0).getCout()-bonus);
+			
+			if(fileTechnology.get(0).getCout()<=0) {
+				fileTechnology.get(0).setRechercher(true);
+				fileTechnology.remove(0);
 				return true;
 			}
 		}
@@ -94,6 +213,123 @@ public class Joueur {
 		}
 		return false;
 	}
+	
+	public void debutDeTour() {
+		testFinRecherche();
+		for (Ville v : TVille) {
+			v.testFinConstruction();
+		}
+		ajoutRessourceVille();
+		ajoutRessourcePlanete();
+		testScience();
+		regenerationVille();
+	}
+	
+	public void regenerationVille() {
+		for (Ville ville : TVille) {
+			ville.regenerationPuissance();
+		}
+	}
+	
+	public void testScience() {
+		
+		int scienceTotal=scienceDepart;
+		
+		for(Systeme systeme : this.systeme) {
+			for(Planete planete : systeme.getTPlanete()) {
+				if(planete.getJoueur()!=null && planete.getVille()==null) {					
+					scienceTotal+=planete.getTRessource().get(EnumRessource.SCIENCE);
+				}
+			}
+		}
+		
+		if(TVille!=null) {
+			for (Ville v : TVille) {
+				scienceTotal+=v.getTRessource().get(EnumRessource.SCIENCE);
+			}			
+		}
+		
+		if(TRessource.get(EnumRessource.SCIENCE)<scienceTotal) {
+			TRessource.put(EnumRessource.SCIENCE, scienceTotal);
+		}
+	}
+	
+	
+	public void ajoutRessourcePlanete() {
+		for(Systeme systeme : this.systeme) {
+			for(Planete planete : systeme.getTPlanete()) {
+				if(planete.getJoueur()!=null && planete.getVille()==null) {		
+					for (EnumRessource t : EnumRessource.values()) {
+						switch (t) {
+						case ACIER:
+							TRessource.put(t, planete.getTRessource().get(t)+TRessource.get(t));
+							if(TRessource.get(t)>999) {
+								TRessource.put(t, 999);
+							}
+							break;
+						case CREDIT:
+							TRessource.put(t, planete.getTRessource().get(t)+TRessource.get(t));
+							if(TRessource.get(t)>10000) {
+								TRessource.put(t, 10000);
+							}
+							break;
+						case CRISTAL:
+							TRessource.put(t, planete.getTRessource().get(t)+TRessource.get(t));
+							if(TRessource.get(t)>999) {
+								TRessource.put(t, 999);
+							}
+							break;
+						case GAZ:
+							TRessource.put(t, planete.getTRessource().get(t)+TRessource.get(t));
+							if(TRessource.get(t)>999) {
+								TRessource.put(t, 999);
+							}
+							break;
+						default:
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	
+	public void ajoutRessourceVille() {
+		for (Ville v : TVille) {
+			for (EnumRessource t : EnumRessource.values()) {
+				switch (t) {
+				case ACIER:
+					TRessource.put(t, v.getTRessource().get(t)+TRessource.get(t));
+					if(TRessource.get(t)>999) {
+						TRessource.put(t, 999);
+					}
+					break;
+				case CREDIT:
+					TRessource.put(t, v.getTRessource().get(t)+TRessource.get(t));
+					if(TRessource.get(t)>10000) {
+						TRessource.put(t, 10000);
+					}
+					break;
+				case CRISTAL:
+					TRessource.put(t, v.getTRessource().get(t)+TRessource.get(t));
+					if(TRessource.get(t)>999) {
+						TRessource.put(t, 999);
+					}
+					break;
+				case GAZ:
+					TRessource.put(t, v.getTRessource().get(t)+TRessource.get(t));
+					if(TRessource.get(t)>999) {
+						TRessource.put(t, 999);
+					}
+					break;
+				default:
+					break;
+				}
+			}
+		}	
+	}
+	
 	
 	public String getName() {
 		return name;
@@ -179,4 +415,15 @@ public class Joueur {
 		this.fileTechnology = fileTechnology;
 	}
 
+	public int getScienceDepart() {
+		return scienceDepart;
+	}
+
+	public void setScienceDepart(int scienceDepart) {
+		this.scienceDepart = scienceDepart;
+	}
+
+	public void setFileTechnology(List<Science> fileTechnology) {
+		this.fileTechnology = fileTechnology;
+	}
 }

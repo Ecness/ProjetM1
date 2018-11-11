@@ -26,10 +26,10 @@ public class Carte {
 	 * @param tailleSysteme		Nombre de systèmes de la partie
 	 */
 	private void generationSystemes(Parametre parametre) {
-		int index = 0, couche = 0, rang = 0;
+		int index = 0, couche = 0, rang = 0,id=0;
 
 		//Génération du premier système
-		Systeme premierSysteme = new Systeme(parametre.getAbondanceRessource(), parametre.getNbMaxPlanete(), parametre.getNbMaxAnomalie(), couche, rang);
+		Systeme premierSysteme = new Systeme(parametre.getAbondanceRessource(), parametre.getNbMaxPlanete(), parametre.getNbMaxAnomalie(), couche, rang,id);
 		couche++;
 		listeSysteme.add(premierSysteme);
 		int systemeAGenerer = premierSysteme.getNbLiensMax();
@@ -37,7 +37,7 @@ public class Carte {
 		//Génération des autres systèmes de la carte
 		while (listeSysteme.size() < parametre.getTailleCarte().getQuantite()) {
 			if (listeSysteme.get(index).getNbLiens() < listeSysteme.get(index).getNbLiensMax()) {
-				Systeme systeme = new Systeme(parametre.getAbondanceRessource(), parametre.getNbMaxPlanete(), parametre.getNbMaxAnomalie(), couche, rang);
+				Systeme systeme = new Systeme(parametre.getAbondanceRessource(), parametre.getNbMaxPlanete(), parametre.getNbMaxAnomalie(), couche, rang,++id);
 				listeSysteme.add(systeme);
 				int distance = (int) Math.random()*10+1;
 				listeSysteme.get(index).faireLien(systeme, distance);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import model.EnumRessource;
 import model.batiment.BatimentVille;
@@ -13,7 +14,9 @@ import model.module.EnumModule;
 
 public class Ville {
 	
+	private int id;
 	private int puissance;
+	private int puissanceTotal;
 	private Joueur joueur;
 	private Map<EnumRessource, Integer> TRessource;
 	private List<BatimentVille> TBatimentVille;
@@ -21,17 +24,31 @@ public class Ville {
 	private List<BatimentVille> filleDeConstructionBattiment;
 	private List<Vaisseau> filleDeConstructionUniter;
 	
-	public Ville(Joueur joueur) {
+	public Ville(Joueur joueur, Planete planete) {
 		
 		this.puissance = 0;
+		this.puissanceTotal = 0;
 		this.joueur = joueur;
+		this.id=joueur.getTVille().size();
 		this.TRessource = new HashMap<EnumRessource, Integer>();
+		for (Entry<EnumRessource, Integer> t : planete.getTRessource().entrySet()) {
+			TRessource.put(t.getKey(), t.getValue());
+		}
 		this.TBatimentVille = new ArrayList<BatimentVille>();
 		this.module = new EnumModule[5];
 		this.filleDeConstructionBattiment = new ArrayList<BatimentVille>();
 		this.filleDeConstructionUniter = new ArrayList<Vaisseau>();
 	}
 
+	public void regenerationPuissance() {
+		if(puissance<puissanceTotal) {
+			puissance+=(int)(puissanceTotal/10);
+		}
+		if(puissance>puissanceTotal) {
+			puissance=puissanceTotal;
+		}
+	}
+	
 	public boolean constructionBatiment(BatimentVille batiment) {
 		
 		if(joueur.getTechnology().getScience().get(batiment.getTechNecessaire()).isRechercher()==true) {
@@ -51,6 +68,9 @@ public class Ville {
 		if(TRessource.get(EnumRessource.PRODUCTION)>0 && !filleDeConstructionBattiment.isEmpty()) {		
 			filleDeConstructionBattiment.get(0).setCout(filleDeConstructionBattiment.get(0).getCout()-TRessource.get(EnumRessource.PRODUCTION));
 			if(filleDeConstructionBattiment.get(0).getCout()<=0) {
+				for(EnumRessource e : EnumRessource.values()) {
+					TRessource.put(e, TRessource.get(e)+filleDeConstructionBattiment.get(0).getBonus().get(e));
+				}
 				TBatimentVille.add(filleDeConstructionBattiment.get(0));
 				filleDeConstructionBattiment.remove(0);
 				return true;
@@ -129,6 +149,22 @@ public class Ville {
 
 	public void setFilleDeConstructionUniter(List<Vaisseau> filleDeConstructionUniter) {
 		this.filleDeConstructionUniter = filleDeConstructionUniter;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getPuissanceTotal() {
+		return puissanceTotal;
+	}
+
+	public void setPuissanceTotal(int puissanceTotal) {
+		this.puissanceTotal = puissanceTotal;
 	}
 	
 }
