@@ -16,7 +16,7 @@ public class MapCombatGeneration {
 		
 		EnumTailleMapCombat taille = EnumTailleMapCombat.PETITE;
 		
-		Systeme S = new Systeme(EnumAbondanceRessource.NORMAL, 10, 10, 0, 0);
+		Systeme S = new Systeme(EnumAbondanceRessource.NORMAL, 10, 10, 0, 0, 0);
 		MapCombat map = new MapCombat(null, null, null, null, S,taille);
 		
 		if(map.getClass() == null) {

@@ -24,7 +24,7 @@ public class SystemTest {
 		for(int j=0;j<10;j++) {
 			
 			Parametre p = new Parametre(null, EnumAbondanceRessource.NORMAL , null, null, 2, 10, 10, null,EnumRessourceDepart.NORMAL);
-			Systeme s = new Systeme(p.getAbondanceRessource(), p.getNbMaxPlanete(), p.getNbMaxAnomalie(), 0, 0);
+			Systeme s = new Systeme(p.getAbondanceRessource(), p.getNbMaxPlanete(), p.getNbMaxAnomalie(), 0, 0, j);
 			int i = 0;
 			
 			

@@ -2,7 +2,9 @@ package model.carte.stellaire;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 import model.EnumRessource;
@@ -20,8 +22,10 @@ public class Systeme {
 	private int nbLiens;
 	/**Nombre de liens maximum vers d'autres systèmes*/
 	private int nbLiensMax;
-	/**Liens du système vers d'autres systèmes*/
+	/**Liens réels (affichés) du système vers d'autres systèmes*/
 	private TreeMap<Systeme, Integer> liens;
+	/**Liens virtuels (non afichés, servent à espacer les systèmes) du système vers d'autres systèmes*/
+	private Map<Systeme, Integer> liensVirtuels;
 	/**Position du système*/
 	private Position position;
 	private List<Anomalie> TAnomalie;
@@ -30,7 +34,7 @@ public class Systeme {
 	private EnumTypeSysteme typeSysteme;
 	
 	/**Position du système selon un "pseudo-tableau"[couche][rang] utilisé pour la génération de la carte*/
-	class Position {
+	public class Position {
 		/**Utilisé pour la création du graphe des systèmes*/
 		private int couche;
 		/**Utilisé pour la création du graphe des systèmes*/
@@ -83,6 +87,7 @@ public class Systeme {
 							(o1.getRang() > o2.getRang() ? 1 : 0)));
 			}
 		});
+		liensVirtuels = new HashMap<Systeme, Integer>();
 		nbLiensMax = generationNbLiens();
 		position = new Position(couche, rang);
 		//Force le nombre minimum de liens pour le premier système de chaque couche
@@ -303,16 +308,71 @@ public class Systeme {
 		this.liens.put(systeme, (int) Math.random()*12+1);
 	}*/
 	
-	/**Fait le lien avec un autre système avec une distance prédéfinie (sens unique)*/
+	/**Fait le lien (réel) avec un autre système avec une distance prédéfinie (sens unique)*/
 	public void ajouterLien(Systeme systeme, int distance) {
 		liens.put(systeme, distance);
 		nbLiens++;
 	}
+
+	/**Fait le lien (virtuel) avec un autre système avec une distance prédéfinie (sens unique)*/
+	public void ajouterLienVirtuel(Systeme systeme, int distance) {
+		liensVirtuels.put(systeme, distance);
+	}
 	
-	/**Fait le lien avec un autre système avec une distance prédéfinie (dans les deux sens)*/
+	/**Fait le lien (réel) avec un autre système avec une distance prédéfinie (dans les deux sens)*/
 	public void faireLien(Systeme systeme, int distance) {
 		this.ajouterLien(systeme, distance);
 		systeme.ajouterLien(this, distance);
+	}
+	
+	/**Fait le lien (virtuel) avec un autre système avec une distance prédéfinie (dans les deux sens)*/
+	public void faireLienVirtuel(Systeme systeme, int distance) {
+		this.ajouterLienVirtuel(systeme, distance);
+		systeme.ajouterLienVirtuel(systeme, distance);
+	}
+	
+	/**
+	 * Modifie la distance entre le système et un système désigné.
+	 * Un lien virtuel est créé si aucun lien n'existe.
+	 * 
+	 * @param systeme	Système à lier
+	 * @param distance	Distance
+	 */
+	public void setDistance(Systeme systeme, int distance) {
+		if (liens.containsKey(systeme)) {
+			liens.put(systeme, distance);
+		} else {
+			liensVirtuels.put(systeme, distance);
+		}
+	}
+	
+//	public Systeme getSystemeLie(Systeme systeme) {
+//		if (liens.containsKey(systeme) || liensVirtuels.containsKey(systeme)) {
+//			return 
+//		}
+//	}
+	
+	/**
+	 * Récupère la distance entre le système et un autre système.
+	 * Un lien virtuel avec une distance aléatoire (entre 1 et 10) est créé si aucun lien n'existe.
+	 * 
+	 * @param systeme	Système à lier
+	 * 
+	 * @return Distance avec le système
+	 */
+	public int getDistance(Systeme systeme) {
+		int distance = (int) (Math.random()*10+1);
+		
+		if (liens.containsKey(systeme)) {
+			distance = liens.get(systeme);
+		} else if (liensVirtuels.containsKey(systeme)) {
+			distance = liensVirtuels.get(systeme);
+		} else {
+			//TODO SOURCE DE PROBLEME ???
+			liensVirtuels.put(systeme, distance);
+		}
+		
+		return distance;
 	}
 	
 	public List<Planete> getTPlanete() {
@@ -414,4 +474,8 @@ public class Systeme {
 		this.typeSysteme = typeSysteme;
 	}
 	
+
+	public Map<Systeme, Integer> getLiensVirtuels() {
+		return liensVirtuels;
+	}
 }

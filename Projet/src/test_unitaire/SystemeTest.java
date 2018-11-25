@@ -14,11 +14,11 @@ public class SystemeTest {
 
 	@Before
 	public void setUp() {
-		systeme = new Systeme(EnumAbondanceRessource.NORMAL, 10, 10, 0, 0);
-		systeme2 = new Systeme(EnumAbondanceRessource.NORMAL, 10, 10, 1, 0);
-		systeme3 = new Systeme(EnumAbondanceRessource.NORMAL, 10, 10, 1, 1);
-		systeme4 = new Systeme(EnumAbondanceRessource.NORMAL, 10, 10, 2, 0);
-		systeme5 = new Systeme(EnumAbondanceRessource.NORMAL, 10, 10, 3, 0);
+		systeme = new Systeme(EnumAbondanceRessource.NORMAL, 10, 10, 0, 0, 0);
+		systeme2 = new Systeme(EnumAbondanceRessource.NORMAL, 10, 10, 1, 0, 0);
+		systeme3 = new Systeme(EnumAbondanceRessource.NORMAL, 10, 10, 1, 1, 0);
+		systeme4 = new Systeme(EnumAbondanceRessource.NORMAL, 10, 10, 2, 0, 0);
+		systeme5 = new Systeme(EnumAbondanceRessource.NORMAL, 10, 10, 3, 0, 0);
 	}
 	
 	@Test
