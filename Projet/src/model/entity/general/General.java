@@ -13,7 +13,7 @@ public class General {
 		this.nom = nom;
 		this.experience = 0;
 		this.grade = EnumGrade.NOVIS;
-		Passif = new ArrayList<EnumPassif>();// max a deffinir 
+		Passif = new ArrayList<EnumPassif>();//TODO  max a deffinir 
 	}
 
 	public boolean choixPassif(EnumPassif passif) {

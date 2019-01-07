@@ -115,13 +115,13 @@ public class GereUnSysteme {
 				}	
 			}
 		}
-		System.out.println(joueur.getTechnology().getScience().size());
-		System.out.println(joueur.getTechnology().getScience().get(-1).isRechercher());
-		System.out.println(joueur.getTechnology().getScience().get(0).isRechercher());
+		System.out.println(joueur.getTechnology().getScience().getScience().size());
+		System.out.println(joueur.getTechnology().getScience().getScience().get(-1).isRechercher());
+		System.out.println(joueur.getTechnology().getScience().getScience().get(0).isRechercher());
 		joueur.addRecherche(0);
 		joueur.getTRessource().put(EnumRessource.SCIENCE, 80);
 		joueur.testFinRecherche();
-		System.out.println(joueur.getTechnology().getScience().get(0).isRechercher());
+		System.out.println(joueur.getTechnology().getScience().getScience().get(0).isRechercher());
 		
 		
 	}

@@ -3,10 +3,13 @@ package model.carte.combat;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.carte.combat.obstacle.CeintureAsteroide;
+import model.carte.combat.obstacle.ChampAsteroide;
 import model.carte.combat.obstacle.Debrit;
+import model.carte.combat.obstacle.EnumListObstacle;
+import model.carte.combat.obstacle.MineSpacial;
+import model.carte.combat.obstacle.NuageDeGaz;
 import model.carte.combat.obstacle.Obstacle;
-import model.carte.stellaire.Anomalie;
-import model.carte.stellaire.EnumAnomalie;
 import model.carte.stellaire.Systeme;
 import model.entity.player.Joueur;
 import model.entity.vaisseau.Flotte;
@@ -22,6 +25,8 @@ public class MapCombat {
 	private Systeme systeme;
 	private List<Obstacle> obstacle;
 	private boolean nebuleuse;
+	private boolean trouNoir;
+	List<EnumListObstacle> list;
 	
 	public MapCombat(Joueur joueur1, Joueur joueur2, Flotte flotteJ1, Flotte flotteJ2,
 			Systeme systeme, EnumTailleMapCombat taille) {
@@ -31,6 +36,7 @@ public class MapCombat {
 		this.flotteJ2 = flotteJ2;
 		this.systeme = systeme;
 		this.nebuleuse = false;
+		this.trouNoir = false;
 		this.MaxcoordoneX = taille.getTaille();
 		this.MaxcoordoneY = taille.getTaille();
 		this.obstacle = new ArrayList<Obstacle>();
@@ -40,13 +46,39 @@ public class MapCombat {
 	
 	public void generation(EnumTailleMapCombat taille) {
 		
-		for (Anomalie t : systeme.getTAnomalie() ){
-			if(t.getAnomalie() == EnumAnomalie.NEBULEUSE) {this.nebuleuse = true;}
-		}
+		GenerationObstacleMapCombat obstacleMapCombat = new GenerationObstacleMapCombat();
+		list = obstacleMapCombat.generationListObstaclePossible(taille.getNbObstacle(), this.systeme.getTypeSysteme());
 		
-		for(int i = 0; i < taille.getNbObstacle(); i++) {
-			// TODO faire plus d'obstacle !=
-			this.obstacle.add(new Debrit((int)(taille.getTaille()*Math.random()), (int)(taille.getTaille()*Math.random())));
+		
+		for (EnumListObstacle enumListObstacle : list) {
+			
+			switch (enumListObstacle) {
+			case ASTEROIDE:
+				this.obstacle.add(new ChampAsteroide((int)(taille.getTaille()*Math.random()), (int)(taille.getTaille()*Math.random())));
+				break;
+			case CEINTURE_ASTEROIDE:
+				//TODO a revoire ou a suppr ?
+				this.obstacle.add(new CeintureAsteroide(taille));
+				break;
+			case COMMET:
+				//TODO a faire et c'est chiant car il y as le noyau dure et la queue ionisé a généré ....
+				break;
+			case DEBRIT:
+				this.obstacle.add(new Debrit((int)(taille.getTaille()*Math.random()), (int)(taille.getTaille()*Math.random())));
+				break;
+			case FORTE_GRAVITER:
+				this.trouNoir = true;
+				break;
+			case MINE_SPACIAL:
+				this.obstacle.add(new MineSpacial((int)(taille.getTaille()*Math.random()), (int)(taille.getTaille()*Math.random())));
+				break;
+			case NEBULEUSE:
+				this.nebuleuse = true;
+				break;
+			case NUAGE_DE_GAZ:
+				this.obstacle.add(new NuageDeGaz((int)(taille.getTaille()*Math.random()), (int)(taille.getTaille()*Math.random())));
+				break;
+			}
 		}
 	}
 	
@@ -120,5 +152,20 @@ public class MapCombat {
 
 	public void setNebuleuse(boolean nebuleuse) {
 		this.nebuleuse = nebuleuse;
+	}
+	
+	public boolean isTrouNoir() {
+		return trouNoir;
+	}
+	
+	public void setTrouNoir(boolean trouNoir) {
+		this.trouNoir = trouNoir;
+	}
+	public List<EnumListObstacle> getList() {
+		return list;
+	}
+
+	public void setList(List<EnumListObstacle> list) {
+		this.list = list;
 	}	
 }
