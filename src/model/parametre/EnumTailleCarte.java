@@ -1,6 +1,7 @@
 package model.parametre;
 
 public enum EnumTailleCarte {
+	TEST(10),
 	MINUSCULE(50),
 	PETITE (75),
 	MOYENNE (100),

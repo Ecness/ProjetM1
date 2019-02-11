@@ -1,11 +1,11 @@
 package model.carte.stellaire;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.Random;
+
+import com.badlogic.gdx.math.Vector2;
 
 import model.EnumRessource;
 import model.batiment.BatimentPlanete;
@@ -13,8 +13,10 @@ import model.batiment.BatimentVille;
 import model.entity.player.Joueur;
 import model.entity.vaisseau.Flotte;
 import model.parametre.EnumAbondanceRessource;
+import model.util.Coordonnees;
 
 public class Systeme {
+	private Coordonnees coordonnees;
 	private int idSysteme;
 	private List<Planete> TPlanete;
 	private Joueur joueur;
@@ -22,51 +24,15 @@ public class Systeme {
 	private int nbLiens;
 	/**Nombre de liens maximum vers d'autres systèmes*/
 	private int nbLiensMax;
-	/**Liens réels (affichés) du système vers d'autres systèmes*/
-	private TreeMap<Systeme, Integer> liens;
-	/**Liens virtuels (non afichés, servent à espacer les systèmes) du système vers d'autres systèmes*/
-	private Map<Systeme, Integer> liensVirtuels;
-	/**Position du système*/
-	private Position position;
+	/**Liens du système vers d'autres systèmes*/
+	private HashMap<Systeme, Vector2> liens;
 	private List<Anomalie> TAnomalie;
 	private List<Flotte> flottes;
 	private GenerationRessourceEtAnomalie ressourceEtAnomalie;
 	private EnumTypeSysteme typeSysteme;
-	
-	/**Position du système selon un "pseudo-tableau"[couche][rang] utilisé pour la génération de la carte*/
-	public class Position {
-		/**Utilisé pour la création du graphe des systèmes*/
-		private int couche;
-		/**Utilisé pour la création du graphe des systèmes*/
-		private int rang;
-		
-		public Position(int couche, int rang) {
-			this.couche = couche;
-			this.rang = rang;
-		}
 
-		public int getCouche() {
-			return couche;
-		}
-
-		public int getRang() {
-			return rang;
-		}
-		
-		public int coucheSuivante() {
-			return couche+1;
-		}
-		
-		public int rangSuivant() {
-			return rang+1;
-		}
-		
-		public int rangPrecedent() {
-			return rang-1;
-		}
-	}
-
-	public Systeme(EnumAbondanceRessource nbRessource, int maxPlanete, int maxAnomalie, int couche, int rang, int idSysteme) {
+	public Systeme(EnumAbondanceRessource nbRessource, int maxPlanete, int maxAnomalie, int idSysteme) {
+		coordonnees = new Coordonnees();
 		this.idSysteme=idSysteme;
 		this.ressourceEtAnomalie=new GenerationRessourceEtAnomalie();
 		this.typeSysteme=EnumTypeSysteme.type();
@@ -78,23 +44,25 @@ public class Systeme {
 			generationSystem(nbRessource, maxPlanete);
 		}
 		generationAnomalie(maxAnomalie);
-		liens = new TreeMap<Systeme, Integer>(new Comparator<Systeme>() {
-			@Override
-			public int compare(Systeme o1, Systeme o2) {
-				return o1.getCouche() < o2.getCouche() ? -1 :
-					(o1.getCouche() > o2.getCouche() ? 1 : 
-						(o1.getRang() < o2.getRang() ? -1 : 
-							(o1.getRang() > o2.getRang() ? 1 : 0)));
-			}
-		});
-		liensVirtuels = new HashMap<Systeme, Integer>();
+		liens = new HashMap<Systeme, Vector2>();
 		nbLiensMax = generationNbLiens();
-		position = new Position(couche, rang);
-		//Force le nombre minimum de liens pour le premier système de chaque couche
-		//(empêche la génération des systèmes de s'arrêter avant que le nombre de systèmes requis soit atteint)
-		if (rang == 0 && nbLiensMax < 2) {
-			nbLiensMax = 2;
+	}
+	
+	public Systeme(int x, int y, EnumAbondanceRessource nbRessource, int maxPlanete, int maxAnomalie, int idSysteme) {
+		coordonnees = new Coordonnees(x, y);
+		this.idSysteme=idSysteme;
+		this.ressourceEtAnomalie=new GenerationRessourceEtAnomalie();
+		this.typeSysteme=EnumTypeSysteme.type();
+		TPlanete = new ArrayList<Planete>();
+		this.joueur = null;
+		TAnomalie = new ArrayList<Anomalie>();
+		this.flottes = new ArrayList<Flotte>();
+		if(typeSysteme!=EnumTypeSysteme.NEBULEUSE && typeSysteme!=EnumTypeSysteme.TROU_NOIR) {
+			generationSystem(nbRessource, maxPlanete);
 		}
+		generationAnomalie(maxAnomalie);
+		liens = new HashMap<Systeme, Vector2>();
+		nbLiensMax = generationNbLiens();
 	}
 	
 	public boolean presenceVille() {
@@ -269,7 +237,7 @@ public class Systeme {
 		do {
 			y = Math.random();
 			x = (int)((maxPlanete)*Math.random()+1);			
-		}while(y > (1-Math.pow((((2*x)/maxPlanete )-1),2)));
+		} while(y > (1-Math.pow((((2*x)/maxPlanete )-1),2)));
 		
 		for(int i=0; i<(int)x;i++) {				
 			TPlanete.add(new Planete(EnumTypePlanete.type(),nbRessource,this.ressourceEtAnomalie));
@@ -308,48 +276,59 @@ public class Systeme {
 		this.liens.put(systeme, (int) Math.random()*12+1);
 	}*/
 	
-	/**Fait le lien (réel) avec un autre système avec une distance prédéfinie (sens unique)*/
-	public void ajouterLien(Systeme systeme, int distance) {
-		liens.put(systeme, distance);
-		nbLiens++;
+	/**
+	 * Liaison de deux systèmes.
+	 * Les coordonnées du second système sont liées au premier système
+	 * 
+	 * @param systeme	Système à lier
+	 */
+	public boolean ajouterLienNouveauSysteme(Systeme systeme, boolean exterieur) {
+		//TODO passer la distance maximum ou un intervalle de distance en paramètre
+		if (this.nbLiens < this.nbLiensMax && systeme.getNbLiens() < systeme.getNbLiensMax()) {
+			int x = new Random().nextInt(500 - 250) + 250;
+			int y = new Random().nextInt(500 - 250) + 250;
+			Vector2 vecteur = new Vector2();
+			Vector2 oppose = new Vector2();
+			vecteur.setToRandomDirection();
+			vecteur.nor();
+			vecteur.scl(x, y);
+			if (exterieur) {				
+				Vector2 direction = new Vector2(this.getCoordonnees().getX(), this.getCoordonnees().getY());
+				float angle = direction.angle();
+				vecteur.setAngle(angle);
+			}
+			liens.put(systeme, vecteur);
+			systeme.setCoordonnees(coordonnees.getX() + (int) vecteur.x, coordonnees.getY() + (int) vecteur.y);
+			oppose = new Vector2(vecteur);
+			oppose.rotate(180);
+			systeme.getLiens().put(this, oppose);
+			nbLiens++;
+			systeme.setNbLiens(systeme.getNbLiens() + 1);
+			
+			return true;
+		}
+		
+		return false;
 	}
-
-	/**Fait le lien (virtuel) avec un autre système avec une distance prédéfinie (sens unique)*/
-	public void ajouterLienVirtuel(Systeme systeme, int distance) {
-		liensVirtuels.put(systeme, distance);
+	
+	/**Fait le lien (réel) avec un autre système avec une distance prédéfinie (sens unique)*/
+	public void ajouterLien(Systeme systeme) {
+		//Création d'un vecteur vide (0,0)
+		Vector2 vecteur = new Vector2();
+		//Orientation du vecteur dans une direction aléatoire
+		vecteur.setToRandomDirection();
+		//Normalisation du vecteur
+		vecteur.nor();
+		//Multiplication du vecteur afin d'avoir le vecteur système->système lié
+		vecteur.scl(systeme.coordonnees.getX(), systeme.getCoordonnees().getY());
+		liens.put(systeme, vecteur);
+		nbLiens++;
 	}
 	
 	/**Fait le lien (réel) avec un autre système avec une distance prédéfinie (dans les deux sens)*/
-	public void faireLien(Systeme systeme, int distance) {
-		this.ajouterLien(systeme, distance);
-		systeme.ajouterLien(this, distance);
-	}
-	
-	/**Fait le lien (virtuel) avec un autre système avec une distance prédéfinie (dans les deux sens)*/
-	public void faireLienVirtuel(Systeme systeme, int distance) {
-		this.ajouterLienVirtuel(systeme, distance);
-		systeme.ajouterLienVirtuel(systeme, distance);
-	}
-	
-	/**
-	 * Modifie la distance entre le système et un système désigné.
-	 * Un lien virtuel est créé si aucun lien n'existe.
-	 * 
-	 * @param systeme	Système à lier
-	 * @param distance	Distance
-	 */
-	public void setDistance(Systeme systeme, int distance) {
-		if (liens.containsKey(systeme)) {
-			liens.put(systeme, distance);
-		} else {
-			liensVirtuels.put(systeme, distance);
-		}
-	}
-	
-//	public Systeme getSystemeLie(Systeme systeme) {
-//		if (liens.containsKey(systeme) || liensVirtuels.containsKey(systeme)) {
-//			return 
-//		}
+//	public void faireLien(Systeme systeme) {
+//		this.ajouterLien(systeme);
+//		systeme.ajouterLien(this);
 //	}
 	
 	/**
@@ -360,21 +339,60 @@ public class Systeme {
 	 * 
 	 * @return Distance avec le système
 	 */
-	public int getDistance(Systeme systeme) {
-		int distance = (int) (Math.random()*10+1);
-		
-		if (liens.containsKey(systeme)) {
-			distance = liens.get(systeme);
-		} else if (liensVirtuels.containsKey(systeme)) {
-			distance = liensVirtuels.get(systeme);
-		} else {
-			//TODO SOURCE DE PROBLEME ???
-			liensVirtuels.put(systeme, distance);
-		}
-		
-		return distance;
+//	public Map<List<Systeme>, Integer> getChemin(Systeme systeme) {
+//		//TODO Implémenter un PCC 1
+//		//Faire une recherche en largeur et une fois un chemin trouvé, continuer la recherche uniquement pour les chemins ayant un coût inférieur
+//		int distance = 0;
+//		Map<List<Systeme>, Integer> listeChemins = new HashMap<List<Systeme>, Integer>();
+//		List<Systeme> marques = new ArrayList<Systeme>();
+//		List<Systeme> chemin = new ArrayList<Systeme>();
+//		Systeme actuel = this;
+//		
+//		chemin.add(actuel);
+//
+//		if (this.equals(systeme)) {
+//			listeChemins.put(chemin , distance);
+//		} else if (liens.containsKey(systeme)) {
+//			chemin.add(systeme);
+//			listeChemins.put(chemin , distance);
+//		} else {
+//			while (!actuel.equals(systeme)) {				
+//				marques.add(actuel);
+//				for (Entry<Systeme, Vector2> sys : actuel.getLiens().entrySet()) {
+//					chemin = 
+//				}
+//			}
+//		}
+//		
+//		
+//		return listeChemins;
+//	}
+	
+	public Coordonnees getCoordonnees() {
+		return coordonnees;
+	}
+
+	public void setCoordonnees(Coordonnees coordonnees) {
+		this.coordonnees = coordonnees;
 	}
 	
+	public void setCoordonnees(int x, int y) {
+		this.coordonnees.setX(x);
+		this.coordonnees.setY(y);
+	}
+	
+	public void setCoordonneesOnCircle(Systeme sys) {
+		
+	}
+	
+	public int getX() {
+		return coordonnees.getX();
+	}
+	
+	public int getY() {
+		return coordonnees.getY();
+	}
+
 	public List<Planete> getTPlanete() {
 		return TPlanete;
 	}
@@ -387,36 +405,16 @@ public class Systeme {
 		return nbLiensMax;
 	}
 
+	public void setNbLiensMax(int nbLiensMax) {
+		this.nbLiensMax = nbLiensMax;
+	}
+
 	public int getNbLiens() {
 		return nbLiens;
 	}
-
-	public int getCouche() {
-		return position.couche;
-	}
-
-	public int getRang() {
-		return position.rang;
-	}
 	
-	public Position getPosition() {
-		return position;
-	}
-	
-	public Position getPositionSuivante() {
-		return new Position(position.getCouche(), position.getRang()+1);
-	}
-	
-	public Position getPositionPrecedente() {
-		return new Position(position.getCouche(), position.getRang()-1);
-	}
-	
-	public Position getDernierLien() {
-		return liens.lastKey().position;
-	}
-	
-	public Position getPremierLien() {
-		return liens.size() > 1 ? liens.higherKey(liens.firstKey()).position : liens.firstKey().position;
+	public void setNbLiens(int nbLiens) {
+		this.nbLiens = (nbLiens > this.nbLiensMax ? nbLiensMax : nbLiens);
 	}
 
 	public Joueur getJoueur() {
@@ -446,7 +444,7 @@ public class Systeme {
 		this.flottes = flottes;
 	}
 	
-	public TreeMap<Systeme, Integer> getLiens() {
+	public HashMap<Systeme, Vector2> getLiens() {
 		return liens;
 	}
 
@@ -473,9 +471,9 @@ public class Systeme {
 	public void setTypeSysteme(EnumTypeSysteme typeSysteme) {
 		this.typeSysteme = typeSysteme;
 	}
-	
 
-	public Map<Systeme, Integer> getLiensVirtuels() {
-		return liensVirtuels;
+	@Override
+	public boolean equals(Object obj) {
+		return idSysteme == ((Systeme)obj).getIdSysteme();
 	}
 }

@@ -23,6 +23,7 @@ import model.parametre.EnumTailleMapCombat;
 import model.parametre.EnumTypeCarte;
 import model.parametre.EnumVictoire;
 import model.parametre.Parametre;
+import view.galaxie.AffichageGalaxie;
 import view.launcher.Project;
 
 public class MenuParametre {
@@ -214,6 +215,10 @@ public class MenuParametre {
 			public void clicked(InputEvent event, float x, float y) {
 				Project.parametre = new Parametre(tVictoire, selectabondRess.getSelected(), selectTypeCarte.getSelected(), selectTailleCarte.getSelected(),
 						selectNbJoueur.getSelected(), (int)nbAnoMax.getValue(), (int)nbPlanMax.getValue(), selectTCombat.getSelected(), null);
+				Project.galaxie = new AffichageGalaxie();
+				Project.change = true;
+				Project.menu = 2;
+				Project.affichageGalaxie = true;
 			}
 		});
 	}

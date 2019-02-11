@@ -3,15 +3,15 @@ package model.carte.combat.obstacle;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.util.Coordonee;
+import model.util.Coordonnees;
 
 public class Obstacle {
 
-	private List<Coordonee> coordonee;
+	private List<Coordonnees> coordonee;
 	
 	public Obstacle() {
 		super();
-		coordonee = new ArrayList<Coordonee>();
+		coordonee = new ArrayList<Coordonnees>();
 	}
 	
 	public boolean estCompris(int x, int y) {
@@ -23,15 +23,15 @@ public class Obstacle {
 	}
 	
 	public void addCoordonee(int x, int y) {
-		Coordonee c = new Coordonee(x, y);
+		Coordonnees c = new Coordonnees(x, y);
 		coordonee.add(c);
 	}
 
-	public List<Coordonee> getCoordonee() {
+	public List<Coordonnees> getCoordonee() {
 		return coordonee;
 	}
 
-	public void setCoordonee(List<Coordonee> coordonee) {
+	public void setCoordonee(List<Coordonnees> coordonee) {
 		this.coordonee = coordonee;
 	}
 }

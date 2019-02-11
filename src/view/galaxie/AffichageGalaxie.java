@@ -1,40 +1,44 @@
 package view.galaxie;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-
+import com.badlogic.gdx.math.Vector2;
+import model.carte.stellaire.Carte;
+import model.carte.stellaire.Systeme;
 import view.launcher.Project;
 
 public class AffichageGalaxie {
-	private Stage stage;
-	private Skin skin;
+	private Carte carte;
+	
+//	private Stage stage;
+//	private Skin skin;
 	private ShapeRenderer shapeRenderer;
 	
-	private Circle circle;
-	
 	public AffichageGalaxie () {
-		int screenWidth = Gdx.graphics.getWidth();
-		int screenHeight = Gdx.graphics.getHeight();
-		skin = new Skin(Gdx.files.internal("uiskin.json"));
+//		skin = new Skin(Gdx.files.internal("uiskin.json"));
 		
-//		Carte carte = new Carte(Projet.parametre);
+		carte = new Carte(Project.parametre);
 		
-		circle = new Circle(500, 500, 100);
 		shapeRenderer = new ShapeRenderer();
-		Project.batch.setProjectionMatrix(Project.camera.combined);
+		carte.affichage();
 		
-		
+		for (Systeme sys : carte.getListeSysteme()) {
+			System.out.println(sys.getIdSysteme() + "-----" + sys.getNbLiens() + "/" + sys.getNbLiensMax() + "-----");
+		}
 	}
 	
 	public void render() {
 		shapeRenderer.begin(ShapeType.Filled);
+		Project.batch.setProjectionMatrix(Project.camera.combined);
 		shapeRenderer.setColor(Color.WHITE);
-		shapeRenderer.circle(circle.x, circle.y, circle.radius);
+		for (Systeme sys : carte.getListeSysteme()) {
+			shapeRenderer.circle(sys.getX(), sys.getY(), 10);
+			for (Vector2 vect : sys.getLiens().values()) {
+				shapeRenderer.line(new Vector2(sys.getCoordonnees().getX(), sys.getCoordonnees().getY()), new Vector2(sys.getCoordonnees().getX() + vect.x, sys.getCoordonnees().getY() + vect.y));
+			}
+		}
+		Project.camera.update();
 		shapeRenderer.end();
 	}
 }

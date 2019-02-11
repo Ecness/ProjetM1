@@ -1,242 +1,203 @@
 package model.carte.stellaire;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
-import model.carte.stellaire.Systeme.Position;
+import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Vector2;
+
 import model.parametre.Parametre;
 
 public class Carte {
 	/**Liste des systèmes*/
 	private List<Systeme> listeSysteme;
-	private Map<Systeme.Position, Systeme> positionSysteme;
+	/**Système le plus éloigné du premier système par distance euclidienne (Plus Lointain Système)*/
+	private Systeme pls;
 	
 	public Carte(Parametre parametres) {
 		listeSysteme = new ArrayList<Systeme>();
 
 		generationSystemes(parametres);
 		liaisonSystemes();
-//		reevaluation();
 	}
 
 	/**
-	 * Génération des systèmes (génération en largeur)
+	 * Génération des systèmes
 	 * 
 	 * @param tailleSysteme		Nombre de systèmes de la partie
 	 */
 	private void generationSystemes(Parametre parametre) {
-		int index = 0, couche = 0, rang = 0,id=0;
+		
+		int index = 0, id=0;
+		boolean valide = true, exterieur = false;
 
 		//Génération du premier système
-		Systeme premierSysteme = new Systeme(parametre.getAbondanceRessource(), parametre.getNbMaxPlanete(), parametre.getNbMaxAnomalie(), couche, rang,id);
-		couche++;
+		Systeme premierSysteme = new Systeme(parametre.getAbondanceRessource(), parametre.getNbMaxPlanete(), parametre.getNbMaxAnomalie(), id);
 		listeSysteme.add(premierSysteme);
 		int systemeAGenerer = premierSysteme.getNbLiensMax();
+		pls = premierSysteme;
 
 		//Génération des autres systèmes de la carte
 		while (listeSysteme.size() < parametre.getTailleCarte().getQuantite()) {
-			if (listeSysteme.get(index).getNbLiens() < listeSysteme.get(index).getNbLiensMax()) {
-				Systeme systeme = new Systeme(parametre.getAbondanceRessource(), parametre.getNbMaxPlanete(), parametre.getNbMaxAnomalie(), couche, rang,++id);
-				listeSysteme.add(systeme);
-				int distance = (int) (Math.random()*10+1);
-				listeSysteme.get(index).faireLien(systeme, distance);
-				rang++;
-				systemeAGenerer--;
-			}
+			while (systemeAGenerer > 0) {
+				valide = true;
+				if (listeSysteme.size() < parametre.getTailleCarte().getQuantite() && listeSysteme.get(index).getNbLiens() < listeSysteme.get(index).getNbLiensMax()) {
+					Systeme systeme = new Systeme(parametre.getAbondanceRessource(), parametre.getNbMaxPlanete(), parametre.getNbMaxAnomalie(), ++id);
+					listeSysteme.add(systeme);
+					if (listeSysteme.get(index).ajouterLienNouveauSysteme(systeme, exterieur) && verifCoordSysteme(systeme) && verifDistanceSysteme(systeme)) {
+						if (exterieur) {
+							exterieur = false;
+						}
+						Vector2 baseVector = new Vector2(listeSysteme.get(index).getLiens().get(systeme));
+						
+						int rotation = 0, multiplicateur = 1;
+						valide = verifLiaisonSysteme(listeSysteme.get(index), systeme);
+						Vector2 nouveauVecteur = new Vector2(baseVector);
+						while (!valide && multiplicateur > 0) {
+							//Rotation du vecteur de 10 degrés
+							nouveauVecteur.rotate(45);
+							//Mise à jour des vecteurs
+							listeSysteme.get(index).getLiens().put(systeme, nouveauVecteur);
+							Vector2 oppose = new Vector2(nouveauVecteur);
+							oppose.rotate(180);
+							listeSysteme.get(listeSysteme.size()-1).getLiens().put(listeSysteme.get(index), oppose);
+							//Mise à jour des nouvelles coordonnées du système
+							systeme.getCoordonnees().set(listeSysteme.get(index).getCoordonnees().getX() + (int) listeSysteme.get(index).getLiens().get(systeme).x, 
+									listeSysteme.get(index).getCoordonnees().getY() + (int) listeSysteme.get(index).getLiens().get(systeme).y);
+							rotation += 45;
+							//Si un tour complet a été fait, la distance est diminuée
+							if (rotation == 360) {
+								rotation = 0;
+								multiplicateur -= 0.1;
+								nouveauVecteur.scl(multiplicateur);
+								listeSysteme.get(index).getLiens().put(systeme, nouveauVecteur);
+								oppose = new Vector2(nouveauVecteur);
+								oppose.rotate(180);
+								listeSysteme.get(listeSysteme.size()-1).getLiens().put(listeSysteme.get(index), oppose);
+								systeme.getCoordonnees().set(listeSysteme.get(index).getCoordonnees().getX() + (int) listeSysteme.get(index).getLiens().get(systeme).x, 
+										listeSysteme.get(index).getCoordonnees().getY() + (int) listeSysteme.get(index).getLiens().get(systeme).y);
+							}
 
-			if (systemeAGenerer == 0
-					|| listeSysteme.get(index).getNbLiens() >= listeSysteme.get(index).getNbLiensMax()) {
-				index++;
-				if (listeSysteme.get(index).getRang() == 0) {
-					couche++;
-					rang = 0;
+							valide = verifLiaisonSysteme(listeSysteme.get(index), systeme);
+						}
+
+						if (!valide || multiplicateur <= 0) {
+							listeSysteme.get(index).getLiens().remove(systeme);
+							listeSysteme.get(index).setNbLiens(listeSysteme.get(index).getNbLiens() - 1);
+							listeSysteme.remove(systeme);
+							id--;
+						}
+					} else {
+						if (listeSysteme.get(index).getLiens().remove(systeme) != null) {
+							listeSysteme.get(index).setNbLiens(listeSysteme.get(index).getNbLiens() - 1);
+						}
+						listeSysteme.remove(systeme);
+						id--;
+					}
 				}
-				systemeAGenerer = (int)(Math.random()*listeSysteme.get(index).getNbLiensMax()-1);
+				
+				systemeAGenerer--;
+
+				//Calcul du système le plus éloigné du premier système
+				if (!listeSysteme.get(0).equals(listeSysteme.get(listeSysteme.size()-1)) && 
+						(Vector2.dst2(0, 0, pls.getCoordonnees().getX(), pls.getCoordonnees().getY()) < Vector2.dst2(0, 0, listeSysteme.get(listeSysteme.size()-1).getCoordonnees().getX(), listeSysteme.get(listeSysteme.size()-1).getCoordonnees().getY()))) {
+					pls = listeSysteme.get(listeSysteme.size()-1);
+					System.out.println("PLS : " + pls.getIdSysteme());
+				}
 			}
-		}
-		
-		positionSysteme = new HashMap<Systeme.Position, Systeme>();
-		
-		for (Systeme sys : listeSysteme) {
-			positionSysteme.put(sys.getPosition(), sys);
+			if (systemeAGenerer == 0) {
+				//Si on peut continuer à créer des systèmes sans revenir en arrière on le fait, sinon on en crée depuis le pls
+				if (index+1 < listeSysteme.size()) {
+					index++;
+					systemeAGenerer = (int)(Math.random()*listeSysteme.get(index).getNbLiensMax())+1;
+				} else {
+					index = listeSysteme.indexOf(pls);
+					if (pls.getNbLiens() == pls.getNbLiensMax()) {
+						pls.setNbLiensMax(pls.getNbLiensMax() + 1);
+					}
+					systemeAGenerer = pls.getNbLiensMax() - pls.getNbLiens();
+					exterieur = true;
+				}
+			}
 		}
 	}
 
 	/**Liaison des systèmes pouvant être liés*/
 	private void liaisonSystemes() {
-		//Ensemble des systèmes très selon leur position (couche, rang)
-		TreeMap<Position, Systeme> mapSysteme = new TreeMap<Position, Systeme>(new Comparator<Position>() {
-			@Override
-			public int compare(Position o1, Position o2) {
-				return o1.getCouche() < o2.getCouche() ? -1 :
-					(o1.getCouche() > o2.getCouche() ? 1 : 
-						(o1.getRang() < o2.getRang() ? -1 : 
-							(o1.getRang() > o2.getRang() ? 1 : 0)));
-			}
-		});
-		
-		for (Systeme sys : listeSysteme) {
-			mapSysteme.put(sys.getPosition(), sys);
-		}
-
-		//Ensemble des liaision pouvant être effectuées pour chaque système
-		Map<Systeme, List<Systeme>> ensembleLiaison = new TreeMap<Systeme, List<Systeme>>(new Comparator<Systeme>() {
-			@Override
-			public int compare(Systeme o1, Systeme o2) {
-				return o1.getCouche() < o2.getCouche() ? -1 :
-					(o1.getCouche() > o2.getCouche() ? 1 : 
-						(o1.getRang() < o2.getRang() ? -1 : 
-							(o1.getRang() > o2.getRang() ? 1 : 0)));
-			}
-		});
-		
-		//Vérification des liaisons pouvant être effecutées pour chaque système
-		for (Systeme sys : listeSysteme) {
-			ensembleLiaison.put(sys, new ArrayList<Systeme>());
-
-			//Liaison gauche
-			if (mapSysteme.containsKey(sys.getPositionPrecedente())
-					&& verifLiaison(mapSysteme, sys, mapSysteme.get(sys.getPositionPrecedente()))) {
-				ensembleLiaison.get(sys).add(mapSysteme.get(sys.getPositionPrecedente()));
-			}
-			//Liaison droite
-			if (mapSysteme.containsKey(sys.getPositionSuivante())
-					&& verifLiaison(mapSysteme, sys, mapSysteme.get(sys.getPositionSuivante()))) {
-				ensembleLiaison.get(sys).add(mapSysteme.get(sys.getPositionSuivante()));
-			}
-			//Liaison haut-gauche
-			if (mapSysteme.containsKey(sys.getPositionPrecedente())
-					&& mapSysteme.containsKey(mapSysteme.get(sys.getPositionPrecedente()).getDernierLien())
-					&& verifLiaison(mapSysteme, sys, mapSysteme.get(mapSysteme.get(sys.getPositionPrecedente()).getDernierLien()))) {
-				ensembleLiaison.get(sys).add(mapSysteme.get(mapSysteme.get(sys.getPositionPrecedente()).getDernierLien()));
-			}
-			//Liaison haut-droite
-			if (mapSysteme.containsKey(sys.getPositionSuivante())
-					&& mapSysteme.containsKey(mapSysteme.get(sys.getPositionSuivante()).getPremierLien())
-					&& mapSysteme.get(sys.getPositionSuivante()).getLiens().size() > 1
-					&& verifLiaison(mapSysteme, sys, mapSysteme.get(mapSysteme.get(sys.getPositionSuivante()).getPremierLien()))) {
-				ensembleLiaison.get(sys).add(mapSysteme.get(mapSysteme.get(sys.getPositionSuivante()).getPremierLien()));
-			}
-		}
-
-		//Liaisons des systèmes
-		for (Map.Entry<Systeme, List<Systeme>> sys : ensembleLiaison.entrySet()) {
-			if (!sys.getValue().isEmpty()) {
-				int index = (int) (Math.random()*sys.getValue().size());
-				while (index >= 0 && sys.getKey().getNbLiens() < sys.getKey().getNbLiensMax()
-						&& sys.getValue().get(index).getNbLiens() < sys.getValue().get(index).getNbLiensMax()){
-					if (!sys.getKey().getLiens().containsKey(sys.getValue().get(index))) {
-						sys.getKey().faireLien(sys.getValue().get(index), (int)(Math.random()*10)+1);
-					}
-
-					index--;
+		for (Systeme origine : listeSysteme) {
+			for (Systeme destination : listeSysteme) {
+				if (!origine.equals(destination) && origine.getNbLiens() < origine.getNbLiensMax() && destination.getNbLiens() < destination.getNbLiensMax() 
+						&& !origine.getLiens().containsKey(destination) && verifLiaisonSysteme(origine, destination)) {
+					origine.getLiens().put(destination, new Vector2(destination.getX() - origine.getX(), destination.getY() - origine.getY()));
+					origine.setNbLiens(origine.getNbLiens() + 1);
+					destination.getLiens().put(origine, new Vector2(origine.getX() - destination.getX(), origine.getY() - destination.getY()));
+					destination.setNbLiens(destination.getNbLiens() + 1);
 				}
 			}
 		}
 	}
 	
-	/**Réévaluation des distances entre les systèmes*/
-	//TODO TEST SUR DISTANCES
-	private void reevaluation() {
-		boolean reevaluer = true;
-		while (reevaluer) {
-			reevaluer = false;
-			for (Systeme sys : listeSysteme) {
-				for (Map.Entry<Systeme, Integer> entry : sys.getLiens().entrySet()) {
-					Systeme cible1 = sys.getLiens().firstKey();
-					Systeme cible2 = entry.getKey();
-					if (cible1 != cible2
-							&& cible1.getCouche() > sys.getCouche()
-							&& cible2.getCouche() > sys.getCouche()) {
-						if (cible1.getDistance(cible2) < sys.getDistance(cible1) + sys.getDistance(cible2)) {
-							cible1.setDistance(cible2, sys.getDistance(cible1) + sys.getDistance(cible2));
-							reevaluer = true;
-						} else if (sys.getDistance(cible2) < sys.getDistance(cible1) + cible1.getDistance(cible2)) {
-							sys.setDistance(cible2, sys.getDistance(cible1) + cible1.getDistance(cible2));
-							reevaluer = true;
-						} else if (sys.getDistance(cible1) < cible1.getDistance(cible2) + sys.getDistance(cible2)) {
-							sys.setDistance(cible1, cible1.getDistance(cible2) + sys.getDistance(cible2));
-							reevaluer = true;
-						}
-						cible1 = cible2;
+	/**
+	 * Vérifie que la liaison entre deux systèmes ne croise aucune autre liaison
+	 * 
+	 * @param origine		Système à lier
+	 * @param destination	Système à lier
+	 * @return				Vrai si les systèmes peuvent être liés, Faux sinon
+	 */
+	private boolean verifLiaisonSysteme(Systeme origine, Systeme destination) {
+		Vector2 intersection = new Vector2();
+		Vector2 point1 = new Vector2(origine.getCoordonnees().getX(), origine.getCoordonnees().getY());
+		Vector2 point2 = new Vector2(destination.getCoordonnees().getX(), destination.getCoordonnees().getY());
+
+		for (int i = 0; i < listeSysteme.size()-1; i++) {
+			for (int j = 1; j < listeSysteme.size(); j++) {
+				if (listeSysteme.get(i).getLiens().containsKey(listeSysteme.get(j))) {
+					Vector2 point3 = new Vector2(listeSysteme.get(i).getCoordonnees().getX(), listeSysteme.get(i).getCoordonnees().getY());
+					Vector2 point4 = new Vector2(listeSysteme.get(j).getCoordonnees().getX(), listeSysteme.get(j).getCoordonnees().getY());
+					if (Intersector.intersectSegments(point1, point2, point3, point4, intersection) && 
+							!intersection.equals(point1) && !intersection.equals(point2) && !intersection.equals(point3) && !intersection.equals(point4)) {
+						return false;
 					}
 				}
-
-				if (positionSysteme.get(sys.getPositionPrecedente()) != null) {
-					Systeme cible1 = positionSysteme.get(sys.getPositionPrecedente());
-					Systeme premierLien = sys.getLiens().firstKey();
-
-					//TODO Vérifier limite map
-					while (premierLien.getPosition().getCouche() <= sys.getPosition().getCouche()) {
-						premierLien = sys.getLiens().higherKey(premierLien);
-					}
-
-					Systeme cible2 = sys.getLiens().ceilingKey(premierLien);
-
-					if (sys.getDistance(cible2) < sys.getDistance(cible1) + cible1.getDistance(cible2)) {
-						sys.setDistance(cible2, sys.getDistance(cible1) + cible1.getDistance(cible2));
-						reevaluer = true;
-					} else if (sys.getDistance(cible1) < cible1.getDistance(cible2) + sys.getDistance(cible2)) {
-						sys.setDistance(cible1, cible1.getDistance(cible2) + sys.getDistance(cible2));
-						reevaluer = true;
-					} else if (cible1.getDistance(cible2) < sys.getDistance(cible1) + sys.getDistance(cible2)) {
-						cible1.setDistance(cible2, sys.getDistance(cible1) + sys.getDistance(cible2));
-						reevaluer = true;
-					}
-				}
-
-				if (positionSysteme.get(sys.getPositionSuivante()) != null) {
-					Systeme cible1 = positionSysteme.get(sys.getPositionSuivante());
-					Systeme cible2 = sys.getLiens().lastKey();
-
-					if (sys.getDistance(cible2) < sys.getDistance(cible1) + cible1.getDistance(cible2)) {
-						sys.setDistance(cible2, sys.getDistance(cible1) + cible1.getDistance(cible2));
-						reevaluer = true;
-					} else if (sys.getDistance(cible1) < cible1.getDistance(cible2) + sys.getDistance(cible2)) {
-						sys.setDistance(cible1, cible1.getDistance(cible2) + sys.getDistance(cible2));
-						reevaluer = true;
-					} else if (cible1.getDistance(cible2) < sys.getDistance(cible1) + sys.getDistance(cible2)) {
-						cible1.setDistance(cible2, sys.getDistance(cible1) + sys.getDistance(cible2));
-						reevaluer = true;
-					}
-				}
-
 			}
 		}
+
+		return true;
 	}
-
+	
 	/**
-	 * Vérifie si deux systèmes peuvent être liés
+	 * Vérifie qu'un système n'est pas trop proche d'un autre
 	 * 
-	 * @param mapSysteme	Ensemble de tous les systèmes
-	 * @param origine		Système à lier
-	 * @param cible			Système à lier
-	 * @return	Vrai si les systèmes origine et cible peuvent être liés, Faux sinon
+	 * @param systeme	Le système à vérifier
+	 * @return	Vrai si le système est suffisamment distant des autres, False sinon
 	 */
-	private boolean verifLiaison(TreeMap<Position, Systeme> mapSysteme, Systeme origine, Systeme cible) {
-
-		if (cible != null
-				&& origine != cible
-				&& !origine.getLiens().containsKey(cible)
-				&& origine.getNbLiens() < origine.getNbLiensMax()
-				&& cible.getNbLiens() < cible.getNbLiensMax()
-				&& ((origine.getCouche() == cible.getCouche()
-				&& Math.abs(origine.getRang()-cible.getRang()) == 1)
-						|| (mapSysteme.containsKey(origine.getPositionSuivante())
-								&& cible.getLiens().firstKey() == mapSysteme.get(origine.getPositionSuivante())
-								&& (!mapSysteme.get(origine.getPositionSuivante()).getLiens().containsKey(origine.getLiens().lastKey()))
-								|| (mapSysteme.containsKey(origine.getPositionPrecedente())
-										&& cible.getLiens().firstKey() == mapSysteme.get(origine.getPositionPrecedente())
-										&& (origine.getLiens().size() > 1
-												&& !mapSysteme.get(origine.getPositionPrecedente()).getLiens().containsKey(origine.getLiens().higherKey(origine))))))) {
-			return true;
+	private boolean verifDistanceSysteme(Systeme systeme) {
+		for (Systeme sys : listeSysteme) {
+			if (!sys.equals(systeme)) {
+				Circle circle = new Circle(new Vector2(systeme.getCoordonnees().getX(), systeme.getCoordonnees().getY()), 100);
+				if (circle.contains(sys.getCoordonnees().getX(), sys.getCoordonnees().getY())) {
+					return false;
+				}
+			}
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Vérifie qu'un système n'a pas les mêmes coordonnées qu'un autre système
+	 * 
+	 * @param systeme	Le système dont il faut vérifier les coordonnées
+	 * @return	Vrai si le système n'est pas confondu avec un autre système, Faux sinon
+	 */
+	private boolean verifCoordSysteme(Systeme systeme) {
+		for (Systeme sys : listeSysteme) {
+			if (!sys.equals(systeme) && sys.getCoordonnees().equals(systeme.getCoordonnees()))
+				return false;
 		}
 
-		return false;
+		return true;
 	}
 
 	/**
@@ -244,9 +205,9 @@ public class Carte {
 	 */
 	public void affichage() {
 		for (Systeme sys : listeSysteme) {
-			System.out.print("("+sys.getCouche()+"."+sys.getRang()+")->");
+			System.out.print(sys.getIdSysteme() + "("  + sys.getCoordonnees() + ")->");
 			for (Systeme lien : sys.getLiens().keySet()) {
-				System.out.print("("+lien.getCouche()+"."+lien.getRang()+"):"+sys.getLiens().get(lien)+"->");
+				System.out.print(lien.getIdSysteme() + "(" + lien.getCoordonnees() +")->");
 			}
 			System.out.println("NULL");
 		}
@@ -257,9 +218,5 @@ public class Carte {
 	 */
 	public List<Systeme> getListeSysteme() {
 		return listeSysteme;
-	}
-
-	public Map<Systeme.Position, Systeme> getPositionSysteme() {
-		return positionSysteme;
 	}
 }
