@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_171" class="java.beans.XMLDecoder">
+ <object class="model.entity.player.donnee.Technologie" id="Technologie0">
+  <!-- Science-->
+  <void property="science">
+   <!-- Science n°1-->
+   <void method="put">
+    <int>0</int>
+    <object class="model.entity.player.Science">
+     <void property="cout">
+      <int>50</int>
+     </void>
+     <void property="dependanceDeux">
+      <int>-1</int>
+     </void>
+     <void property="dependanceUn">
+      <int>-1</int>
+     </void>
+     <void property="description">
+      <string>description Science</string>
+     </void>
+     <void property="nom">
+      <string>Nom Science</string>
+     </void>
+     <void property="rechercher">
+      <boolean>false</boolean>
+     </void>
+    </object>
+   </void>
+  </void>
+  
+ </object>
+</java>
