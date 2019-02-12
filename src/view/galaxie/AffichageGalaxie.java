@@ -15,8 +15,10 @@ public class AffichageGalaxie {
 //	private Skin skin;
 	private ShapeRenderer shapeRenderer;
 	
+	
 	public AffichageGalaxie () {
 //		skin = new Skin(Gdx.files.internal("uiskin.json"));
+		
 		
 		carte = new Carte(Project.parametre);
 		
@@ -29,8 +31,9 @@ public class AffichageGalaxie {
 	}
 	
 	public void render() {
+		Project.camera.update();
+		shapeRenderer.setProjectionMatrix(Project.camera.combined);
 		shapeRenderer.begin(ShapeType.Filled);
-		Project.batch.setProjectionMatrix(Project.camera.combined);
 		shapeRenderer.setColor(Color.WHITE);
 		for (Systeme sys : carte.getListeSysteme()) {
 			shapeRenderer.circle(sys.getX(), sys.getY(), 10);
@@ -38,7 +41,7 @@ public class AffichageGalaxie {
 				shapeRenderer.line(new Vector2(sys.getCoordonnees().getX(), sys.getCoordonnees().getY()), new Vector2(sys.getCoordonnees().getX() + vect.x, sys.getCoordonnees().getY() + vect.y));
 			}
 		}
-		Project.camera.update();
 		shapeRenderer.end();
+		Project.batch.setProjectionMatrix(Project.camera.combined);
 	}
 }

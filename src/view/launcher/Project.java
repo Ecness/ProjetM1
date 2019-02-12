@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -14,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+import controller.controles.CameraController;
 import model.parametre.EnumAbondanceRessource;
 import model.parametre.EnumRessourceDepart;
 import model.parametre.EnumTailleCarte;
@@ -26,7 +28,7 @@ import view.menus.MenuPrincipal;
 public class Project extends ApplicationAdapter {
 	public static SpriteBatch batch;
 	public static int width;
-	//private Texture img;
+	private Sprite img;
 	public static int height;
 	
 	public static Parametre parametre;
@@ -43,11 +45,10 @@ public class Project extends ApplicationAdapter {
 	
 	public static int menu;
 	public static boolean change, affichageGalaxie;
+	public static boolean clicked;
 	
 	public static ShapeRenderer shape;
 	Vector2 vector;
-	
-	int  a = 100, b = 100;
 	
 	@Override
 	public void create () {
@@ -60,10 +61,11 @@ public class Project extends ApplicationAdapter {
 		System.err.println(height);
 		
 		camera = new OrthographicCamera(width, height);
-//		viewPort = new FitViewport(width, height, camera);
+//		camera.position.set(0, 0, 0);
 		
 		menu = 0;
 		change = true;
+		affichageGalaxie = clicked = false;
 		
 		batch = new SpriteBatch();
 		
@@ -75,6 +77,12 @@ public class Project extends ApplicationAdapter {
 		
 		vector = new Vector2(500, 500);
 		shape = new ShapeRenderer();
+		
+		
+//		img = new Sprite(new Texture("ressources/badlogic.jpg"));
+//		img.setCenter(0, 0);
+		
+		galaxie = new AffichageGalaxie();
 	}
 
 	@Override
@@ -82,10 +90,12 @@ public class Project extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
+		CameraController.controle();
+		batch.setProjectionMatrix(camera.combined);
 		camera.update();
 		
 		batch.begin();
-		
+
 		if (change) {
 			stage.clear();
 			switch(menu) {
@@ -104,6 +114,7 @@ public class Project extends ApplicationAdapter {
 		}
 		
 		if (affichageGalaxie) {
+			clicked = Gdx.input.isTouched();
 			galaxie.render();
 		}
 		
