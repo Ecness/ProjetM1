@@ -1,7 +1,5 @@
 package model.entity.player;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +13,6 @@ import model.entity.general.General;
 import model.entity.vaisseau.Flotte;
 import model.entity.vaisseau.Vaisseau;
 import model.parametre.EnumRessourceDepart;
-import model.util.XMLTools;
 
 public class Joueur {
 	
@@ -49,16 +46,8 @@ public class Joueur {
 		fileTechnology = new ArrayList<Science>();
 		this.patternVaisseau = new Vaisseau[10];//A deffinir
 		
-		try {
-			this.technology = (TechnologieEtBatiment) XMLTools.decodeFromFile("./Ressource/tech.xml");
-		} catch (FileNotFoundException e) {
-			System.out.println("File not found : erreur sur le chemin d'accer ou le fichier et manquant");
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("IO exeption : erreur sur les flux entré/sortie");
-			e.printStackTrace();
-		}
-		technology.getScience().put(-1, new Science("Base", "Pour les techno de base", true, 0, -1, -1));
+		this.technology = new TechnologieEtBatiment();
+		technology.getScience().getScience().put(-1, new Science("Base", "Pour les techno de base", true, 0, -1, -1));
 	}
 
 	public Joueur(String name, EnumNation nation, Systeme systeme,TechnologieEtBatiment technology, EnumRessourceDepart ressourceDepart) {
@@ -78,7 +67,7 @@ public class Joueur {
 		this.patternVaisseau = new Vaisseau[10];//A deffinir
 		fileTechnology = new ArrayList<Science>();
 		this.technology=technology;
-		technology.getScience().put(-1, new Science("Base", "Pour les techno de base", true, 0, -1, -1));
+		technology.getScience().getScience().put(-1, new Science("Base", "Pour les techno de base", true, 0, -1, -1));
 	}
 	
 	public void ressourceDepart(EnumRessourceDepart e) {
@@ -176,10 +165,10 @@ public class Joueur {
 	
 	public boolean addRecherche(int numero) {
 		
-		if(technology.getScience().get(numero).isRechercher()==false) {
-			if(technology.getScience().get(technology.getScience().get(numero).getDependanceDeux()).isRechercher()==true
-					&& technology.getScience().get(technology.getScience().get(numero).getDependanceUn()).isRechercher()==true) {
-				fileTechnology.add(technology.getScience().get(numero));
+		if(technology.getScience().getScience().get(numero).isRechercher()==false) {
+			if(technology.getScience().getScience().get(technology.getScience().getScience().get(numero).getDependanceDeux()).isRechercher()==true
+					&& technology.getScience().getScience().get(technology.getScience().getScience().get(numero).getDependanceUn()).isRechercher()==true) {
+				fileTechnology.add(technology.getScience().getScience().get(numero));
 				return true;
 			}
 		}

@@ -51,7 +51,7 @@ public class Ville {
 	
 	public boolean constructionBatiment(BatimentVille batiment) {
 		
-		if(joueur.getTechnology().getScience().get(batiment.getTechNecessaire()).isRechercher()==true) {
+		if(joueur.getTechnology().getScience().getScience().get(batiment.getTechNecessaire()).isRechercher()==true) {
 			for (BatimentVille b : TBatimentVille) {
 				if(b.getNom()==batiment.getNom()) {
 					return false;
