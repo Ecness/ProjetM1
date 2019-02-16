@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.badlogic.gdx.graphics.Color;
+
 import model.EnumRessource;
 import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
@@ -18,6 +20,7 @@ public class Joueur {
 	
 	private String name;
 	private EnumNation nation;
+	private Color couleur;
 	private Map<EnumRessource, Integer> TRessource;
 	private List<Flotte> TFlotte;
 	private List<Ville> TVille;
@@ -29,12 +32,12 @@ public class Joueur {
 	private int scienceDepart;
 	
 	
-	public Joueur(String name, EnumNation nation/*, Systeme systeme*/, EnumRessourceDepart ressourceDepart) {
+	public Joueur(String name, EnumNation nation, Color couleur, EnumRessourceDepart ressourceDepart) {
 		
 		this.name = name;
 		this.systeme = new ArrayList<Systeme>();
-//		this.systeme.add(systeme);
 		this.nation = nation;
+		this.couleur = couleur;
 		TRessource = new HashMap<EnumRessource, Integer>();
 		for (EnumRessource t : EnumRessource.values()) {
 			TRessource.put(t, 0);
@@ -50,12 +53,12 @@ public class Joueur {
 		technology.getScience().put(-1, new Science("Base", "Pour les techno de base", true, 0, -1, -1));
 	}
 
-	public Joueur(String name, EnumNation nation/*, Systeme systeme*/,TechnologieEtBatiment technology, EnumRessourceDepart ressourceDepart) {
+	public Joueur(String name, EnumNation nation, Color couleur,TechnologieEtBatiment technology, EnumRessourceDepart ressourceDepart) {
 		
 		this.name = name;
 		this.systeme = new ArrayList<Systeme>();
-//		this.systeme.add(systeme);
 		this.nation = nation;
+		this.couleur = couleur;
 		TRessource = new HashMap<EnumRessource, Integer>();
 		for (EnumRessource t : EnumRessource.values()) {
 			TRessource.put(t, 0);
@@ -335,6 +338,10 @@ public class Joueur {
 
 	public void setNation(EnumNation nation) {
 		this.nation = nation;
+	}
+
+	public Color getCouleur() {
+		return couleur;
 	}
 
 	public Map<EnumRessource, Integer> getTRessource() {

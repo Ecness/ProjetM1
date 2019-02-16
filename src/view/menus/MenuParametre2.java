@@ -3,6 +3,8 @@ package view.menus;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Colors;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
@@ -31,6 +33,7 @@ public class MenuParametre2 {
 	
 	private Table joueurs;
 	private SelectBox<EnumNation> nation;
+	private SelectBox<String> couleur;
 	
 	private Table parametres;
 	private List<CheckBox> TVictoire;
@@ -48,12 +51,19 @@ public class MenuParametre2 {
 //		joueurs.setSize(panels.getWidth() / 2, panels.getHeight());
 		joueurs.add("Joueur").expand();
 		joueurs.add(nation).expand();
+		couleur = new SelectBox<String>(Project.skin);
+		couleur.setItems(Colors.getColors().keys().toArray());
+		joueurs.add(couleur).expand();
 		for (int i = 1; i <= 8; i++) {
 			joueurs.row();
 			joueurs.add("Ordinateur").expand();
 			SelectBox<EnumNation> nation = new SelectBox<EnumNation>(Project.skin);
 			nation.setItems(EnumNation.values());
 			joueurs.add(nation).expand();
+			SelectBox<String> couleur = new SelectBox<String>(Project.skin);
+			couleur = new SelectBox<String>(Project.skin);
+			couleur.setItems(Colors.getColors().keys().toArray());
+			joueurs.add(couleur).expand();
 		}
 		
 		TextButton retour = new TextButton("Retour", Project.skin);
@@ -164,9 +174,18 @@ public class MenuParametre2 {
 				Project.parametre = new Parametre(null, abondRess.getSelected(), typeCarte.getSelected(), tailleCarte.getSelected(),
 						nbJoueur.getSelected(), (int)nbAnoMax.getValue(), (int)nbPlanMax.getValue(), tailleCarteCombat.getSelected(), ressDep.getSelected());
 				Joueur[] tabJoueurs = new Joueur[Project.parametre.getNbJoueur()];
+				//Récupération des nations et des couleurs
 				for (int i = 0; i < Project.parametre.getNbJoueur(); i++) {
-					EnumNation valeur = joueurs.getChildren().get((i+1)*2 - 1) instanceof SelectBox<?> ? ((SelectBox<EnumNation>) (joueurs.getChildren().get((i+1)*2-1) ) ).getSelected() : null;
-					tabJoueurs[i] = new Joueur("Joueur " + i, valeur/*, Project.partie.getGalaxie().getListeSysteme().get(0)*/, Project.parametre.getRessourceDepart());
+					EnumNation valeur;
+					Color couleur;
+					if (i == 0) {
+						valeur = ((SelectBox<EnumNation>) (joueurs.getChildren().get(1))).getSelected();
+						couleur = Colors.get(((SelectBox<String>)(joueurs.getChildren().get(2))).getSelected());
+					} else {
+						valeur = ((SelectBox<EnumNation>) (joueurs.getChildren().get(i*3+1))).getSelected();
+						couleur = Colors.get(((SelectBox<String>)(joueurs.getChildren().get(i*3+2))).getSelected());
+					}
+					tabJoueurs[i] = new Joueur("Joueur " + i, valeur, couleur, Project.parametre.getRessourceDepart());
 				}
 				
 				//TODO Devrait être appelé dans Project
