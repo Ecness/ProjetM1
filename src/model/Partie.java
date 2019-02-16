@@ -18,8 +18,9 @@ public class Partie {
 	private Carte galaxie;
 	private int nbTour;
 	
-	public Partie(Parametre parametrePartie) {
+	public Partie(Parametre parametrePartie, Joueur[] joueurs) {
 		this.parametrePartie = parametrePartie;
+		this.TJoueur = joueurs;
 		this.galaxie = new Carte(parametrePartie);
 		this.nbTour = 0;
 		this.villes = new ArrayList<Ville>();

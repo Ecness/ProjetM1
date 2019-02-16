@@ -8,18 +8,22 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 
 import model.parametre.Parametre;
+import view.galaxie.AffichageGalaxie;
 
 public class Carte {
 	/**Liste des systèmes*/
 	private List<Systeme> listeSysteme;
 	/**Système le plus éloigné du premier système par distance euclidienne (Plus Lointain Système)*/
 	private Systeme pls;
+	private AffichageGalaxie affichage;
 	
 	public Carte(Parametre parametres) {
 		listeSysteme = new ArrayList<Systeme>();
 
 		generationSystemes(parametres);
 		liaisonSystemes();
+		
+		affichage = new AffichageGalaxie(this);
 	}
 
 	/**
@@ -211,6 +215,10 @@ public class Carte {
 			}
 			System.out.println("NULL");
 		}
+	}
+	
+	public void render() {
+		affichage.render();
 	}
 
 	/**

@@ -21,8 +21,8 @@ import model.parametre.EnumTailleCarte;
 import model.parametre.EnumTailleMapCombat;
 import model.parametre.Parametre;
 import model.Partie;
+import model.carte.stellaire.Carte;
 import model.entity.player.Joueur;
-import view.galaxie.AffichageGalaxie;
 import view.menus.MenuParametre2;
 import view.menus.MenuPrincipal;
 
@@ -35,7 +35,7 @@ public class Project extends ApplicationAdapter {
 	public static Parametre parametre;
 	
 	public static Partie partie;
-	public static AffichageGalaxie galaxie;
+	public static Carte galaxie;
 	
 	Sprite sprite;
 	
@@ -109,7 +109,7 @@ public class Project extends ApplicationAdapter {
 				new MenuParametre2();
 				break;
 			case 2:
-				stage = galaxie.getStage();
+//				partie = new Partie(parametre);
 				break;
 			}
 			change = false;
@@ -118,7 +118,7 @@ public class Project extends ApplicationAdapter {
 		
 		if (affichageGalaxie) {
 			clicked = Gdx.input.isTouched();
-			galaxie.render();
+			partie.getGalaxie().render();
 		}
 		
 		if (stage == null) {

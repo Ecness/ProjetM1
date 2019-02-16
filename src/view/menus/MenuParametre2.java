@@ -24,7 +24,6 @@ import model.parametre.EnumTailleMapCombat;
 import model.parametre.EnumTypeCarte;
 import model.parametre.EnumVictoire;
 import model.parametre.Parametre;
-import view.galaxie.AffichageGalaxie;
 import view.launcher.Project;
 
 public class MenuParametre2 {
@@ -161,17 +160,22 @@ public class MenuParametre2 {
 		valider.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				//TODO Ajouter les conditions de victoire
 				Project.parametre = new Parametre(null, abondRess.getSelected(), typeCarte.getSelected(), tailleCarte.getSelected(),
 						nbJoueur.getSelected(), (int)nbAnoMax.getValue(), (int)nbPlanMax.getValue(), tailleCarteCombat.getSelected(), ressDep.getSelected());
-				Project.galaxie = new AffichageGalaxie();
-				Project.partie = new Partie(Project.parametre);
-				Project.change = true;
-				Project.menu = 2;
-				Project.affichageGalaxie = true;
+				Joueur[] tabJoueurs = new Joueur[Project.parametre.getNbJoueur()];
 				for (int i = 0; i < Project.parametre.getNbJoueur(); i++) {
 					EnumNation valeur = joueurs.getChildren().get((i+1)*2 - 1) instanceof SelectBox<?> ? ((SelectBox<EnumNation>) (joueurs.getChildren().get((i+1)*2-1) ) ).getSelected() : null;
-					Project.joueurs[i] = new Joueur("Joueur " + i, valeur, Project.partie.getGalaxie().getListeSysteme().get(0), Project.parametre.getRessourceDepart());
+					tabJoueurs[i] = new Joueur("Joueur " + i, valeur/*, Project.partie.getGalaxie().getListeSysteme().get(0)*/, Project.parametre.getRessourceDepart());
 				}
+				
+				//TODO Devrait être appelé dans Project
+				Project.stage.clear();
+				Project.partie = new Partie(Project.parametre, tabJoueurs);
+				
+//				Project.change = true;
+//				Project.menu = 2;
+				Project.affichageGalaxie = true;
 			}
 		});
 		parametres.add(valider);

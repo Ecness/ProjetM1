@@ -7,11 +7,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import model.EnumRessource;
@@ -31,14 +33,14 @@ public class AffichageGalaxie {
 	private Button boutonMenu;
 	private HorizontalGroup barreDuHaut;
 	
-	public AffichageGalaxie () {
+	public AffichageGalaxie (Carte carte) {
 //		skin = new Skin(Gdx.files.internal("uiskin.json"));
 		
 //		Project.stage.clear();
 		
-		stage = new Stage();
+		stage = Project.stage;
 		
-		carte = new Carte(Project.parametre);
+		this.carte = carte;
 		
 		shapeRenderer = new ShapeRenderer();
 		carte.affichage();
@@ -66,16 +68,16 @@ public class AffichageGalaxie {
 			
 			
 			barreDuHaut = new HorizontalGroup();
-			barreDuHaut.setColor(Color.RED);
 			barreDuHaut.setPosition(boutonMenu.getX() + boutonMenu.getWidth(),  Project.camera.viewportHeight-50);
 			barreDuHaut.setSize(Project.camera.viewportWidth, 50);
+			barreDuHaut.setColor(Color.RED);
 //			barreDuHaut.addActor(actor);
 //			barreDuHaut.fill();
 //			barreDuHaut.align(Align.center);
 //			barreDuHaut.wrap(true);
 			barreDuHaut.space(Project.camera.viewportWidth / 16);
 //			barreDuHaut.top();
-			barreDuHaut.expand(true);
+			barreDuHaut.expand();
 //			barreDuHaut.expand(true);
 //			barreDuHaut.wrap(true);
 //			barreDuHaut.rowCenter();
@@ -86,11 +88,15 @@ public class AffichageGalaxie {
 				
 //				System.out.println(Project.partie.getTJoueur()[0]);
 				
-//				Label valeur = new Label(Project.partie.getTJoueur()[0].getTRessource().get(ressource).toString(), Project.skin);
+				Label qteRessource = new Label("", Project.skin);
+				qteRessource.setName(ressource.toString());
 //				
-//				groupe.addActor(valeur);
+//				groupe.addActor(icone);
+//				groupe.addActor(qteRessource);
+//				
+//				barreDuHaut.addActor(groupe);
 				
-				barreDuHaut.addActor(groupe);
+				barreDuHaut.addActor(qteRessource);
 			}
 
 			//			System.out.println(sys.getIdSysteme() + "-----" + sys.getNbLiens() + "/" + sys.getNbLiensMax() + "-----");
@@ -115,6 +121,12 @@ public class AffichageGalaxie {
 		}
 		shapeRenderer.end();
 		Project.batch.setProjectionMatrix(Project.camera.combined);
+		
+		for (Actor qteRessource : barreDuHaut.getChildren().items) {
+			if (qteRessource instanceof Label) {
+				((Label) qteRessource).setText(qteRessource.getName() + " : " + Project.partie.getTJoueur()[0].getTRessource().get(EnumRessource.valueOf(qteRessource.getName())));
+			}
+		}
 		
 		Gdx.input.setInputProcessor(Project.stage);
 //		if (Gdx.input.isTouched()/* && Project.stage.hit(Gdx.input.getX(), Gdx.input.getY(), true) != null*/) {
