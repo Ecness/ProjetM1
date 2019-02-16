@@ -2,11 +2,7 @@ package controller.controles;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-
 import view.launcher.Project;
 
 public abstract class CameraController {

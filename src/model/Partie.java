@@ -40,14 +40,6 @@ public class Partie {
 		TJoueur = tJoueur;
 	}
 
-	public Parametre getParametrPartie() {
-		return parametrePartie;
-	}
-
-	public void setParametrPartie(Parametre parametrPartie) {
-		this.parametrePartie = parametrPartie;
-	}
-
 	public Carte getGalaxie() {
 		return galaxie;
 	}
