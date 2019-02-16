@@ -2,11 +2,11 @@ package model.entity.player;
 
 public enum EnumNation {
 	
-	// TODO pas d'idéé de nom
-	ETRE_CRISTALIN("Les mine de cristal offre un bonus de +1 en production et posséde une meilleur préscision sur les armes laser."),
+	// TODO pas d'idï¿½ï¿½ de nom
+	ETRE_CRISTALIN("Les mine de cristal offre un bonus de +1 en production et possï¿½de une meilleur prï¿½scision sur les armes laser."),
 	ALIEN("Les extracteur de gaz et les mine de cristal offre un bonus de +1 en science"),
-	HUMANOIDE("Posséde une sonde au début de la partie"),
-	INSECTOIDE("le blindage des vaisseaux et réduit mais posséde la faculté de se régénéré");
+	HUMANOIDE("Possï¿½de une sonde au dï¿½but de la partie"),
+	INSECTOIDE("le blindage des vaisseaux et rï¿½duit mais possï¿½de la facultï¿½ de se rï¿½gï¿½nï¿½rï¿½");
 	
 	private String avantage;
 
@@ -15,7 +15,6 @@ public enum EnumNation {
 	}
 	
 	public String toString() {
-		return avantage;
+		return this.name();
 	}
-	
 }

@@ -47,7 +47,7 @@ public class Joueur {
 		this.patternVaisseau = new Vaisseau[10];//A deffinir
 		
 		this.technology = new TechnologieEtBatiment();
-		technology.getScience().getScience().put(-1, new Science("Base", "Pour les techno de base", true, 0, -1, -1));
+		technology.getScience().put(-1, new Science("Base", "Pour les techno de base", true, 0, -1, -1));
 	}
 
 	public Joueur(String name, EnumNation nation, Systeme systeme,TechnologieEtBatiment technology, EnumRessourceDepart ressourceDepart) {
@@ -67,7 +67,7 @@ public class Joueur {
 		this.patternVaisseau = new Vaisseau[10];//A deffinir
 		fileTechnology = new ArrayList<Science>();
 		this.technology=technology;
-		technology.getScience().getScience().put(-1, new Science("Base", "Pour les techno de base", true, 0, -1, -1));
+		technology.getScience().put(-1, new Science("Base", "Pour les techno de base", true, 0, -1, -1));
 	}
 	
 	public void ressourceDepart(EnumRessourceDepart e) {
@@ -165,10 +165,10 @@ public class Joueur {
 	
 	public boolean addRecherche(int numero) {
 		
-		if(technology.getScience().getScience().get(numero).isRechercher()==false) {
-			if(technology.getScience().getScience().get(technology.getScience().getScience().get(numero).getDependanceDeux()).isRechercher()==true
-					&& technology.getScience().getScience().get(technology.getScience().getScience().get(numero).getDependanceUn()).isRechercher()==true) {
-				fileTechnology.add(technology.getScience().getScience().get(numero));
+		if(technology.getScience().get(numero).isRechercher()==false) {
+			if(technology.getScience().get(technology.getScience().get(numero).getDependanceDeux()).isRechercher()==true
+					&& technology.getScience().get(technology.getScience().get(numero).getDependanceUn()).isRechercher()==true) {
+				fileTechnology.add(technology.getScience().get(numero));
 				return true;
 			}
 		}

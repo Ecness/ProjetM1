@@ -14,13 +14,17 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
+import model.Partie;
 import model.entity.player.EnumNation;
+import model.entity.player.Joueur;
 import model.parametre.EnumAbondanceRessource;
+import model.parametre.EnumRessourceDepart;
 import model.parametre.EnumTailleCarte;
 import model.parametre.EnumTailleMapCombat;
 import model.parametre.EnumTypeCarte;
 import model.parametre.EnumVictoire;
 import model.parametre.Parametre;
+import view.galaxie.AffichageGalaxie;
 import view.launcher.Project;
 
 public class MenuParametre2 {
@@ -45,7 +49,7 @@ public class MenuParametre2 {
 //		joueurs.setSize(panels.getWidth() / 2, panels.getHeight());
 		joueurs.add("Joueur").expand();
 		joueurs.add(nation).expand();
-		for (int i = 1; i < Project.parametre.getNbJoueur(); i++) {
+		for (int i = 1; i <= 8; i++) {
 			joueurs.row();
 			joueurs.add("Ordinateur").expand();
 			SelectBox<EnumNation> nation = new SelectBox<EnumNation>(Project.skin);
@@ -97,6 +101,39 @@ public class MenuParametre2 {
 			temp.add(i);
 		}
 		nbJoueur.setItems(temp);
+//		nbJoueur.addAction(new Action() {
+//			@Override
+//			public boolean act(float delta) {
+//				int i = 0;
+//				
+//				Array<Cell> cells = joueurs.getCells();
+//				while (i < 8) {
+//					if (i > nbJoueur.getSelected()) {
+//						((SelectBox<Integer>) cells[(i+1)*2]).setDisabled(true);
+//					}
+//				}
+//				
+//				
+////				parametres.invalidate();
+////				joueurs.clearChildren();
+////				joueurs.add("Joueur").expand();
+////				joueurs.add(nation).expand();
+//				for (int i = 1; i <= 8; i++) {
+//					joueurs.get
+//					joueurs.row();
+//					joueurs.add("Ordinateur").expand();
+//					SelectBox<EnumNation> nation = new SelectBox<EnumNation>(Project.skin);
+//					nation.setItems(EnumNation.values());
+//					Cell<SelectBox<EnumNation>> cell = joueurs.add(nation).expand();
+//					if (i > nbJoueur.getSelected()) {
+//						cell.getActor().setDisabled(true);
+//					}
+//				}
+//				
+////				parametres.validate();
+//				return false;
+//			}
+//		});
 		parametres.add("Nombre de joueurs").expand().left();
 		parametres.add(nbJoueur).expand().right();
 		parametres.row();
@@ -114,15 +151,27 @@ public class MenuParametre2 {
 		parametres.add("Taille de la carte de combat").expand().left();
 		parametres.add(tailleCarteCombat).expand().right();
 		parametres.row();
+		SelectBox<EnumRessourceDepart> ressDep = new SelectBox<EnumRessourceDepart>(Project.skin);
+		ressDep.setItems(EnumRessourceDepart.values());
+		parametres.add("Ressources de départ").expand().left();
+		parametres.add(ressDep);
+		parametres.row();
+		
 		TextButton valider = new TextButton("Valider", Project.skin);
 		valider.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				Project.parametre = new Parametre(null, abondRess.getSelected(), typeCarte.getSelected(), tailleCarte.getSelected(),
-						nbJoueur.getSelected(), (int)nbAnoMax.getValue(), (int)nbPlanMax.getValue(), tailleCarteCombat.getSelected(), null);
+						nbJoueur.getSelected(), (int)nbAnoMax.getValue(), (int)nbPlanMax.getValue(), tailleCarteCombat.getSelected(), ressDep.getSelected());
+				Project.galaxie = new AffichageGalaxie();
+				Project.partie = new Partie(Project.parametre);
 				Project.change = true;
 				Project.menu = 2;
 				Project.affichageGalaxie = true;
+				for (int i = 0; i < Project.parametre.getNbJoueur(); i++) {
+					EnumNation valeur = joueurs.getChildren().get((i+1)*2 - 1) instanceof SelectBox<?> ? ((SelectBox<EnumNation>) (joueurs.getChildren().get((i+1)*2-1) ) ).getSelected() : null;
+					Project.joueurs[i] = new Joueur("Joueur " + i, valeur, Project.partie.getGalaxie().getListeSysteme().get(0), Project.parametre.getRessourceDepart());
+				}
 			}
 		});
 		parametres.add(valider);

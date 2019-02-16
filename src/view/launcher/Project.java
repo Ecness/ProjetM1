@@ -21,6 +21,7 @@ import model.parametre.EnumTailleCarte;
 import model.parametre.EnumTailleMapCombat;
 import model.parametre.Parametre;
 import model.Partie;
+import model.entity.player.Joueur;
 import view.galaxie.AffichageGalaxie;
 import view.menus.MenuParametre2;
 import view.menus.MenuPrincipal;
@@ -48,6 +49,8 @@ public class Project extends ApplicationAdapter {
 	public static boolean change, affichageGalaxie;
 	public static boolean clicked;
 	
+	public static Joueur[] joueurs;
+	
 	public static ShapeRenderer shape;
 	Vector2 vector;
 	
@@ -69,6 +72,8 @@ public class Project extends ApplicationAdapter {
 		change = true;
 		affichageGalaxie = false;
 		clicked = false;
+		
+		joueurs = new Joueur[8];
 		
 		batch = new SpriteBatch();
 		
@@ -104,8 +109,6 @@ public class Project extends ApplicationAdapter {
 				new MenuParametre2();
 				break;
 			case 2:
-				partie = new Partie(parametre);
-				galaxie = new AffichageGalaxie();
 				stage = galaxie.getStage();
 				break;
 			}

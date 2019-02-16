@@ -59,7 +59,7 @@ public class Planete {
 		}
 		
 		boolean constructible = true;
-		if(joueur.getTechnology().getScience().getScience().get(batiment.getTechNecessaire()).isRechercher()==true) {
+		if(joueur.getTechnology().getScience().get(batiment.getTechNecessaire()).isRechercher()==true) {
 			
 			for (EnumRessource e : EnumRessource.values()) {
 				if(joueur.getTRessource().get(e) < batiment.getCout().get(e)) {
