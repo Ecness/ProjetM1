@@ -1,63 +1,51 @@
 package model.entity.player;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
-import model.entity.player.donnee.ListeDesBatimentPlanete;
-import model.entity.player.donnee.ListeDesBatimentVille;
-import model.entity.player.donnee.Technologie;
+import model.batiment.BatimentPlanete;
+import model.batiment.BatimentVille;
 
 public class TechnologieEtBatiment {
 
-	private Technologie science;
-	private ListeDesBatimentPlanete batimentPlanete;
-	private ListeDesBatimentVille batimentVille;
+	private Map<Integer,Science> science;
+	private Map<Integer, BatimentVille> batimentVille;
+	private Map<Integer, BatimentPlanete> batimentPlanete;
 
 	public TechnologieEtBatiment() {
-		
-		try {
-			this.science = (Technologie) model.util.XMLTools.decodeFromFile("./Ressource/tech.xml");
-		} catch (FileNotFoundException e) {
-			System.out.println("File not found : erreur sur le chemin d'accer ou le fichier et manquant");
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("IO exeption : erreur sur les flux entré/sortie");
-			e.printStackTrace();
-		}
-		
-		this.batimentVille=new ListeDesBatimentVille();
-		this.batimentPlanete=new ListeDesBatimentPlanete();
+		this.science=new HashMap<Integer,Science>();
+		this.batimentVille=new HashMap<Integer, BatimentVille>();
+		this.batimentPlanete=new HashMap<Integer, BatimentPlanete>();
 	}
 	
-	public TechnologieEtBatiment(Technologie science, ListeDesBatimentPlanete batimentPlanete, ListeDesBatimentVille batimentVille) {
+	public TechnologieEtBatiment(Map<Integer,Science> science,Map<Integer, BatimentVille> batimentVille, Map<Integer, BatimentPlanete> batimentPlanete) {
 		this.science = science;
 		this.batimentVille = batimentVille;
 		this.batimentPlanete = batimentPlanete;
 	}
 
-	public Technologie getScience() {
+	public Map<Integer, Science> getScience() {
 		return science;
 	}
 
-	public void setScience(Technologie science) {
+	public void setScience(Map<Integer, Science> science) {
 		this.science = science;
 	}
 
-	public ListeDesBatimentPlanete getBatimentPlanete() {
-		return batimentPlanete;
-	}
-
-	public void setBatimentPlanete(ListeDesBatimentPlanete batimentPlanete) {
-		this.batimentPlanete = batimentPlanete;
-	}
-
-	public ListeDesBatimentVille getBatimentVille() {
+	public Map<Integer, BatimentVille> getBatimentVille() {
 		return batimentVille;
 	}
 
-	public void setBatimentVille(ListeDesBatimentVille batimentVille) {
+	public void setBatimentVille(Map<Integer, BatimentVille> batimentVille) {
 		this.batimentVille = batimentVille;
 	}
 
+	public Map<Integer, BatimentPlanete> getBatimentPlanete() {
+		return batimentPlanete;
+	}
+
+	public void setBatimentPlanete(Map<Integer, BatimentPlanete> batimentPlanete) {
+		this.batimentPlanete = batimentPlanete;
+	}
 	
 }

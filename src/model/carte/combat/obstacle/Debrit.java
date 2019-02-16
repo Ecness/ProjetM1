@@ -2,32 +2,17 @@ package model.carte.combat.obstacle;
 
 public class Debrit extends Obstacle{
 	
+	/**
+	 * création d'une zone carée de debrit de 200/200
+	 * @param coordonee du milieu
+	 */
 	public Debrit(int x, int y) {
 		super();
-		double type = Math.random();
-		int X,Y;
-		
-		if(type<0.1) {
-			X=200;
-			Y=50;
-		}else if(type<0.4) {
-			X=100;
-			Y=37;
-		}else {
-			X=37;
-			Y=37;
-		}
-		
-		if(Math.random()<0.5){
-			this.addCoordonee(x+X, y+Y);
-			this.addCoordonee(x+X, y-Y);
-			this.addCoordonee(x-X, y+Y);
-			this.addCoordonee(x-X, y-Y);
-		}else {
-			this.addCoordonee(x+Y, y+X);
-			this.addCoordonee(x+Y, y-X);
-			this.addCoordonee(x-Y, y+X);
-			this.addCoordonee(x-Y, y-X);
-		}
+		this.addCoordonee(x+100, y+100);
+		this.addCoordonee(x+100, y-100);
+		this.addCoordonee(x-100, y+100);
+		this.addCoordonee(x-100, y-100);
 	}
+	
+	
 }
