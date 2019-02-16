@@ -29,11 +29,11 @@ public class Joueur {
 	private int scienceDepart;
 	
 	
-	public Joueur(String name, EnumNation nation, Systeme systeme, EnumRessourceDepart ressourceDepart) {
+	public Joueur(String name, EnumNation nation/*, Systeme systeme*/, EnumRessourceDepart ressourceDepart) {
 		
 		this.name = name;
 		this.systeme = new ArrayList<Systeme>();
-		this.systeme.add(systeme);
+//		this.systeme.add(systeme);
 		this.nation = nation;
 		TRessource = new HashMap<EnumRessource, Integer>();
 		for (EnumRessource t : EnumRessource.values()) {
@@ -50,11 +50,11 @@ public class Joueur {
 		technology.getScience().put(-1, new Science("Base", "Pour les techno de base", true, 0, -1, -1));
 	}
 
-	public Joueur(String name, EnumNation nation, Systeme systeme,TechnologieEtBatiment technology, EnumRessourceDepart ressourceDepart) {
+	public Joueur(String name, EnumNation nation/*, Systeme systeme*/,TechnologieEtBatiment technology, EnumRessourceDepart ressourceDepart) {
 		
 		this.name = name;
 		this.systeme = new ArrayList<Systeme>();
-		this.systeme.add(systeme);
+//		this.systeme.add(systeme);
 		this.nation = nation;
 		TRessource = new HashMap<EnumRessource, Integer>();
 		for (EnumRessource t : EnumRessource.values()) {
@@ -387,6 +387,10 @@ public class Joueur {
 
 	public void setSysteme(List<Systeme> systeme) {
 		this.systeme = systeme;
+	}
+	
+	public void addSysteme(Systeme systeme) {
+		this.systeme.add(systeme);
 	}
 
 	public TechnologieEtBatiment getTechnology() {
