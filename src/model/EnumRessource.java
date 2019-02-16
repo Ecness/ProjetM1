@@ -31,5 +31,9 @@ public enum EnumRessource {
 	public int getNumero() {
 		return numero;
 	}
-	
+
+	@Override
+	public String toString() {
+		return this.name();
+	}
 }

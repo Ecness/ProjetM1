@@ -6,7 +6,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -21,8 +20,9 @@ import model.parametre.EnumRessourceDepart;
 import model.parametre.EnumTailleCarte;
 import model.parametre.EnumTailleMapCombat;
 import model.parametre.Parametre;
+import model.Partie;
 import view.galaxie.AffichageGalaxie;
-import view.menus.MenuParametre;
+import view.menus.MenuParametre2;
 import view.menus.MenuPrincipal;
 
 public class Project extends ApplicationAdapter {
@@ -33,12 +33,13 @@ public class Project extends ApplicationAdapter {
 	
 	public static Parametre parametre;
 	
+	public static Partie partie;
 	public static AffichageGalaxie galaxie;
 	
 	Sprite sprite;
 	
-	public Skin skin;
-	public Stage stage;
+	public static Skin skin;
+	public static Stage stage;
 	
 	public static Camera camera;
 	FitViewport viewPort;
@@ -61,11 +62,13 @@ public class Project extends ApplicationAdapter {
 		System.err.println(height);
 		
 		camera = new OrthographicCamera(width, height);
-//		camera.position.set(0, 0, 0);
+//		viewPort = new FitViewport(50, 50, camera);
+//		camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
 		
 		menu = 0;
 		change = true;
-		affichageGalaxie = clicked = false;
+		affichageGalaxie = false;
+		clicked = false;
 		
 		batch = new SpriteBatch();
 		
@@ -75,21 +78,16 @@ public class Project extends ApplicationAdapter {
 		
 		Gdx.input.setInputProcessor(stage);
 		
-		vector = new Vector2(500, 500);
-		shape = new ShapeRenderer();
-		
-		
 //		img = new Sprite(new Texture("ressources/badlogic.jpg"));
 //		img.setCenter(0, 0);
 		
-		galaxie = new AffichageGalaxie();
 	}
 
 	@Override
 	public void render () {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
+
 		CameraController.controle();
 		batch.setProjectionMatrix(camera.combined);
 		camera.update();
@@ -103,10 +101,12 @@ public class Project extends ApplicationAdapter {
 				stage = new MenuPrincipal(this).getStage();
 				break;
 			case 1:
-				stage = new MenuParametre(this).getStage();
+				new MenuParametre2();
 				break;
 			case 2:
+				partie = new Partie(parametre);
 				galaxie = new AffichageGalaxie();
+				stage = galaxie.getStage();
 				break;
 			}
 			change = false;
@@ -118,10 +118,14 @@ public class Project extends ApplicationAdapter {
 			galaxie.render();
 		}
 		
-		batch.end();
-		
+		if (stage == null) {
+			System.out.print("ERREUR");
+		}
+
 		stage.act();
 		stage.draw();
+		batch.end();
+		
 		
 	}
 	
