@@ -112,10 +112,15 @@ public class AffichageGalaxie {
 		Project.camera.update();
 		shapeRenderer.setProjectionMatrix(Project.camera.combined);
 		shapeRenderer.begin(ShapeType.Filled);
-		shapeRenderer.setColor(Color.WHITE);
 		for (Systeme sys : carte.getListeSysteme()) {
+			if (sys.getJoueur() == null) {
+				shapeRenderer.setColor(Color.WHITE);
+			} else {
+				shapeRenderer.setColor(sys.getJoueur().getCouleur());
+			}
 			shapeRenderer.circle(sys.getX(), sys.getY(), 10);
 			for (Vector2 vect : sys.getLiens().values()) {
+				shapeRenderer.setColor(Color.WHITE);
 				shapeRenderer.line(new Vector2(sys.getCoordonnees().getX(), sys.getCoordonnees().getY()), new Vector2(sys.getCoordonnees().getX() + vect.x, sys.getCoordonnees().getY() + vect.y));
 			}
 		}

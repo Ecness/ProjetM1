@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
 import model.Partie;
+import model.carte.stellaire.Carte;
 import model.entity.player.EnumNation;
 import model.entity.player.Joueur;
 import model.parametre.EnumAbondanceRessource;
@@ -170,9 +171,13 @@ public class MenuParametre2 {
 		valider.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				//TODO Devrait être appelé dans Project
+				Project.stage.clear();
+
 				//TODO Ajouter les conditions de victoire
 				Project.parametre = new Parametre(null, abondRess.getSelected(), typeCarte.getSelected(), tailleCarte.getSelected(),
 						nbJoueur.getSelected(), (int)nbAnoMax.getValue(), (int)nbPlanMax.getValue(), tailleCarteCombat.getSelected(), ressDep.getSelected());
+				Project.galaxie = new Carte(Project.parametre);
 				Joueur[] tabJoueurs = new Joueur[Project.parametre.getNbJoueur()];
 				//Récupération des nations et des couleurs
 				for (int i = 0; i < Project.parametre.getNbJoueur(); i++) {
@@ -188,8 +193,6 @@ public class MenuParametre2 {
 					tabJoueurs[i] = new Joueur("Joueur " + i, valeur, couleur, Project.parametre.getRessourceDepart());
 				}
 				
-				//TODO Devrait être appelé dans Project
-				Project.stage.clear();
 				Project.partie = new Partie(Project.parametre, tabJoueurs);
 				
 //				Project.change = true;

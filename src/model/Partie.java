@@ -9,6 +9,7 @@ import model.carte.stellaire.Carte;
 import model.carte.stellaire.Ville;
 import model.entity.player.Joueur;
 import model.parametre.Parametre;
+import view.launcher.Project;
 
 public class Partie {
 	
@@ -21,7 +22,7 @@ public class Partie {
 	public Partie(Parametre parametrePartie, Joueur[] joueurs) {
 		this.parametrePartie = parametrePartie;
 		this.TJoueur = joueurs;
-		this.galaxie = new Carte(parametrePartie);
+		this.galaxie = Project.galaxie;
 		this.nbTour = 0;
 		this.villes = new ArrayList<Ville>();
 		

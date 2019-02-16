@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import com.badlogic.gdx.graphics.Color;
 
@@ -15,6 +16,7 @@ import model.entity.general.General;
 import model.entity.vaisseau.Flotte;
 import model.entity.vaisseau.Vaisseau;
 import model.parametre.EnumRessourceDepart;
+import view.launcher.Project;
 
 public class Joueur {
 	
@@ -36,6 +38,12 @@ public class Joueur {
 		
 		this.name = name;
 		this.systeme = new ArrayList<Systeme>();
+		Systeme depart;
+		do {
+			depart = Project.galaxie.getListeSysteme().get(new Random().nextInt(Project.galaxie.getListeSysteme().size()));
+		} while (depart.getJoueur() != null);
+		depart.setJoueur(this);
+		this.systeme.add(depart);
 		this.nation = nation;
 		this.couleur = couleur;
 		TRessource = new HashMap<EnumRessource, Integer>();
@@ -57,6 +65,12 @@ public class Joueur {
 		
 		this.name = name;
 		this.systeme = new ArrayList<Systeme>();
+		Systeme depart;
+		do {
+			depart = Project.galaxie.getListeSysteme().get(new Random().nextInt(Project.galaxie.getListeSysteme().size()));
+		} while (depart.getJoueur() != null);
+		depart.setJoueur(this);
+		this.systeme.add(depart);
 		this.nation = nation;
 		this.couleur = couleur;
 		TRessource = new HashMap<EnumRessource, Integer>();
