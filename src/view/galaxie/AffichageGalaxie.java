@@ -2,7 +2,6 @@ package view.galaxie;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
@@ -10,7 +9,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -26,7 +24,7 @@ public class AffichageGalaxie {
 	
 	private List<Button> liste;
 	
-	private Stage stage;
+//	private Stage stage;
 //	private Skin skin;
 	private ShapeRenderer shapeRenderer;
 	
@@ -38,7 +36,7 @@ public class AffichageGalaxie {
 		
 //		Project.stage.clear();
 		
-		stage = Project.stage;
+//		stage = Project.stage;
 		
 		this.carte = carte;
 		
@@ -52,7 +50,7 @@ public class AffichageGalaxie {
 //		for (Systeme sys : carte.getListeSysteme()) {
 			boutonMenu = new TextButton("Menu", Project.skin);
 //			liste.add(boutonMenu);
-			boutonMenu.setPosition(0,  Project.camera.viewportHeight-50);
+			boutonMenu.setPosition(0,  Project.staticStage.getCamera().viewportHeight-50);
 			boutonMenu.setSize(200,50);
 //			actor.setBounds(sys.getX(), sys.getY(), 20, 20);
 			boutonMenu.setColor(Color.TEAL);
@@ -68,14 +66,14 @@ public class AffichageGalaxie {
 			
 			
 			barreDuHaut = new HorizontalGroup();
-			barreDuHaut.setPosition(boutonMenu.getX() + boutonMenu.getWidth(),  Project.camera.viewportHeight-50);
-			barreDuHaut.setSize(Project.camera.viewportWidth, 50);
+			barreDuHaut.setPosition(boutonMenu.getX() + boutonMenu.getWidth(),  Project.staticStage.getCamera().viewportHeight-50);
+			barreDuHaut.setSize(Project.staticStage.getCamera().viewportWidth, 50);
 			barreDuHaut.setColor(Color.RED);
 //			barreDuHaut.addActor(actor);
 //			barreDuHaut.fill();
 //			barreDuHaut.align(Align.center);
 //			barreDuHaut.wrap(true);
-			barreDuHaut.space(Project.camera.viewportWidth / 16);
+			barreDuHaut.space(Project.staticStage.getCamera().viewportWidth / 16);
 //			barreDuHaut.top();
 			barreDuHaut.expand();
 //			barreDuHaut.expand(true);
@@ -103,16 +101,39 @@ public class AffichageGalaxie {
 //		}
 		
 //		for (Button actor : liste) {
-			stage.addActor(boutonMenu);
-			stage.addActor(barreDuHaut);
+			Project.staticStage.addActor(boutonMenu);
+			Project.staticStage.addActor(barreDuHaut);
+			
+			for (Systeme sys : carte.getListeSysteme()) {
+//				Button acteur = new Button(Project.skin);
+//				acteur.setPosition(sys.getX() - 5, sys.getY() - 5);
+//				acteur.setSize(10, 10);
+//				acteur.addListener(new ClickListener() {
+//
+//					@Override
+//					public void clicked(InputEvent event, float x, float y) {
+//						Project.systemeSelectionne = sys;
+//						System.out.println("IN");
+//					}
+//					
+//				});
+				
+//				stage.addActor(sys.getBouton());
+//				System.out.println(sys.getBouton().getX() + "," + sys.getBouton().getY());
+			}
 //		}
 	}
 	
 	public void render() {
-		Project.camera.update();
-		shapeRenderer.setProjectionMatrix(Project.camera.combined);
+//		Project.camera.update();
+		shapeRenderer.setProjectionMatrix(Project.dynamicStage.getCamera().combined);
 		shapeRenderer.begin(ShapeType.Filled);
 		for (Systeme sys : carte.getListeSysteme()) {
+//			Project.stage.getBatch().setProjectionMatrix(Project.camera.combined);
+//			sys.getBouton().setPosition(sys.getX() - 5, sys.getY() - 5);
+//			sys.getBouton().draw(Project.batch, 1);
+//			System.out.println(sys.getBouton().getX() + "," + sys.getBouton().getY());
+//			shapeRenderer.setProjectionMatrix(Project.camera.combined);
 			if (sys.getJoueur() == null) {
 				shapeRenderer.setColor(Color.WHITE);
 			} else {
@@ -125,7 +146,7 @@ public class AffichageGalaxie {
 			}
 		}
 		shapeRenderer.end();
-		Project.batch.setProjectionMatrix(Project.camera.combined);
+//		Project.batch.setProjectionMatrix(Project.camera.combined);
 		
 		for (Actor qteRessource : barreDuHaut.getChildren().items) {
 			if (qteRessource instanceof Label) {
@@ -133,14 +154,10 @@ public class AffichageGalaxie {
 			}
 		}
 		
-		Gdx.input.setInputProcessor(Project.stage);
-//		if (Gdx.input.isTouched()/* && Project.stage.hit(Gdx.input.getX(), Gdx.input.getY(), true) != null*/) {
+//		Gdx.input.setInputProcessor(Project.stage);
+//		if (Gdx.input.isTouched() && Project.stage.hit(Gdx.input.getX(), Gdx.input.getY(), true) != null) {
 ////			Gdx.app.exit();
 //			System.out.println("IN");
 //		}
-	}
-	
-	public Stage getStage() {
-		return stage;
 	}
 }

@@ -3,17 +3,12 @@ package view.launcher;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-
 import controller.controles.CameraController;
 import model.parametre.EnumAbondanceRessource;
 import model.parametre.EnumRessourceDepart;
@@ -22,12 +17,12 @@ import model.parametre.EnumTailleMapCombat;
 import model.parametre.Parametre;
 import model.Partie;
 import model.carte.stellaire.Carte;
+import model.carte.stellaire.Systeme;
 import model.entity.player.Joueur;
 import view.menus.MenuParametre2;
 import view.menus.MenuPrincipal;
 
 public class Project extends ApplicationAdapter {
-	public static SpriteBatch batch;
 	public static int width;
 	private Sprite img;
 	public static int height;
@@ -40,16 +35,18 @@ public class Project extends ApplicationAdapter {
 	Sprite sprite;
 	
 	public static Skin skin;
-	public static Stage stage;
-	
-	public static Camera camera;
-	FitViewport viewPort;
+	/**Stage pour affichage statique (menus)**/
+	public static Stage staticStage;
+	/**Stage pour affichage dynamique (jeu hors menus)**/
+	public static Stage dynamicStage;
 	
 	public static int menu;
 	public static boolean change, affichageGalaxie;
 	public static boolean clicked;
 	
 	public static Joueur[] joueurs;
+	
+	public static Systeme systemeSelectionne;
 	
 	public static ShapeRenderer shape;
 	Vector2 vector;
@@ -64,9 +61,8 @@ public class Project extends ApplicationAdapter {
 		System.err.println(width);
 		System.err.println(height);
 		
-		camera = new OrthographicCamera(width, height);
-//		viewPort = new FitViewport(50, 50, camera);
-//		camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
+		staticStage = new Stage();
+		dynamicStage = new Stage();
 		
 		menu = 0;
 		change = true;
@@ -75,13 +71,7 @@ public class Project extends ApplicationAdapter {
 		
 		joueurs = new Joueur[8];
 		
-		batch = new SpriteBatch();
-		
 		skin = new Skin(Gdx.files.internal("uiskin.json"));
-		
-		stage = new Stage();
-		
-		Gdx.input.setInputProcessor(stage);
 		
 //		img = new Sprite(new Texture("ressources/badlogic.jpg"));
 //		img.setCenter(0, 0);
@@ -94,16 +84,16 @@ public class Project extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		CameraController.controle();
-		batch.setProjectionMatrix(camera.combined);
-		camera.update();
+		staticStage.getCamera().update();
+		dynamicStage.getCamera().update();
 		
-		batch.begin();
 
 		if (change) {
-			stage.clear();
+			staticStage.clear();
+			dynamicStage.clear();
 			switch(menu) {
 			case 0:
-				stage = new MenuPrincipal(this).getStage();
+				new MenuPrincipal();
 				break;
 			case 1:
 				new MenuParametre2();
@@ -113,29 +103,25 @@ public class Project extends ApplicationAdapter {
 				break;
 			}
 			change = false;
-			Gdx.input.setInputProcessor(stage);
 		}
+		Gdx.input.setInputProcessor(staticStage);
 		
 		if (affichageGalaxie) {
 			clicked = Gdx.input.isTouched();
 			partie.getGalaxie().render();
 		}
-		
-		if (stage == null) {
-			System.out.print("ERREUR");
-		}
 
-		stage.act();
-		stage.draw();
-		batch.end();
+		staticStage.act();
+		dynamicStage.act();
+		staticStage.draw();
+		dynamicStage.draw();
 		
 		
 	}
 	
 	@Override
 	public void dispose () {
-		batch.dispose();
-//		img.dispose();
-		stage.dispose();
+		staticStage.dispose();
+		dynamicStage.dispose();
 	}
 }
