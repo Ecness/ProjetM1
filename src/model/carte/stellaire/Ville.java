@@ -10,7 +10,6 @@ import model.EnumRessource;
 import model.batiment.BatimentVille;
 import model.entity.player.Joueur;
 import model.entity.vaisseau.Vaisseau;
-import model.module.EnumModule;
 
 public class Ville {
 	
@@ -20,7 +19,6 @@ public class Ville {
 	private Joueur joueur;
 	private Map<EnumRessource, Integer> TRessource;
 	private List<BatimentVille> TBatimentVille;
-	private EnumModule[] module;
 	private List<BatimentVille> filleDeConstructionBattiment;
 	private List<Vaisseau> filleDeConstructionUniter;
 	
@@ -35,7 +33,6 @@ public class Ville {
 			TRessource.put(t.getKey(), t.getValue());
 		}
 		this.TBatimentVille = new ArrayList<BatimentVille>();
-		this.module = new EnumModule[5];
 		this.filleDeConstructionBattiment = new ArrayList<BatimentVille>();
 		this.filleDeConstructionUniter = new ArrayList<Vaisseau>();
 	}
@@ -107,20 +104,6 @@ public class Ville {
 	public void setPuissance(int puissance) {
 		this.puissance = puissance;
 	}
-
-
-	public EnumModule[] getModule() {
-		return module;
-	}
-	public EnumModule getModuleNum(int num) {
-		return module[num];
-	}
-
-
-	public void setModule(EnumModule[] module) {
-		this.module = module;
-	}
-
 
 	public List<BatimentVille> getFilleDeConstructionBattiment() {
 		return filleDeConstructionBattiment;
