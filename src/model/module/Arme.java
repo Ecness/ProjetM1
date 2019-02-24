@@ -1,5 +1,9 @@
 package model.module;
 
+import java.util.Map;
+
+import model.EnumRessource;
+
 public class Arme{
 
 	private String nom;
@@ -10,9 +14,10 @@ public class Arme{
 	private int critique;
 	private int nbTire;
 	private int tauxFeu;
+	private Map<EnumRessource, Integer> cout;
 	
 	public Arme(String nom, String description, int dommage, int precision, int nbTire,
-			int tauxFeu, int critique, int point) {
+			int tauxFeu, int critique, int point, Map<EnumRessource, Integer> cout) {
 		this.nom = nom;
 		this.description = description;
 		this.dommage = dommage;
@@ -21,6 +26,7 @@ public class Arme{
 		this.critique = critique;
 		this.tauxFeu = tauxFeu;
 		this.point = point;
+		this.cout=cout;
 	}
 	
 	//--------------------------------------------------------------------------------------------------------------------------------------------
@@ -75,5 +81,11 @@ public class Arme{
 	}
 	public void setCritique(int critique) {
 		this.critique = critique;
+	}
+	public Map<EnumRessource, Integer> getCout() {
+		return cout;
+	}
+	public void setCout(Map<EnumRessource, Integer> cout) {
+		this.cout = cout;
 	}
 }
