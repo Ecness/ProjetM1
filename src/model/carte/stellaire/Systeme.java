@@ -5,8 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
@@ -52,9 +55,19 @@ public class Systeme {
 		liens = new HashMap<Systeme, Vector2>();
 		nbLiensMax = generationNbLiens();
 		bouton = new Button(Project.skin);
-		bouton.setPosition(getX() - 5, getY() - 5);
-		bouton.setSize(10, 10);
+		bouton.setPosition(getX() - 10, getY() - 10);
+		bouton.setSize(20, 20);
+		bouton.setColor(1, 0, 0, 1);
 		Systeme sys = this;
+		bouton.addListener(new InputListener() {
+
+			@Override
+			public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+//				Gdx.input.setInputProcessor(Project.dynamicStage);
+				System.out.println("DYNAMIC");
+			}
+			
+		});
 		bouton.addListener(new ClickListener() {
 
 			@Override

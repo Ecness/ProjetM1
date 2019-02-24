@@ -3,10 +3,14 @@ package view.launcher;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import controller.controles.CameraController;
@@ -39,6 +43,8 @@ public class Project extends ApplicationAdapter {
 	public static Stage staticStage;
 	/**Stage pour affichage dynamique (jeu hors menus)**/
 	public static Stage dynamicStage;
+	/**Gestionnaire d'input**/
+	public static InputMultiplexer inputManager;
 	
 	public static int menu;
 	public static boolean change, affichageGalaxie;
@@ -62,7 +68,20 @@ public class Project extends ApplicationAdapter {
 		System.err.println(height);
 		
 		staticStage = new Stage();
+//		staticStage.addListener(new EventListener() {
+//			
+//			@Override
+//			public boolean handle(Event event) {
+//				InputEvent inputEvent = (InputEvent) event;
+//				
+//				inputEvent.setStage(staticStage);
+//				
+//				return false;
+//			}
+//		});
 		dynamicStage = new Stage();
+		inputManager = new InputMultiplexer(staticStage, dynamicStage);
+		
 		
 		menu = 0;
 		change = true;
@@ -72,6 +91,8 @@ public class Project extends ApplicationAdapter {
 		joueurs = new Joueur[8];
 		
 		skin = new Skin(Gdx.files.internal("uiskin.json"));
+		
+		Gdx.input.setInputProcessor(inputManager);
 		
 //		img = new Sprite(new Texture("ressources/badlogic.jpg"));
 //		img.setCenter(0, 0);
@@ -104,7 +125,6 @@ public class Project extends ApplicationAdapter {
 			}
 			change = false;
 		}
-		Gdx.input.setInputProcessor(staticStage);
 		
 		if (affichageGalaxie) {
 			clicked = Gdx.input.isTouched();
