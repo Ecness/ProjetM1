@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Random;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import model.EnumRessource;
 import model.batiment.BatimentPlanete;
@@ -14,6 +17,7 @@ import model.entity.player.Joueur;
 import model.entity.vaisseau.Flotte;
 import model.parametre.EnumAbondanceRessource;
 import model.util.Coordonnees;
+import view.launcher.Project;
 
 public class Systeme {
 	private Coordonnees coordonnees;
@@ -30,6 +34,7 @@ public class Systeme {
 	private List<Flotte> flottes;
 	private GenerationRessourceEtAnomalie ressourceEtAnomalie;
 	private EnumTypeSysteme typeSysteme;
+	private Button bouton;
 
 	public Systeme(EnumAbondanceRessource nbRessource, int maxPlanete, int maxAnomalie, int idSysteme) {
 		coordonnees = new Coordonnees();
@@ -46,6 +51,19 @@ public class Systeme {
 		generationAnomalie(maxAnomalie);
 		liens = new HashMap<Systeme, Vector2>();
 		nbLiensMax = generationNbLiens();
+		bouton = new Button(Project.skin);
+		bouton.setPosition(getX() - 10, getY() - 10);
+		bouton.setSize(20, 20);
+		bouton.setColor(1, 0, 0, 1);
+		Systeme sys = this;
+		bouton.addListener(new ClickListener() {
+
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				Project.systemeSelectionne = sys;
+			}
+			
+		});
 	}
 	
 	public Systeme(int x, int y, EnumAbondanceRessource nbRessource, int maxPlanete, int maxAnomalie, int idSysteme) {
@@ -63,6 +81,19 @@ public class Systeme {
 		generationAnomalie(maxAnomalie);
 		liens = new HashMap<Systeme, Vector2>();
 		nbLiensMax = generationNbLiens();
+		bouton = new Button(Project.skin);
+		bouton.setPosition(getX() - 5, getY() - 5);
+		bouton.setSize(10, 10);
+		Systeme sys = this;
+		bouton.addListener(new ClickListener() {
+
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				Project.systemeSelectionne = sys;
+				System.out.println("IN");
+			}
+			
+		});
 	}
 	
 	public boolean presenceVille() {
@@ -470,6 +501,10 @@ public class Systeme {
 
 	public void setTypeSysteme(EnumTypeSysteme typeSysteme) {
 		this.typeSysteme = typeSysteme;
+	}
+
+	public Button getBouton() {
+		return bouton;
 	}
 
 	@Override

@@ -40,9 +40,6 @@ public class MenuParametre2 {
 	private List<CheckBox> TVictoire;
 	
 	public MenuParametre2() {
-		Project.stage.clear();
-		
-
 		nation = new SelectBox<EnumNation>(Project.skin);
 		nation.setItems(EnumNation.values());
 		
@@ -172,7 +169,7 @@ public class MenuParametre2 {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				//TODO Devrait être appelé dans Project
-				Project.stage.clear();
+				Project.staticStage.clear();
 
 				//TODO Ajouter les conditions de victoire
 				Project.parametre = new Parametre(null, abondRess.getSelected(), typeCarte.getSelected(), tailleCarte.getSelected(),
@@ -195,8 +192,6 @@ public class MenuParametre2 {
 				
 				Project.partie = new Partie(Project.parametre, tabJoueurs);
 				
-//				Project.change = true;
-//				Project.menu = 2;
 				Project.affichageGalaxie = true;
 			}
 		});
@@ -204,14 +199,11 @@ public class MenuParametre2 {
 		
 		
 		panels = new SplitPane(joueurs, parametres, false, Project.skin);
-		panels.setSize(Project.camera.viewportWidth, Project.camera.viewportHeight);
-		panels.setPosition(0, Project.camera.viewportHeight - panels.getHeight());
+		panels.setSize(Project.staticStage.getCamera().viewportWidth, Project.staticStage.getCamera().viewportHeight);
+		panels.setPosition(0, Project.staticStage.getCamera().viewportHeight - panels.getHeight());
 //		panels.setFillParent(true);
 		
 		
-		Project.stage.addActor(panels);
-		
-		
-		System.out.println(joueurs.getX() + " " + joueurs.getY());
+		Project.staticStage.addActor(panels);
 	}
 }
