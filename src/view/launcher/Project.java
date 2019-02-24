@@ -8,9 +8,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import controller.controles.CameraController;
@@ -68,17 +65,6 @@ public class Project extends ApplicationAdapter {
 		System.err.println(height);
 		
 		staticStage = new Stage();
-//		staticStage.addListener(new EventListener() {
-//			
-//			@Override
-//			public boolean handle(Event event) {
-//				InputEvent inputEvent = (InputEvent) event;
-//				
-//				inputEvent.setStage(staticStage);
-//				
-//				return false;
-//			}
-//		});
 		dynamicStage = new Stage();
 		inputManager = new InputMultiplexer(staticStage, dynamicStage);
 		

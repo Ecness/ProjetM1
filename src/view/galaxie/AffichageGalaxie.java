@@ -48,22 +48,6 @@ public class AffichageGalaxie {
 				Project.clicked = false;
 			}
 		});
-		boutonMenu.addListener(new InputListener() {
-
-			@Override
-			public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-//				Gdx.input.setInputProcessor(Project.staticStage);
-				System.out.println("STATIC");
-			}
-//
-//			@Override
-//			public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-//				Gdx.input.setInputProcessor(Project.dynamicStage);
-//				System.out.println("NOT_STATIC");
-//			}
-
-		});
-
 
 		barreDuHaut = new HorizontalGroup();
 		barreDuHaut.setPosition(boutonMenu.getX() + boutonMenu.getWidth(),  Project.staticStage.getCamera().viewportHeight-50);
@@ -120,10 +104,6 @@ public class AffichageGalaxie {
 				shapeRenderer.line(new Vector2(sys.getCoordonnees().getX(), sys.getCoordonnees().getY()), new Vector2(sys.getCoordonnees().getX() + vect.x, sys.getCoordonnees().getY() + vect.y));
 			}
 			sys.getBouton().setPosition(sys.getX() - 10, sys.getY() - 10);
-//			Project.dynamicStage.getBatch().begin();
-//			sys.getBouton().draw(Project.dynamicStage.getBatch(), 1);
-//			sys.getBouton().toFront();
-//			Project.dynamicStage.getBatch().end();
 		}
 		shapeRenderer.end();
 

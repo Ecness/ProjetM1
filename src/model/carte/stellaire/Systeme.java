@@ -5,11 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
@@ -59,21 +56,11 @@ public class Systeme {
 		bouton.setSize(20, 20);
 		bouton.setColor(1, 0, 0, 1);
 		Systeme sys = this;
-		bouton.addListener(new InputListener() {
-
-			@Override
-			public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-//				Gdx.input.setInputProcessor(Project.dynamicStage);
-				System.out.println("DYNAMIC");
-			}
-			
-		});
 		bouton.addListener(new ClickListener() {
 
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				Project.systemeSelectionne = sys;
-				System.out.println("IN");
 			}
 			
 		});

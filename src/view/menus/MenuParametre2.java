@@ -3,7 +3,6 @@ package view.menus;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Colors;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -193,8 +192,6 @@ public class MenuParametre2 {
 				
 				Project.partie = new Partie(Project.parametre, tabJoueurs);
 				
-//				Project.change = true;
-//				Project.menu = 2;
 				Project.affichageGalaxie = true;
 			}
 		});
