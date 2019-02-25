@@ -1,6 +1,5 @@
 package view.galaxie;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
@@ -8,7 +7,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -17,7 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import model.EnumRessource;
 import model.carte.stellaire.Carte;
-import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
 import view.launcher.Project;
 
@@ -34,7 +31,6 @@ public class AffichageGalaxie {
 		this.carte = carte;
 
 		shapeRenderer = new ShapeRenderer();
-		carte.affichage();
 
 		//		barreDuHaut.pad(0, 20, 0, 20);
 
@@ -87,9 +83,6 @@ public class AffichageGalaxie {
 		barreDeDroite = new VerticalGroup();
 		barreDeDroite.setSize(Project.staticStage.getCamera().viewportWidth / 4, 0);
 		barreDeDroite.setPosition(Project.staticStage.getCamera().viewportWidth - barreDeDroite.getWidth(), Project.staticStage.getCamera().viewportHeight - barreDeDroite.getHeight());
-		Label nomSysteme = new Label("", Project.skin);
-		nomSysteme.setName("ID");
-		barreDeDroite.addActor(nomSysteme);
 		
 		Project.staticStage.addActor(boutonMenu);
 		Project.staticStage.addActor(barreDuHaut);
@@ -127,7 +120,7 @@ public class AffichageGalaxie {
 		if (Project.systemeSelectionne != null && Project.changeSysteme) {
 			Project.changeSysteme = false;
 			barreDeDroite.clear();
-			AffichagePlanete planetes = new AffichagePlanete();
+			AffichageSysteme planetes = new AffichageSysteme();
 			barreDeDroite.addActor(planetes.getContainer());
 		}
 	}

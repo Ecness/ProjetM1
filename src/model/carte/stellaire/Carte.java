@@ -107,7 +107,6 @@ public class Carte {
 				if (!listeSysteme.get(0).equals(listeSysteme.get(listeSysteme.size()-1)) && 
 						(Vector2.dst2(0, 0, pls.getCoordonnees().getX(), pls.getCoordonnees().getY()) < Vector2.dst2(0, 0, listeSysteme.get(listeSysteme.size()-1).getCoordonnees().getX(), listeSysteme.get(listeSysteme.size()-1).getCoordonnees().getY()))) {
 					pls = listeSysteme.get(listeSysteme.size()-1);
-					System.out.println("PLS : " + pls.getIdSysteme());
 				}
 			}
 			if (systemeAGenerer == 0) {
