@@ -13,11 +13,6 @@ public class BatimentPlanete {
 	private Map<EnumRessource, Integer> cout;
 	
 	
-	public BatimentPlanete() {
-		this("Default", "", -1, null, null);
-	}
-	
-	
 	public BatimentPlanete(String nom, String description, int techNecessaire, Map<EnumRessource, Integer> bonus,
 			Map<EnumRessource, Integer> cout) {
 		super();

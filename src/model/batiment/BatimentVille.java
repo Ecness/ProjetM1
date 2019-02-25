@@ -12,10 +12,6 @@ public class BatimentVille {
 	private Map<EnumRessource, Integer> bonus;
 	private int cout;
 	
-	public BatimentVille() {
-		this("Default", "", -1, null, 0);
-	}
-	
 	public BatimentVille(String nom, String description, int techNecessaire, Map<EnumRessource, Integer> bonus, int cout) {
 		super();
 		this.nom = nom;

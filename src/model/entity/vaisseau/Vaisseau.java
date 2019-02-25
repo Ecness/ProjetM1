@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import model.EnumRessource;
 import model.module.Arme;
 import model.module.Blindage;
 import model.module.Chassie;
@@ -23,10 +25,11 @@ public abstract class Vaisseau {
 	private List<EnumDommageCritique> dommageCritique;
 	private int vitesse;
 	private int fire;
+	private Map<EnumRessource, Integer> cout;
 	
 	
 	public Vaisseau( String nom, Chassie chassie, int puissance, int santeMax,
-			int bouclierMax, int vitesse) {
+			int bouclierMax, int vitesse, Map<EnumRessource, Integer> cout) {
 		
 		this.puissance = puissance;
 		this.nom = nom;
@@ -40,10 +43,12 @@ public abstract class Vaisseau {
 		this.dommageCritique = new ArrayList<EnumDommageCritique>();
 		this.vitesse = vitesse;
 		this.fire = 0;
+		this.cout = cout;
 	}
 
 	public Vaisseau(int puissance, String nom, Chassie chassie, Map<Integer, Arme> armes, Map<Integer,
-			Blindage> blindages, List<EnumDommageCritique> dommageCritique, int vitesse, int santeMax, int bouclierMax) {
+			Blindage> blindages, List<EnumDommageCritique> dommageCritique, int vitesse, int santeMax, 
+			int bouclierMax,  Map<EnumRessource, Integer> cout) {
 		
 		this.puissance = puissance;
 		this.nom = nom;
@@ -57,7 +62,9 @@ public abstract class Vaisseau {
 		this.vitesse = vitesse;
 		this.dommageCritique = dommageCritique;
 		this.fire = 0;
+		this.cout = cout;
 		addBlindage();
+		addCout();
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------------
@@ -69,6 +76,19 @@ public abstract class Vaisseau {
 		}
 		sante = santeMax;
 		bouclier = bouclierMax;
+	}
+	
+	public void addCout() {
+		for (Entry<Integer, Blindage> blindage : blindages.entrySet()) {
+			for (Entry<EnumRessource, Integer> coutBlindage : blindage.getValue().getCout().entrySet()) {
+				cout.put(coutBlindage.getKey(), coutBlindage.getValue()+cout.get(coutBlindage.getKey()));
+			}
+		}
+		for (Entry<Integer, Arme> arme : armes.entrySet()) {
+			for (Entry<EnumRessource, Integer> coutArme : arme.getValue().getCout().entrySet()) {
+				cout.put(coutArme.getKey(), coutArme.getValue()+cout.get(coutArme.getKey()));
+			}
+		}
 	}
 	
 	public void addArme(int id, Arme arme) {
@@ -228,5 +248,11 @@ public abstract class Vaisseau {
 
 	public void setDommageCritique(List<EnumDommageCritique> dommageCritique) {
 		this.dommageCritique = dommageCritique;
-	}	
+	}
+	public Map<EnumRessource, Integer> getCout() {
+		return cout;
+	}
+	public void setCout(Map<EnumRessource, Integer> cout) {
+		this.cout = cout;
+	}
 }
