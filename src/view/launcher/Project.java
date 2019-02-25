@@ -45,7 +45,7 @@ public class Project extends ApplicationAdapter {
 	
 	public static int menu;
 	public static boolean change, affichageGalaxie;
-	public static boolean clicked;
+	public static boolean clicked, changeSysteme;
 	
 	public static Joueur[] joueurs;
 	

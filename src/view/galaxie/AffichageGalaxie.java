@@ -13,9 +13,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import model.EnumRessource;
 import model.carte.stellaire.Carte;
+import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
 import view.launcher.Project;
 
@@ -26,6 +28,7 @@ public class AffichageGalaxie {
 
 	private Button boutonMenu;
 	private HorizontalGroup barreDuHaut;
+	private VerticalGroup barreDeDroite;
 
 	public AffichageGalaxie (Carte carte) {
 		this.carte = carte;
@@ -80,9 +83,17 @@ public class AffichageGalaxie {
 
 			barreDuHaut.addActor(qteRessource);
 		}
-
+		
+		barreDeDroite = new VerticalGroup();
+		barreDeDroite.setSize(Project.staticStage.getCamera().viewportWidth / 4, 0);
+		barreDeDroite.setPosition(Project.staticStage.getCamera().viewportWidth - barreDeDroite.getWidth(), Project.staticStage.getCamera().viewportHeight - barreDeDroite.getHeight());
+		Label nomSysteme = new Label("", Project.skin);
+		nomSysteme.setName("ID");
+		barreDeDroite.addActor(nomSysteme);
+		
 		Project.staticStage.addActor(boutonMenu);
 		Project.staticStage.addActor(barreDuHaut);
+		Project.staticStage.addActor(barreDeDroite);
 
 		for (Systeme sys : carte.getListeSysteme()) {
 			Project.dynamicStage.addActor(sys.getBouton());
@@ -111,6 +122,13 @@ public class AffichageGalaxie {
 			if (qteRessource instanceof Label) {
 				((Label) qteRessource).setText(qteRessource.getName() + " : " + Project.partie.getTJoueur()[0].getTRessource().get(EnumRessource.valueOf(qteRessource.getName())));
 			}
+		}
+		
+		if (Project.systemeSelectionne != null && Project.changeSysteme) {
+			Project.changeSysteme = false;
+			barreDeDroite.clear();
+			AffichagePlanete planetes = new AffichagePlanete();
+			barreDeDroite.addActor(planetes.getContainer());
 		}
 	}
 }

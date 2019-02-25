@@ -54,13 +54,14 @@ public class Systeme {
 		bouton = new Button(Project.skin);
 		bouton.setPosition(getX() - 10, getY() - 10);
 		bouton.setSize(20, 20);
-		bouton.setColor(1, 0, 0, 1);
+		bouton.setColor(0, 0, 0, 0);
 		Systeme sys = this;
 		bouton.addListener(new ClickListener() {
 
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				Project.systemeSelectionne = sys;
+				Project.changeSysteme = true;
 			}
 			
 		});
