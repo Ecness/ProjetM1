@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.Json;
 
 import model.EnumRessource;
+import model.carte.stellaire.EnumTypeSysteme;
 import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
 import model.carte.stellaire.Ville;
@@ -41,12 +42,7 @@ public class Joueur {
 		
 		this.name = name;
 		this.systeme = new ArrayList<Systeme>();
-		Systeme depart;
-		do {
-			depart = Project.galaxie.getListeSysteme().get(new Random().nextInt(Project.galaxie.getListeSysteme().size()));
-		} while (depart.getJoueur() != null);
-		depart.setJoueur(this);
-		this.systeme.add(depart);
+		placementInitial();
 		this.nation = nation;
 		this.couleur = couleur;
 		TRessource = new HashMap<EnumRessource, Integer>();
@@ -71,12 +67,7 @@ public class Joueur {
 		
 		this.name = name;
 		this.systeme = new ArrayList<Systeme>();
-		Systeme depart;
-		do {
-			depart = Project.galaxie.getListeSysteme().get(new Random().nextInt(Project.galaxie.getListeSysteme().size()));
-		} while (depart.getJoueur() != null);
-		depart.setJoueur(this);
-		this.systeme.add(depart);
+		placementInitial();
 		this.nation = nation;
 		this.couleur = couleur;
 		TRessource = new HashMap<EnumRessource, Integer>();
@@ -383,6 +374,21 @@ public class Joueur {
 		}	
 	}
 	
+	/**
+	 * Placement initial du joueur sur la carte stellaire
+	 */
+	//TODO Implémenter un test unitaire
+	private void placementInitial() {
+		Systeme depart;
+		
+		do {
+			depart = Project.galaxie.getListeSysteme().get(new Random().nextInt(Project.galaxie.getListeSysteme().size()));
+		} while (depart.getJoueur() != null || 
+				depart.getTypeSysteme().equals(EnumTypeSysteme.NEBULEUSE) || depart.getTypeSysteme().equals(EnumTypeSysteme.TROU_NOIR));
+		
+		depart.setJoueur(this);
+		this.systeme.add(depart);
+	}
 	
 	public String getName() {
 		return name;
