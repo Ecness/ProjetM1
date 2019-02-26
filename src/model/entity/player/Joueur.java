@@ -82,7 +82,7 @@ public class Joueur {
 		this.fileTechnology = new ArrayList<Science>();
 		this.technology = new Technologie();
 		try{
-			loadTechFile("Ressources/Sciences/Sciences.json");
+			loadTechFile(nation.getPath()+"/Sciences/Sciences.json");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
