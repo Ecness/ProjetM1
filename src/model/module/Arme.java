@@ -1,5 +1,6 @@
 package model.module;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import model.EnumRessource;
@@ -15,6 +16,11 @@ public class Arme{
 	private int nbTire;
 	private int tauxFeu;
 	private Map<EnumRessource, Integer> cout;
+	
+	
+	public Arme() {
+		this("Default", "", 0, 0, 0, 0, 0, 0, new HashMap<EnumRessource, Integer>());
+	}
 	
 	public Arme(String nom, String description, int dommage, int precision, int nbTire,
 			int tauxFeu, int critique, int point, Map<EnumRessource, Integer> cout) {

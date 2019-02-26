@@ -1,5 +1,6 @@
 package model.batiment;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import model.EnumRessource;
@@ -12,6 +13,9 @@ public class BatimentPlanete {
 	private Map<EnumRessource, Integer> bonus;
 	private Map<EnumRessource, Integer> cout;
 	
+	public BatimentPlanete() {
+		this("Default", "", 0, new HashMap<EnumRessource, Integer>(), new HashMap<EnumRessource, Integer>());
+	}
 	
 	public BatimentPlanete(String nom, String description, int techNecessaire, Map<EnumRessource, Integer> bonus,
 			Map<EnumRessource, Integer> cout) {

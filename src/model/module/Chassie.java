@@ -13,6 +13,10 @@ public class Chassie {
 	private int nbBlindage;
 	private int nbModule;
 	
+	public Chassie() {
+		this("Default","", 0, 0, 0, 0, 0, 0, 0, 0);
+	}
+	
 	public Chassie(String nom, String description, int point, int sante, int santeMax, int bouclier, int bouclierMax,
 			int nbArme, int nbBlindage, int nbModule) {
 		this.nom = nom;

@@ -1,5 +1,6 @@
 package model.module;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import model.EnumRessource;
@@ -12,6 +13,11 @@ public class Blindage {
 	private int valeurBlindage;
 	private int valeurBlouclier;
 	private Map<EnumRessource, Integer> cout;
+	
+	
+	public Blindage() {
+		this("Default", "", 0, 0, 0, new HashMap<EnumRessource, Integer>());
+	}
 	
 	public Blindage(String nom, String description, int point, int valeurBlindage, int valeurBlouclier,
 			 Map<EnumRessource, Integer> cout) {
