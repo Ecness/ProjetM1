@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -26,6 +27,8 @@ public class AffichageGalaxie {
 	private Button boutonMenu;
 	private HorizontalGroup barreDuHaut;
 	private VerticalGroup barreDeDroite;
+	
+	AffichagePlanete planete;
 
 	public AffichageGalaxie (Carte carte) {
 		this.carte = carte;
@@ -120,8 +123,23 @@ public class AffichageGalaxie {
 		if (Project.systemeSelectionne != null && Project.changeSysteme) {
 			Project.changeSysteme = false;
 			barreDeDroite.clear();
-			AffichageSysteme planetes = new AffichageSysteme();
-			barreDeDroite.addActor(planetes.getContainer());
+			AffichageSysteme systeme = new AffichageSysteme();
+			barreDeDroite.addActor(systeme.getContainer());
+		}
+		
+		if (Project.planeteSelectionne != null && Project.changePlanete) {
+			Project.changePlanete = false;
+//			barreDeDroite.clear();
+			barreDeDroite.removeActor(barreDeDroite.findActor("affichagePlanete"));
+			planete = new AffichagePlanete();
+			SplitPane panel = planete.getContainer();
+			panel.setName("affichagePlanete");
+			barreDeDroite.addActor(panel);
+		}
+		
+		if (Project.planeteSelectionne != null && planete != null && Project.planeteSelectionne.isReDraw()) {
+			planete.reDraw();
+			Project.planeteSelectionne.setReDraw(false);
 		}
 	}
 }

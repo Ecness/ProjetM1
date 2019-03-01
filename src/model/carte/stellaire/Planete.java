@@ -14,7 +14,7 @@ public class Planete {
 	private BatimentPlanete[] TBatiment;
 	private Ville ville;
 	private Joueur joueur;
-	
+	private boolean reDraw;
 	
 	public Planete(EnumTypePlanete typePlanete, EnumAbondanceRessource ressource, GenerationRessourceEtAnomalie ressourcePlanete) {
 		this.typePlanete = typePlanete;
@@ -28,57 +28,67 @@ public class Planete {
 		this.joueur = null;
 	}
 	
-	public boolean deconstructionBatiment(BatimentPlanete batiment) {
-		if(TBatiment[0]==null && TBatiment[1]==null) {
-			return false;
-		}
-		
-		for(BatimentPlanete b : TBatiment) {
-			if(b != null) {
-				if(b.getNom()==batiment.getNom()) {
-					for (EnumRessource e : EnumRessource.values()) {
-						this.joueur.getTRessource().put(e, (this.joueur.getTRessource().get(e)+(int)(b.getCout().get(e)/2)));
-						TRessource.put(e, TRessource.get(e)-b.getBonus().get(e));
-					}
-					b=null;
-					return true;
-				}				
+	/**
+	 * Vérifie si un emplacement de bâtiment est vide ou non
+	 * 
+	 * @param emplacement	Emplacement du bâtiment
+	 * @return	Vrai si un bâtiment est construit, Faux sinon
+	 */
+	public boolean presenceBatiment(int emplacement) {
+		return TBatiment[emplacement] != null;
+	}
+	
+	/**
+	 * Détruit le bâtiment indiqué
+	 * 
+	 * @param emplacement	Emplacement du bâtiment
+	 * @return	Vrai si le bâtiment a été détruit, Faux si il n'y a aucun bâtiment
+	 */
+	public boolean deconstructionBatiment(int emplacement) {
+		//Si bâtiment présent à l'emplacement indiqué
+		if (presenceBatiment(emplacement)) {
+			//Récupération de la moitié des ressources et retrait des bonus du bâtiment
+			for (EnumRessource e : EnumRessource.values()) {
+				//TODO NullPointerException, le bâtiment n'a pas de coût
+				System.out.println(TBatiment[emplacement]);
+				this.joueur.getTRessource().put(e, (this.joueur.getTRessource().get(e) + (int) (TBatiment[emplacement].getCout().get(e) / 2)));
+				TRessource.put(e, TRessource.get(e) - TBatiment[emplacement].getBonus().get(e));
 			}
-		}
+			
+			TBatiment[emplacement] = null;
+			
+			return true;
+		}			
+		
 		return false;
 	}
 	
-	public boolean constructionBatiment(BatimentPlanete batiment) {
-		
-		if(TBatiment[0]!=null && TBatiment[1]!=null) {
-			return false;
-		}
-		
-		if(ville!=null) {
-			return false;
-		}
-		
-		boolean constructible = true;
-		if(joueur.getTechnology().getScienceBatiment().get(batiment.getTechNecessaire()).isRechercher()==true) {
-			
+	public boolean constructionBatiment(BatimentPlanete batiment, int emplacement) {
+		//Si pas de bâtiment ni de ville
+		if (!presenceBatiment(emplacement) && ville == null) {
+			//Vérification des ressources disponibles
 			for (EnumRessource e : EnumRessource.values()) {
 				if(joueur.getTRessource().get(e) < batiment.getCout().get(e)) {
-					constructible = false;
+//					return false;
 				}
 			}
-			
-			if(constructible && (TBatiment[0]==null || TBatiment[1]==null)) {
-				for(BatimentPlanete b : TBatiment) {
-					if(b == null) {
-						b = new BatimentPlanete(batiment.getNom(), batiment.getDescription(), batiment.getTechNecessaire(), batiment.getBonus(), batiment.getBonus());
-						for (EnumRessource e : EnumRessource.values()) {
-							TRessource.put(e, TRessource.get(e)+b.getBonus().get(e));
-						}
-						return true;
-					}
-				}
+
+			TBatiment[emplacement] = batiment;
+			//Retrait des ressources et ajout des bonus du bâtiment
+			for (EnumRessource e : EnumRessource.values()) {
+				System.out.println(e);
+				System.out.println(joueur.getTRessource().get(e));
+				System.out.println(batiment.getNom());
+				System.out.println(batiment.getCout().get(e));
+				System.out.println(batiment.getBonus().get(e));
+				joueur.getTRessource().put(e, joueur.getTRessource().get(e) - batiment.getCout().get(e));
+				joueur.getTRessource().put(e, joueur.getTRessource().get(e) + batiment.getBonus().get(e));
+				System.out.println();
 			}
+
+			return true;
 		}
+
 		return false;
 	}
 	
@@ -180,6 +190,14 @@ public class Planete {
 	}
 	public void setJoueur(Joueur joueur) {
 		this.joueur = joueur;
+	}
+
+	public boolean isReDraw() {
+		return reDraw;
+	}
+
+	public void setReDraw(boolean reDraw) {
+		this.reDraw = reDraw;
 	}
 	
 }

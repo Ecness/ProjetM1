@@ -18,8 +18,10 @@ import model.parametre.EnumTailleMapCombat;
 import model.parametre.Parametre;
 import model.Partie;
 import model.carte.stellaire.Carte;
+import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
 import model.entity.player.Joueur;
+import view.galaxie.SelectBatiment;
 import view.menus.MenuParametre2;
 import view.menus.MenuPrincipal;
 
@@ -45,11 +47,12 @@ public class Project extends ApplicationAdapter {
 	
 	public static int menu;
 	public static boolean change, affichageGalaxie;
-	public static boolean clicked, changeSysteme;
+	public static boolean clicked, changeSysteme, changePlanete;
 	
 	public static Joueur[] joueurs;
 	
 	public static Systeme systemeSelectionne;
+	public static Planete planeteSelectionne;
 	
 	public static ShapeRenderer shape;
 	Vector2 vector;

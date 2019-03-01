@@ -128,32 +128,6 @@ public class Systeme {
 	
 	//--------------------------------------
 	
-	public boolean constructionBatimentPlanete(Joueur joueur, BatimentPlanete batiment, Planete planete) {
-		
-		if(joueur.getName()==this.joueur.getName()) {
-			if(planete.constructionBatiment(batiment)) {				
-				planete.setJoueur(joueur);
-			}
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean deconstructionBatimentPlanete(Joueur joueur, BatimentPlanete batiment, Planete planete) {
-		
-		if(joueur.getName()==this.joueur.getName()) {
-			if(planete.deconstructionBatiment(batiment)) {				
-				if(planete.getTBatimentNum(1)==null && planete.getTBatimentNum(0)==null) {
-					planete.setJoueur(null);					
-				}
-			}
-			return true;
-		}
-		return false;
-	}
-	
-	//--------------------------------------
-	
 	public boolean constructionBatimentVille(Joueur joueur, BatimentVille batiment, Ville ville) {
 		
 		if(joueur.getName()==this.joueur.getName() && ville.getJoueur().getName()==this.joueur.getName()) {

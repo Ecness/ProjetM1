@@ -1,8 +1,10 @@
 package view.galaxie;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 
 import model.EnumRessource;
@@ -32,6 +34,15 @@ public class AffichageSysteme {
 			
 			TextButton bouton = new TextButton(text, Project.skin);
 			bouton.getLabelCell().getActor().setAlignment(Align.left);
+			bouton.addListener(new ClickListener() {
+
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					Project.planeteSelectionne = planete;
+					Project.changePlanete = true;
+				}
+				
+			});
 			
 			container.addActor(bouton);
 			container.space(20);

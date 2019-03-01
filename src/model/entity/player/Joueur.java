@@ -57,31 +57,6 @@ public class Joueur {
 		this.fileTechnology = new ArrayList<Science>();
 		this.technology = new Technologie();
 		try{
-			loadTechFile("Ressources/Sciences/Sciences.json");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public Joueur(String name, EnumNation nation, Color couleur,String path, EnumRessourceDepart ressourceDepart) {
-		
-		this.name = name;
-		this.systeme = new ArrayList<Systeme>();
-		placementInitial();
-		this.nation = nation;
-		this.couleur = couleur;
-		TRessource = new HashMap<EnumRessource, Integer>();
-		for (EnumRessource t : EnumRessource.values()) {
-			TRessource.put(t, 0);
-		}
-		ressourceDepart(ressourceDepart);
-		TFlotte = new ArrayList<Flotte>();
-		TVille = new ArrayList<Ville>();
-		TGeneral = new ArrayList<General>();
-		this.patternVaisseau = new Vaisseau[10];//A deffinir
-		this.fileTechnology = new ArrayList<Science>();
-		this.technology = new Technologie();
-		try{
 			loadTechFile(nation.getPath()+"/Sciences/Sciences.json");
 		} catch (Exception e) {
 			e.printStackTrace();
