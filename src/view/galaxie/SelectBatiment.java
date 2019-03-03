@@ -82,7 +82,10 @@ public class SelectBatiment extends ScrollPane{
 					batiments.addActor(button);
 				}
 			} catch (Exception e) {
+				System.out.println(e.toString() + " dans view/galaxie/SelectBatiment");
+				System.out.println(e.getMessage());
 				e.printStackTrace();
+				
 			}
 		}
 		
