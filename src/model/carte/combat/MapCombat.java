@@ -58,11 +58,11 @@ public class MapCombat {
 				break;
 			case CEINTURE_ASTEROIDE:
 				//TODO a revoire ou a suppr ?
-				this.obstacle.add(new CeintureAsteroide(taille));
-				break;
+//				this.obstacle.add(new CeintureAsteroide(taille));
+//				break;
 			case COMMET:
-				//TODO a faire et c'est chiant car il y as le noyau dure et la queue ionis� a g�n�r� ....
-				break;
+				//TODO a faire et c'est chiant car il y as le noyau dure et la queue ionisï¿½ a gï¿½nï¿½rï¿½ ....
+//				break;
 			case DEBRIT:
 				this.obstacle.add(new Debrit((int)(taille.getTaille()*Math.random()), (int)(taille.getTaille()*Math.random())));
 				break;

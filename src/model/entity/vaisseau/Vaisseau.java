@@ -13,30 +13,36 @@ import model.module.Chassie;
 
 public abstract class Vaisseau {
 
-	private int puissance;
-	private int sante;
-	private int santeMax;
-	private int bouclier;
-	private int bouclierMax;
-	private String nom;
-	private Chassie chassie;
-	private Map<Integer, Arme> armes;
-	private Map<Integer, Blindage> blindages;
-	private List<EnumDommageCritique> dommageCritique;
-	private int vitesse;
-	private int fire;
-	private Map<EnumRessource, Integer> cout;
+	protected int puissance;
+	protected int sante;
+	protected int santeMax;
+	protected int bouclier;
+	protected int bouclierMax;
+	protected String nom;
+	protected Chassie chassie;
+	protected Map<Integer, Arme> armes;
+	protected Map<Integer, Blindage> blindages;
+	protected List<EnumDommageCritique> dommageCritique;
+	protected int vitesse;
+	protected int fire;
+	protected Map<EnumRessource, Integer> cout;
+	protected Boolean moteurEndomager;
+	protected Boolean moteurDetruit;
+	protected Boolean bouclierDetruit;
 	
+	public Vaisseau() {
+		this("Default", null, null, null, null, 0, null);
+	}
 	
-	public Vaisseau( String nom, Chassie chassie, int puissance, int santeMax,
-			int bouclierMax, int vitesse, Map<EnumRessource, Integer> cout) {
+	public Vaisseau( String nom, Chassie chassie, int vitesse,
+			Map<EnumRessource, Integer> cout) {
 		
-		this.puissance = puissance;
+		this.puissance = 0;
 		this.nom = nom;
-		this.sante = santeMax;
-		this.santeMax = santeMax;
-		this.bouclier = bouclierMax;
-		this.bouclierMax = bouclierMax;
+		this.sante = chassie.getSanteMax();
+		this.santeMax = chassie.getSanteMax();
+		this.bouclier = chassie.getBouclierMax();
+		this.bouclierMax = chassie.getBouclierMax();
 		this.chassie = chassie;
 		this.armes = new HashMap<Integer, Arme>();
 		this.blindages = new HashMap<Integer, Blindage>();
@@ -44,18 +50,22 @@ public abstract class Vaisseau {
 		this.vitesse = vitesse;
 		this.fire = 0;
 		this.cout = cout;
+		this.moteurDetruit=false;
+		this.moteurEndomager=false;
+		this.bouclierDetruit=false;
+		calculPuissanceTotal();
 	}
 
-	public Vaisseau(int puissance, String nom, Chassie chassie, Map<Integer, Arme> armes, Map<Integer,
-			Blindage> blindages, List<EnumDommageCritique> dommageCritique, int vitesse, int santeMax, 
-			int bouclierMax,  Map<EnumRessource, Integer> cout) {
+	public Vaisseau(String nom, Chassie chassie, Map<Integer, Arme> armes, Map<Integer,
+			Blindage> blindages, List<EnumDommageCritique> dommageCritique, int vitesse, Map<EnumRessource,
+			Integer> cout) {
 		
-		this.puissance = puissance;
+		this.puissance = 0;
 		this.nom = nom;
-		this.sante = santeMax;
-		this.santeMax = santeMax;
-		this.bouclier = bouclierMax;
-		this.bouclierMax = bouclierMax;
+		this.sante = chassie.getSanteMax();
+		this.santeMax = chassie.getSanteMax();
+		this.bouclier = chassie.getBouclierMax();
+		this.bouclierMax = chassie.getBouclierMax();
 		this.chassie = chassie;
 		this.armes = armes;
 		this.blindages = blindages;
@@ -63,11 +73,25 @@ public abstract class Vaisseau {
 		this.dommageCritique = dommageCritique;
 		this.fire = 0;
 		this.cout = cout;
+		this.moteurDetruit=false;
+		this.moteurEndomager=false;
+		this.bouclierDetruit=false;
 		addBlindage();
 		addCout();
+		calculPuissanceTotal();
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------------
+	
+	public void calculPuissanceTotal() {
+		for (Entry<Integer, Blindage> blindage : blindages.entrySet()) {
+			puissance += blindage.getValue().getPoint();
+		}
+		for (Entry<Integer, Arme> arme : armes.entrySet()) {
+			puissance += arme.getValue().getPoint();
+		}
+		puissance += chassie.getPoint();
+	}
 	
 	public void addBlindage() {
 		for (Entry<Integer, Blindage> blindage : blindages.entrySet()) {
@@ -99,6 +123,7 @@ public abstract class Vaisseau {
 	}
 	
 	public void prendreDommage(int dommage){
+		
 		if(bouclier>0) {
 			if(bouclier>=dommage) {
 				bouclier-=dommage;
@@ -124,7 +149,7 @@ public abstract class Vaisseau {
 		}
 	}
 	
-	public void reparation() {
+	public void reparationVaisseau() {
 		
 		if(fire>0) {
 			fire--;
@@ -137,9 +162,17 @@ public abstract class Vaisseau {
 		}
 	}
 	
+	public void reparationCritique() {
+		
+		if(!dommageCritique.isEmpty()){
+			int id = (int)(dommageCritique.size()*Math.random());
+			dommageCritique.remove(id);
+		}
+	}
+	
 	public void dommageFire() {
 	
-		sante-=(santeMax*0.05)*fire;
+		sante-=(int)(santeMax*0.05)*fire;
 		if(sante<0) {
 			sante=0;
 		}
@@ -254,5 +287,23 @@ public abstract class Vaisseau {
 	}
 	public void setCout(Map<EnumRessource, Integer> cout) {
 		this.cout = cout;
+	}
+	public Boolean getMoteurDetruit() {
+		return moteurDetruit;
+	}
+	public Boolean getMoteurEndomager() {
+		return moteurEndomager;
+	}
+	public void setMoteurDetruit(Boolean moteurDetruit) {
+		this.moteurDetruit = moteurDetruit;
+	}
+	public void setMoteurEndomager(Boolean moteurEndomager) {
+		this.moteurEndomager = moteurEndomager;
+	}
+	public Boolean getBouclierDetruit() {
+		return bouclierDetruit;
+	}
+	public void setBouclierDetruit(Boolean bouclierDetruit) {
+		this.bouclierDetruit = bouclierDetruit;
 	}
 }

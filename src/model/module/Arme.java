@@ -16,10 +16,13 @@ public class Arme{
 	private int nbTire;
 	private int tauxFeu;
 	private Map<EnumRessource, Integer> cout;
-	
+	private Boolean utilisable;
+	private Boolean endomager;
 	
 	public Arme() {
 		this("Default", "", 0, 0, 0, 0, 0, 0, new HashMap<EnumRessource, Integer>());
+		this.utilisable=true;
+		this.endomager=false;
 	}
 	
 	public Arme(String nom, String description, int dommage, int precision, int nbTire,
@@ -33,6 +36,8 @@ public class Arme{
 		this.tauxFeu = tauxFeu;
 		this.point = point;
 		this.cout=cout;
+		this.utilisable=true;
+		this.endomager=false;
 	}
 	
 	//--------------------------------------------------------------------------------------------------------------------------------------------
@@ -93,5 +98,17 @@ public class Arme{
 	}
 	public void setCout(Map<EnumRessource, Integer> cout) {
 		this.cout = cout;
+	}
+	public Boolean getUtilisable() {
+		return utilisable;
+	}
+	public void setUtilisable(Boolean utilisable) {
+		this.utilisable = utilisable;
+	}
+	public Boolean getEndomager() {
+		return endomager;
+	}
+	public void setEndomager(Boolean endomager) {
+		this.endomager = endomager;
 	}
 }

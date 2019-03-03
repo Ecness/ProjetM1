@@ -61,4 +61,16 @@ public class ListeModule {
 	public void setArmeCinetique(IntMap<Arme> armeCinetique) {
 		this.armeCinetique = armeCinetique;
 	}
+	public IntMap<Blindage> getBlindage() {
+		return blindage;
+	}
+	public IntMap<Chassie> getChassie() {
+		return chassie;
+	}
+	public void setBlindage(IntMap<Blindage> blindage) {
+		this.blindage = blindage;
+	}
+	public void setChassie(IntMap<Chassie> chassie) {
+		this.chassie = chassie;
+	}
 }

@@ -360,7 +360,6 @@ public class Joueur {
 	/**
 	 * Placement initial du joueur sur la carte stellaire
 	 */
-	//TODO Implémenter un test unitaire
 	private void placementInitial() {
 		Systeme depart;
 		

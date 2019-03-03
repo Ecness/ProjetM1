@@ -18,7 +18,7 @@ public enum EnumDommageCritique {
 		this.id = id;
 	}
 	
-	public EnumDommageCritique getDammage() {
+	public static EnumDommageCritique getDammage() {
 		int type = (int) (nbDommage*Math.random()+1);
 		for(EnumDommageCritique e : values()) {
 			if(type==e.getId()) {

@@ -46,7 +46,7 @@ public class GenerationObstacleMapCombat {
 				obstaclePossible.get(t).add(EnumListObstacle.DEBRIT);
 				obstaclePossible.get(t).add(EnumListObstacle.DEBRIT);
 				obstaclePossible.get(t).add(EnumListObstacle.NUAGE_DE_GAZ);
-				obstaclePossible.get(t).add(EnumListObstacle.CEINTURE_ASTEROIDE);
+//				obstaclePossible.get(t).add(EnumListObstacle.CEINTURE_ASTEROIDE);
 				obstaclePossible.get(t).add(EnumListObstacle.MINE_SPACIAL);
 				obstaclePossible.get(t).add(EnumListObstacle.MINE_SPACIAL);
 				
