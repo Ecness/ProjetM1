@@ -26,6 +26,18 @@ public class SelectBatiment extends ScrollPane{
 		super(null, skin);
 		VerticalGroup batiments = new VerticalGroup();
 		
+		TextButton annuler = new TextButton("Annuler", skin);
+		annuler.addListener(new ClickListener() {
+
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				clear();
+				planete.setReDraw(true);
+			}
+			
+		});
+		batiments.addActor(annuler);
+		
 		Json parser = new Json();
 		if (planete.getJoueur() != null) {
 			try(FileReader file = new FileReader(planete.getJoueur().getNation().getPath() + "/Batiments/Batiments.json")) {
