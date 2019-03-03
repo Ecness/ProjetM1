@@ -20,14 +20,12 @@ import model.Partie;
 import model.carte.stellaire.Carte;
 import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
-import model.entity.player.Joueur;
-import view.galaxie.SelectBatiment;
+import view.galaxie.AffichageGalaxie2;
 import view.menus.MenuParametre2;
 import view.menus.MenuPrincipal;
 
 public class Project extends ApplicationAdapter {
 	public static int width;
-	private Sprite img;
 	public static int height;
 	
 	public static Parametre parametre;
@@ -49,7 +47,7 @@ public class Project extends ApplicationAdapter {
 	public static boolean change, affichageGalaxie;
 	public static boolean clicked, changeSysteme, changePlanete;
 	
-	public static Joueur[] joueurs;
+	private AffichageGalaxie2 afficheurGalaxie;
 	
 	public static Systeme systemeSelectionne;
 	public static Planete planeteSelectionne;
@@ -77,14 +75,9 @@ public class Project extends ApplicationAdapter {
 		affichageGalaxie = false;
 		clicked = false;
 		
-		joueurs = new Joueur[8];
-		
 		skin = new Skin(Gdx.files.internal("uiskin.json"));
 		
 		Gdx.input.setInputProcessor(inputManager);
-		
-//		img = new Sprite(new Texture("ressources/badlogic.jpg"));
-//		img.setCenter(0, 0);
 		
 	}
 
@@ -116,8 +109,11 @@ public class Project extends ApplicationAdapter {
 		}
 		
 		if (affichageGalaxie) {
+			if (afficheurGalaxie == null) {
+				afficheurGalaxie = new AffichageGalaxie2(partie.getGalaxie(), skin);
+			}
 			clicked = Gdx.input.isTouched();
-			partie.getGalaxie().render();
+			afficheurGalaxie.render();
 		}
 
 		staticStage.act();

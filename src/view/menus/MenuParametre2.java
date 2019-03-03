@@ -160,6 +160,7 @@ public class MenuParametre2 {
 		parametres.row();
 		SelectBox<EnumRessourceDepart> ressDep = new SelectBox<EnumRessourceDepart>(Project.skin);
 		ressDep.setItems(EnumRessourceDepart.values());
+		ressDep.setSelected(EnumRessourceDepart.NORMAL);
 		parametres.add("Ressources de départ").expand().left();
 		parametres.add(ressDep);
 		parametres.row();
