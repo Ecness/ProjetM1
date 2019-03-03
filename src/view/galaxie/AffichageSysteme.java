@@ -2,6 +2,7 @@ package view.galaxie;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -12,47 +13,66 @@ import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
 import view.launcher.Project;
 
-public class AffichageSysteme {
-	private VerticalGroup container;
-	private String text;
-
-	public AffichageSysteme() {
-		Systeme systeme = Project.systemeSelectionne;
-
-		container = new VerticalGroup();
+public class AffichageSysteme extends VerticalGroup {
+	
+	public AffichageSysteme(Systeme systeme, Skin skin) {
+		super();
+		setName("afficheur_systeme");
 		
-		Label nomSysteme = new Label(systeme.getIdSysteme() + "\n" + systeme.getTypeSysteme().toString(), Project.skin);
+		VerticalGroup planetes = new VerticalGroup();
+		planetes.setName("planetes");
+		
+		//TODO Remplacer l'identifiant par un nom
+		Label nomSysteme = new Label("" + systeme.getIdSysteme(), skin);
 		nomSysteme.setAlignment(Align.center);
-		container.addActor(nomSysteme);
+		
+		Label typeSysteme = new Label(systeme.getTypeSysteme().toString(), skin);
+		typeSysteme.setAlignment(Align.center);
 		
 		for (Planete planete : systeme.getTPlanete()) {
-			text = "Type : " + planete.getTypePlanete().toString() + "\n";
+			String text = "Type : " + planete.getTypePlanete() + "\n";
 			
 			for (EnumRessource ressource : EnumRessource.values()) {
-				text += " " + ressource.toString().substring(0, 1) + " : " + Project.partie.getTJoueur()[0].getTRessource().get(ressource);
+				text += " " + ressource.toString().substring(0, 1) + planete.getTRessource().get(ressource);
 			}
 			
-			TextButton bouton = new TextButton(text, Project.skin);
-			bouton.getLabelCell().getActor().setAlignment(Align.left);
+			TextButton bouton = new TextButton(text, skin);
+			bouton.setName("planete_" + planete.getId());
+			bouton.center();
+			bouton.getLabel().setAlignment(Align.left);
 			bouton.addListener(new ClickListener() {
-
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
 					Project.planeteSelectionne = planete;
 					Project.changePlanete = true;
 				}
-				
 			});
 			
-			container.addActor(bouton);
-			container.space(20);
+			planetes.addActor(bouton);
 		}
 		
+		planetes.align(Align.center);
+		planetes.grow();
 		
-		container.center();
+		addActor(nomSysteme);
+		addActor(typeSysteme);
+		addActor(planetes);
+		
+		align(Align.center);
+		grow();
 	}
 
-	public VerticalGroup getContainer() {
-		return container;
+	public void update(Systeme systeme) {
+		VerticalGroup planetes = findActor("planetes");
+		
+		for (Planete planete : systeme.getTPlanete()) {
+			String text = "Type : " + planete.getTypePlanete() + "\n";
+
+			for (EnumRessource ressource : EnumRessource.values()) {
+				text += " " + ressource.toString().substring(0, 1) + planete.getTRessource().get(ressource);
+			}
+			
+			((TextButton) planetes.findActor("planete_" + planete.getId())).setText(text);
+		}
 	}
 }

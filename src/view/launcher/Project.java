@@ -20,8 +20,8 @@ import model.Partie;
 import model.carte.stellaire.Carte;
 import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
-import view.galaxie.AffichageGalaxie2;
-import view.menus.MenuParametre2;
+import view.galaxie.AffichageGalaxie;
+import view.menus.MenuParametre;
 import view.menus.MenuPrincipal;
 
 public class Project extends ApplicationAdapter {
@@ -47,7 +47,7 @@ public class Project extends ApplicationAdapter {
 	public static boolean change, affichageGalaxie;
 	public static boolean clicked, changeSysteme, changePlanete;
 	
-	private AffichageGalaxie2 afficheurGalaxie;
+	private AffichageGalaxie afficheurGalaxie;
 	
 	public static Systeme systemeSelectionne;
 	public static Planete planeteSelectionne;
@@ -99,7 +99,7 @@ public class Project extends ApplicationAdapter {
 				new MenuPrincipal();
 				break;
 			case 1:
-				new MenuParametre2();
+				new MenuParametre();
 				break;
 			case 2:
 //				partie = new Partie(parametre);
@@ -110,7 +110,7 @@ public class Project extends ApplicationAdapter {
 		
 		if (affichageGalaxie) {
 			if (afficheurGalaxie == null) {
-				afficheurGalaxie = new AffichageGalaxie2(partie.getGalaxie(), skin);
+				afficheurGalaxie = new AffichageGalaxie(partie.getGalaxie(), skin);
 			}
 			clicked = Gdx.input.isTouched();
 			afficheurGalaxie.render();

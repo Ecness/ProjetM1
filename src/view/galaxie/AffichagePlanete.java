@@ -1,69 +1,62 @@
 package view.galaxie;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import view.launcher.Project;
+import model.carte.stellaire.Planete;
 
-public class AffichagePlanete {
-	private SplitPane container;
-	private VerticalGroup groupBatiment1;
-	private VerticalGroup groupBatiment2;
-	private ScrollPane selectBatiment;
+public class AffichagePlanete extends SplitPane {
+	private TextButton batiment1;
+	private TextButton batiment2;
 	
-	public AffichagePlanete() {
-		groupBatiment1 = new VerticalGroup();
-		TextButton batiment1 = new TextButton("", Project.skin);
+	public AffichagePlanete(Planete planete, Skin skin) {
+		super(null, null, false, skin);
+		setName("afficheur_planete");
+		//TODO A remplacer par une icône
+		String text = planete.getTBatiment()[0] == null ? "Aucun bâtiment" : planete.getTBatiment()[0].getNom();
+		batiment1 = new TextButton(text, skin);
 		batiment1.setName("batiment1");
-		batiment1.setText(Project.planeteSelectionne.getTBatiment()[0] == null ? "Aucun bâtiment" : Project.planeteSelectionne.getTBatiment()[0].getNom());
-//		System.out.println(Project.planeteSelectionne.getTBatiment()[0] == null ? "Aucun bâtiment" : Project.planeteSelectionne.getTBatiment()[0].getNom());
 		batiment1.addListener(new ClickListener() {
 
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				groupBatiment1.addActor(new SelectBatiment(Project.planeteSelectionne, 0).getPanel());
+				if (planete.getJoueur() != null) {
+					setFirstWidget(new SelectBatiment(planete, 0, skin));
+				}
 			}
 			
 		});
-		groupBatiment1.addActor(batiment1);
 		
-		groupBatiment2 = new VerticalGroup();
-		TextButton batiment2 = new TextButton("", Project.skin);
+		text = planete.getTBatiment()[1] == null ? "Aucun bâtiment" : planete.getTBatiment()[1].getNom();
+		batiment2 = new TextButton(text, skin);
 		batiment2.setName("batiment2");
-		batiment2.setText(Project.planeteSelectionne.getTBatiment()[1] == null ? "Aucun bâtiment" : Project.planeteSelectionne.getTBatiment()[1].getNom());
 		batiment2.addListener(new ClickListener() {
 
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				groupBatiment2.addActor(new SelectBatiment(Project.planeteSelectionne, 1).getPanel());
+				if (planete.getJoueur() != null) {
+					setSecondWidget(new SelectBatiment(planete, 1, skin));
+				}
 			}
 			
 		});
-		groupBatiment2.addActor(batiment2);
 		
-		container = new SplitPane(groupBatiment1, groupBatiment2, false, Project.skin);
+		setFirstWidget(batiment1);
+		setSecondWidget(batiment2);
 	}
-	public VerticalGroup getBatiment1() {
-		return groupBatiment1;
-	}
-
-	public VerticalGroup getBatiment2() {
-		return groupBatiment2;
-	}
-
-	public SplitPane getContainer() {
-		return container;
-	}
-	
-	public void reDraw() {
-//		container.clear();
-		((TextButton) groupBatiment1.findActor("batiment1")).setText(Project.planeteSelectionne.getTBatiment()[0] == null ? "Aucun bâtiment" : Project.planeteSelectionne.getTBatiment()[0].getNom());
-		((TextButton) groupBatiment2.findActor("batiment2")).setText(Project.planeteSelectionne.getTBatiment()[1] == null ? "Aucun bâtiment" : Project.planeteSelectionne.getTBatiment()[1].getNom());
-		container = new SplitPane(groupBatiment1, groupBatiment2, false, Project.skin);
+	public void update(Planete planete) {
+		clearChildren();
+		
+		setFirstWidget(batiment1);
+		setSecondWidget(batiment2);
+		
+		String text = planete.getTBatiment()[0] == null ? "Aucun bâtiment" : planete.getTBatiment()[0].getNom();
+		((TextButton) findActor("batiment1")).setText(text);
+		
+		text = planete.getTBatiment()[1] == null ? "Aucun bâtiment" : planete.getTBatiment()[1].getNom();
+		((TextButton) findActor("batiment2")).setText(text);
 	}
 }

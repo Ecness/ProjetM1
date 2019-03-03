@@ -4,41 +4,39 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import model.EnumRessource;
+
 import model.carte.stellaire.Carte;
 import model.carte.stellaire.Systeme;
 import view.launcher.Project;
 
 public class AffichageGalaxie {
-	private Carte carte;
-
 	private ShapeRenderer shapeRenderer;
-
-	private Button boutonMenu;
-	private HorizontalGroup barreDuHaut;
-	private VerticalGroup barreDeDroite;
+	private HorizontalGroup afficheurHaut;
+//	private AffichageRessources ressources;
+	private VerticalGroup afficheurDroite;
 	
-	AffichagePlanete planete;
-
-	public AffichageGalaxie (Carte carte) {
+	private Button boutonMenu;
+	
+	private Carte carte;
+	
+	public AffichageGalaxie(Carte carte, Skin skin) {
 		this.carte = carte;
-
+		
 		shapeRenderer = new ShapeRenderer();
-
-		//		barreDuHaut.pad(0, 20, 0, 20);
-
-		boutonMenu = new TextButton("Menu", Project.skin);
-		boutonMenu.setPosition(0,  Project.staticStage.getCamera().viewportHeight-50);
+		afficheurHaut = new HorizontalGroup();
+		afficheurHaut.setName("afficheur_haut");
+		afficheurDroite = new VerticalGroup();
+		afficheurDroite.setName("afficheur_droite");
+		
+		//Bouton des menus
+		boutonMenu = new TextButton("Menu", skin);
 		boutonMenu.setSize(200,50);
 		boutonMenu.setColor(Color.TEAL);
 		boutonMenu.addListener(new ClickListener() {
@@ -50,96 +48,69 @@ public class AffichageGalaxie {
 				Project.clicked = false;
 			}
 		});
-
-		barreDuHaut = new HorizontalGroup();
-		barreDuHaut.setPosition(boutonMenu.getX() + boutonMenu.getWidth(),  Project.staticStage.getCamera().viewportHeight-50);
-		barreDuHaut.setSize(Project.staticStage.getCamera().viewportWidth, 50);
-		barreDuHaut.setColor(Color.RED);
-		//			barreDuHaut.addActor(actor);
-		//			barreDuHaut.fill();
-		//			barreDuHaut.align(Align.center);
-		//			barreDuHaut.wrap(true);
-		barreDuHaut.space(Project.staticStage.getCamera().viewportWidth / 16);
-		//			barreDuHaut.top();
-		barreDuHaut.expand();
-		//			barreDuHaut.expand(true);
-		//			barreDuHaut.wrap(true);
-		//			barreDuHaut.rowCenter();
-
-		for (EnumRessource ressource : EnumRessource.values()) {
-			Group groupe = new Group();
-			//				Image icone = new Image(new Texture("ressources/" + ressource + ".png"));
-
-			//				System.out.println(Project.partie.getTJoueur()[0]);
-
-			Label qteRessource = new Label("", Project.skin);
-			qteRessource.setName(ressource.toString());
-			//				
-			//				groupe.addActor(icone);
-			//				groupe.addActor(qteRessource);
-			//				
-			//				barreDuHaut.addActor(groupe);
-
-			barreDuHaut.addActor(qteRessource);
-		}
 		
-		barreDeDroite = new VerticalGroup();
-		barreDeDroite.setSize(Project.staticStage.getCamera().viewportWidth / 4, 0);
-		barreDeDroite.setPosition(Project.staticStage.getCamera().viewportWidth - barreDeDroite.getWidth(), Project.staticStage.getCamera().viewportHeight - barreDeDroite.getHeight());
+		//Affichage des ressources
+		AffichageRessources ressources = new AffichageRessources(Project.partie.getTJoueur()[0], skin);
+		ressources.setPosition(boutonMenu.getX() + boutonMenu.getWidth(),  Project.staticStage.getCamera().viewportHeight-50);
+	
+		afficheurHaut.addActor(boutonMenu);
+		afficheurHaut.addActor(ressources);
+		afficheurHaut.setHeight(boutonMenu.getHeight());
+		afficheurHaut.setPosition(0,  Project.staticStage.getCamera().viewportHeight - afficheurHaut.getHeight());
+		afficheurHaut.grow();
 		
-		Project.staticStage.addActor(boutonMenu);
-		Project.staticStage.addActor(barreDuHaut);
-		Project.staticStage.addActor(barreDeDroite);
-
+		afficheurDroite.setPosition(Project.staticStage.getCamera().viewportWidth - Project.staticStage.getCamera().viewportWidth / 10, Project.staticStage.getCamera().viewportHeight - afficheurHaut.getHeight());
+		
+		Project.staticStage.addActor(afficheurHaut);
+		Project.staticStage.addActor(afficheurDroite);
+		
 		for (Systeme sys : carte.getListeSysteme()) {
 			Project.dynamicStage.addActor(sys.getBouton());
 		}
 	}
-
+	
 	public void render() {
 		shapeRenderer.setProjectionMatrix(Project.dynamicStage.getCamera().combined);
 		shapeRenderer.begin(ShapeType.Filled);
 		for (Systeme sys : carte.getListeSysteme()) {
+			for (Vector2 vect : sys.getLiens().values()) {
+				shapeRenderer.setColor(Color.WHITE);
+				shapeRenderer.line(new Vector2(sys.getCoordonnees().getX(), sys.getCoordonnees().getY()), new Vector2(sys.getCoordonnees().getX() + vect.x, sys.getCoordonnees().getY() + vect.y));
+			}
 			if (sys.getJoueur() == null) {
 				shapeRenderer.setColor(Color.WHITE);
 			} else {
 				shapeRenderer.setColor(sys.getJoueur().getCouleur());
 			}
 			shapeRenderer.circle(sys.getX(), sys.getY(), 10);
-			for (Vector2 vect : sys.getLiens().values()) {
-				shapeRenderer.setColor(Color.WHITE);
-				shapeRenderer.line(new Vector2(sys.getCoordonnees().getX(), sys.getCoordonnees().getY()), new Vector2(sys.getCoordonnees().getX() + vect.x, sys.getCoordonnees().getY() + vect.y));
-			}
 			sys.getBouton().setPosition(sys.getX() - 10, sys.getY() - 10);
 		}
 		shapeRenderer.end();
-
-		for (Actor qteRessource : barreDuHaut.getChildren().items) {
-			if (qteRessource instanceof Label) {
-				((Label) qteRessource).setText(qteRessource.getName() + " : " + Project.partie.getTJoueur()[0].getTRessource().get(EnumRessource.valueOf(qteRessource.getName())));
-			}
-		}
 		
+		//Mise à jour de l'affichage des ressources
+		((AffichageRessources) afficheurHaut.findActor("afficheur_ressources")).update(Project.partie.getTJoueur()[0]);
+	
+		//Affichage du système sélectionné
 		if (Project.systemeSelectionne != null && Project.changeSysteme) {
 			Project.changeSysteme = false;
-			barreDeDroite.clear();
-			AffichageSysteme systeme = new AffichageSysteme();
-			barreDeDroite.addActor(systeme.getContainer());
+			afficheurDroite.clear();
+			AffichageSysteme systeme = new AffichageSysteme(Project.systemeSelectionne, Project.skin);
+			afficheurDroite.addActor(systeme);
 		}
 		
+		//Mise à jourAffichage
 		if (Project.planeteSelectionne != null && Project.changePlanete) {
 			Project.changePlanete = false;
-//			barreDeDroite.clear();
-			barreDeDroite.removeActor(barreDeDroite.findActor("affichagePlanete"));
-			planete = new AffichagePlanete();
-			SplitPane panel = planete.getContainer();
-			panel.setName("affichagePlanete");
-			barreDeDroite.addActor(panel);
+			afficheurDroite.removeActor(afficheurDroite.findActor("afficheur_planete"));
+			AffichagePlanete planete = new AffichagePlanete(Project.planeteSelectionne, Project.skin);
+			afficheurDroite.addActor(planete);
 		}
 		
-		if (Project.planeteSelectionne != null && planete != null && Project.planeteSelectionne.isReDraw()) {
-			planete.reDraw();
+		//Mise à jour du système et de la planète sélectionnés
+		if (Project.planeteSelectionne != null && Project.planeteSelectionne.isReDraw()) {
+			((AffichagePlanete) afficheurDroite.findActor("afficheur_planete")).update(Project.planeteSelectionne);
 			Project.planeteSelectionne.setReDraw(false);
+			((AffichageSysteme) afficheurDroite.findActor("afficheur_systeme")).update(Project.systemeSelectionne);
 		}
 	}
 }
