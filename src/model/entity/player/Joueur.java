@@ -28,6 +28,7 @@ public class Joueur {
 	private EnumNation nation;
 	private Color couleur;
 	private Map<EnumRessource, Integer> TRessource;
+	private Map<EnumRessource, Integer> TRessourceMax;
 	private List<Flotte> TFlotte;
 	private List<Ville> TVille;
 	private Technologie technology;
@@ -48,6 +49,13 @@ public class Joueur {
 		TRessource = new HashMap<EnumRessource, Integer>();
 		for (EnumRessource t : EnumRessource.values()) {
 			TRessource.put(t, 0);
+		}
+		TRessourceMax = new HashMap<EnumRessource, Integer>();
+		//TODO Définir le montant maximum de ressource de départ
+		for (EnumRessource t : EnumRessource.values()) {
+			if (t != EnumRessource.SCIENCE && t != EnumRessource.PRODUCTION) {
+				TRessourceMax.put(t, 500);
+			}
 		}
 		ressourceDepart(ressourceDepart);
 		TFlotte = new ArrayList<Flotte>();
@@ -391,6 +399,14 @@ public class Joueur {
 
 	public void setTRessource(Map<EnumRessource, Integer> tRessource) {
 		TRessource = tRessource;
+	}
+
+	public Map<EnumRessource, Integer> getTRessourceMax() {
+		return TRessourceMax;
+	}
+
+	public void setTRessourceMax(Map<EnumRessource, Integer> tRessourceMax) {
+		TRessourceMax = tRessourceMax;
 	}
 
 	public List<Flotte> getTFlotte() {

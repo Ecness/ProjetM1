@@ -246,7 +246,7 @@ public class Systeme {
 		} while(y > (1-Math.pow((((2*x)/maxPlanete )-1),2)));
 		
 		for(int i=0; i<(int)x;i++) {				
-			TPlanete.add(new Planete(EnumTypePlanete.type(),nbRessource,this.ressourceEtAnomalie));
+			TPlanete.add(new Planete(EnumTypePlanete.type(),nbRessource,this.ressourceEtAnomalie, i));
 		}		
 	}
 	
@@ -258,10 +258,17 @@ public class Systeme {
 	private int generationNbLiens() {
 		double x = Math.random();
 
-		return x < 0.15 ? 1 : 
-			x < 0.45 ? 2 :
-				x < 0.75 ? 3 : 
-					x < 0.9 ? 4 : 5;
+		if (x < 0.15) {
+			return 1;
+		} else if (x < 0.45) {
+			return 2;
+		} else if (x < 0.75) {
+			return 3;
+		} else if (x < 0.9) {
+			return 4;
+		} else {
+			return 5;
+		}
 	}
 	
 	private void generationAnomalie(int maxAnomalie) {

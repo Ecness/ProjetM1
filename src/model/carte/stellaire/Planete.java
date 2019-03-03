@@ -9,6 +9,7 @@ import model.entity.player.Joueur;
 import model.parametre.EnumAbondanceRessource;
 
 public class Planete {
+	private int id;
 	private EnumTypePlanete typePlanete;
 	private Map<EnumRessource, Integer> TRessource;
 	private BatimentPlanete[] TBatiment;
@@ -16,7 +17,7 @@ public class Planete {
 	private Joueur joueur;
 	private boolean reDraw;
 	
-	public Planete(EnumTypePlanete typePlanete, EnumAbondanceRessource ressource, GenerationRessourceEtAnomalie ressourcePlanete) {
+	public Planete(EnumTypePlanete typePlanete, EnumAbondanceRessource ressource, GenerationRessourceEtAnomalie ressourcePlanete, int id) {
 		this.typePlanete = typePlanete;
 		this.TRessource = new HashMap<EnumRessource, Integer>();
 		for (EnumRessource t : EnumRessource.values()) {
@@ -49,9 +50,11 @@ public class Planete {
 		if (presenceBatiment(emplacement)) {
 			//Récupération de la moitié des ressources et retrait des bonus du bâtiment
 			for (EnumRessource e : EnumRessource.values()) {
-				//TODO NullPointerException, le bâtiment n'a pas de coût
-				System.out.println(TBatiment[emplacement]);
-				this.joueur.getTRessource().put(e, (this.joueur.getTRessource().get(e) + (int) (TBatiment[emplacement].getCout().get(e) / 2)));
+				if (e == EnumRessource.SCIENCE || e == EnumRessource.PRODUCTION) {
+					this.joueur.getTRessource().put(e, (this.joueur.getTRessource().get(e) - (int) (TBatiment[emplacement].getBonus().get(e))));
+				} else {
+					this.joueur.getTRessource().put(e, (this.joueur.getTRessource().get(e) + (int) (TBatiment[emplacement].getCout().get(e) / 2)));
+				}
 				TRessource.put(e, TRessource.get(e) - TBatiment[emplacement].getBonus().get(e));
 			}
 			
@@ -69,21 +72,16 @@ public class Planete {
 			//Vérification des ressources disponibles
 			for (EnumRessource e : EnumRessource.values()) {
 				if(joueur.getTRessource().get(e) < batiment.getCout().get(e)) {
-//					return false;
+					return false;
 				}
 			}
 
 			TBatiment[emplacement] = batiment;
 			//Retrait des ressources et ajout des bonus du bâtiment
 			for (EnumRessource e : EnumRessource.values()) {
-				System.out.println(e);
-				System.out.println(joueur.getTRessource().get(e));
-				System.out.println(batiment.getNom());
-				System.out.println(batiment.getCout().get(e));
-				System.out.println(batiment.getBonus().get(e));
 				joueur.getTRessource().put(e, joueur.getTRessource().get(e) - batiment.getCout().get(e));
 				joueur.getTRessource().put(e, joueur.getTRessource().get(e) + batiment.getBonus().get(e));
-				System.out.println();
+				TRessource.put(e, TRessource.get(e) + TBatiment[emplacement].getBonus().get(e));
 			}
 
 			return true;
@@ -158,6 +156,10 @@ public class Planete {
 		}	
 	}
 	
+	public int getId() {
+		return id;
+	}
+
 	public EnumTypePlanete getTypePlanete() {
 		return typePlanete;
 	}
