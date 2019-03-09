@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
@@ -23,6 +24,8 @@ public class AffichageGalaxie {
 	private VerticalGroup afficheurDroite;
 	
 	private Button boutonMenu;
+	private Button finTour;
+	private Label cptTour;
 	
 	private Carte carte;
 	
@@ -53,8 +56,23 @@ public class AffichageGalaxie {
 		AffichageRessources ressources = new AffichageRessources(Project.partie.getTJoueur()[0], skin);
 		ressources.setPosition(boutonMenu.getX() + boutonMenu.getWidth(),  Project.staticStage.getCamera().viewportHeight-50);
 	
+		//Bouton de fin de tour
+		finTour = new TextButton("Fin du tour", skin);
+		finTour.addListener(new ClickListener() {
+
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				Project.finTour = true;
+			}
+			
+		});
+		
+		cptTour = new Label("Tour " + Project.cptTours, skin);
+		
 		afficheurHaut.addActor(boutonMenu);
 		afficheurHaut.addActor(ressources);
+		afficheurHaut.addActor(finTour);
+		afficheurHaut.addActor(cptTour);
 		afficheurHaut.setHeight(boutonMenu.getHeight());
 		afficheurHaut.setPosition(0,  Project.staticStage.getCamera().viewportHeight - afficheurHaut.getHeight());
 		afficheurHaut.grow();
@@ -89,7 +107,8 @@ public class AffichageGalaxie {
 		
 		//Mise à jour de l'affichage des ressources
 		((AffichageRessources) afficheurHaut.findActor("afficheur_ressources")).update(Project.partie.getTJoueur()[0]);
-	
+		cptTour.setText("Tour " + Project.cptTours);
+		
 		//Affichage du système sélectionné
 		if (Project.systemeSelectionne != null && Project.changeSysteme) {
 			Project.changeSysteme = false;

@@ -227,6 +227,7 @@ public class MenuParametre {
 				Project.partie = new Partie(Project.parametre, tabJoueurs);
 				
 				Project.affichageGalaxie = true;
+				Project.cptTours = 1;
 			}
 		});
 		parametres.add(valider);

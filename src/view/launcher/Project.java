@@ -20,6 +20,7 @@ import model.Partie;
 import model.carte.stellaire.Carte;
 import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
+import model.entity.player.Joueur;
 import view.galaxie.AffichageGalaxie;
 import view.menus.MenuParametre;
 import view.menus.MenuPrincipal;
@@ -43,9 +44,10 @@ public class Project extends ApplicationAdapter {
 	/**Gestionnaire d'input**/
 	public static InputMultiplexer inputManager;
 	
-	public static int menu;
+	public static int menu, cptTours;
 	public static boolean change, affichageGalaxie;
 	public static boolean clicked, changeSysteme, changePlanete;
+	public static boolean finTour;
 	
 	private AffichageGalaxie afficheurGalaxie;
 	
@@ -99,7 +101,7 @@ public class Project extends ApplicationAdapter {
 				new MenuPrincipal();
 				break;
 			case 1:
-				new MenuParametre();
+				new MenuParametre(skin);
 				break;
 			case 2:
 //				partie = new Partie(parametre);
@@ -116,12 +118,18 @@ public class Project extends ApplicationAdapter {
 			afficheurGalaxie.render();
 		}
 
+		if (finTour) {
+			for (Joueur joueur : partie.getTJoueur()) {
+				joueur.debutDeTour();
+			}
+			finTour = false;
+			cptTours++;
+		}
+		
 		staticStage.act();
 		dynamicStage.act();
 		staticStage.draw();
 		dynamicStage.draw();
-		
-		
 	}
 	
 	@Override
