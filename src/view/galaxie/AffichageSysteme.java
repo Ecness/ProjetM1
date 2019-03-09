@@ -24,6 +24,11 @@ public class AffichageSysteme extends VerticalGroup {
 		
 		//TODO Remplacer l'identifiant par un nom
 		Label nomSysteme = new Label("" + systeme.getIdSysteme(), skin);
+		if (systeme.getJoueur() != null) {
+			nomSysteme.setText(nomSysteme.getText() + " : " + systeme.getJoueur().getName());
+		} else {
+			nomSysteme.setText(nomSysteme.getText() + " : libre");
+		}
 		nomSysteme.setAlignment(Align.center);
 		
 		Label typeSysteme = new Label(systeme.getTypeSysteme().toString(), skin);
