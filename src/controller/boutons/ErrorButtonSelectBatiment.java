@@ -1,4 +1,4 @@
-package controller.controles;
+package controller.boutons;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
