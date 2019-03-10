@@ -287,33 +287,16 @@ public class Joueur {
 			for(Planete planete : systeme.getTPlanete()) {
 				if(planete.getJoueur()!=null && planete.getVille()==null) {		
 					for (EnumRessource t : EnumRessource.values()) {
-						switch (t) {
-						case ACIER:
+						if (t != EnumRessource.SCIENCE && t != EnumRessource.PRODUCTION) {
 							TRessource.put(t, planete.getTRessource().get(t)+TRessource.get(t));
-							if(TRessource.get(t)>999) {
-								TRessource.put(t, 999);
+							
+							if (TRessource.get(t) > TRessourceMax.get(t)) {
+								TRessource.put(t, TRessourceMax.get(t));
 							}
-							break;
-						case CREDIT:
-							TRessource.put(t, planete.getTRessource().get(t)+TRessource.get(t));
-							if(TRessource.get(t)>10000) {
-								TRessource.put(t, 10000);
-							}
-							break;
-						case CRISTAL:
-							TRessource.put(t, planete.getTRessource().get(t)+TRessource.get(t));
-							if(TRessource.get(t)>999) {
-								TRessource.put(t, 999);
-							}
-							break;
-						case GAZ:
-							TRessource.put(t, planete.getTRessource().get(t)+TRessource.get(t));
-							if(TRessource.get(t)>999) {
-								TRessource.put(t, 999);
-							}
-							break;
-						default:
-							break;
+						}
+						
+						if (TRessource.get(t) < 0) {
+							TRessource.put(t, 0);
 						}
 					}
 				}
