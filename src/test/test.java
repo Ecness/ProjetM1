@@ -145,7 +145,7 @@ public class test {
 		Croiseur croiseurTest = new Croiseur("Universe", listModule.getChassie().get(4), armes, blindages, 0, setRessource(0, 0, 0, 0, 0, 0));
 		Croiseur croiseurTest2 = new Croiseur("Ulysse", listModule.getChassie().get(4), armes2, blindages2, 0, setRessource(0, 0, 0, 0, 0, 0));
 		Flotte flotte = new Flotte();
-		flotte.addVaisseau(0, croiseurTest2);
+		flotte.addVaisseau(0, croiseurTest);
 		Flotte flotte2 = new Flotte();
 		flotte2.addVaisseau(0, croiseurTest2);
 		
@@ -167,7 +167,7 @@ public class test {
 		do {
 			for (java.util.Map.Entry<Integer, Vaisseau> vaisseau : flotte2.getTVaisseau().entrySet()) {
 				DetailCombat detail = phaseCombat.infligerDommage(vaisseau.getValue(), flotte.getTVaisseau().get(0), 0);
-				System.out.println("\n Tire\n"+flotte.toString());
+				System.out.println("\n Tire\n"+vaisseau.toString());
 				TimeUnit.SECONDS.sleep(1);
 				System.out.println("Rapport\n"+detail.toString());
 				TimeUnit.SECONDS.sleep(1);

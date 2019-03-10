@@ -111,10 +111,11 @@ public class PhaseCombat {
 	 * @param vaisseau
 	 */
 	public DetailCombat ajoutDommageCritique(EnumDommageCritique dommage, Vaisseau vaisseau, DetailCombat detail) {
+
+		int id = (int)(vaisseau.getArmes().size()*Math.random());
 		switch (dommage) {
 		case ARME_ENDOMMAGER:	
 			if (vaisseau.getArmes().size()>0) {
-				int id = (int)(vaisseau.getArmes().size()*Math.random());
 				if (!vaisseau.getArmes().get(id).getEndomager() && vaisseau.getArmes().get(id).getUtilisable()) {
 					vaisseau.getArmes().get(id).setEndomager(true);
 					vaisseau.getDommageCritique().add(EnumDommageCritique.ARME_ENDOMMAGER);
@@ -124,7 +125,6 @@ public class PhaseCombat {
 			}
 		case ARME_DETRUITE:
 			if (vaisseau.getArmes().size()>0) {
-				int id = (int)(vaisseau.getArmes().size()*Math.random());
 				if(vaisseau.getArmes().get(id).getUtilisable()) {
 					if(vaisseau.getArmes().get(id).getEndomager()) {
 						vaisseau.getArmes().get(id).setEndomager(false);
