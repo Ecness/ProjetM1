@@ -40,6 +40,28 @@ public class Planete {
 	}
 	
 	/**
+	 * Vérifie si un bâtiment peut être construit
+	 * 
+	 * @param batiment		Bâtiment à construire
+	 * @param emplacement	Emplacement du bâtiment
+	 * @return
+	 */
+	public boolean verifConstructionBatiment(BatimentPlanete batiment, int emplacement) {
+		if (presenceBatiment(emplacement)) {
+			return false;
+		}
+		
+		//Vérification des ressources disponibles
+		for (EnumRessource e : EnumRessource.values()) {
+			if(joueur.getTRessource().get(e) < batiment.getCout().get(e)) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	/**
 	 * Détruit le bâtiment indiqué
 	 * 
 	 * @param emplacement	Emplacement du bâtiment
@@ -67,14 +89,8 @@ public class Planete {
 	}
 	
 	public boolean constructionBatiment(BatimentPlanete batiment, int emplacement) {
-		//Si pas de bâtiment ni de ville
-		if (!presenceBatiment(emplacement) && ville == null) {
-			//Vérification des ressources disponibles
-			for (EnumRessource e : EnumRessource.values()) {
-				if(joueur.getTRessource().get(e) < batiment.getCout().get(e)) {
-					return false;
-				}
-			}
+		//Si pas de bâtiment ni de ville et suffisamment de ressources
+		if (verifConstructionBatiment(batiment, emplacement) && ville == null) {
 
 			TBatiment[emplacement] = batiment;
 			//Retrait des ressources et ajout des bonus du bâtiment
