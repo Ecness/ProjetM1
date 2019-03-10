@@ -18,6 +18,7 @@ public class Planete {
 	private boolean reDraw;
 	
 	public Planete(EnumTypePlanete typePlanete, EnumAbondanceRessource ressource, GenerationRessourceEtAnomalie ressourcePlanete, int id) {
+		this.id = id;
 		this.typePlanete = typePlanete;
 		this.TRessource = new HashMap<EnumRessource, Integer>();
 		for (EnumRessource t : EnumRessource.values()) {
