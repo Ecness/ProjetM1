@@ -1,0 +1,239 @@
+{
+"CorvettePirate": {
+	"size": 2,
+	"keyTable": [ 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+	"valueTable": [
+		null,
+		{
+			"class": "model.entity.vaisseau.Corvette",
+			"puissance": 35,
+			"sante": 110,
+			"santeMax": 110,
+			"bouclier": 30,
+			"bouclierMax": 30,
+			"nom": "Specter",
+			"chassie": {
+				"nom": "Specter",
+				"description": "Gargo civil modifier",
+				"point": 5,
+				"sante": 30,
+				"santeMax": 30,
+				"nbArme": 1,
+				"nbBlindage": 1
+			},
+			"armes": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Fusil Plasma",
+					"description": "Cette arme a un fort potentielle destructeur",
+					"point": 25,
+					"dommage": 60,
+					"precision": 10,
+					"critique": 50,
+					"nbTire": 1,
+					"tauxFeu": 60,
+					"cout": {
+						"class": "java.util.HashMap",
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 50,
+						"ACIER": 1,
+						"GAZ": 2,
+						"PRODUCTION": 0
+					}
+				}
+			},
+			"blindages": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Alliage m�talique",
+					"description": "Blindage sommaire",
+					"point": 5,
+					"valeurBlindage": 80,
+					"valeurBlouclier": 30,
+					"cout": {
+						"class": "java.util.HashMap",
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 50,
+						"ACIER": 2,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				}
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"CRISTAL": 2,
+				"SCIENCE": 0,
+				"CREDIT": 300,
+				"ACIER": 5,
+				"GAZ": 4,
+				"PRODUCTION": 0
+			}
+		},
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null
+	],
+	"zeroValue": {
+		"class": "model.entity.vaisseau.Corvette",
+		"puissance": 55,
+		"sante": 140,
+		"santeMax": 140,
+		"bouclier": 50,
+		"bouclierMax": 50,
+		"nom": "Reaper",
+		"chassie": {
+			"nom": "Reaper",
+			"description": "Chassie petit et rapide",
+			"point": 20,
+			"sante": 60,
+			"santeMax": 60,
+			"bouclier": 20,
+			"bouclierMax": 20,
+			"nbArme": 2,
+			"nbBlindage": 1
+		},
+		"armes": {
+			"class": "java.util.HashMap",
+			"0": {
+				"nom": "Laser MKI",
+				"description": "Petit module d'arme laser",
+				"point": 10,
+				"dommage": 5,
+				"precision": 90,
+				"critique": 5,
+				"nbTire": 3,
+				"tauxFeu": 45,
+				"cout": {
+					"class": "java.util.HashMap",
+					"CRISTAL": 1,
+					"SCIENCE": 0,
+					"CREDIT": 10,
+					"ACIER": 1,
+					"GAZ": 0,
+					"PRODUCTION": 0
+				}
+			},
+			"1": {
+				"nom": "Type 490/3",
+				"description": "Des canon de la marine modifier pour l'environement spacial",
+				"point": 20,
+				"dommage": 20,
+				"precision": 60,
+				"critique": 10,
+				"nbTire": 3,
+				"tauxFeu": 5,
+				"cout": {
+					"class": "java.util.HashMap",
+					"CRISTAL": 0,
+					"SCIENCE": 0,
+					"CREDIT": 10,
+					"ACIER": 3,
+					"GAZ": 0,
+					"PRODUCTION": 0
+				}
+			}
+		},
+		"blindages": {
+			"class": "java.util.HashMap",
+			"0": {
+				"nom": "Alliage m�talique",
+				"description": "Blindage sommaire",
+				"point": 5,
+				"valeurBlindage": 80,
+				"valeurBlouclier": 30,
+				"cout": {
+					"class": "java.util.HashMap",
+					"CRISTAL": 0,
+					"SCIENCE": 0,
+					"CREDIT": 50,
+					"ACIER": 2,
+					"GAZ": 0,
+					"PRODUCTION": 0
+				}
+			}
+		},
+		"cout": {
+			"class": "java.util.HashMap",
+			"CRISTAL": 6,
+			"SCIENCE": 0,
+			"CREDIT": 570,
+			"ACIER": 11,
+			"GAZ": 5,
+			"PRODUCTION": 0
+		}
+	},
+	"hasZeroValue": true
+}
+}

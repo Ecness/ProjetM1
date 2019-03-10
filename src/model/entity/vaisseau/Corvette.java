@@ -1,0 +1,31 @@
+package model.entity.vaisseau;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import model.EnumRessource;
+import model.module.Arme;
+import model.module.Blindage;
+import model.module.Chassie;
+
+public class Corvette extends Vaisseau {
+
+	public Corvette(String nom, Chassie chassie, Map<Integer, Arme> armes, Map<Integer,
+			Blindage> blindages, int vitesse,  Map<EnumRessource, Integer> cout) {
+		super( nom, chassie, armes, blindages, new ArrayList<EnumDommageCritique>() , vitesse, cout);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Corvette() {
+		this("Default", new Chassie(), new HashMap<Integer, Arme>(), new HashMap<Integer, Blindage>(), 0, new HashMap<EnumRessource, Integer>());
+	}
+	
+	@Override
+	public String toString() {
+		
+		return "Corvette \"" + nom +"\" de " + chassie.getNom() + "\n Point : " + puissance +  
+				"\n Vie : " + sante + "/" + santeMax + "\n Bouclier : " + bouclier + "/" + bouclierMax +
+				"\n Vitesse : " + vitesse;
+	}
+}
