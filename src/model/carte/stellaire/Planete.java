@@ -96,7 +96,9 @@ public class Planete {
 			//Retrait des ressources et ajout des bonus du bâtiment
 			for (EnumRessource e : EnumRessource.values()) {
 				joueur.getTRessource().put(e, joueur.getTRessource().get(e) - batiment.getCout().get(e));
-				joueur.getTRessource().put(e, joueur.getTRessource().get(e) + batiment.getBonus().get(e));
+				if (e == EnumRessource.SCIENCE || e == EnumRessource.PRODUCTION) {
+					joueur.getTRessource().put(e, joueur.getTRessource().get(e) + batiment.getBonus().get(e));
+				}
 				TRessource.put(e, TRessource.get(e) + TBatiment[emplacement].getBonus().get(e));
 			}
 
