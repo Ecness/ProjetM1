@@ -5,24 +5,28 @@ import java.util.List;
 
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import model.parametre.Parametre;
+import view.launcher.Project;
 
 public class Carte {
 	/**Liste des systèmes*/
 	private List<Systeme> listeSysteme;
 	/**Système le plus éloigné du premier système par distance euclidienne (Plus Lointain Système)*/
 	private Systeme pls;
-//	private AffichageGalaxie affichage;
 	
 	public Carte(Parametre parametres) {
 		listeSysteme = new ArrayList<Systeme>();
 
 		generationSystemes(parametres);
 		liaisonSystemes();
-//		
-//		affichage = new AffichageGalaxie(this);
+		
+		Rectangle rectangle = new Rectangle();
+		rectangle.setCenter(0, 0);
+		rectangle.setSize((float) Math.sqrt(Vector2.dst2(0, 0, pls.getCoordonnees().getX(), pls.getCoordonnees().getY())));
+		Project.cameraBound = rectangle;
 	}
 
 	/**
@@ -214,10 +218,6 @@ public class Carte {
 			System.out.println("NULL");
 		}
 	}
-//	
-//	public void render() {
-//		affichage.render();
-//	}
 
 	/**
 	 * @return	Liste des systèmes

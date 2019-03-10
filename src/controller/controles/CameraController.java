@@ -54,5 +54,21 @@ public abstract class CameraController {
 		} else {
 			Gdx.input.setCursorCatched(false);
 		}
+		
+		//Limites de la caméra
+		if (Project.cameraBound != null) {
+			if (Project.dynamicStage.getCamera().position.x > Project.cameraBound.getWidth()) {
+				Project.dynamicStage.getCamera().position.x = Project.cameraBound.getWidth();
+			}
+			if (Project.dynamicStage.getCamera().position.x < -Project.cameraBound.getWidth()) {
+				Project.dynamicStage.getCamera().position.x = -Project.cameraBound.getWidth();
+			}
+			if (Project.dynamicStage.getCamera().position.y > Project.cameraBound.getHeight()) {
+				Project.dynamicStage.getCamera().position.y =  Project.cameraBound.getHeight();
+			}
+			if (Project.dynamicStage.getCamera().position.y < -Project.cameraBound.getHeight()) {
+				Project.dynamicStage.getCamera().position.y =  -Project.cameraBound.getHeight();
+			}
+		}
 	}
 }

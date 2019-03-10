@@ -7,6 +7,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -50,6 +51,8 @@ public class Project extends ApplicationAdapter {
 	public static boolean finTour;
 	
 	private AffichageGalaxie afficheurGalaxie;
+	
+	public static Rectangle cameraBound;
 	
 	public static Systeme systemeSelectionne;
 	public static Planete planeteSelectionne;
