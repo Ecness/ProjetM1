@@ -3,8 +3,8 @@ package view.menus;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Colors;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
@@ -51,7 +52,7 @@ public class MenuParametre {
 //		joueurs.setPosition(panels.getOriginX(), panels.getY());
 //		joueurs.setSize(panels.getWidth() / 2, panels.getHeight());
 		
-		for (int i = 1; i <= 8; i++) {
+		for (int i = 1; i <= 2; i++) {
 			TextField name = new TextField("Joueur" + i, skin);
 			name.setName("player_" + i);
 			
@@ -68,27 +69,6 @@ public class MenuParametre {
 			joueurs.add(couleur);
 			joueurs.row();
 		}
-		
-//		TextField name = new TextField("Joueur", skin);
-//		name.setName("player");
-//		joueurs.add(name).expand();
-//		joueurs.add(nation).expand();
-//		couleur = new SelectBox<String>(skin);
-//		couleur.setItems(Colors.getColors().keys().toArray());
-//		joueurs.add(couleur).expand();
-//		for (int i = 1; i <= 8; i++) {
-//			joueurs.row();
-//			name = new TextField("Ordinateur" + i, skin);
-//			name.setName("cpu_" + i);
-//			joueurs.add(name).expand();
-//			SelectBox<EnumNation> nation = new SelectBox<EnumNation>(skin);
-//			nation.setItems(EnumNation.values());
-//			joueurs.add(nation).expand();
-//			SelectBox<String> couleur = new SelectBox<String>(skin);
-//			couleur = new SelectBox<String>(skin);
-//			couleur.setItems(Colors.getColors().keys().toArray());
-//			joueurs.add(couleur).expand();
-//		}
 		
 		TextButton retour = new TextButton("Retour", skin);
 		retour.addListener(new ClickListener() {
@@ -134,39 +114,14 @@ public class MenuParametre {
 			temp.add(i);
 		}
 		nbJoueur.setItems(temp);
-//		nbJoueur.addAction(new Action() {
-//			@Override
-//			public boolean act(float delta) {
-//				int i = 0;
-//				
-//				Array<Cell> cells = joueurs.getCells();
-//				while (i < 8) {
-//					if (i > nbJoueur.getSelected()) {
-//						((SelectBox<Integer>) cells[(i+1)*2]).setDisabled(true);
-//					}
-//				}
-//				
-//				
-////				parametres.invalidate();
-////				joueurs.clearChildren();
-////				joueurs.add("Joueur").expand();
-////				joueurs.add(nation).expand();
-//				for (int i = 1; i <= 8; i++) {
-//					joueurs.get
-//					joueurs.row();
-//					joueurs.add("Ordinateur").expand();
-//					SelectBox<EnumNation> nation = new SelectBox<EnumNation>(skin);
-//					nation.setItems(EnumNation.values());
-//					Cell<SelectBox<EnumNation>> cell = joueurs.add(nation).expand();
-//					if (i > nbJoueur.getSelected()) {
-//						cell.getActor().setDisabled(true);
-//					}
-//				}
-//				
-////				parametres.validate();
-//				return false;
-//			}
-//		});
+		nbJoueur.addListener(new ChangeListener() {
+			
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				update(skin, nbJoueur.getSelected());
+				
+			}
+		});
 		parametres.add("Nombre de joueurs").expand().left();
 		parametres.add(nbJoueur).expand().right();
 		parametres.row();
@@ -240,5 +195,38 @@ public class MenuParametre {
 		
 		
 		Project.staticStage.addActor(panels);
+	}
+	
+	public void update(Skin skin, int nbPlayer) {
+		joueurs.clear();
+		
+		for (int i = 1; i <= nbPlayer; i++) {
+			TextField name = new TextField("Joueur" + i, skin);
+			name.setName("player_" + i);
+			
+			SelectBox<EnumNation> nation = new SelectBox<EnumNation>(skin);
+			nation.setName("nation_" + i);
+			nation.setItems(EnumNation.values());
+			
+			SelectBox<String> couleur = new SelectBox<String>(skin);
+			couleur.setName("color_" + i);
+			couleur.setItems(Colors.getColors().keys().toArray());
+			
+			joueurs.add(name).expand();
+			joueurs.add(nation).expand();
+			joueurs.add(couleur);
+			joueurs.row();
+		}
+		
+		TextButton retour = new TextButton("Retour", skin);
+		retour.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				Project.change = true;
+				Project.menu = 0;
+			}
+		});
+//		joueurs.row();
+		joueurs.add(retour);
 	}
 }
