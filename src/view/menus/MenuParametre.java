@@ -105,6 +105,7 @@ public class MenuParametre {
 		parametres.row();
 		SelectBox<EnumAbondanceRessource> abondRess = new SelectBox<EnumAbondanceRessource>(skin);
 		abondRess.setItems(EnumAbondanceRessource.values());
+		abondRess.setSelected(EnumAbondanceRessource.NORMAL);
 		parametres.add("Abondance des ressources").expand().left();
 		parametres.add(abondRess).expand().right();
 		parametres.row();
