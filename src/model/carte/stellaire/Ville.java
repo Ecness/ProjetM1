@@ -27,7 +27,12 @@ public class Ville {
 		this.puissance = 0;
 		this.puissanceTotal = 0;
 		this.joueur = joueur;
-		this.id=joueur.getTVille().size();
+		System.out.println(joueur.getTVille());
+		if(joueur.getTVille()==null) {
+			this.id=0;
+		}else {			
+			this.id=joueur.getTVille().size();
+		}
 		this.TRessource = new HashMap<EnumRessource, Integer>();
 		for (Entry<EnumRessource, Integer> t : planete.getTRessource().entrySet()) {
 			TRessource.put(t.getKey(), t.getValue());

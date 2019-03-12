@@ -24,8 +24,13 @@ public class Corvette extends Vaisseau {
 	@Override
 	public String toString() {
 		
+		String string ="";
+		for (EnumDommageCritique enumDommageCritique : dommageCritique) {
+			string += enumDommageCritique.name() + "\n";
+		}
+		
 		return "Corvette \"" + nom +"\" de " + chassie.getNom() + "\n Point : " + puissance +  
 				"\n Vie : " + sante + "/" + santeMax + "\n Bouclier : " + bouclier + "/" + bouclierMax +
-				"\n Vitesse : " + vitesse;
+				"\n Vitesse : " + vitesse + "\n DommageCritique : " + string + "\n Nombre de feu : " + fire;
 	}
 }

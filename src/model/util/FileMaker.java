@@ -14,7 +14,9 @@ import model.batiment.ListBatiment;
 import model.entity.player.Science;
 import model.entity.player.donnee.Technologie;
 import model.entity.vaisseau.Corvette;
+import model.entity.vaisseau.Croiseur;
 import model.entity.vaisseau.ListVaisseaux;
+import model.entity.vaisseau.VaisseauCivil;
 import model.module.Arme;
 import model.module.Blindage;
 import model.module.Chassie;
@@ -79,15 +81,15 @@ public class FileMaker {
 		
 		//new BatimentPlanete(nom, description, techNecessaire, bonus, cout)
 		//setRessource(gaz, science, cristal, production, credit, acier)
-		listBatiment.addBatimentsPlanete(0, new BatimentPlanete("Spatioport", "Am�liore les echanges avec les autre colonie", 3, setRessource(0,0,0,1,5,1), setRessource(1,0,2,0,20,2)));
+		listBatiment.addBatimentsPlanete(0, new BatimentPlanete("Spatioport", "Améliore les echanges avec les autre colonie", 3, setRessource(0,0,0,1,5,1), setRessource(1,0,2,0,20,2)));
 		listBatiment.addBatimentsPlanete(1, new BatimentPlanete("Centre de recherche xenos", "Recherche sur les forme de vie extra-planetaire", 4, setRessource(0,5,0,1,-2,0), setRessource(1,0,5,0,50,5)));
 		
 		//new BatimentVille(nom, description, techNecessaire, bonus, cout)
 		//setRessource(gaz, science, cristal, production, credit, acier)
-		listBatiment.addBatimentsVille(0, new BatimentVille("Quartier ouvrier", "Quartier r�sidentelle peu luxueux", 0, setRessource(0,0,0,5,2,0), 20));
+		listBatiment.addBatimentsVille(0, new BatimentVille("Quartier ouvrier", "Quartier résidentelle peu luxueux", 0, setRessource(0,0,0,5,2,0), 20));
 		listBatiment.addBatimentsVille(1, new BatimentVille("Mega-usine", "Usine de la taille d'une ville servant a traiter les ressources", 1, setRessource(2,0,2,2,-2,2), 50));
-		listBatiment.addBatimentsVille(2, new BatimentVille("Usine Robotique", "Usine de cr�ation robotique", 1, setRessource(0,0,1,1,-1,2), 20));
-		listBatiment.addBatimentsVille(3, new BatimentVille("Batrie Plan�taire", "Batrie de defense plan�taire", 0, setRessource(0,0,0,-1,-2,-1), 20));
+		listBatiment.addBatimentsVille(2, new BatimentVille("Usine Robotique", "Usine de création robotique", 1, setRessource(0,0,1,1,-1,2), 20));
+		listBatiment.addBatimentsVille(3, new BatimentVille("Batrie Planétaire", "Batrie de defense plan�taire", 0, setRessource(0,0,0,-1,-2,-1), 20));
 		listBatiment.addBatimentsVille(4, new BatimentVille("Centre de recherche", "Petit centre de recherche", 0, setRessource(0,2,0,-1,-1,0), 20));
 		listBatiment.addBatimentsVille(4, new BatimentVille("Banque central plan�taire", "Centralise les fonts de la colonie", 0, setRessource(0,0,0,-1,10,0), 20));		
 		
@@ -109,7 +111,7 @@ public class FileMaker {
 		listTech.addScienceBonus(3, new Science("Module d'arme suplementaire", "Ajoute un slot d'arme", false, 100, 2, 3));
 		
 		//new Science(nom, description, rechercher, cout, dependanceUn, dependanceDeux)
-		listTech.addScienceMillitaire(0, new Science("Sonde", "D�but de la d�couverte spacial", true, 0, 0, 0));
+		listTech.addScienceMillitaire(0, new Science("Sonde", "Début de la conquéte spacial", true, 0, 0, 0));
 		listTech.addScienceMillitaire(1, new Science("Vaiseau de defence", "Premier vaiseau con�ue pour la defence de la colonie", false, 20, 0, 0));
 		listTech.addScienceMillitaire(2, new Science("Fusion solaire controler", "Permet la construction d'arme Plasma", false, 50, 1, 0));
 		listTech.addScienceMillitaire(3, new Science("Module MKII", "Delock les armes tier 2", false, 50, 1, 2));
@@ -121,26 +123,70 @@ public class FileMaker {
 		// Vaisseaux ------------------------------------
 		
 		ListVaisseaux listVaisseau = new ListVaisseaux();
-		Map<Integer, Arme> armes = new HashMap<Integer, Arme>();
-		Map<Integer, Arme> armes2 = new HashMap<Integer, Arme>();
-		Map<Integer, Blindage> blindages = new HashMap<Integer, Blindage>();
-		armes.put(0, listModule.getArmeLaser().get(0));
-		armes.put(1, listModule.getArmeCinetique().get(0));
-		armes2.put(0, listModule.getArmePlasma().get(0));
-		blindages.put(0, listModule.getBlindage().get(0));
-
 //		new Corvette(nom, chassie, armes, blindages, vitesse, cout)
 //		new Croiseur(nom, chassie, armes, blindages, vitesse, cout)
 //		new VaisseauCivil(nom, vitesse, chassie, cout)
 //		new Chassie(nom, description, point, sante, santeMax, bouclier, bouclierMax, nbArme, nbBlindage, nbModule)
 //		new Arme(nom, description, dommage, precision, nbTire, tauxFeu, critique, point, cout)
 //		new Blindage(nom, description, point, valeurBlindage, valeurBlouclier, cout)
-//		setRessource(gaz, science, cristal, production, credit, acier)
+//		setRessource(gaz, science, cristal, production, credit, acier)		
+		try {
+			Map<Integer, Arme> armes = new HashMap<Integer, Arme>();
+			Map<Integer, Blindage> blindages = new HashMap<Integer, Blindage>();
+			armes.put(0, listModule.getArmeLaser().get(0));
+			armes.put(1, listModule.getArmeCinetique().get(0));
+			blindages.put(0, listModule.getBlindage().get(0));
+			listVaisseau.addCorvettePirate(0,new Corvette("Reaper", new Chassie("Reaper", "Chassie petit et rapide", 20, 60, 60, 20, 20, 2, 1, 0),armes, blindages, 0, setRessource(5, 0, 5, 0, 500, 5)));
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			System.out.println(e.getMessage() + "  # Vaisseau Reaper");
+			e.printStackTrace();
+		}
+		
+		try {
+			Map<Integer, Arme> armes = new HashMap<Integer, Arme>();
+			Map<Integer, Blindage> blindages = new HashMap<Integer, Blindage>();
+			armes.put(0, listModule.getArmePlasma().get(0));
+			blindages.put(0, listModule.getBlindage().get(0));
+			listVaisseau.addCorvettePirate(1, new Corvette("Specter", new Chassie("Specter", "Cargo civil modifier", 5, 30, 30, 0, 0, 1, 1, 0),armes, blindages, 0, setRessource(2, 0, 2, 0, 200, 2)));
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			System.out.println(e.getMessage() + "  # Vaisseau Specter");
+			e.printStackTrace();
+		}
+		
+		try {
+			listVaisseau.addVaisseauCivil(0, new VaisseauCivil("Sonde", 0, new Chassie("Sonde", "Créé pour l'exploration spacial", 1, 1, 1, 0, 0, 0, 0, 0), setRessource(1, 0, 1, 0, 50, 1)));
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			System.out.println(e.getMessage() + "  # Vaisseau Sonde");
+			e.printStackTrace();
+		}
+		
+		try {
+			listVaisseau.addVaisseauCivil(1, new VaisseauCivil("Cargo colonial", 0, new Chassie("Cargo", "Cargo", 1, 80, 80, 0, 0, 0, 0, 0), setRessource(0, 0, 0, 0, 1000, 5)));
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			System.out.println(e.getMessage() + "  # Vaisseau Cargo colonial");
+			e.printStackTrace();
+		}
 		
 		
-		listVaisseau.addCorvettePirate(0,new Corvette("Reaper", new Chassie("Reaper", "Chassie petit et rapide", 20, 60, 60, 20, 20, 2, 1, 0),armes, blindages, 0, setRessource(5, 0, 5, 0, 500, 5)));
-		listVaisseau.addCorvettePirate(1, new Corvette("Specter", new Chassie("Specter", "Gargo civil modifier", 5, 30, 30, 0, 0, 1, 1, 0),armes2, blindages, 0, setRessource(2, 0, 2, 0, 200, 2)));
-		
+		try {
+			Map<Integer, Arme> armes = new HashMap<Integer, Arme>();
+			Map<Integer, Blindage> blindages = new HashMap<Integer, Blindage>();
+			armes.put(0, listModule.getArmeCinetique().get(2));
+			armes.put(1, listModule.getArmeCinetique().get(2));
+			armes.put(2, listModule.getArmeCinetique().get(2));
+			blindages.put(0, listModule.getBlindage().get(0));
+			blindages.put(1, listModule.getBlindage().get(1));
+			listVaisseau.addCroiseurPirate(0, new Croiseur("Pillager", new Chassie("Pillager", "Conçue pour piller", 5, 30, 30, 0, 0, 3, 2, 0),armes, blindages, 0, setRessource(5, 0, 5, 0, 500, 5)));
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			System.out.println(e.getMessage() + "  # Vaisseau Pillager");
+			e.printStackTrace();
+		}
+
 		
 		// Ecriture ------------------------------------
 		System.out.println("### Start File Generation ###");

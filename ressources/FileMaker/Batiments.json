@@ -104,7 +104,7 @@
 	"zeroValue": {
 		"class": "model.batiment.BatimentPlanete",
 		"nom": "Spatioport",
-		"description": "Am�liore les echanges avec les autre colonie",
+		"description": "Améliore les echanges avec les autre colonie",
 		"techNecessaire": 3,
 		"bonus": {
 			"class": "java.util.HashMap",
@@ -151,7 +151,7 @@
 		{
 			"class": "model.batiment.BatimentVille",
 			"nom": "Usine Robotique",
-			"description": "Usine de cr�ation robotique",
+			"description": "Usine de création robotique",
 			"techNecessaire": 1,
 			"bonus": {
 				"class": "java.util.HashMap",
@@ -166,7 +166,7 @@
 		},
 		{
 			"class": "model.batiment.BatimentVille",
-			"nom": "Batrie Plan�taire",
+			"nom": "Batrie Planétaire",
 			"description": "Batrie de defense plan�taire",
 			"bonus": {
 				"class": "java.util.HashMap",
@@ -267,7 +267,7 @@
 	"zeroValue": {
 		"class": "model.batiment.BatimentVille",
 		"nom": "Quartier ouvrier",
-		"description": "Quartier r�sidentelle peu luxueux",
+		"description": "Quartier résidentelle peu luxueux",
 		"bonus": {
 			"class": "java.util.HashMap",
 			"CRISTAL": 0,

@@ -1,6 +1,7 @@
 package model.entity.vaisseau;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import model.EnumRessource;
@@ -17,7 +18,7 @@ public class Croiseur extends Vaisseau {
 	}
 	
 	public Croiseur() {
-		this("Default", null, null, null, 0, null);
+		this("Default", new Chassie(), new HashMap<Integer, Arme>(), new HashMap<Integer, Blindage>(), 0, new HashMap<EnumRessource, Integer>());
 	}
 	
 	

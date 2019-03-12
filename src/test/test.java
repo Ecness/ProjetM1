@@ -167,9 +167,9 @@ public class test {
 		do {
 			for (java.util.Map.Entry<Integer, Vaisseau> vaisseau : flotte2.getTVaisseau().entrySet()) {
 				DetailCombat detail = phaseCombat.infligerDommage(vaisseau.getValue(), flotte.getTVaisseau().get(0), 0);
-				System.out.println("\n Tire\n"+vaisseau.toString());
+				System.out.println("\n Tire\n"+vaisseau.getValue().toString());
 				TimeUnit.SECONDS.sleep(1);
-				System.out.println("Rapport\n"+detail.toString());
+				System.out.println("\n\nRapport\n"+detail.toString());
 				TimeUnit.SECONDS.sleep(1);
 				if (detail.detruit) {
 					flotte.getTVaisseau().remove(0);

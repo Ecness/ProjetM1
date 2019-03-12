@@ -30,6 +30,19 @@ public class Planete {
 		this.joueur = null;
 	}
 	
+	
+	public Planete(EnumTypePlanete typePlanete, EnumAbondanceRessource ressource, int id, Joueur joueur) {
+		this.id = id;
+		this.typePlanete = typePlanete;
+		this.TRessource = new HashMap<EnumRessource, Integer>();
+		for (EnumRessource t : EnumRessource.values()) {
+			TRessource.put(t, 2+ressource.getmodificateur());
+		}
+		TBatiment = new BatimentPlanete[2];
+		this.ville = null;
+		this.joueur = joueur;
+	}
+	
 	/**
 	 * Vérifie si un emplacement de bâtiment est vide ou non
 	 * 

@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.Json;
 
 import model.EnumRessource;
+import model.carte.stellaire.EnumTypePlanete;
 import model.carte.stellaire.EnumTypeSysteme;
 import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
@@ -19,6 +20,7 @@ import model.entity.general.General;
 import model.entity.player.donnee.Technologie;
 import model.entity.vaisseau.Flotte;
 import model.entity.vaisseau.Vaisseau;
+import model.parametre.EnumAbondanceRessource;
 import model.parametre.EnumRessourceDepart;
 import view.launcher.Project;
 
@@ -43,7 +45,12 @@ public class Joueur {
 		
 		this.name = name;
 		this.systeme = new ArrayList<Systeme>();
-		placementInitial();
+		TFlotte = new ArrayList<Flotte>();
+		TVille = new ArrayList<Ville>();
+		TGeneral = new ArrayList<General>();
+		this.patternVaisseau = new Vaisseau[10];//A deffinir
+		this.fileTechnology = new ArrayList<Science>();
+		this.technology = new Technologie();
 		this.nation = nation;
 		this.couleur = couleur;
 		TRessource = new HashMap<EnumRessource, Integer>();
@@ -57,13 +64,8 @@ public class Joueur {
 				TRessourceMax.put(t, 500);
 			}
 		}
+		placementInitial();
 		ressourceDepart(ressourceDepart);
-		TFlotte = new ArrayList<Flotte>();
-		TVille = new ArrayList<Ville>();
-		TGeneral = new ArrayList<General>();
-		this.patternVaisseau = new Vaisseau[10];//A deffinir
-		this.fileTechnology = new ArrayList<Science>();
-		this.technology = new Technologie();
 		try{
 			loadTechFile(nation.getPath()+"/Sciences/Sciences.json");
 		} catch (Exception e) {
@@ -308,33 +310,16 @@ public class Joueur {
 	public void ajoutRessourceVille() {
 		for (Ville v : TVille) {
 			for (EnumRessource t : EnumRessource.values()) {
-				switch (t) {
-				case ACIER:
+				if (t != EnumRessource.SCIENCE && t != EnumRessource.PRODUCTION) {
 					TRessource.put(t, v.getTRessource().get(t)+TRessource.get(t));
-					if(TRessource.get(t)>999) {
-						TRessource.put(t, 999);
+					
+					if (TRessource.get(t) > TRessourceMax.get(t)) {
+						TRessource.put(t, TRessourceMax.get(t));
 					}
-					break;
-				case CREDIT:
-					TRessource.put(t, v.getTRessource().get(t)+TRessource.get(t));
-					if(TRessource.get(t)>10000) {
-						TRessource.put(t, 10000);
-					}
-					break;
-				case CRISTAL:
-					TRessource.put(t, v.getTRessource().get(t)+TRessource.get(t));
-					if(TRessource.get(t)>999) {
-						TRessource.put(t, 999);
-					}
-					break;
-				case GAZ:
-					TRessource.put(t, v.getTRessource().get(t)+TRessource.get(t));
-					if(TRessource.get(t)>999) {
-						TRessource.put(t, 999);
-					}
-					break;
-				default:
-					break;
+				}
+				
+				if (TRessource.get(t) < 0) {
+					TRessource.put(t, 0);
 				}
 			}
 		}	
@@ -350,6 +335,17 @@ public class Joueur {
 			depart = Project.galaxie.getListeSysteme().get(new Random().nextInt(Project.galaxie.getListeSysteme().size()));
 		} while (depart.getJoueur() != null || 
 				depart.getTypeSysteme().equals(EnumTypeSysteme.NEBULEUSE) || depart.getTypeSysteme().equals(EnumTypeSysteme.TROU_NOIR));
+		
+		Planete planeteDepart = new Planete(EnumTypePlanete.typeHabitable(), Project.parametre.getAbondanceRessource(), depart.getTPlanete().size(), this);
+		Ville ville = new Ville(this, planeteDepart);
+		planeteDepart.setVille(ville);
+		this.TVille.add(ville);
+
+		if(depart.getTPlanete().size()>= Project.parametre.getNbMaxPlanete()) {
+			depart.getTPlanete().set(0, planeteDepart);
+		}else {
+			depart.ajoutPlanete(planeteDepart);
+		}
 		
 		depart.setJoueur(this);
 		this.systeme.add(depart);
