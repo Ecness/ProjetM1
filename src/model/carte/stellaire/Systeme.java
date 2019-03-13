@@ -176,8 +176,8 @@ public class Systeme {
 				}
 			}
 			ville.setPuissance((int)(ville.getPuissanceTotal()/2));
-			ville.setFilleDeConstructionBattiment(null);
-			ville.setFilleDeConstructionUniter(null);
+			ville.setFileDeConstructionBatiment(null);
+			ville.setFileDeConstructionUnite(null);
 			return true;
 		} 
 		return false;

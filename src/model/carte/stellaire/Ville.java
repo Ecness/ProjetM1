@@ -19,8 +19,10 @@ public class Ville {
 	private Joueur joueur;
 	private Map<EnumRessource, Integer> TRessource;
 	private List<BatimentVille> TBatimentVille;
-	private List<BatimentVille> filleDeConstructionBattiment;
-	private List<Vaisseau> filleDeConstructionUniter;
+	private List<BatimentVille> fileDeConstructionBatiment;
+	private List<Vaisseau> fileDeConstructionUnite;
+	private boolean constructionTerminee;
+	private boolean reDrawBatiments, reDrawFiles;
 	
 	public Ville(Joueur joueur, Planete planete) {
 		
@@ -38,8 +40,8 @@ public class Ville {
 			TRessource.put(t.getKey(), t.getValue());
 		}
 		this.TBatimentVille = new ArrayList<BatimentVille>();
-		this.filleDeConstructionBattiment = new ArrayList<BatimentVille>();
-		this.filleDeConstructionUniter = new ArrayList<Vaisseau>();
+		this.fileDeConstructionBatiment = new ArrayList<BatimentVille>();
+		this.fileDeConstructionUnite = new ArrayList<Vaisseau>();
 	}
 
 	public void regenerationPuissance() {
@@ -59,25 +61,40 @@ public class Ville {
 					return false;
 				}
 			}
-			filleDeConstructionBattiment.add(new BatimentVille(batiment.getNom(), batiment.getDescription(), 
+			fileDeConstructionBatiment.add(new BatimentVille(batiment.getNom(), batiment.getDescription(), 
 					batiment.getTechNecessaire(), batiment.getBonus(), batiment.getCout()));
+			reDrawFiles = true;
 			return true;
 		}
 		return false;
 	}
 	
 	public boolean testFinConstruction() {
-		if(TRessource.get(EnumRessource.PRODUCTION)>0 && !filleDeConstructionBattiment.isEmpty()) {		
-			filleDeConstructionBattiment.get(0).setCout(filleDeConstructionBattiment.get(0).getCout()-TRessource.get(EnumRessource.PRODUCTION));
-			if(filleDeConstructionBattiment.get(0).getCout()<=0) {
+		reDrawFiles = true;
+		if(TRessource.get(EnumRessource.PRODUCTION)>0 && !fileDeConstructionBatiment.isEmpty()) {		
+			fileDeConstructionBatiment.get(0).setCout(fileDeConstructionBatiment.get(0).getCout()-TRessource.get(EnumRessource.PRODUCTION));
+			if(fileDeConstructionBatiment.get(0).getCout()<=0) {
 				for(EnumRessource e : EnumRessource.values()) {
-					TRessource.put(e, TRessource.get(e)+filleDeConstructionBattiment.get(0).getBonus().get(e));
+					TRessource.put(e, TRessource.get(e)+fileDeConstructionBatiment.get(0).getBonus().get(e));
 				}
-				TBatimentVille.add(filleDeConstructionBattiment.get(0));
-				filleDeConstructionBattiment.remove(0);
+				TBatimentVille.add(fileDeConstructionBatiment.get(0));
+				reDrawBatiments = true;
+				fileDeConstructionBatiment.remove(0);
+				constructionTerminee = true;
 				return true;
 			}
 		}
+		
+		return false;
+	}
+	
+	public boolean destructionBatiment(BatimentVille batiment) {
+		//Si la ville possède le bâtiment concerné
+		if (TBatimentVille.contains(batiment)) {
+			TBatimentVille.remove(batiment);
+			reDrawBatiments = true;
+		}
+		
 		return false;
 	}
 
@@ -110,13 +127,13 @@ public class Ville {
 		this.puissance = puissance;
 	}
 
-	public List<BatimentVille> getFilleDeConstructionBattiment() {
-		return filleDeConstructionBattiment;
+	public List<BatimentVille> getFileDeConstructionBatiment() {
+		return fileDeConstructionBatiment;
 	}
 
 
-	public void setFilleDeConstructionBattiment(List<BatimentVille> filleDeConstructionBattiment) {
-		this.filleDeConstructionBattiment = filleDeConstructionBattiment;
+	public void setFileDeConstructionBatiment(List<BatimentVille> filleDeConstructionBattiment) {
+		this.fileDeConstructionBatiment = filleDeConstructionBattiment;
 	}
 
 
@@ -130,13 +147,13 @@ public class Ville {
 	}
 
 
-	public List<Vaisseau> getFilleDeConstructionUniter() {
-		return filleDeConstructionUniter;
+	public List<Vaisseau> getFileDeConstructionUnite() {
+		return fileDeConstructionUnite;
 	}
 
 
-	public void setFilleDeConstructionUniter(List<Vaisseau> filleDeConstructionUniter) {
-		this.filleDeConstructionUniter = filleDeConstructionUniter;
+	public void setFileDeConstructionUnite(List<Vaisseau> filleDeConstructionUniter) {
+		this.fileDeConstructionUnite = filleDeConstructionUniter;
 	}
 
 	public int getId() {
@@ -154,5 +171,28 @@ public class Ville {
 	public void setPuissanceTotal(int puissanceTotal) {
 		this.puissanceTotal = puissanceTotal;
 	}
-	
+
+	public boolean isConstructionTerminee() {
+		return constructionTerminee;
+	}
+
+	public void setConstructionTerminee(boolean constructionTerminee) {
+		this.constructionTerminee = constructionTerminee;
+	}
+
+	public boolean isReDrawBatiments() {
+		return reDrawBatiments;
+	}
+
+	public void setReDrawBatiments(boolean reDrawBatiments) {
+		this.reDrawBatiments = reDrawBatiments;
+	}
+
+	public boolean isReDrawFiles() {
+		return reDrawFiles;
+	}
+
+	public void setReDrawFiles(boolean reDrawFiles) {
+		this.reDrawFiles = reDrawFiles;
+	}
 }

@@ -13,9 +13,9 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		config.foregroundFPS = 60;
-		config.width = (int) screenSize.getWidth();
-		config.height = (int) screenSize.getHeight();
-		config.fullscreen = true;
+		config.width = 1600;
+		config.height = 900;
+//		config.fullscreen = true;
 		new LwjglApplication(new Project(), config);
 	}
 }

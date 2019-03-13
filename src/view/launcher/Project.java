@@ -5,12 +5,12 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+
 import controller.controles.CameraController;
 import model.parametre.EnumAbondanceRessource;
 import model.parametre.EnumRessourceDepart;
@@ -34,8 +34,6 @@ public class Project extends ApplicationAdapter {
 	
 	public static Partie partie;
 	public static Carte galaxie;
-	
-	Sprite sprite;
 	
 	public static Skin skin;
 	/**Stage pour affichage statique (menus)**/
@@ -94,7 +92,6 @@ public class Project extends ApplicationAdapter {
 		CameraController.controle();
 		staticStage.getCamera().update();
 		dynamicStage.getCamera().update();
-		
 
 		if (change) {
 			staticStage.clear();
@@ -113,14 +110,6 @@ public class Project extends ApplicationAdapter {
 			change = false;
 		}
 		
-		if (affichageGalaxie) {
-			if (afficheurGalaxie == null) {
-				afficheurGalaxie = new AffichageGalaxie(partie.getGalaxie(), skin);
-			}
-			clicked = Gdx.input.isTouched();
-			afficheurGalaxie.render();
-		}
-
 		if (finTour) {
 			for (Joueur joueur : partie.getTJoueur()) {
 				joueur.debutDeTour();
@@ -128,9 +117,18 @@ public class Project extends ApplicationAdapter {
 			finTour = false;
 			cptTours++;
 		}
+
+		if (affichageGalaxie) {
+			if (afficheurGalaxie == null) {
+				afficheurGalaxie = new AffichageGalaxie(partie.getGalaxie(), skin);
+			}
+			clicked = Gdx.input.isTouched();
+			afficheurGalaxie.render();
+		}
 		
 		staticStage.act();
 		dynamicStage.act();
+		
 		staticStage.draw();
 		dynamicStage.draw();
 	}

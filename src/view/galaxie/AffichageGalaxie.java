@@ -128,9 +128,13 @@ public class AffichageGalaxie {
 		
 		//Mise à jour du système et de la planète sélectionnés
 		if (Project.planeteSelectionne != null && Project.planeteSelectionne.isReDraw()) {
-			((AffichagePlanete) afficheurDroite.findActor("afficheur_planete")).update(Project.planeteSelectionne);
+			((AffichagePlanete) afficheurDroite.findActor("afficheur_planete")).update(Project.planeteSelectionne, Project.skin);
 			Project.planeteSelectionne.setReDraw(false);
 			((AffichageSysteme) afficheurDroite.findActor("afficheur_systeme")).update(Project.systemeSelectionne);
+		}
+		
+		if (Project.planeteSelectionne != null && Project.planeteSelectionne.getVille() != null) {
+			((AffichagePlanete) afficheurDroite.findActor("afficheur_planete")).update(Project.planeteSelectionne, Project.skin);
 		}
 	}
 }

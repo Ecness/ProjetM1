@@ -6,11 +6,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import model.carte.stellaire.Planete;
+import model.batiment.BatimentVille;
+import model.carte.stellaire.Ville;
 
-public class ConfirmationDestructionBatimentPlanete extends Dialog {
+public class ConfirmationDestructionBatimentVille extends Dialog {
 
-	public ConfirmationDestructionBatimentPlanete(Planete planete, int emplacement,  Skin skin) {
+	public ConfirmationDestructionBatimentVille(Ville ville, BatimentVille batiment,  Skin skin) {
 		super("Confirmation destruction", skin);
 		
 		TextButton cancel = new TextButton("Annuler", skin);
@@ -19,7 +20,7 @@ public class ConfirmationDestructionBatimentPlanete extends Dialog {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				clear();
-				planete.setReDraw(true);
+				ville.setReDrawBatiments(true);
 			}
 			
 		});
@@ -29,9 +30,9 @@ public class ConfirmationDestructionBatimentPlanete extends Dialog {
 
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				planete.deconstructionBatiment(emplacement);
+				ville.destructionBatiment(batiment);
 				clear();
-				planete.setReDraw(true);
+				ville.setReDrawBatiments(true);
 			}
 			
 		});
