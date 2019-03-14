@@ -20,7 +20,6 @@ import model.entity.general.General;
 import model.entity.player.donnee.Technologie;
 import model.entity.vaisseau.Flotte;
 import model.entity.vaisseau.Vaisseau;
-import model.parametre.EnumAbondanceRessource;
 import model.parametre.EnumRessourceDepart;
 import view.launcher.Project;
 

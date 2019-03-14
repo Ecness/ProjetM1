@@ -9,7 +9,6 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.IntMap.Entry;
 
 import model.EnumRessource;
-import model.batiment.BatimentPlanete;
 import model.carte.combat.DetailCombat;
 import model.carte.combat.PhaseCombat;
 import model.entity.vaisseau.Corvette;

@@ -5,7 +5,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import model.carte.stellaire.Planete;
 import view.galaxie.planete.ville.AffichageVille;
-import view.galaxie.planete.ville.FileDeConstruction;
 
 public class AffichagePlanete extends Container<Actor> {
 

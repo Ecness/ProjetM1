@@ -62,7 +62,6 @@ public class SelectBatimentVille extends ScrollPane{
 					if (!listeBatimentsVille.contains(batiment.value.getNom())) {
 						//Correction type lecture json (de String vers EnumRessource)
 						Map<EnumRessource, Integer> bonus = new HashMap<EnumRessource, Integer>();
-						//					Map<EnumRessource, Integer> cout = new HashMap<EnumRessource, Integer>();
 
 						for (EnumRessource ressource : EnumRessource.values()) {
 							bonus.put(ressource, batiment.value.getBonus().get(ressource.name()));
@@ -70,7 +69,6 @@ public class SelectBatimentVille extends ScrollPane{
 						}
 
 						batiment.value.setBonus(bonus);
-						//					batiment.value.setCout(cout);
 
 						String text = batiment.value.getNom() + "\nTour(s) : " + (int)Math.ceil(batiment.value.getCout() / ville.getTRessource().get(EnumRessource.PRODUCTION));
 						TextButton button = new TextButton(text, Project.skin);

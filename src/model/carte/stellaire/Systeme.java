@@ -91,7 +91,6 @@ public class Systeme {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				Project.systemeSelectionne = sys;
-				System.out.println("IN");
 			}
 			
 		});

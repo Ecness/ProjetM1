@@ -1,12 +1,7 @@
 package view.galaxie.planete.ville;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -29,7 +24,6 @@ public class FileDeConstructionBatiment extends VerticalGroup {
 			TextButton bat = new TextButton(batiment.getNom() + "\nTour(s)" + (int) Math.ceil(batiment.getCout() / ville.getTRessource().get(EnumRessource.PRODUCTION)), skin);
 			bat.setName("batiment_file_" + i);
 			i++;
-			//TODO Ajouter mécanique d'annulation
 			bat.addListener(new ClickListener() {
 
 				@Override
@@ -44,7 +38,6 @@ public class FileDeConstructionBatiment extends VerticalGroup {
 	}
 
 	public void update(SplitPane container, Ville ville, Skin skin) {
-//		List<Actor> newList = new ArrayList<Actor>();
 
 		int ind = 0;
 		for (Actor button : getChildren()) {
@@ -76,14 +69,9 @@ public class FileDeConstructionBatiment extends VerticalGroup {
 
 		}
 		if (ville.isConstructionTerminee()) {
-			//				ville.getFileDeConstructionBatiment().remove(batiment);
 			removeActor(findActor("batiment_file_0"));
 			ville.setConstructionTerminee(false);
 		}
-
-//		for (Actor button : newList) {
-//			removeActor(button);
-//		}
 
 	}
 }

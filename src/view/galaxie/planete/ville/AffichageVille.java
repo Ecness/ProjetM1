@@ -1,13 +1,9 @@
 package view.galaxie.planete.ville;
 
-import java.io.ObjectInputStream.GetField;
-
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
 import model.carte.stellaire.Ville;
 
-//TODO SEPARER LES VUES
 public class AffichageVille extends SplitPane {
 
 	public AffichageVille(Ville ville, Skin skin) {
