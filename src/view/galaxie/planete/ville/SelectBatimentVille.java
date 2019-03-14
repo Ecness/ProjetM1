@@ -1,7 +1,9 @@
 package view.galaxie.planete.ville;
 
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -46,36 +48,48 @@ public class SelectBatimentVille extends ScrollPane{
 
 				ListBatiment listeBatiments = parser.fromJson(ListBatiment.class, file);
 
+				//Récupération des bâtiments déjà construits ou en construction
+				List<String> listeBatimentsVille = new ArrayList<String>();
+				for (BatimentVille batiment : ville.getTBatimentVille()) {
+					listeBatimentsVille.add(batiment.getNom());
+				}
+				for (BatimentVille batiment : ville.getFileDeConstructionBatiment()) {
+					listeBatimentsVille.add(batiment.getNom());
+				}
+
 				for (Entry<BatimentVille> batiment : listeBatiments.getBatimentsVille().entries()) {
-					//Correction type lecture json (de String vers EnumRessource)
-					Map<EnumRessource, Integer> bonus = new HashMap<EnumRessource, Integer>();
-//					Map<EnumRessource, Integer> cout = new HashMap<EnumRessource, Integer>();
+					//Empêche de sélectionner des bâtiments déjà construits ou en construction
+					if (!listeBatimentsVille.contains(batiment.value.getNom())) {
+						//Correction type lecture json (de String vers EnumRessource)
+						Map<EnumRessource, Integer> bonus = new HashMap<EnumRessource, Integer>();
+						//					Map<EnumRessource, Integer> cout = new HashMap<EnumRessource, Integer>();
 
-					for (EnumRessource ressource : EnumRessource.values()) {
-						bonus.put(ressource, batiment.value.getBonus().get(ressource.name()));
-//						cout.put(ressource, batiment.value.getCout().get(ressource.name()));
-					}
-
-					batiment.value.setBonus(bonus);
-//					batiment.value.setCout(cout);
-
-					TextButton button = new TextButton(batiment.value.getNom(), Project.skin);
-					//Le bouton est nommé selon sa clé dans la liste des batiments
-					button.setName("" + batiment.key);
-
-					button.addListener(new ClickListener() {
-
-						@Override
-						public void clicked(InputEvent event, float x, float y) {
-							//Récupération du bâtiment selon son nom (clé de la map)
-							ville.constructionBatiment(listeBatiments.getBatimentsVille().get(Integer.parseInt(button.getName())));
-							clear();
-							ville.setReDrawBatiments(true);
+						for (EnumRessource ressource : EnumRessource.values()) {
+							bonus.put(ressource, batiment.value.getBonus().get(ressource.name()));
+							//						cout.put(ressource, batiment.value.getCout().get(ressource.name()));
 						}
 
-					});
+						batiment.value.setBonus(bonus);
+						//					batiment.value.setCout(cout);
 
-					batiments.addActor(button);
+						TextButton button = new TextButton(batiment.value.getNom(), Project.skin);
+						//Le bouton est nommé selon sa clé dans la liste des batiments
+						button.setName("" + batiment.key);
+
+						button.addListener(new ClickListener() {
+
+							@Override
+							public void clicked(InputEvent event, float x, float y) {
+								//Récupération du bâtiment selon son nom (clé de la map)
+								ville.constructionBatiment(listeBatiments.getBatimentsVille().get(Integer.parseInt(button.getName())));
+								clear();
+								ville.setReDrawBatiments(true);
+							}
+
+						});
+
+						batiments.addActor(button);
+					}
 				}
 			} catch (Exception e) {
 				System.out.println(e.toString() + " dans view/galaxie/SelectBatiment");
