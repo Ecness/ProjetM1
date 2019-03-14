@@ -21,24 +21,24 @@ import view.launcher.Project;
 public class AffichageGalaxie {
 	private ShapeRenderer shapeRenderer;
 	private HorizontalGroup afficheurHaut;
-//	private AffichageRessources ressources;
+	//	private AffichageRessources ressources;
 	private VerticalGroup afficheurDroite;
-	
+
 	private Button boutonMenu;
 	private Button finTour;
 	private Label cptTour;
-	
+
 	private Carte carte;
-	
+
 	public AffichageGalaxie(Carte carte, Skin skin) {
 		this.carte = carte;
-		
+
 		shapeRenderer = new ShapeRenderer();
 		afficheurHaut = new HorizontalGroup();
 		afficheurHaut.setName("afficheur_haut");
 		afficheurDroite = new VerticalGroup();
 		afficheurDroite.setName("afficheur_droite");
-		
+
 		//Bouton des menus
 		boutonMenu = new TextButton("Menu", skin);
 		boutonMenu.setSize(200,50);
@@ -52,11 +52,11 @@ public class AffichageGalaxie {
 				Project.clicked = false;
 			}
 		});
-		
+
 		//Affichage des ressources
 		AffichageRessources ressources = new AffichageRessources(Project.partie.getTJoueur()[0], skin);
 		ressources.setPosition(boutonMenu.getX() + boutonMenu.getWidth(),  Project.staticStage.getCamera().viewportHeight-50);
-	
+
 		//Bouton de fin de tour
 		finTour = new TextButton("Fin du tour", skin);
 		finTour.addListener(new ClickListener() {
@@ -65,11 +65,11 @@ public class AffichageGalaxie {
 			public void clicked(InputEvent event, float x, float y) {
 				Project.finTour = true;
 			}
-			
+
 		});
-		
+
 		cptTour = new Label("Tour " + Project.cptTours, skin);
-		
+
 		afficheurHaut.addActor(boutonMenu);
 		afficheurHaut.addActor(ressources);
 		afficheurHaut.addActor(finTour);
@@ -77,17 +77,17 @@ public class AffichageGalaxie {
 		afficheurHaut.setHeight(boutonMenu.getHeight());
 		afficheurHaut.setPosition(0,  Project.staticStage.getCamera().viewportHeight - afficheurHaut.getHeight());
 		afficheurHaut.grow();
-		
+
 		afficheurDroite.setPosition(Project.staticStage.getCamera().viewportWidth - Project.staticStage.getCamera().viewportWidth / 10, Project.staticStage.getCamera().viewportHeight - afficheurHaut.getHeight());
-		
+
 		Project.staticStage.addActor(afficheurHaut);
 		Project.staticStage.addActor(afficheurDroite);
-		
+
 		for (Systeme sys : carte.getListeSysteme()) {
 			Project.dynamicStage.addActor(sys.getBouton());
 		}
 	}
-	
+
 	public void render() {
 		shapeRenderer.setProjectionMatrix(Project.dynamicStage.getCamera().combined);
 		shapeRenderer.begin(ShapeType.Filled);
@@ -105,11 +105,11 @@ public class AffichageGalaxie {
 			sys.getBouton().setPosition(sys.getX() - 10, sys.getY() - 10);
 		}
 		shapeRenderer.end();
-		
+
 		//Mise à jour de l'affichage des ressources
 		((AffichageRessources) afficheurHaut.findActor("afficheur_ressources")).update(Project.partie.getTJoueur()[0]);
 		cptTour.setText("Tour " + Project.cptTours);
-		
+
 		//Affichage du système sélectionné
 		if (Project.systemeSelectionne != null && Project.changeSysteme) {
 			Project.changeSysteme = false;
@@ -117,7 +117,7 @@ public class AffichageGalaxie {
 			AffichageSysteme systeme = new AffichageSysteme(Project.systemeSelectionne, Project.skin);
 			afficheurDroite.addActor(systeme);
 		}
-		
+
 		//Mise à jourAffichage
 		if (Project.planeteSelectionne != null && Project.changePlanete) {
 			Project.changePlanete = false;
@@ -125,20 +125,14 @@ public class AffichageGalaxie {
 			AffichagePlanete planete = new AffichagePlanete(Project.planeteSelectionne, Project.skin);
 			afficheurDroite.addActor(planete);
 		}
-		
+
 		//Mise à jour du système et de la planète sélectionnés
-		if (Project.planeteSelectionne != null && Project.planeteSelectionne.isReDraw()) {
+		if (Project.planeteSelectionne != null && (Project.planeteSelectionne.isReDraw() || 
+				(Project.planeteSelectionne.getVille() != null && 
+					(Project.planeteSelectionne.getVille().isReDrawBatiments() || Project.planeteSelectionne.getVille().isReDrawFiles())))) {
 			((AffichagePlanete) afficheurDroite.findActor("afficheur_planete")).update(Project.planeteSelectionne, Project.skin);
 			Project.planeteSelectionne.setReDraw(false);
 			((AffichageSysteme) afficheurDroite.findActor("afficheur_systeme")).update(Project.systemeSelectionne);
-		}
-		
-		if (Project.planeteSelectionne != null && Project.planeteSelectionne.getVille() != null) {
-			try {
-				((AffichagePlanete) afficheurDroite.findActor("afficheur_planete")).update(Project.planeteSelectionne, Project.skin);
-			} catch (NullPointerException e) {
-				Project.planeteSelectionne = null;
-			}
 		}
 	}
 }

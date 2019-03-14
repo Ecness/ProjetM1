@@ -32,5 +32,6 @@ public class AffichagePlanete extends Container<Actor> {
 		} else {
 			((AffichageBatimentsPlanete) getActor()).update(planete);
 		}
+		planete.setReDraw(true);
 	}
 }

@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Align;
 import model.EnumRessource;
 import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
+import model.carte.stellaire.Ville;
 import view.launcher.Project;
 
 public class AffichageSysteme extends VerticalGroup {
@@ -38,7 +39,9 @@ public class AffichageSysteme extends VerticalGroup {
 			String text = "Type : " + planete.getTypePlanete() + "\n";
 			
 			for (EnumRessource ressource : EnumRessource.values()) {
-				text += " " + ressource.toString().substring(0, 1) + planete.getTRessource().get(ressource);
+				int value = planete.getVille() != null ? planete.getTRessource().get(ressource) + planete.getVille().getTRessource().get(ressource)
+													: planete.getTRessource().get(ressource);
+				text += " " + ressource.toString().substring(0, 1) + value;
 			}
 			
 			TextButton bouton = new TextButton(text, skin);
@@ -74,7 +77,9 @@ public class AffichageSysteme extends VerticalGroup {
 			String text = "Type : " + planete.getTypePlanete() + "\n";
 
 			for (EnumRessource ressource : EnumRessource.values()) {
-				text += " " + ressource.toString().substring(0, 1) + planete.getTRessource().get(ressource);
+				int value = planete.getVille() != null ? planete.getTRessource().get(ressource) + planete.getVille().getTRessource().get(ressource)
+													: planete.getTRessource().get(ressource);
+				text += " " + ressource.toString().substring(0, 1) + value;
 			}
 			
 			((TextButton) planetes.findActor("planete_" + planete.getId())).setText(text);
