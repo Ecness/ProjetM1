@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import controller.boutons.ConfirmationDestructionBatimentPlanete;
+import controller.boutons.planete.ConfirmationDestructionBatimentPlanete;
 import model.carte.stellaire.Planete;
 
 public class AffichageBatimentsPlanete extends SplitPane {

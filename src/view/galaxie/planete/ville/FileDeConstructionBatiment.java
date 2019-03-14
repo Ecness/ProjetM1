@@ -4,18 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import controller.boutons.ville.ConfirmationAnnulationBatimentVille;
 import model.EnumRessource;
 import model.batiment.BatimentVille;
 import model.carte.stellaire.Ville;
 
 public class FileDeConstructionBatiment extends VerticalGroup {
 
-	public FileDeConstructionBatiment(Ville ville, Skin skin) {
+	public FileDeConstructionBatiment(SplitPane container, Ville ville, Skin skin) {
 		super();
 		setName("liste_attente_batiment");
 
@@ -25,11 +30,20 @@ public class FileDeConstructionBatiment extends VerticalGroup {
 			bat.setName("batiment_file_" + i);
 			i++;
 			//TODO Ajouter mécanique d'annulation
+			bat.addListener(new ClickListener() {
+
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					container.setSecondWidget(new ConfirmationAnnulationBatimentVille(ville, batiment, skin));
+				}
+				
+			});
+			
 			addActor(bat);
 		}
 	}
 
-	public void update(Ville ville, Skin skin) {
+	public void update(SplitPane container, Ville ville, Skin skin) {
 //		List<Actor> newList = new ArrayList<Actor>();
 
 		int ind = 0;
@@ -47,6 +61,16 @@ public class FileDeConstructionBatiment extends VerticalGroup {
 			} else {
 				TextButton button = new TextButton(text, skin);
 				button.setName("batiment_file_" + i);
+				
+				button.addListener(new ClickListener() {
+
+					@Override
+					public void clicked(InputEvent event, float x, float y) {
+						container.setSecondWidget(new ConfirmationAnnulationBatimentVille(ville, batiment, skin));
+					}
+					
+				});
+				
 				addActor(button);
 			}
 

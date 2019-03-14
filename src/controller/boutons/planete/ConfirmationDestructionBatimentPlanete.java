@@ -1,4 +1,4 @@
-package controller.boutons;
+package controller.boutons.planete;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;

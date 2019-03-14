@@ -20,7 +20,7 @@ public class AffichageVille extends SplitPane {
 		setFirstWidget(afficheurBatiments);
 		
 		
-		FileDeConstruction afficheurListeAttente = new FileDeConstruction(ville, skin);
+		FileDeConstruction afficheurListeAttente = new FileDeConstruction(this, ville, skin);
 		afficheurListeAttente.setName("liste_attente");
 		
 		setSecondWidget(afficheurListeAttente);
@@ -31,6 +31,13 @@ public class AffichageVille extends SplitPane {
 	}
 	
 	public void updateFile(Ville ville, Skin skin) {
-		((FileDeConstruction) findActor("liste_attente")).update(ville, skin);
+		if (findActor("liste_attente") != null) {
+			((FileDeConstruction) findActor("liste_attente")).update(this, ville, skin);
+		} else {
+			FileDeConstruction afficheurListeAttente = new FileDeConstruction(this, ville, skin);
+			afficheurListeAttente.setName("liste_attente");
+			
+			setSecondWidget(afficheurListeAttente);
+		}
 	}
 }

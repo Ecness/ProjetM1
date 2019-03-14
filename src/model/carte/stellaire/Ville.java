@@ -93,6 +93,17 @@ public class Ville {
 		if (TBatimentVille.contains(batiment)) {
 			TBatimentVille.remove(batiment);
 			reDrawBatiments = true;
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean annulationBatiment(BatimentVille batiment) {
+		if (fileDeConstructionBatiment.contains(batiment)) {
+			fileDeConstructionBatiment.remove(batiment);
+			reDrawBatiments = true;
+			return true;
 		}
 		
 		return false;

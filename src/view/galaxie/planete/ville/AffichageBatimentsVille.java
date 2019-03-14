@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import controller.boutons.ConfirmationDestructionBatimentVille;
+import controller.boutons.ville.ConfirmationDestructionBatimentVille;
 import model.batiment.BatimentVille;
 import model.carte.stellaire.Ville;
 
