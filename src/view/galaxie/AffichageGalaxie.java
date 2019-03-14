@@ -134,7 +134,11 @@ public class AffichageGalaxie {
 		}
 		
 		if (Project.planeteSelectionne != null && Project.planeteSelectionne.getVille() != null) {
-			((AffichagePlanete) afficheurDroite.findActor("afficheur_planete")).update(Project.planeteSelectionne, Project.skin);
+			try {
+				((AffichagePlanete) afficheurDroite.findActor("afficheur_planete")).update(Project.planeteSelectionne, Project.skin);
+			} catch (NullPointerException e) {
+				Project.planeteSelectionne = null;
+			}
 		}
 	}
 }
