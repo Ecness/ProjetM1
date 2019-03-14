@@ -21,7 +21,7 @@ public class FileDeConstructionBatiment extends VerticalGroup {
 
 		int i = 0;
 		for (BatimentVille batiment : ville.getFileDeConstructionBatiment()) {
-			TextButton bat = new TextButton(batiment.getNom() + "\n" + batiment.getCout() / ville.getTRessource().get(EnumRessource.PRODUCTION), skin);
+			TextButton bat = new TextButton(batiment.getNom() + "\nTour(s)" + (int) Math.ceil(batiment.getCout() / ville.getTRessource().get(EnumRessource.PRODUCTION)), skin);
 			bat.setName("batiment_file_" + i);
 			i++;
 			//TODO Ajouter mécanique d'annulation
@@ -41,7 +41,7 @@ public class FileDeConstructionBatiment extends VerticalGroup {
 
 		for (int i = 0; i < ville.getFileDeConstructionBatiment().size(); i++) {
 			BatimentVille batiment = ville.getFileDeConstructionBatiment().get(i);
-			String text = batiment.getNom() + "\n" + batiment.getCout() / ville.getTRessource().get(EnumRessource.PRODUCTION);
+			String text = batiment.getNom() + "\nTour(s)" + (int) Math.ceil(batiment.getCout() / ville.getTRessource().get(EnumRessource.PRODUCTION));
 			if (findActor("batiment_file_" + i) != null) {
 				((TextButton) findActor("batiment_file_" + i)).setText(text);
 			} else {
