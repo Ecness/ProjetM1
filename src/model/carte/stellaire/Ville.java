@@ -39,6 +39,9 @@ public class Ville {
 		for (Entry<EnumRessource, Integer> t : planete.getTRessource().entrySet()) {
 			TRessource.put(t.getKey(), t.getValue());
 		}
+		if (TRessource.get(EnumRessource.PRODUCTION) <= 0) {
+			TRessource.put(EnumRessource.PRODUCTION, 1);
+		}
 		this.TBatimentVille = new ArrayList<BatimentVille>();
 		this.fileDeConstructionBatiment = new ArrayList<BatimentVille>();
 		this.fileDeConstructionUnite = new ArrayList<Vaisseau>();
