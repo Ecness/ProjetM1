@@ -1,4 +1,4 @@
-package view.galaxie.planete.ville;
+package view.galaxie.systeme.planete.ville;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;

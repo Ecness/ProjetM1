@@ -1,10 +1,10 @@
-package view.galaxie.planete;
+package view.galaxie.systeme.planete;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import model.carte.stellaire.Planete;
-import view.galaxie.planete.ville.AffichageVille;
+import view.galaxie.systeme.planete.ville.AffichageVille;
 
 public class AffichagePlanete extends Container<Actor> {
 

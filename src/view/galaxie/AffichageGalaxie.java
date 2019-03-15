@@ -15,7 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import model.carte.stellaire.Carte;
 import model.carte.stellaire.Systeme;
-import view.galaxie.planete.AffichagePlanete;
+import view.galaxie.systeme.AffichageSysteme;
+import view.galaxie.systeme.planete.AffichagePlanete;
 import view.launcher.Project;
 
 public class AffichageGalaxie {

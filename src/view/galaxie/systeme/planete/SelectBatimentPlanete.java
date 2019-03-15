@@ -1,4 +1,4 @@
-package view.galaxie.planete;
+package view.galaxie.systeme.planete;
 
 import java.io.FileReader;
 import java.util.HashMap;

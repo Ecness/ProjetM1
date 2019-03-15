@@ -1,4 +1,4 @@
-package view.galaxie.planete;
+package view.galaxie.systeme.planete;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;

@@ -19,7 +19,7 @@ public class Anomalie {
 		this.anomalie = anomalie;
 		if(this.anomalie==EnumAnomalie.PIRATE) {
 			this.decouverte = true;
-			// todo ajouter une flote de pirate sur le systéme 			
+			// todo ajouter une flote de pirate sur le systï¿½me 			
 		}else {			
 			bonus = new HashMap<EnumRessource, Integer>();
 			bonus();
@@ -92,5 +92,10 @@ public class Anomalie {
 	}
 	public void setBonus(Map<EnumRessource, Integer> bonus) {
 		this.bonus = bonus;
+	}
+	
+	@Override
+	public String toString() {
+		return "" + anomalie;
 	}
 }

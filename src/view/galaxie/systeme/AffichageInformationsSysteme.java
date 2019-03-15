@@ -1,20 +1,20 @@
-package view.galaxie;
+package view.galaxie.systeme;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.utils.Align;
 
 import model.carte.stellaire.Systeme;
 
-public class AffichageSysteme extends VerticalGroup {
-	
-	public AffichageSysteme(Systeme systeme, Skin skin) {
-		super();
-		setName("afficheur_systeme");
+public class AffichageInformationsSysteme extends SplitPane {
+
+	public AffichageInformationsSysteme(Systeme systeme, Skin skin) {
+		super(null, null, false, skin);
+		setName("afficheur_informations_systeme");
 		
-		VerticalGroup planetes = new VerticalGroup();
-		planetes.setName("planetes");
+		VerticalGroup informations = new VerticalGroup();
 		
 		//TODO Remplacer l'identifiant par un nom
 		Label nomSysteme = new Label("" + systeme.getIdSysteme(), skin);
@@ -25,20 +25,13 @@ public class AffichageSysteme extends VerticalGroup {
 		}
 		nomSysteme.setAlignment(Align.center);
 		
-		Label typeSysteme = new Label(systeme.getTypeSysteme().toString(), skin);
+		Label typeSysteme = new Label("" + systeme.getTypeSysteme(), skin);
 		typeSysteme.setAlignment(Align.center);
 		
-		planetes = new AffichageListePlanetes(systeme, skin);
+		informations.addActor(nomSysteme);
+		informations.addActor(typeSysteme);
+		setFirstWidget(informations);
 		
-		addActor(nomSysteme);
-		addActor(typeSysteme);
-		addActor(planetes);
-		
-		align(Align.center);
-		grow();
-	}
-
-	public void update(Systeme systeme) {
-		((AffichageListePlanetes) findActor("afficheur_liste_planetes")).update(systeme);
+		setSecondWidget(new AffichageAnomalies(systeme, skin));
 	}
 }

@@ -30,5 +30,9 @@ public enum EnumAnomalie {
 	public int getNumero() {
 		return numero;
 	}
-	
+
+	@Override
+	public String toString() {
+		return name();
+	}
 }

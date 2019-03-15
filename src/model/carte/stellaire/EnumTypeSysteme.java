@@ -34,4 +34,8 @@ public enum EnumTypeSysteme {
 		return nbPlanete;
 	}
 	
+//	@Override
+//	public String toString() {
+//		return name();
+//	}
 }

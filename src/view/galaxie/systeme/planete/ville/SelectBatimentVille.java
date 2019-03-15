@@ -1,4 +1,4 @@
-package view.galaxie.planete.ville;
+package view.galaxie.systeme.planete.ville;
 
 import java.io.FileReader;
 import java.util.ArrayList;
