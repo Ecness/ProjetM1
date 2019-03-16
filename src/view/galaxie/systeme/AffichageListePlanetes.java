@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.Align;
 import model.EnumRessource;
 import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
+import view.galaxie.systeme.planete.AffichagePlanete;
 import view.launcher.Project;
 
 public class AffichageListePlanetes extends VerticalGroup {
@@ -34,8 +35,12 @@ public class AffichageListePlanetes extends VerticalGroup {
 			bouton.addListener(new ClickListener() {
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
+					if (findActor("afficheur_planete") != null) {
+						removeActor(findActor("afficheur_planete"));
+					}
+					
 					Project.planeteSelectionne = planete;
-					Project.changePlanete = true;
+					addActorAfter(bouton, new AffichagePlanete(planete, skin));
 				}
 			});
 			

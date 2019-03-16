@@ -119,14 +119,6 @@ public class AffichageGalaxie {
 			afficheurDroite.addActor(systeme);
 		}
 
-		//Mise à jourAffichage
-		if (Project.planeteSelectionne != null && Project.changePlanete) {
-			Project.changePlanete = false;
-			afficheurDroite.removeActor(afficheurDroite.findActor("afficheur_planete"));
-			AffichagePlanete planete = new AffichagePlanete(Project.planeteSelectionne, Project.skin);
-			afficheurDroite.addActor(planete);
-		}
-
 		//Mise à jour du système et de la planète sélectionnés
 		if (Project.planeteSelectionne != null && (Project.planeteSelectionne.isReDraw() || 
 				(Project.planeteSelectionne.getVille() != null && 

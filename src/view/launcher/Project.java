@@ -45,7 +45,7 @@ public class Project extends ApplicationAdapter {
 	
 	public static int menu, cptTours;
 	public static boolean change, affichageGalaxie;
-	public static boolean clicked, changeSysteme, changePlanete;
+	public static boolean clicked, changeSysteme;
 	public static boolean finTour;
 	
 	private AffichageGalaxie afficheurGalaxie;
