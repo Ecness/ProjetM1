@@ -13,12 +13,17 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Json;
+
+import controller.boutons.ville.ErrorTechNotUnlocked;
+
 import com.badlogic.gdx.utils.IntMap.Entry;
 
 import model.EnumRessource;
 import model.batiment.BatimentVille;
 import model.batiment.ListBatiment;
 import model.carte.stellaire.Ville;
+import model.entity.player.Joueur;
+import model.entity.player.Science;
 import view.launcher.Project;
 
 public class SelectBatimentVille extends ScrollPane{
@@ -58,14 +63,14 @@ public class SelectBatimentVille extends ScrollPane{
 				}
 
 				for (Entry<BatimentVille> batiment : listeBatiments.getBatimentsVille().entries()) {
-					//Empêche de sélectionner des bâtiments déjà construits ou en construction
-					if (!listeBatimentsVille.contains(batiment.value.getNom())) {
+					//Empêche de sélectionner des bâtiments déjà construits ou en construction ainsi que ceux dont la technologie n'est pas débloquée
+					if (!listeBatimentsVille.contains(batiment.value.getNom()) && 
+							(ville.getJoueur().getTechnology().getScienceBatiment().get(listeBatiments.getBatimentsVille().get(batiment.key).getTechNecessaire()).isRechercher())) {
 						//Correction type lecture json (de String vers EnumRessource)
 						Map<EnumRessource, Integer> bonus = new HashMap<EnumRessource, Integer>();
 
 						for (EnumRessource ressource : EnumRessource.values()) {
 							bonus.put(ressource, batiment.value.getBonus().get(ressource.name()));
-							//						cout.put(ressource, batiment.value.getCout().get(ressource.name()));
 						}
 
 						batiment.value.setBonus(bonus);
@@ -79,10 +84,16 @@ public class SelectBatimentVille extends ScrollPane{
 
 							@Override
 							public void clicked(InputEvent event, float x, float y) {
-								//Récupération du bâtiment selon son nom (clé de la map)
-								ville.constructionBatiment(listeBatiments.getBatimentsVille().get(Integer.parseInt(button.getName())));
-								clear();
-								ville.setReDrawBatiments(true);
+								//Test si le joueur a débloqué la technologie nécessaire
+								if (ville.getJoueur().getTechnology().getScienceBatiment().get(listeBatiments.getBatimentsVille().get(Integer.parseInt(button.getName())).getTechNecessaire()).isRechercher()) {
+									//Récupération du bâtiment selon son nom (clé de la map)
+									ville.constructionBatiment(listeBatiments.getBatimentsVille().get(Integer.parseInt(button.getName())));
+									clear();
+									ville.setReDrawBatiments(true);
+								} else {
+									//Affichage d'erreur si technologie non débloquée
+									setActor(new ErrorTechNotUnlocked(ville, skin));
+								}
 							}
 
 						});
