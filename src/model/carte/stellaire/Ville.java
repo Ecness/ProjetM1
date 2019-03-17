@@ -21,7 +21,7 @@ public class Ville {
 	private List<BatimentVille> TBatimentVille;
 	private List<BatimentVille> fileDeConstructionBatiment;
 	private List<Vaisseau> fileDeConstructionUnite;
-	private boolean constructionTerminee;
+	private boolean constructionTerminee, constructionAnnulee;
 	private boolean reDrawBatiments, reDrawFiles;
 	
 	public Ville(Joueur joueur, Planete planete) {
@@ -80,6 +80,9 @@ public class Ville {
 				for(EnumRessource e : EnumRessource.values()) {
 					TRessource.put(e, TRessource.get(e)+fileDeConstructionBatiment.get(0).getBonus().get(e));
 				}
+				if (TRessource.get(EnumRessource.PRODUCTION) <= 0) {
+					TRessource.put(EnumRessource.PRODUCTION, 1);
+				}
 				TBatimentVille.add(fileDeConstructionBatiment.get(0));
 				reDrawBatiments = true;
 				fileDeConstructionBatiment.remove(0);
@@ -105,7 +108,7 @@ public class Ville {
 	public boolean annulationBatiment(BatimentVille batiment) {
 		if (fileDeConstructionBatiment.contains(batiment)) {
 			fileDeConstructionBatiment.remove(batiment);
-			reDrawBatiments = true;
+			reDrawFiles = true;
 			return true;
 		}
 		
@@ -192,6 +195,14 @@ public class Ville {
 
 	public void setConstructionTerminee(boolean constructionTerminee) {
 		this.constructionTerminee = constructionTerminee;
+	}
+
+	public boolean isConstructionAnnulee() {
+		return constructionAnnulee;
+	}
+
+	public void setConstructionAnnulee(boolean constructionAnnulee) {
+		this.constructionAnnulee = constructionAnnulee;
 	}
 
 	public boolean isReDrawBatiments() {
