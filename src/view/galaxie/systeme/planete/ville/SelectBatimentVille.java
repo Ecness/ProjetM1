@@ -13,17 +13,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Json;
-
-import controller.boutons.ville.ErrorTechNotUnlocked;
-
 import com.badlogic.gdx.utils.IntMap.Entry;
 
+import controller.error.Error;
 import model.EnumRessource;
 import model.batiment.BatimentVille;
 import model.batiment.ListBatiment;
 import model.carte.stellaire.Ville;
-import model.entity.player.Joueur;
-import model.entity.player.Science;
 import view.launcher.Project;
 
 public class SelectBatimentVille extends ScrollPane{
@@ -91,8 +87,11 @@ public class SelectBatimentVille extends ScrollPane{
 									clear();
 									ville.setReDrawBatiments(true);
 								} else {
-									//Affichage d'erreur si technologie non débloquée
-									setActor(new ErrorTechNotUnlocked(ville, skin));
+									//Affichage d'erreur si technologie non débloquée, ne devrait pas apparaître
+									new Error("Technologie manquante",
+												"Technologie manquante : " + 
+													ville.getJoueur().getTechnology().getScienceBatiment().get(listeBatiments.getBatimentsVille().get(Integer.parseInt(button.getName())).getTechNecessaire()).getNom(),
+												skin);
 								}
 							}
 

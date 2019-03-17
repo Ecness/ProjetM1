@@ -12,13 +12,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.IntMap.Entry;
+import com.badlogic.gdx.utils.Json;
 
-import controller.boutons.ErrorButtonSelectBatiment;
+import controller.error.Error;
 import model.EnumRessource;
 import model.batiment.BatimentPlanete;
-import model.batiment.BatimentVille;
 import model.batiment.ListBatiment;
 import model.carte.stellaire.Planete;
 import view.launcher.Project;
@@ -87,7 +86,9 @@ public class SelectBatimentPlanete extends ScrollPane{
 									planete.setReDraw(true);
 								} else {
 									//Gestion du bouton d'erreur en cas de ressources insuffisantes
-									setActor(new ErrorButtonSelectBatiment(planete, skin));
+									new Error("Ressources manquantes", 
+												"Pas assez de ressources", 
+												skin);
 								}
 							}
 
