@@ -98,6 +98,11 @@ public class Ville {
 		//Si la ville possède le bâtiment concerné
 		if (TBatimentVille.contains(batiment)) {
 			TBatimentVille.remove(batiment);
+			
+			for (EnumRessource ressource : EnumRessource.values()) {
+				TRessource.put(ressource, TRessource.get(ressource) - batiment.getBonus().get(ressource));
+			}
+			
 			reDrawBatiments = true;
 			return true;
 		}
