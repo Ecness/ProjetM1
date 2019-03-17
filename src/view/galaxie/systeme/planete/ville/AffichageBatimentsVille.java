@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import controller.boutons.ville.ConfirmationDestructionBatimentVille;
+import controller.confirm.ville.ConfirmationDestructionBatimentVille;
 import model.batiment.BatimentVille;
 import model.carte.stellaire.Ville;
 
@@ -28,7 +28,7 @@ public class AffichageBatimentsVille extends ScrollPane {
 
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
-					setActor(new ConfirmationDestructionBatimentVille(ville, batiment, skin));
+					new ConfirmationDestructionBatimentVille(ville, batiment, skin);
 				}
 				
 			});
@@ -62,7 +62,7 @@ public class AffichageBatimentsVille extends ScrollPane {
 
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
-					setActor(new ConfirmationDestructionBatimentVille(ville, batiment, skin));
+					new ConfirmationDestructionBatimentVille(ville, batiment, skin);
 				}
 				
 			});

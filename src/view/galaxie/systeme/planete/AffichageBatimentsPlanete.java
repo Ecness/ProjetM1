@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import controller.boutons.planete.ConfirmationDestructionBatimentPlanete;
+import controller.confirm.planete.ConfirmationDestructionBatimentPlanete;
 import model.carte.stellaire.Planete;
 
 public class AffichageBatimentsPlanete extends SplitPane {
@@ -28,7 +28,7 @@ public class AffichageBatimentsPlanete extends SplitPane {
 					if (planete.getTBatiment()[0] == null) {
 						setFirstWidget(new SelectBatimentPlanete(planete, 0, skin));
 					} else {
-						setFirstWidget(new ConfirmationDestructionBatimentPlanete(planete, 0, skin));
+						new ConfirmationDestructionBatimentPlanete(planete, 0, skin);
 					}
 				}
 			}
@@ -46,7 +46,7 @@ public class AffichageBatimentsPlanete extends SplitPane {
 					if (planete.getTBatiment()[1] == null) {
 						setSecondWidget(new SelectBatimentPlanete(planete, 1, skin));
 					} else {
-						setSecondWidget(new ConfirmationDestructionBatimentPlanete(planete, 1, skin));
+						new ConfirmationDestructionBatimentPlanete(planete, 1, skin);
 					}
 				}
 			}
