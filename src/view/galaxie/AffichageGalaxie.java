@@ -18,11 +18,11 @@ import model.carte.stellaire.Systeme;
 import view.galaxie.systeme.AffichageSysteme;
 import view.galaxie.systeme.planete.AffichagePlanete;
 import view.launcher.Project;
+import view.menus.MenuPartie;
 
 public class AffichageGalaxie {
 	private ShapeRenderer shapeRenderer;
 	private HorizontalGroup afficheurHaut;
-	//	private AffichageRessources ressources;
 	private VerticalGroup afficheurDroite;
 
 	private Button boutonMenu;
@@ -42,15 +42,16 @@ public class AffichageGalaxie {
 
 		//Bouton des menus
 		boutonMenu = new TextButton("Menu", skin);
-		boutonMenu.setSize(200,50);
 		boutonMenu.setColor(Color.TEAL);
 		boutonMenu.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				Project.change = true;
-				Project.menu = 0;
-				Project.affichageGalaxie = false;
+//				Project.change = true;
+//				Project.menu = 0;
+//				Project.affichageGalaxie = false;
 				Project.clicked = false;
+				Project.staticStage.addActor(new MenuPartie(skin));
+				Project.pause = true;
 			}
 		});
 
@@ -70,14 +71,12 @@ public class AffichageGalaxie {
 		});
 
 		cptTour = new Label("Tour " + Project.cptTours, skin);
-
+		
 		afficheurHaut.addActor(boutonMenu);
 		afficheurHaut.addActor(ressources);
 		afficheurHaut.addActor(finTour);
 		afficheurHaut.addActor(cptTour);
-		afficheurHaut.setHeight(boutonMenu.getHeight());
-		afficheurHaut.setPosition(0,  Project.staticStage.getCamera().viewportHeight - afficheurHaut.getHeight());
-		afficheurHaut.grow();
+		afficheurHaut.setPosition(0,  Project.staticStage.getCamera().viewportHeight - afficheurHaut.getPrefHeight());
 
 		afficheurDroite.setPosition(Project.staticStage.getCamera().viewportWidth - Project.staticStage.getCamera().viewportWidth / 10, Project.staticStage.getCamera().viewportHeight - afficheurHaut.getHeight());
 

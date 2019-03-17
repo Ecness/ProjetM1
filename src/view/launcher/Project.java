@@ -29,12 +29,12 @@ import view.menus.MenuPrincipal;
 public class Project extends ApplicationAdapter {
 	public static int width;
 	public static int height;
-	
+
 	public static Parametre parametre;
-	
+
 	public static Partie partie;
 	public static Carte galaxie;
-	
+
 	public static Skin skin;
 	/**Stage pour affichage statique (menus)**/
 	public static Stage staticStage;
@@ -42,46 +42,47 @@ public class Project extends ApplicationAdapter {
 	public static Stage dynamicStage;
 	/**Gestionnaire d'input**/
 	public static InputMultiplexer inputManager;
-	
+
 	public static int menu, cptTours;
 	public static boolean change, affichageGalaxie;
 	public static boolean clicked, changeSysteme;
 	public static boolean finTour;
-	
+	public static boolean pause;
+
 	private AffichageGalaxie afficheurGalaxie;
-	
+
 	public static Rectangle cameraBound;
-	
+
 	public static Systeme systemeSelectionne;
 	public static Planete planeteSelectionne;
-	
+
 	public static ShapeRenderer shape;
 	Vector2 vector;
-	
+
 	@Override
 	public void create () {
 		width = Gdx.graphics.getWidth();
 		height = Gdx.graphics.getHeight();
-		
+
 		parametre = new Parametre(null, EnumAbondanceRessource.FAIBLE, null, EnumTailleCarte.TEST, 2, 7, 5, EnumTailleMapCombat.IMMENSE, EnumRessourceDepart.NORMAL);
-		
+
 		System.err.println(width);
 		System.err.println(height);
-		
+
 		staticStage = new Stage();
 		dynamicStage = new Stage();
 		inputManager = new InputMultiplexer(staticStage, dynamicStage);
-		
-		
+
+
 		menu = 0;
 		change = true;
 		affichageGalaxie = false;
 		clicked = false;
-		
+
 		skin = new Skin(Gdx.files.internal("uiskin.json"));
-		
+
 		Gdx.input.setInputProcessor(inputManager);
-		
+
 	}
 
 	@Override
@@ -89,50 +90,51 @@ public class Project extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		CameraController.controle();
-		staticStage.getCamera().update();
-		dynamicStage.getCamera().update();
+		if (!pause) {
+			CameraController.controle();
+			staticStage.getCamera().update();
+			dynamicStage.getCamera().update();
 
-		if (change) {
-			staticStage.clear();
-			dynamicStage.clear();
-			switch(menu) {
-			case 0:
-				new MenuPrincipal();
-				break;
-			case 1:
-				new MenuParametre(skin);
-				break;
-			case 2:
-//				partie = new Partie(parametre);
-				break;
+			if (change) {
+				staticStage.clear();
+				dynamicStage.clear();
+				switch(menu) {
+				case 0:
+					new MenuPrincipal();
+					break;
+				case 1:
+					new MenuParametre(skin);
+					break;
+				case 2:
+					//				partie = new Partie(parametre);
+					break;
+				}
+				change = false;
 			}
-			change = false;
-		}
-		
-		if (finTour) {
-			for (Joueur joueur : partie.getTJoueur()) {
-				joueur.debutDeTour();
+
+			if (finTour) {
+				for (Joueur joueur : partie.getTJoueur()) {
+					joueur.debutDeTour();
+				}
+				finTour = false;
+				cptTours++;
 			}
-			finTour = false;
-			cptTours++;
 		}
 
 		if (affichageGalaxie) {
 			if (afficheurGalaxie == null) {
 				afficheurGalaxie = new AffichageGalaxie(partie.getGalaxie(), skin);
 			}
-			clicked = Gdx.input.isTouched();
+			//			clicked = Gdx.input.isTouched();
 			afficheurGalaxie.render();
 		}
-		
-		staticStage.act();
+
 		dynamicStage.act();
-		
-		staticStage.draw();
 		dynamicStage.draw();
+		staticStage.draw();
+		staticStage.act();
 	}
-	
+
 	@Override
 	public void dispose () {
 		staticStage.dispose();
