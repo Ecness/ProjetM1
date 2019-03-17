@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import controller.confirm.ConfirmRetourMenuPrincipal;
 import model.util.Sauvegarde;
 import view.launcher.Project;
 
@@ -89,10 +90,7 @@ public class MenuPartie extends Window {
 			public void clicked(InputEvent event, float x, float y) {
 				super.clicked(event, x, y);
 
-				Project.pause = false;
-				Project.change = true;
-				Project.menu = 0;
-				Project.affichageGalaxie = false;
+				new ConfirmRetourMenuPrincipal(skin);
 			}
 
 		});
