@@ -71,7 +71,7 @@ public class SelectBatimentVille extends ScrollPane{
 
 						batiment.value.setBonus(bonus);
 
-						String text = batiment.value.getNom() + "\nTour(s) : " + (int)Math.ceil(batiment.value.getCout() / ville.getTRessource().get(EnumRessource.PRODUCTION));
+						String text = batiment.value.getNom() + "\nTour(s) : " + (int) Math.ceil((double) batiment.value.getCout() / (double) ville.getTRessource().get(EnumRessource.PRODUCTION));
 						TextButton button = new TextButton(text, Project.skin);
 						//Le bouton est nommé selon sa clé dans la liste des batiments
 						button.setName("" + batiment.key);
