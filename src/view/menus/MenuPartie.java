@@ -1,5 +1,6 @@
 package view.menus;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -106,5 +107,7 @@ public class MenuPartie extends Window {
 		//TODO Revoir l'espacement
 		group.space(getHeight() / group.getChildren().size / 2);
 		addActor(group);
+		
+		Gdx.input.setCursorCatched(false);
 	}
 }

@@ -38,7 +38,7 @@ public abstract class CameraController {
 		}
 		
 		if (Gdx.input.isTouched()) {
-//			Gdx.input.setCursorCatched(true);
+			Gdx.input.setCursorCatched(true);
 			if (Gdx.input.getDeltaX() < 0) {
 				Project.dynamicStage.getCamera().translate(-300*Gdx.graphics.getDeltaTime(), 0, 0);
 			}
@@ -51,9 +51,9 @@ public abstract class CameraController {
 			if (Gdx.input.getDeltaY() > 0) {
 				Project.dynamicStage.getCamera().translate(0, -300*Gdx.graphics.getDeltaTime(), 0);
 			}
-		} /*else {
+		} else {
 			Gdx.input.setCursorCatched(false);
-		}*/
+		}
 		
 		//Limites de la caméra
 		if (Project.cameraBound != null) {

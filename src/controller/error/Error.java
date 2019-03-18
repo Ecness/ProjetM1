@@ -1,5 +1,6 @@
 package controller.error;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -34,6 +35,8 @@ public class Error extends Dialog {
 		});
 		
 		button(close);
+		
+		Gdx.input.setCursorCatched(false);
 		
 		Project.staticStage.addActor(this);
 	}
