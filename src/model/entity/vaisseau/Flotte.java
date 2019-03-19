@@ -8,6 +8,7 @@ import model.entity.general.General;
 
 public class Flotte {
 
+	private String nom;
 	private int puissance;
 	private Map<Integer, Vaisseau> TVaisseau;
 	private General general;
@@ -39,6 +40,14 @@ public class Flotte {
 
 	public int getPuissance() {
 		return puissance;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	public void setPuissance(int puissance) {
