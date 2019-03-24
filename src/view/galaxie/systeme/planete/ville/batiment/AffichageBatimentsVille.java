@@ -1,4 +1,4 @@
-package view.galaxie.systeme.planete.ville;
+package view.galaxie.systeme.planete.ville.batiment;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;

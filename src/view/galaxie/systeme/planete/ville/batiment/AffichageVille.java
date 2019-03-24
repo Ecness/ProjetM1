@@ -1,8 +1,9 @@
-package view.galaxie.systeme.planete.ville;
+package view.galaxie.systeme.planete.ville.batiment;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
 import model.carte.stellaire.Ville;
+import view.galaxie.systeme.planete.ville.file.FileDeConstruction;
 
 public class AffichageVille extends SplitPane {
 

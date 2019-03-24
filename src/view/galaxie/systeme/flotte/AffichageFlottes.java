@@ -1,4 +1,4 @@
-package view.galaxie.systeme;
+package view.galaxie.systeme.flotte;
 
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
