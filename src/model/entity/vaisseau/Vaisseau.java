@@ -11,8 +11,9 @@ import model.module.Arme;
 import model.module.Blindage;
 import model.module.Chassie;
 
-public abstract class Vaisseau {
+public class Vaisseau implements Cloneable {
 
+	protected int techNecessaire;
 	protected int puissance;
 	protected int sante;
 	protected int santeMax;
@@ -31,13 +32,14 @@ public abstract class Vaisseau {
 	protected Boolean bouclierDetruit;
 	
 	public Vaisseau() {
-		this("Default", null, null, null, null, 0, null);
+		this("Default", null, null, null, null, 0, null,0);
 	}
 	
 	public Vaisseau( String nom, Chassie chassie, int vitesse,
-			Map<EnumRessource, Integer> cout) {
+			Map<EnumRessource, Integer> cout, int techNecessaire) {
 		
 		this.puissance = 0;
+		this.techNecessaire = techNecessaire;
 		this.nom = nom;
 		this.sante = chassie.getSanteMax();
 		this.santeMax = chassie.getSanteMax();
@@ -58,8 +60,9 @@ public abstract class Vaisseau {
 
 	public Vaisseau(String nom, Chassie chassie, Map<Integer, Arme> armes, Map<Integer,
 			Blindage> blindages, List<EnumDommageCritique> dommageCritique, int vitesse, Map<EnumRessource,
-			Integer> cout) {
+			Integer> cout, int techNecessaire) {
 		
+		this.techNecessaire = techNecessaire;
 		this.puissance = 0;
 		this.nom = nom;
 		this.sante = chassie.getSanteMax();
@@ -185,6 +188,12 @@ public abstract class Vaisseau {
 		}
 	}
 	
+	@Override
+	public Vaisseau clone() throws CloneNotSupportedException {
+		Vaisseau clone = new Vaisseau(this.nom, this.chassie, this.armes, this.blindages, this.dommageCritique, this.vitesse, this.cout, this.techNecessaire);
+		return clone;
+	}
+	
 	//-------------------------------------------------------------------------------------------------------------------------
 
 	public int getPuissance() {
@@ -305,5 +314,11 @@ public abstract class Vaisseau {
 	}
 	public void setBouclierDetruit(Boolean bouclierDetruit) {
 		this.bouclierDetruit = bouclierDetruit;
+	}
+	public int getTechNecessaire() {
+		return techNecessaire;
+	}
+	public void setTechNecessaire(int techNecessaire) {
+		this.techNecessaire = techNecessaire;
 	}
 }

@@ -12,7 +12,7 @@ import model.entity.player.Joueur;
 import model.entity.vaisseau.Vaisseau;
 
 public class Ville {
-	
+
 	private int id;
 	private int puissance;
 	private int puissanceTotal;
@@ -25,11 +25,10 @@ public class Ville {
 	private boolean reDrawBatiments, reDrawFiles;
 	
 	public Ville(Joueur joueur, Planete planete) {
-		
+
 		this.puissance = 0;
 		this.puissanceTotal = 0;
 		this.joueur = joueur;
-		System.out.println(joueur.getTVille());
 		if(joueur.getTVille()==null) {
 			this.id=0;
 		}else {			
@@ -55,15 +54,57 @@ public class Ville {
 			puissance=puissanceTotal;
 		}
 	}
+
+	//-----------------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 *  Verifie si le joueur a la tech nécessaire
+	 * @param batiment 
+	 * 					: batiment à tester
+	 * @return
+	 * 					: true si le joueur a la tech necessaire, false sinon
+	 */
+	public boolean isBatimentDebloquer(BatimentVille batiment) {
+		return joueur.getTechnology().getScienceBatiment().get(batiment.getTechNecessaire()).isRechercher();
+	}
+
+	/**
+	 *  Verifie si le joueur a la tech nécessaire
+	 * @param vaisseau 
+	 * 					: vaisseau à tester
+	 * @return
+	 * 					: true si le joueur a la tech necessaire, false sinon
+	 */
+	public boolean isVaisseauDebloquer(Vaisseau vaisseau) {
+		return joueur.getTechnology().getScienceMillitaire().get(vaisseau.getTechNecessaire()).isRechercher();
+	}
 	
-	public boolean constructionBatiment(BatimentVille batiment) {
-		
-		if(joueur.getTechnology().getScienceBatiment().get(batiment.getTechNecessaire()).isRechercher()==true) {
-			for (BatimentVille b : TBatimentVille) {
-				if(b.getNom()==batiment.getNom()) {
-					return false;
-				}
+	/**
+	 * Verifie si le batiment est déjà construit
+	 * @param batiment
+	 * 					: Batiment à tester
+	 * @return
+	 * 					: true si déjà construit, false sinon
+	 */
+	public boolean presenceBatiment(BatimentVille batiment) {
+		for (BatimentVille b : TBatimentVille) {
+			if(b.getNom().equals(batiment.getNom())) {
+				return true;
 			}
+		}
+		return false;
+	}
+
+	/**
+	 * Ajoute un batiment a la file de construction
+	 * @param batiment
+	 * 					: Batiment à ajouter
+	 * @return	
+	 * 					: true si ajouter a la file, false sinon;
+	 */
+	public boolean constructionBatiment(BatimentVille batiment) {
+
+		if(isBatimentDebloquer(batiment) && !presenceBatiment(batiment)) {
 			fileDeConstructionBatiment.add(new BatimentVille(batiment.getNom(), batiment.getDescription(), 
 					batiment.getTechNecessaire(), batiment.getBonus(), batiment.getCout()));
 			reDrawFiles = true;
@@ -71,7 +112,73 @@ public class Ville {
 		}
 		return false;
 	}
+
+	/**
+	 * vérifie si le joueur a les ressources pour construire le vaisseau
+	 * @param vaisseau
+	 * 					: vaisseau à tester
+	 * @return true si le joueur a les ressources, false sinon
+	 */
+	public boolean ressourceDisponible(Vaisseau vaisseau) {
+		for (EnumRessource e : EnumRessource.values()) {
+			if(e != EnumRessource.PRODUCTION && joueur.getTRessource().get(e) < vaisseau.getCout().get(e)) {
+				return false;
+			}
+		}
+		return true; 
+	}
 	
+	/**
+	 * Teste la possibiliter de construire un vaisseau
+	 * @param vaisseau
+	 * 					: vaisseau à construire
+	 * @return	true si ajouter a la file, false sinon
+	 * @exception clone exception
+	 */
+	public boolean constructionVaisseau(Vaisseau vaisseau) {
+
+		if(isVaisseauDebloquer(vaisseau) && ressourceDisponible(vaisseau)) {
+			try {
+				this.fileDeConstructionUnite.add(vaisseau.clone());
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * teste si la production de la ville est supérieur a 0
+	 * @return
+	 * 			: true si supérieur à 0, false sinon
+	 */
+	public boolean canProduct() {
+		return (TRessource.get(EnumRessource.PRODUCTION)>0 ? true : false);
+	}
+
+	/**
+	 * Ajoute la production de la ville au premier batiment de la file de construction
+	 */
+	public void reEvalueCoutBatiment() {
+		fileDeConstructionBatiment.get(0).setCout(fileDeConstructionBatiment.get(0).getCout()-TRessource.get(EnumRessource.PRODUCTION));
+		if(fileDeConstructionBatiment.get(0).getCout()<0) {
+			fileDeConstructionBatiment.get(0).setCout(0);
+		}
+	}
+
+	public void addBonusBatiment(BatimentVille batimentVille) {
+		for(EnumRessource e : EnumRessource.values()) {
+			TRessource.put(e, TRessource.get(e)+batimentVille.getBonus().get(e));
+		}
+	}
+
+	/**
+	 * teste la fin de la construction d'un batiment
+	 * @return
+	 * 			: true si un batiment a fini de se construire, false sinon
+	 */
 	public boolean testFinConstruction() {
 		reDrawFiles = true;
 		if(TRessource.get(EnumRessource.PRODUCTION)>0 && !fileDeConstructionBatiment.isEmpty()) {		
@@ -84,9 +191,7 @@ public class Ville {
 					TRessource.put(EnumRessource.PRODUCTION, 1);
 				}
 				TBatimentVille.add(fileDeConstructionBatiment.get(0));
-				reDrawBatiments = true;
 				fileDeConstructionBatiment.remove(0);
-				constructionTerminee = true;
 				return true;
 			}
 		}
@@ -119,6 +224,10 @@ public class Ville {
 		
 		return false;
 	}
+
+	
+
+	//-----------------------------------------------------------------------------------------------------------------------------
 
 	public Map<EnumRessource, Integer> getTRessource() {
 		return TRessource;

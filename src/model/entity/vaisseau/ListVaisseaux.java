@@ -4,43 +4,21 @@ import com.badlogic.gdx.utils.IntMap;
 
 public class ListVaisseaux {
 
-	private IntMap<Corvette> corvettePirate;
-	private IntMap<VaisseauCivil> vaisseauCivil;
-	private IntMap<Croiseur> croiseurPirate;
+	private IntMap<Vaisseau> vaisseaux;
 
 	public ListVaisseaux() {
-		corvettePirate = new IntMap<Corvette>();
-		vaisseauCivil = new IntMap<VaisseauCivil>();
-		croiseurPirate = new IntMap<Croiseur>();
+		vaisseaux = new IntMap<Vaisseau>();
 	}
 	//--------------------------------------------------------------------------------------------------------------------------------------------
-	public void addCorvettePirate(int id, Corvette vaisseau) {
-		corvettePirate.put(id, vaisseau);
-	}
-	public void addVaisseauCivil(int id, VaisseauCivil vaisseau) {
-		vaisseauCivil.put(id, vaisseau);
-	}
-	public void addCroiseurPirate(int id, Croiseur vaisseau) {
-		croiseurPirate.put(id, vaisseau);
+	public void addVaisseau(int id, Vaisseau vaisseau) {
+		vaisseaux.put(id, vaisseau);
 	}
 	//--------------------------------------------------------------------------------------------------------------------------------------------
 
-	public IntMap<Corvette> getCorvettePirate() {
-		return corvettePirate;
+	public IntMap<Vaisseau> getVaisseaux() {
+		return vaisseaux;
 	}
-	public void setCorvettePirate(IntMap<Corvette> vaisseauxPirate) {
-		this.corvettePirate = vaisseauxPirate;
-	}
-	public IntMap<VaisseauCivil> getVaisseauCivil() {
-		return vaisseauCivil;
-	}
-	public void setVaisseauCivil(IntMap<VaisseauCivil> vaisseauCivil) {
-		this.vaisseauCivil = vaisseauCivil;
-	}
-	public IntMap<Croiseur> getCroiseurPirate() {
-		return croiseurPirate;
-	}
-	public void setCroiseurPirate(IntMap<Croiseur> croiseurPirate) {
-		this.croiseurPirate = croiseurPirate;
+	public void setVaisseaux(IntMap<Vaisseau> vaisseaux) {
+		this.vaisseaux = vaisseaux;
 	}
 }

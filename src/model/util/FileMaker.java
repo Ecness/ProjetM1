@@ -136,7 +136,7 @@ public class FileMaker {
 			armes.put(0, listModule.getArmeLaser().get(0));
 			armes.put(1, listModule.getArmeCinetique().get(0));
 			blindages.put(0, listModule.getBlindage().get(0));
-			listVaisseau.addCorvettePirate(0,new Corvette("Reaper", new Chassie("Reaper", "Chassie petit et rapide", 20, 60, 60, 20, 20, 2, 1, 0),armes, blindages, 0, setRessource(5, 0, 5, 0, 500, 5)));
+			listVaisseau.addVaisseau(0,new Corvette("Reaper", new Chassie("Reaper", "Chassie petit et rapide", 20, 60, 60, 20, 20, 2, 1, 0),armes, blindages, 0, setRessource(5, 0, 5, 0, 500, 5),0));
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			System.out.println(e.getMessage() + "  # Vaisseau Reaper");
@@ -148,7 +148,7 @@ public class FileMaker {
 			Map<Integer, Blindage> blindages = new HashMap<Integer, Blindage>();
 			armes.put(0, listModule.getArmePlasma().get(0));
 			blindages.put(0, listModule.getBlindage().get(0));
-			listVaisseau.addCorvettePirate(1, new Corvette("Specter", new Chassie("Specter", "Cargo civil modifier", 5, 30, 30, 0, 0, 1, 1, 0),armes, blindages, 0, setRessource(2, 0, 2, 0, 200, 2)));
+			listVaisseau.addVaisseau(1, new Corvette("Specter", new Chassie("Specter", "Cargo civil modifier", 5, 30, 30, 0, 0, 1, 1, 0),armes, blindages, 0, setRessource(2, 0, 2, 0, 200, 2),0));
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			System.out.println(e.getMessage() + "  # Vaisseau Specter");
@@ -156,7 +156,7 @@ public class FileMaker {
 		}
 		
 		try {
-			listVaisseau.addVaisseauCivil(0, new VaisseauCivil("Sonde", 0, new Chassie("Sonde", "Créé pour l'exploration spacial", 1, 1, 1, 0, 0, 0, 0, 0), setRessource(1, 0, 1, 0, 50, 1)));
+			listVaisseau.addVaisseau(2, new VaisseauCivil("Sonde", 0, new Chassie("Sonde", "Créé pour l'exploration spacial", 1, 1, 1, 0, 0, 0, 0, 0), setRessource(1, 0, 1, 0, 50, 1),0));
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			System.out.println(e.getMessage() + "  # Vaisseau Sonde");
@@ -164,7 +164,7 @@ public class FileMaker {
 		}
 		
 		try {
-			listVaisseau.addVaisseauCivil(1, new VaisseauCivil("Cargo colonial", 0, new Chassie("Cargo", "Cargo", 1, 80, 80, 0, 0, 0, 0, 0), setRessource(0, 0, 0, 0, 1000, 5)));
+			listVaisseau.addVaisseau(3, new VaisseauCivil("Cargo colonial", 0, new Chassie("Cargo", "Cargo", 1, 80, 80, 0, 0, 0, 0, 0), setRessource(0, 0, 0, 0, 1000, 5),0));
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			System.out.println(e.getMessage() + "  # Vaisseau Cargo colonial");
@@ -180,7 +180,7 @@ public class FileMaker {
 			armes.put(2, listModule.getArmeCinetique().get(2));
 			blindages.put(0, listModule.getBlindage().get(0));
 			blindages.put(1, listModule.getBlindage().get(1));
-			listVaisseau.addCroiseurPirate(0, new Croiseur("Pillager", new Chassie("Pillager", "Conçue pour piller", 5, 30, 30, 0, 0, 3, 2, 0),armes, blindages, 0, setRessource(5, 0, 5, 0, 500, 5)));
+			listVaisseau.addVaisseau(4, new Croiseur("Pillager", new Chassie("Pillager", "Conçue pour piller", 5, 30, 30, 0, 0, 3, 2, 0),armes, blindages, 0, setRessource(5, 0, 5, 0, 500, 5),0));
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			System.out.println(e.getMessage() + "  # Vaisseau Pillager");

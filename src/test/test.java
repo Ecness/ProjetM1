@@ -94,8 +94,8 @@ public class test {
 		try(FileReader file = new FileReader("Ressources/FileMaker/Vaisseaux.json")) {
 			
 			ListVaisseaux vaisseaux = parser.fromJson(ListVaisseaux.class, file);
-			
-			for (Entry<Corvette> vaisseau : vaisseaux.getCorvettePirate().entries()) {
+		
+			for (Entry<Vaisseau> vaisseau : vaisseaux.getVaisseaux().entries()) {
 				//Correction type lecture json (de String vers EnumRessource)
 				Map<EnumRessource, Integer> cout = new HashMap<EnumRessource, Integer>();
 				
@@ -141,8 +141,8 @@ public class test {
 		blindages2.put(2, listModule.getBlindage().get(3));
 		blindages2.put(3, listModule.getBlindage().get(3));
 		
-		Croiseur croiseurTest = new Croiseur("Universe", listModule.getChassie().get(4), armes, blindages, 0, setRessource(0, 0, 0, 0, 0, 0));
-		Croiseur croiseurTest2 = new Croiseur("Ulysse", listModule.getChassie().get(4), armes2, blindages2, 0, setRessource(0, 0, 0, 0, 0, 0));
+		Croiseur croiseurTest = new Croiseur("Universe", listModule.getChassie().get(4), armes, blindages, 0, setRessource(0, 0, 0, 0, 0, 0),0);
+		Croiseur croiseurTest2 = new Croiseur("Ulysse", listModule.getChassie().get(4), armes2, blindages2, 0, setRessource(0, 0, 0, 0, 0, 0),0);
 		Flotte flotte = new Flotte();
 		flotte.addVaisseau(0, croiseurTest);
 		Flotte flotte2 = new Flotte();
@@ -151,13 +151,13 @@ public class test {
 		System.out.println(flotte.toString());
 		
 		Flotte flottePirate = new Flotte();
-		flottePirate.addVaisseau(0, listVaisseau.getCorvettePirate().get(0));
-		flottePirate.addVaisseau(1, listVaisseau.getCorvettePirate().get(0));
-		flottePirate.addVaisseau(2, listVaisseau.getCorvettePirate().get(0));
-		flottePirate.addVaisseau(3, listVaisseau.getCorvettePirate().get(0));
+		flottePirate.addVaisseau(0, listVaisseau.getVaisseaux().get(0));
+		flottePirate.addVaisseau(1, listVaisseau.getVaisseaux().get(0));
+		flottePirate.addVaisseau(2, listVaisseau.getVaisseaux().get(0));
+		flottePirate.addVaisseau(3, listVaisseau.getVaisseaux().get(0));
 
-		flottePirate.addVaisseau(4, listVaisseau.getCorvettePirate().get(1));
-		flottePirate.addVaisseau(5, listVaisseau.getCorvettePirate().get(1));
+		flottePirate.addVaisseau(4, listVaisseau.getVaisseaux().get(1));
+		flottePirate.addVaisseau(5, listVaisseau.getVaisseaux().get(1));
 		
 		System.out.println(flottePirate.toString());
 		

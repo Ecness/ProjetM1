@@ -12,13 +12,13 @@ import model.module.Chassie;
 public class Corvette extends Vaisseau {
 
 	public Corvette(String nom, Chassie chassie, Map<Integer, Arme> armes, Map<Integer,
-			Blindage> blindages, int vitesse,  Map<EnumRessource, Integer> cout) {
-		super( nom, chassie, armes, blindages, new ArrayList<EnumDommageCritique>() , vitesse, cout);
+			Blindage> blindages, int vitesse,  Map<EnumRessource, Integer> cout, int techNecessaire) {
+		super( nom, chassie, armes, blindages, new ArrayList<EnumDommageCritique>() , vitesse, cout, techNecessaire);
 		// TODO Auto-generated constructor stub
 	}
 
 	public Corvette() {
-		this("Default", new Chassie(), new HashMap<Integer, Arme>(), new HashMap<Integer, Blindage>(), 0, new HashMap<EnumRessource, Integer>());
+		this("Default", new Chassie(), new HashMap<Integer, Arme>(), new HashMap<Integer, Blindage>(), 0, new HashMap<EnumRessource, Integer>(), 0);
 	}
 	
 	@Override
