@@ -23,7 +23,6 @@ import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
 import model.entity.player.Joueur;
 import view.galaxie.AffichageGalaxie;
-import view.galaxie.AffichageGalaxie2;
 import view.menus.MenuParametre;
 import view.menus.MenuPrincipal;
 
@@ -50,7 +49,7 @@ public class Project extends ApplicationAdapter {
 	public static boolean finTour;
 	public static boolean pause;
 
-	private AffichageGalaxie2 afficheurGalaxie;
+	private AffichageGalaxie afficheurGalaxie;
 
 	public static Rectangle cameraBound;
 
@@ -124,7 +123,7 @@ public class Project extends ApplicationAdapter {
 
 		if (affichageGalaxie) {
 			if (afficheurGalaxie == null) {
-				afficheurGalaxie = new AffichageGalaxie2(partie.getGalaxie(), skin);
+				afficheurGalaxie = new AffichageGalaxie(partie.getGalaxie(), skin);
 			}
 			//			clicked = Gdx.input.isTouched();
 			afficheurGalaxie.render();

@@ -1,40 +1,31 @@
 package view.galaxie.systeme.planete.ville.batiment;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
+import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import model.carte.stellaire.Ville;
 import view.galaxie.systeme.planete.ville.file.FileDeConstruction;
 
-public class AffichageVille extends SplitPane {
+public class AffichageVille extends VerticalGroup {
 
 	public AffichageVille(Ville ville, Skin skin) {
-		super(null, null, true, skin);
+		super();
 		setName("afficheur_ville");
 		
-		AffichageBatimentsVille afficheurBatiments = new AffichageBatimentsVille(ville, skin);
-		afficheurBatiments.setName("afficheur_batimentsVille");
+		AffichageBatimentsVille batiments = new AffichageBatimentsVille(ville, skin);
+		batiments.setName("batiments_ville");
 		
-		setFirstWidget(afficheurBatiments);
+		FileDeConstruction listeAttente = new FileDeConstruction(ville, skin);
+		listeAttente.setName("liste_attente");
 		
-		
-		FileDeConstruction afficheurListeAttente = new FileDeConstruction(this, ville, skin);
-		afficheurListeAttente.setName("liste_attente");
-		
-		setSecondWidget(afficheurListeAttente);
+		addActor(batiments);
+		addActor(listeAttente);
 	}
 	
 	public void updateBatiments(Ville ville, Skin skin) {
-		((AffichageBatimentsVille) findActor("afficheur_batimentsVille")).update(ville, skin);
+		((AffichageBatimentsVille) findActor("batiments_ville")).update(ville, skin);
 	}
 	
 	public void updateFile(Ville ville, Skin skin) {
-		if (findActor("liste_attente") != null) {
-			((FileDeConstruction) findActor("liste_attente")).update(this, ville, skin);
-		} else {
-			FileDeConstruction afficheurListeAttente = new FileDeConstruction(this, ville, skin);
-			afficheurListeAttente.setName("liste_attente");
-			
-			setSecondWidget(afficheurListeAttente);
-		}
+		((FileDeConstruction) findActor("liste_attente")).update(ville, skin);
 	}
 }

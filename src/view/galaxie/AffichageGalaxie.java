@@ -17,7 +17,6 @@ import model.carte.stellaire.Carte;
 import model.carte.stellaire.Systeme;
 import view.galaxie.systeme.AffichageSysteme;
 import view.galaxie.systeme.planete.AffichagePlanete;
-import view.galaxie.systeme.planete.AffichagePlanete2;
 import view.launcher.Project;
 import view.menus.MenuPartie;
 
@@ -123,9 +122,9 @@ public class AffichageGalaxie {
 		if (Project.planeteSelectionne != null && (Project.planeteSelectionne.isReDraw() || 
 				(Project.planeteSelectionne.getVille() != null && 
 					(Project.planeteSelectionne.getVille().isReDrawBatiments() || Project.planeteSelectionne.getVille().isReDrawFilesBatiments())))) {
-			((AffichagePlanete2) afficheurDroite.findActor("afficheur_planete")).update(Project.planeteSelectionne, Project.skin);
+			((AffichagePlanete) afficheurDroite.findActor("afficheur_planete")).update(Project.planeteSelectionne, Project.skin);
 			Project.planeteSelectionne.setReDraw(false);
-			((AffichageSysteme) afficheurDroite.findActor("afficheur_systeme")).update(Project.systemeSelectionne);
+//			((AffichageSysteme) afficheurDroite.findActor("afficheur_systeme")).update(Project.systemeSelectionne);
 		}
 	}
 }

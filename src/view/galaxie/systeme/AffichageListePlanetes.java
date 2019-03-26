@@ -1,5 +1,6 @@
 package view.galaxie.systeme;
 
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -40,7 +41,10 @@ public class AffichageListePlanetes extends VerticalGroup {
 					}
 					
 					Project.planeteSelectionne = planete;
-					addActorAfter(bouton, new AffichagePlanete(planete, skin));
+					
+					Group parent = getParent();
+					parent.clear();
+					parent.addActor(new AffichagePlanete(systeme, planete, skin));
 				}
 			});
 			

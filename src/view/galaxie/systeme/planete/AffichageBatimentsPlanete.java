@@ -1,72 +1,93 @@
 package view.galaxie.systeme.planete;
 
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import controller.confirm.planete.ConfirmationDestructionBatimentPlanete;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import controller.controles.buttons.planete.ButtonAddBatimentPlanete;
+import controller.controles.buttons.planete.ButtonRemoveBatimentPlanete;
 import model.carte.stellaire.Planete;
 
-public class AffichageBatimentsPlanete extends SplitPane {
-	private TextButton batiment1;
-	private TextButton batiment2;
+public class AffichageBatimentsPlanete extends Table {
 
 	public AffichageBatimentsPlanete(Planete planete, Skin skin) {
-		super(null, null, false, skin);
+		super(skin);
 		setName("afficheur_batimentsPlanete");
-		//TODO A remplacer par une icône
-		String text = planete.getTBatiment()[0] == null ? "Aucun bâtiment" : planete.getTBatiment()[0].getNom();
-		batiment1 = new TextButton(text, skin);
-		batiment1.setName("batiment1");
-		batiment1.addListener(new ClickListener() {
 
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				if (planete.getJoueur() != null) {
-					if (planete.getTBatiment()[0] == null) {
-						setFirstWidget(new SelectBatimentPlanete(planete, 0, skin));
-					} else {
-						new ConfirmationDestructionBatimentPlanete(planete, 0, skin);
-					}
-				}
-			}
-			
-		});
+		//TODO A remplacer par une icône + nom
+		//Nom du bâtiment
+		Label name1 = new Label(planete.getTBatiment()[0] == null ? "Aucun bâtiment" : planete.getTBatiment()[0].getNom(), skin);
+		name1.setName("name1");
+		//Description du bâtiment
+//		ScrollPane description1 = new AffichageDescriptionBatimentPlanete(planete.getTBatiment()[0], skin);
+//		description1.setName("description1");
+		//Action a effectuer
+		Button action1;
+		if (planete.getTBatiment()[0] == null) {
+			//Si pas de bâtiment, on peut en créer un
+			action1 = new ButtonAddBatimentPlanete(planete, 0, skin);
+		} else {
+			//Sinon, on peut le détruire
+			action1 = new ButtonRemoveBatimentPlanete(planete, 0, skin);
+		}
+		action1.setName("action1");
 		
-		text = planete.getTBatiment()[1] == null ? "Aucun bâtiment" : planete.getTBatiment()[1].getNom();
-		batiment2 = new TextButton(text, skin);
-		batiment2.setName("batiment2");
-		batiment2.addListener(new ClickListener() {
+		add(name1/*, description1*/, action1);
+		
+		row();
 
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				if (planete.getJoueur() != null) {
-					if (planete.getTBatiment()[1] == null) {
-						setSecondWidget(new SelectBatimentPlanete(planete, 1, skin));
-					} else {
-						new ConfirmationDestructionBatimentPlanete(planete, 1, skin);
-					}
-				}
-			}
-			
-		});
+		//Nom du bâtiment
+		Label name2 = new Label(planete.getTBatiment()[1] == null ? "Aucun bâtiment" : planete.getTBatiment()[1].getNom(), skin);
+		name2.setName("name2");
+		//Description du bâtiment
+//		ScrollPane description2 = new AffichageDescriptionBatimentPlanete(planete.getTBatiment()[1], skin);
+//		description2.setName("description2");
+		//Action a effectuer
+		Button action2;
+		if (planete.getTBatiment()[1] == null) {
+			//Si pas de bâtiment, on peut en créer un
+			action2 = new ButtonAddBatimentPlanete(planete, 1, skin);
+		} else {
+			//Sinon, on peut le détruire
+			action2 = new ButtonRemoveBatimentPlanete(planete, 1, skin);
+		}
+		action2.setName("action2");
 		
-		setFirstWidget(batiment1);
-		setSecondWidget(batiment2);
+		add(name2/*, description2*/, action2);
 	}
-	
-	public void update(Planete planete) {
-		clearChildren();
-		
-		setFirstWidget(batiment1);
-		setSecondWidget(batiment2);
-		
-		String text = planete.getTBatiment()[0] == null ? "Aucun bâtiment" : planete.getTBatiment()[0].getNom();
-		((TextButton) findActor("batiment1")).setText(text);
-		
-		text = planete.getTBatiment()[1] == null ? "Aucun bâtiment" : planete.getTBatiment()[1].getNom();
-		((TextButton) findActor("batiment2")).setText(text);
+
+	public void update(Planete planete, Skin skin) {
+		if (planete.isReDrawBuild1()) {
+			if (planete.getTBatiment()[0] == null) {
+				((Label) findActor("name1")).setText("Aucun batiment");
+//				((AffichageDescriptionBatimentPlanete) findActor("description1")).update(planete.getTBatiment()[0]);
+				Button add = new ButtonAddBatimentPlanete(planete, 0, skin);
+				add.setName("action1");
+				getCell(findActor("action1")).setActor(add);
+			} else {
+				((Label) findActor("name1")).setText(planete.getTBatiment()[0].getNom());
+//				((AffichageDescriptionBatimentPlanete) findActor("description1")).update(planete.getTBatiment()[0]);
+				Button remove = new ButtonRemoveBatimentPlanete(planete, 0, skin);
+				remove.setName("action1");
+				getCell(findActor("action1")).setActor(remove);
+			}
+			planete.setReDrawBuild1(false);
+		} else if (planete.isReDrawBuild2()) {
+			if (planete.getTBatiment()[1] == null) {
+				((Label) findActor("name2")).setText("Aucun batiment");
+//				((AffichageDescriptionBatimentPlanete) findActor("description2")).update(planete.getTBatiment()[1]);
+				Button add = new ButtonAddBatimentPlanete(planete, 1, skin);
+				add.setName("action2");
+				getCell(findActor("action2")).setActor(add);
+			} else {
+				((Label) findActor("name2")).setText(planete.getTBatiment()[1].getNom());
+//				((AffichageDescriptionBatimentPlanete) findActor("description2")).update(planete.getTBatiment()[1]);
+				Button remove = new ButtonRemoveBatimentPlanete(planete, 1, skin);
+				remove.setName("action2");
+				getCell(findActor("action2")).setActor(remove);
+			}
+			planete.setReDrawBuild2(false);
+		}
 	}
 }
