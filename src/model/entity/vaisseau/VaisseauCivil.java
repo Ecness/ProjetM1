@@ -8,11 +8,11 @@ import model.module.Chassie;
 
 public class VaisseauCivil extends Vaisseau {
 
-	public VaisseauCivil(String nom,int vitesse, Chassie chassie, Map<EnumRessource, Integer> cout) {
-		super(nom, chassie, vitesse, cout);
+	public VaisseauCivil(String nom,int vitesse, Chassie chassie, Map<EnumRessource, Integer> cout, int techNecessaire) {
+		super(nom, chassie, vitesse, cout, techNecessaire);
 	}
 	
 	public VaisseauCivil() {
-		this("Default", 0, new Chassie(), new HashMap<EnumRessource, Integer>());
+		this("Default", 0, new Chassie(), new HashMap<EnumRessource, Integer>(), 0);
 	}
 }
