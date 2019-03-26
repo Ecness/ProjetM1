@@ -21,8 +21,8 @@ public class Ville {
 	private List<BatimentVille> TBatimentVille;
 	private List<BatimentVille> fileDeConstructionBatiment;
 	private List<Vaisseau> fileDeConstructionUnite;
-	private boolean constructionTerminee, constructionAnnulee;
-	private boolean reDrawBatiments, reDrawFiles;
+//	private boolean constructionTerminee, constructionAnnulee;
+	private boolean reDrawBatiments, reDrawFilesBatiments, reDrawFilesVaisseaux;
 	
 	public Ville(Joueur joueur, Planete planete) {
 		
@@ -39,9 +39,7 @@ public class Ville {
 		for (Entry<EnumRessource, Integer> t : planete.getTRessource().entrySet()) {
 			TRessource.put(t.getKey(), t.getValue());
 		}
-		if (TRessource.get(EnumRessource.PRODUCTION) <= 0) {
-			TRessource.put(EnumRessource.PRODUCTION, 1);
-		}
+		limitRessources();
 		this.TBatimentVille = new ArrayList<BatimentVille>();
 		this.fileDeConstructionBatiment = new ArrayList<BatimentVille>();
 		this.fileDeConstructionUnite = new ArrayList<Vaisseau>();
@@ -66,27 +64,25 @@ public class Ville {
 			}
 			fileDeConstructionBatiment.add(new BatimentVille(batiment.getNom(), batiment.getDescription(), 
 					batiment.getTechNecessaire(), batiment.getBonus(), batiment.getCout()));
-			reDrawFiles = true;
+			reDrawFilesBatiments = true;
 			return true;
 		}
 		return false;
 	}
 	
 	public boolean testFinConstruction() {
-		reDrawFiles = true;
+		reDrawFilesBatiments = true;
 		if(TRessource.get(EnumRessource.PRODUCTION)>0 && !fileDeConstructionBatiment.isEmpty()) {		
 			fileDeConstructionBatiment.get(0).setCout(fileDeConstructionBatiment.get(0).getCout()-TRessource.get(EnumRessource.PRODUCTION));
 			if(fileDeConstructionBatiment.get(0).getCout()<=0) {
 				for(EnumRessource e : EnumRessource.values()) {
 					TRessource.put(e, TRessource.get(e)+fileDeConstructionBatiment.get(0).getBonus().get(e));
 				}
-				if (TRessource.get(EnumRessource.PRODUCTION) <= 0) {
-					TRessource.put(EnumRessource.PRODUCTION, 1);
-				}
+				limitRessources();
 				TBatimentVille.add(fileDeConstructionBatiment.get(0));
 				reDrawBatiments = true;
 				fileDeConstructionBatiment.remove(0);
-				constructionTerminee = true;
+				reDrawFilesBatiments = true;
 				return true;
 			}
 		}
@@ -103,6 +99,8 @@ public class Ville {
 				TRessource.put(ressource, TRessource.get(ressource) - batiment.getBonus().get(ressource));
 			}
 			
+			limitRessources();
+			
 			reDrawBatiments = true;
 			return true;
 		}
@@ -113,13 +111,25 @@ public class Ville {
 	public boolean annulationBatiment(BatimentVille batiment) {
 		if (fileDeConstructionBatiment.contains(batiment)) {
 			fileDeConstructionBatiment.remove(batiment);
-			reDrawFiles = true;
+			reDrawFilesBatiments = true;
 			return true;
 		}
 		
 		return false;
 	}
 
+	/**
+	 * Limitation des ressources
+	 */
+	public void limitRessources() {
+		joueur.limitRessources();
+		
+		//Minimum de Production d'une ville à 1
+		if (TRessource.get(EnumRessource.PRODUCTION) <= 0) {
+			TRessource.put(EnumRessource.PRODUCTION, 1);
+		} 
+	}
+	
 	public Map<EnumRessource, Integer> getTRessource() {
 		return TRessource;
 	}
@@ -194,21 +204,21 @@ public class Ville {
 		this.puissanceTotal = puissanceTotal;
 	}
 
-	public boolean isConstructionTerminee() {
-		return constructionTerminee;
-	}
-
-	public void setConstructionTerminee(boolean constructionTerminee) {
-		this.constructionTerminee = constructionTerminee;
-	}
-
-	public boolean isConstructionAnnulee() {
-		return constructionAnnulee;
-	}
-
-	public void setConstructionAnnulee(boolean constructionAnnulee) {
-		this.constructionAnnulee = constructionAnnulee;
-	}
+//	public boolean isConstructionTerminee() {
+//		return constructionTerminee;
+//	}
+//
+//	public void setConstructionTerminee(boolean constructionTerminee) {
+//		this.constructionTerminee = constructionTerminee;
+//	}
+//
+//	public boolean isConstructionAnnulee() {
+//		return constructionAnnulee;
+//	}
+//
+//	public void setConstructionAnnulee(boolean constructionAnnulee) {
+//		this.constructionAnnulee = constructionAnnulee;
+//	}
 
 	public boolean isReDrawBatiments() {
 		return reDrawBatiments;
@@ -218,11 +228,19 @@ public class Ville {
 		this.reDrawBatiments = reDrawBatiments;
 	}
 
-	public boolean isReDrawFiles() {
-		return reDrawFiles;
+	public boolean isReDrawFilesBatiments() {
+		return reDrawFilesBatiments;
 	}
 
-	public void setReDrawFiles(boolean reDrawFiles) {
-		this.reDrawFiles = reDrawFiles;
+	public void setReDrawFilesBatiments(boolean reDrawFilesBatiments) {
+		this.reDrawFilesBatiments = reDrawFilesBatiments;
+	}
+
+	public boolean isReDrawFilesVaisseaux() {
+		return reDrawFilesVaisseaux;
+	}
+
+	public void setReDrawFilesVaisseaux(boolean reDrawFilesVaisseaux) {
+		this.reDrawFilesVaisseaux = reDrawFilesVaisseaux;
 	}
 }

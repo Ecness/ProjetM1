@@ -15,7 +15,7 @@ public class Planete {
 	private BatimentPlanete[] TBatiment;
 	private Ville ville;
 	private Joueur joueur;
-	private boolean reDraw;
+	private boolean reDraw, reDrawBuild1, reDrawBuild2;
 	
 	public Planete(EnumTypePlanete typePlanete, EnumAbondanceRessource ressource, GenerationRessourceEtAnomalie ressourcePlanete, int id) {
 		this.id = id;
@@ -95,6 +95,7 @@ public class Planete {
 			}
 			
 			TBatiment[emplacement] = null;
+			limitRessources();
 			
 			return true;
 		}			
@@ -116,10 +117,15 @@ public class Planete {
 				TRessource.put(e, TRessource.get(e) + TBatiment[emplacement].getBonus().get(e));
 			}
 
+			limitRessources();
 			return true;
 		}
 
 		return false;
+	}
+	
+	public void limitRessources() {
+		joueur.limitRessources();
 	}
 	
 	/*
@@ -232,6 +238,26 @@ public class Planete {
 
 	public void setReDraw(boolean reDraw) {
 		this.reDraw = reDraw;
+	}
+
+
+	public boolean isReDrawBuild1() {
+		return reDrawBuild1;
+	}
+
+
+	public void setReDrawBuild1(boolean reDrawBuild1) {
+		this.reDrawBuild1 = reDrawBuild1;
+	}
+
+
+	public boolean isReDrawBuild2() {
+		return reDrawBuild2;
+	}
+
+
+	public void setReDrawBuild2(boolean reDrawBuild2) {
+		this.reDrawBuild2 = reDrawBuild2;
 	}
 	
 }

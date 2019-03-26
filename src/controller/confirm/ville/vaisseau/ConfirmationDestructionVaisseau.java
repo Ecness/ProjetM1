@@ -1,25 +1,25 @@
-package controller.confirm.ville;
+package controller.confirm.ville.vaisseau;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import controller.confirm.Confirm;
-import model.batiment.BatimentVille;
-import model.carte.stellaire.Ville;
+import model.entity.vaisseau.Vaisseau;
 
-public class ConfirmationDestructionBatimentVille extends Confirm {
+//TODO Implémenter le comportement
+public class ConfirmationDestructionVaisseau extends Confirm {
 
-	public ConfirmationDestructionBatimentVille(Ville ville, BatimentVille batiment,  Skin skin) {
+	public ConfirmationDestructionVaisseau(Vaisseau vaisseau, Skin skin) {
 		super("Confirmation destruction",
-				"Confirmer la destruction de " + batiment.getNom() + " ?",
+				"Confirmer la destruction de " + vaisseau.getNom() + " ?",
 				skin);
 		
 		addActionCancel(new ClickListener() {
 
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				ville.setReDrawBatiments(true);
+//				ville.setReDrawBatiments(true);
 				getParent().remove();
 			}
 			
@@ -29,8 +29,8 @@ public class ConfirmationDestructionBatimentVille extends Confirm {
 
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				ville.destructionBatiment(batiment);
-				ville.setReDrawBatiments(true);
+//				ville.destructionBatiment(batiment);
+//				ville.setReDrawBatiments(true);
 				getParent().remove();
 			}
 			

@@ -29,6 +29,11 @@ public class ConfirmationDestructionBatimentPlanete extends Confirm {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				planete.deconstructionBatiment(emplacement);
+				if (emplacement == 0) {
+					planete.setReDrawBuild1(true); 
+				} else {
+					planete.setReDrawBuild2(true);
+				}
 				planete.setReDraw(true);
 				getParent().remove();
 			}

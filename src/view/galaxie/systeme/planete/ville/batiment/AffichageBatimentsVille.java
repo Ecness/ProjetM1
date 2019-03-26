@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import controller.confirm.ville.ConfirmationDestructionBatimentVille;
+import controller.confirm.ville.batiment.ConfirmationDestructionBatimentVille;
 import model.batiment.BatimentVille;
 import model.carte.stellaire.Ville;
 
@@ -36,18 +36,18 @@ public class AffichageBatimentsVille extends ScrollPane {
 			group.addActor(bat);
 		}
 		
-		TextButton add = new TextButton("+", skin);
-		add.setName("add_batimentVille");
-		add.addListener(new ClickListener() {
-
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				setActor(new SelectBatimentVille(ville, skin));
-			}
-			
-		});
-		
-		group.addActor(add);
+//		TextButton add = new TextButton("+", skin);
+//		add.setName("add_batimentVille");
+//		add.addListener(new ClickListener() {
+//
+//			@Override
+//			public void clicked(InputEvent event, float x, float y) {
+//				setActor(new SelectBatimentVille(ville, skin));
+//			}
+//			
+//		});
+//		
+//		group.addActor(add);
 		
 		setActor(group);
 	}
@@ -70,18 +70,18 @@ public class AffichageBatimentsVille extends ScrollPane {
 			group.addActor(bat);
 		}
 		
-		TextButton add = new TextButton("+", skin);
-		add.setName("add_batimentVille");
-		add.addListener(new ClickListener() {
-
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				setActor(new SelectBatimentVille(ville, skin));
-			}
-			
-		});
-		
-		group.addActor(add);
+//		TextButton add = new TextButton("+", skin);
+//		add.setName("add_batimentVille");
+//		add.addListener(new ClickListener() {
+//
+//			@Override
+//			public void clicked(InputEvent event, float x, float y) {
+//				setActor(new SelectBatimentVille(ville, skin));
+//			}
+//			
+//		});
+//		
+//		group.addActor(add);
 		
 		setActor(group);
 	}

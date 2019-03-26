@@ -1,4 +1,4 @@
-package controller.confirm.ville;
+package controller.confirm.ville.batiment;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -19,7 +19,7 @@ public class ConfirmationAnnulationBatimentVille extends Confirm {
 
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				ville.setReDrawFiles(true);
+				ville.setReDrawFilesBatiments(true);
 				getParent().remove();
 			}
 			
@@ -30,8 +30,8 @@ public class ConfirmationAnnulationBatimentVille extends Confirm {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				ville.annulationBatiment(batiment);
-				ville.setReDrawFiles(true);
-				ville.setConstructionAnnulee(true);
+				ville.setReDrawFilesBatiments(true);
+//				ville.setConstructionAnnulee(true);
 				getParent().remove();
 			}
 			

@@ -21,7 +21,7 @@ import view.galaxie.systeme.planete.AffichagePlanete2;
 import view.launcher.Project;
 import view.menus.MenuPartie;
 
-public class AffichageGalaxie {
+public class AffichageGalaxie2 {
 	private ShapeRenderer shapeRenderer;
 	private HorizontalGroup afficheurHaut;
 	private VerticalGroup afficheurDroite;
@@ -32,7 +32,7 @@ public class AffichageGalaxie {
 
 	private Carte carte;
 
-	public AffichageGalaxie(Carte carte, Skin skin) {
+	public AffichageGalaxie2(Carte carte, Skin skin) {
 		this.carte = carte;
 
 		shapeRenderer = new ShapeRenderer();
@@ -125,7 +125,7 @@ public class AffichageGalaxie {
 					(Project.planeteSelectionne.getVille().isReDrawBatiments() || Project.planeteSelectionne.getVille().isReDrawFilesBatiments())))) {
 			((AffichagePlanete2) afficheurDroite.findActor("afficheur_planete")).update(Project.planeteSelectionne, Project.skin);
 			Project.planeteSelectionne.setReDraw(false);
-			((AffichageSysteme) afficheurDroite.findActor("afficheur_systeme")).update(Project.systemeSelectionne);
+//			((AffichageSysteme) afficheurDroite.findActor("afficheur_systeme")).update(Project.systemeSelectionne);
 		}
 	}
 }

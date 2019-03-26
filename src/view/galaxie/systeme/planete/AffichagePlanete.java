@@ -25,9 +25,9 @@ public class AffichagePlanete extends Container<Actor> {
 				((AffichageVille) getActor()).updateBatiments(planete.getVille(), skin);
 				planete.getVille().setReDrawBatiments(false);
 			}
-			if (planete.getVille().isReDrawFiles()) {
+			if (planete.getVille().isReDrawFilesBatiments()) {
 				((AffichageVille) getActor()).updateFile(planete.getVille(), skin);
-				planete.getVille().setReDrawFiles(false);
+				planete.getVille().setReDrawFilesBatiments(false);
 			}
 		} else {
 			((AffichageBatimentsPlanete) getActor()).update(planete);

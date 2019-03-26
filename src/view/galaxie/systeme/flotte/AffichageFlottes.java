@@ -1,9 +1,11 @@
 package view.galaxie.systeme.flotte;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import model.carte.stellaire.Systeme;
 import model.entity.vaisseau.Flotte;
@@ -24,7 +26,20 @@ public class AffichageFlottes extends ScrollPane {
 				i = 1;
 			}
 			
-			table.add(new TextButton(flotte.getNom(), skin));
+			TextButton button = new TextButton(flotte.getNom(), skin);
+			button.addListener(new ClickListener() {
+
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					super.clicked(event, x, y);
+					
+					clear();
+					setActor(new AffichageDetailFlotte(flotte, skin));
+				}
+				
+			});
+			
+			table.add(button);
 		}
 		
 		setActor(table);
@@ -41,7 +56,20 @@ public class AffichageFlottes extends ScrollPane {
 				i = 1;
 			}
 			
-			table.add(new TextButton(flotte.getNom(), skin));
+			TextButton button = new TextButton(flotte.getNom(), skin);
+			button.addListener(new ClickListener() {
+
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					super.clicked(event, x, y);
+					
+					clear();
+					setActor(new AffichageDetailFlotte(flotte, skin));
+				}
+				
+			});
+			
+			table.add(button);
 		}
 	}
 }

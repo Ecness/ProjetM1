@@ -13,13 +13,13 @@ public class AffichageSysteme extends VerticalGroup {
 		setName("afficheur_systeme");
 		
 		addActor(new AffichageInformationsSysteme(systeme, skin));
-		addActor(new AffichageListePlanetes(systeme, skin));
+		addActor(new AffichageListePlanetes2(systeme, skin));
 		
 		align(Align.center);
 		grow();
 	}
 
 	public void update(Systeme systeme) {
-		((AffichageListePlanetes) findActor("afficheur_liste_planetes")).update(systeme);
+		((AffichageListePlanetes2) findActor("afficheur_liste_planetes")).update(systeme);
 	}
 }

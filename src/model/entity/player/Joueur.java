@@ -242,6 +242,22 @@ public class Joueur {
 		return false;
 	}
 	
+	/**
+	 * Limitation des ressources
+	 */
+	public void limitRessources() {
+		for (EnumRessource ressource : EnumRessource.values()) {
+			if (TRessourceMax.containsKey(ressource) &&
+					TRessource.get(ressource) >= TRessourceMax.get(ressource)) {
+				TRessource.put(ressource, TRessourceMax.get(ressource));
+			}
+			
+			if (TRessource.get(ressource) <= 0) {
+				TRessource.put(ressource, 0);
+			}
+		}
+	}
+	
 	public void debutDeTour() {
 		testFinRecherche();
 		for (Ville v : TVille) {

@@ -1,29 +1,28 @@
 package view.galaxie.systeme.planete.ville.file;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import controller.confirm.ville.batiment.ConfirmationAnnulationBatimentVille;
+import controller.controles.select.SelectBatimentVille2;
 import model.EnumRessource;
 import model.batiment.BatimentVille;
 import model.carte.stellaire.Ville;
+import view.galaxie.systeme.planete.ville.batiment.SelectBatimentVille;
 
-public class FileDeConstructionBatiment extends VerticalGroup {
+public class FileDeConstructionBatiment2 extends VerticalGroup {
 
-	public FileDeConstructionBatiment(SplitPane container, Ville ville, Skin skin) {
+	public FileDeConstructionBatiment2(Ville ville, Skin skin) {
 		super();
 		setName("liste_attente_batiment");
-
-		int i = 0;
+		
 		for (BatimentVille batiment : ville.getFileDeConstructionBatiment()) {
 			TextButton bat = new TextButton(batiment.getNom() + "\nTour(s) : " + (int) Math.ceil((double) batiment.getCout() / (double) ville.getTRessource().get(EnumRessource.PRODUCTION)), skin);
-			bat.setName("batiment_file_" + i);
-			i++;
+			bat.setName("batiment_file_" + batiment.getNom());
 			bat.addListener(new ClickListener() {
 
 				@Override
@@ -35,31 +34,36 @@ public class FileDeConstructionBatiment extends VerticalGroup {
 			
 			addActor(bat);
 		}
-	}
-
-	public void update(SplitPane container, Ville ville, Skin skin) {
-
-		int ind = 0;
 		
-		if (ville.isConstructionAnnulee()) {
-			clear();
-			ville.setConstructionAnnulee(false);
-		}
-		
-		for (Actor button : getChildren()) {
+		TextButton add = new TextButton("+", skin);
+		add.addListener(new ClickListener() {
+
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				super.clicked(event, x, y);
+				
+				new SelectBatimentVille2(ville, skin);
+			}
 			
-			button.setName("batiment_file_" + ind);
-			ind++;
+		});
+		
+		addActor(add);
+	}
+	
+	public void update(Ville ville, Skin skin) {
+		if (ville.isReDrawFilesBatiments()) {
+			clear();
+			ville.setReDrawFilesBatiments(false);
 		}
-
+		
 		for (int i = 0; i < ville.getFileDeConstructionBatiment().size(); i++) {
 			BatimentVille batiment = ville.getFileDeConstructionBatiment().get(i);
 			String text = batiment.getNom() + "\nTour(s) : " + (int) Math.ceil((double) batiment.getCout() / (double) ville.getTRessource().get(EnumRessource.PRODUCTION));
-			if (findActor("batiment_file_" + i) != null) {
-				((TextButton) findActor("batiment_file_" + i)).setText(text);
+			if (findActor("batiment_file_" + batiment.getNom()) != null) {
+				((TextButton) findActor("batiment_file_" + batiment.getNom())).setText(text);
 			} else {
 				TextButton button = new TextButton(text, skin);
-				button.setName("batiment_file_" + i);
+				button.setName("batiment_file_" + batiment.getNom());
 				
 				button.addListener(new ClickListener() {
 
@@ -74,10 +78,19 @@ public class FileDeConstructionBatiment extends VerticalGroup {
 			}
 
 		}
-		if (ville.isConstructionTerminee()) {
-			removeActor(findActor("batiment_file_0"));
-			ville.setConstructionTerminee(false);
-		}
+		
+		TextButton add = new TextButton("+", skin);
+		add.addListener(new ClickListener() {
 
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				super.clicked(event, x, y);
+				
+				new SelectBatimentVille2(ville, skin);
+			}
+			
+		});
+		
+		addActor(add);
 	}
 }
