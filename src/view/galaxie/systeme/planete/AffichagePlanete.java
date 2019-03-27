@@ -14,6 +14,7 @@ import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
 import view.galaxie.systeme.AffichageSysteme;
 import view.galaxie.systeme.planete.ville.batiment.AffichageVille;
+import view.launcher.Project;
 
 public class AffichagePlanete extends VerticalGroup {
 	
@@ -30,6 +31,7 @@ public class AffichagePlanete extends VerticalGroup {
 				
 				Group parent = getParent();
 				parent.clear();
+				Project.planeteSelectionne = null;
 				parent.addActor(new AffichageSysteme(systeme, skin));
 			}
 			
