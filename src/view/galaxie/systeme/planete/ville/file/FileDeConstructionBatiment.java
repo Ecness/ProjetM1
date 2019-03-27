@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import controller.confirm.ville.batiment.ConfirmationAnnulationBatimentVille;
-import controller.controles.select.SelectBatimentVille2;
+import controller.controles.select.SelectBatimentVille;
 import model.EnumRessource;
 import model.batiment.BatimentVille;
 import model.carte.stellaire.Ville;
@@ -40,7 +40,7 @@ public class FileDeConstructionBatiment extends VerticalGroup {
 			public void clicked(InputEvent event, float x, float y) {
 				super.clicked(event, x, y);
 				
-				new SelectBatimentVille2(ville, skin);
+				new SelectBatimentVille(ville, skin);
 			}
 			
 		});
@@ -84,7 +84,7 @@ public class FileDeConstructionBatiment extends VerticalGroup {
 			public void clicked(InputEvent event, float x, float y) {
 				super.clicked(event, x, y);
 				
-				new SelectBatimentVille2(ville, skin);
+				new SelectBatimentVille(ville, skin);
 			}
 			
 		});

@@ -189,7 +189,7 @@ public class Ville {
 				ajoutBonusBatiment(fileDeConstructionBatiment.get(0));
 				TBatimentVille.add(fileDeConstructionBatiment.get(0));
 				fileDeConstructionBatiment.remove(0);
-				reDrawFilesBatiments = true;
+				reDrawBatiments = true;
 				return true;
 			}
 		}

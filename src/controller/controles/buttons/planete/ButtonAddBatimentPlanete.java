@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import controller.controles.select.SelectBatimentPlanete2;
+import controller.controles.select.SelectBatimentPlanete;
 import model.carte.stellaire.Planete;
 
 public class ButtonAddBatimentPlanete extends TextButton {
@@ -19,7 +19,7 @@ public class ButtonAddBatimentPlanete extends TextButton {
 			public void clicked(InputEvent event, float x, float y) {
 				super.clicked(event, x, y);
 				
-				new SelectBatimentPlanete2(planete, emplacement, skin);
+				new SelectBatimentPlanete(planete, emplacement, skin);
 			}
 			
 		});

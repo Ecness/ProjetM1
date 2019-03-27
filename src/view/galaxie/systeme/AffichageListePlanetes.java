@@ -24,7 +24,7 @@ public class AffichageListePlanetes extends VerticalGroup {
 			String text = "Type : " + planete.getTypePlanete() + "\n";
 			
 			for (EnumRessource ressource : EnumRessource.values()) {
-				int value = planete.getVille() != null ? planete.getTRessource().get(ressource) + planete.getVille().getTRessource().get(ressource)
+				int value = planete.getVille() != null ? planete.getVille().getTRessource().get(ressource)
 													: planete.getTRessource().get(ressource);
 				text += " " + ressource.toString().substring(0, 1) + value;
 			}
@@ -60,7 +60,7 @@ public class AffichageListePlanetes extends VerticalGroup {
 			String text = "Type : " + planete.getTypePlanete() + "\n";
 
 			for (EnumRessource ressource : EnumRessource.values()) {
-				int value = planete.getVille() != null ? planete.getTRessource().get(ressource) + planete.getVille().getTRessource().get(ressource)
+				int value = planete.getVille() != null ? planete.getVille().getTRessource().get(ressource)
 													: planete.getTRessource().get(ressource);
 				text += " " + ressource.toString().substring(0, 1) + value;
 			}
