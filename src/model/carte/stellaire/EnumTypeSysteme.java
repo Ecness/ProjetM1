@@ -4,7 +4,8 @@ public enum EnumTypeSysteme {
 	NEBULEUSE(0),//5%
 	TROU_NOIR(1),//1%
 	SYSTEME_PLANETAIRE(2),//90%
-	SYSTEME_DOUBLE_ETOILE(3);//4%
+	SYSTEME_DOUBLE_ETOILE(3),//4%
+	DEPART(4);//systéme depart joueur
 	
 	private int numero;
 	private static int nbPlanete = 4;
@@ -33,9 +34,4 @@ public enum EnumTypeSysteme {
 	public int nbPlanete() {
 		return nbPlanete;
 	}
-	
-//	@Override
-//	public String toString() {
-//		return name();
-//	}
 }

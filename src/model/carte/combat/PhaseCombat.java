@@ -145,6 +145,9 @@ public class PhaseCombat {
 			if(arme.getTypeArme() == EnumTypeArme.LASER && vaisseauAttaquan.getScienceMilitaire().get(1).isRechercher()) {
 				bonnusPrecision+=10;
 			}
+			if(vaisseauDefensseur.getScienceMilitaire().get(4).isRechercher()) {
+				bonnusPrecision-=10;
+			}
 		}
 		
 		if(arme.getPrecision()+bonnusPrecision>(int)(100*Math.random()+1)) {

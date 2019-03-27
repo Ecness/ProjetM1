@@ -1,0 +1,383 @@
+{
+"vaisseaux": {
+	"size": 5,
+	"keyTable": [ 0, 1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+	"valueTable": [
+		null,
+		{
+			"class": "model.entity.vaisseau.Corvette",
+			"puissance": 35,
+			"sante": 110,
+			"santeMax": 110,
+			"bouclier": 30,
+			"bouclierMax": 30,
+			"nom": "Specter",
+			"chassie": {
+				"nom": "Specter",
+				"description": "Cargo civil modifier",
+				"point": 5,
+				"sante": 30,
+				"santeMax": 30,
+				"nbArme": 1,
+				"nbBlindage": 1,
+				"cout": {
+					"class": "java.util.HashMap",
+					"PUISSANCE": 0,
+					"CRISTAL": 2,
+					"SCIENCE": 0,
+					"CREDIT": 200,
+					"ACIER": 2,
+					"GAZ": 2,
+					"PRODUCTION": 0
+				}
+			},
+			"armes": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Fusil Plasma",
+					"description": "Cette arme a un fort potentielle destructeur",
+					"point": 25,
+					"dommage": 60,
+					"precision": 10,
+					"critique": 50,
+					"nbTire": 1,
+					"tauxFeu": 60,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 50,
+						"ACIER": 1,
+						"GAZ": 2,
+						"PRODUCTION": 0
+					},
+					"typeArme": "PLASMA"
+				}
+			},
+			"blindages": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Alliage m�talique",
+					"description": "Blindage sommaire",
+					"point": 5,
+					"valeurBlindage": 80,
+					"valeurBlouclier": 30,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 50,
+						"ACIER": 2,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				}
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 2,
+				"SCIENCE": 0,
+				"CREDIT": 300,
+				"ACIER": 5,
+				"GAZ": 4,
+				"PRODUCTION": 0
+			}
+		},
+		{
+			"class": "model.entity.vaisseau.VaisseauCivil",
+			"puissance": 1,
+			"sante": 1,
+			"santeMax": 1,
+			"nom": "Sonde",
+			"chassie": {
+				"nom": "Sonde",
+				"description": "Créé pour l'exploration spacial",
+				"point": 1,
+				"sante": 1,
+				"santeMax": 1,
+				"cout": {
+					"class": "java.util.HashMap",
+					"PUISSANCE": 0,
+					"CRISTAL": 1,
+					"SCIENCE": 0,
+					"CREDIT": 50,
+					"ACIER": 1,
+					"GAZ": 1,
+					"PRODUCTION": 0
+				}
+			}
+		},
+		{
+			"class": "model.entity.vaisseau.VaisseauCivil",
+			"puissance": 1,
+			"sante": 80,
+			"santeMax": 80,
+			"nom": "Cargo colonial",
+			"chassie": {
+				"nom": "Cargo",
+				"description": "Cargo",
+				"point": 1,
+				"sante": 80,
+				"santeMax": 80,
+				"cout": {
+					"class": "java.util.HashMap",
+					"PUISSANCE": 0,
+					"CRISTAL": 0,
+					"SCIENCE": 0,
+					"CREDIT": 1000,
+					"ACIER": 5,
+					"GAZ": 0,
+					"PRODUCTION": 0
+				}
+			}
+		},
+		{
+			"class": "model.entity.vaisseau.Croiseur",
+			"puissance": 230,
+			"sante": 260,
+			"santeMax": 260,
+			"bouclier": 110,
+			"bouclierMax": 110,
+			"nom": "Pillager",
+			"chassie": {
+				"nom": "Pillager",
+				"description": "Conçue pour piller",
+				"point": 5,
+				"sante": 30,
+				"santeMax": 30,
+				"nbArme": 3,
+				"nbBlindage": 2,
+				"cout": {
+					"class": "java.util.HashMap",
+					"PUISSANCE": 0,
+					"CRISTAL": 5,
+					"SCIENCE": 0,
+					"CREDIT": 500,
+					"ACIER": 5,
+					"GAZ": 5,
+					"PRODUCTION": 0
+				}
+			},
+			"armes": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Canon �lectrique",
+					"description": "Une arme � projectile acc�l�r� par une force �lectromagn�tique",
+					"point": 70,
+					"dommage": 70,
+					"precision": 85,
+					"critique": 25,
+					"nbTire": 1,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 2,
+						"SCIENCE": 0,
+						"CREDIT": 50,
+						"ACIER": 5,
+						"GAZ": 1,
+						"PRODUCTION": 0
+					},
+					"typeArme": "CINETIQUE"
+				},
+				"1": {
+					"nom": "Canon �lectrique",
+					"description": "Une arme � projectile acc�l�r� par une force �lectromagn�tique",
+					"point": 70,
+					"dommage": 70,
+					"precision": 85,
+					"critique": 25,
+					"nbTire": 1,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 2,
+						"SCIENCE": 0,
+						"CREDIT": 50,
+						"ACIER": 5,
+						"GAZ": 1,
+						"PRODUCTION": 0
+					},
+					"typeArme": "CINETIQUE"
+				},
+				"2": {
+					"nom": "Canon �lectrique",
+					"description": "Une arme � projectile acc�l�r� par une force �lectromagn�tique",
+					"point": 70,
+					"dommage": 70,
+					"precision": 85,
+					"critique": 25,
+					"nbTire": 1,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 2,
+						"SCIENCE": 0,
+						"CREDIT": 50,
+						"ACIER": 5,
+						"GAZ": 1,
+						"PRODUCTION": 0
+					},
+					"typeArme": "CINETIQUE"
+				}
+			},
+			"blindages": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Alliage m�talique",
+					"description": "Blindage sommaire",
+					"point": 5,
+					"valeurBlindage": 80,
+					"valeurBlouclier": 30,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 50,
+						"ACIER": 2,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				},
+				"1": {
+					"nom": "Alliage Composite",
+					"description": "Melange de mat�riaux diver",
+					"point": 10,
+					"valeurBlindage": 150,
+					"valeurBlouclier": 80,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 60,
+						"ACIER": 3,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				}
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 11,
+				"SCIENCE": 0,
+				"CREDIT": 710,
+				"ACIER": 23,
+				"GAZ": 8,
+				"PRODUCTION": 0
+			}
+		}
+	],
+	"zeroValue": {
+		"class": "model.entity.vaisseau.Corvette",
+		"puissance": 55,
+		"sante": 140,
+		"santeMax": 140,
+		"bouclier": 50,
+		"bouclierMax": 50,
+		"nom": "Reaper",
+		"chassie": {
+			"nom": "Reaper",
+			"description": "Chassie petit et rapide",
+			"point": 20,
+			"sante": 60,
+			"santeMax": 60,
+			"bouclier": 20,
+			"bouclierMax": 20,
+			"nbArme": 2,
+			"nbBlindage": 1,
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 5,
+				"SCIENCE": 0,
+				"CREDIT": 500,
+				"ACIER": 5,
+				"GAZ": 5,
+				"PRODUCTION": 0
+			}
+		},
+		"armes": {
+			"class": "java.util.HashMap",
+			"0": {
+				"nom": "Laser MKI",
+				"description": "Petit module d'arme laser",
+				"point": 10,
+				"dommage": 5,
+				"precision": 90,
+				"critique": 5,
+				"nbTire": 3,
+				"tauxFeu": 45,
+				"cout": {
+					"class": "java.util.HashMap",
+					"PUISSANCE": 0,
+					"CRISTAL": 1,
+					"SCIENCE": 0,
+					"CREDIT": 10,
+					"ACIER": 1,
+					"GAZ": 0,
+					"PRODUCTION": 0
+				},
+				"typeArme": "LASER"
+			},
+			"1": {
+				"nom": "Type 490/3",
+				"description": "Des canon de la marine modifier pour l'environement spacial",
+				"point": 20,
+				"dommage": 20,
+				"precision": 60,
+				"critique": 10,
+				"nbTire": 3,
+				"tauxFeu": 5,
+				"cout": {
+					"class": "java.util.HashMap",
+					"PUISSANCE": 0,
+					"CRISTAL": 0,
+					"SCIENCE": 0,
+					"CREDIT": 10,
+					"ACIER": 3,
+					"GAZ": 0,
+					"PRODUCTION": 0
+				},
+				"typeArme": "CINETIQUE"
+			}
+		},
+		"blindages": {
+			"class": "java.util.HashMap",
+			"0": {
+				"nom": "Alliage m�talique",
+				"description": "Blindage sommaire",
+				"point": 5,
+				"valeurBlindage": 80,
+				"valeurBlouclier": 30,
+				"cout": {
+					"class": "java.util.HashMap",
+					"PUISSANCE": 0,
+					"CRISTAL": 0,
+					"SCIENCE": 0,
+					"CREDIT": 50,
+					"ACIER": 2,
+					"GAZ": 0,
+					"PRODUCTION": 0
+				}
+			}
+		},
+		"cout": {
+			"class": "java.util.HashMap",
+			"PUISSANCE": 0,
+			"CRISTAL": 6,
+			"SCIENCE": 0,
+			"CREDIT": 570,
+			"ACIER": 11,
+			"GAZ": 5,
+			"PRODUCTION": 0
+		}
+	},
+	"hasZeroValue": true
+}
+}

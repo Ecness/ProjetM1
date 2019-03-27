@@ -352,7 +352,7 @@
 		},
 		{
 			"class": "model.batiment.BatimentVille",
-			"nom": "Banque central plan�taire",
+			"nom": "Banque central planétaire",
 			"description": "Centralise les fonts de la colonie",
 			"bonus": {
 				"class": "java.util.HashMap",

@@ -7,7 +7,7 @@
 		{
 			"class": "model.entity.player.Science",
 			"nom": "Vaiseau de defence",
-			"description": "Premier vaiseau con�ue pour la defence de la colonie",
+			"description": "Premier vaiseau conue pour la defence de la colonie",
 			"cout": 20,
 			"dependanceUn": 0,
 			"dependanceDeux": 0
@@ -34,15 +34,15 @@
 			"description": "Permet la construction d'un canon éléctrique",
 			"cout": 100,
 			"dependanceUn": 3,
-			"dependanceDeux": 0
+			"dependanceDeux": 5
 		},
 		{
 			"class": "model.entity.player.Science",
 			"nom": "Vaisseau d'escorte",
 			"description": "Délock les vaisseaux tier 2",
 			"cout": 60,
-			"dependanceUn": 1,
-			"dependanceDeux": 2
+			"dependanceUn": 3,
+			"dependanceDeux": 0
 		},
 		{
 			"class": "model.entity.player.Science",
@@ -146,8 +146,8 @@
 		},
 		{
 			"class": "model.entity.player.Science",
-			"nom": "Defence plan�taire",
-			"description": "Delock la construction de defence plan�taire",
+			"nom": "Defence planétaire",
+			"description": "Delock la construction de defence planétaire",
 			"cout": 20,
 			"dependanceUn": 0,
 			"dependanceDeux": 0
@@ -272,8 +272,8 @@
 		},
 		{
 			"class": "model.entity.player.Science",
-			"nom": "Module d'arme suplementaire",
-			"description": "Ajoute un slot d'arme",
+			"nom": "Holochamp",
+			"description": "Réduit les chances de se faire toucher des 10%",
 			"cout": 100,
 			"dependanceUn": 2,
 			"dependanceDeux": 3

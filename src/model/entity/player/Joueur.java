@@ -62,6 +62,9 @@ public class Joueur {
 			if (t != EnumRessource.SCIENCE && t != EnumRessource.PRODUCTION) {
 				TRessourceMax.put(t, 500);
 			}
+			if (t == EnumRessource.CREDIT) {
+				TRessourceMax.put(t, 5000);
+			}
 		}
 		placementInitial();
 		ressourceDepart(ressourceDepart);
@@ -351,6 +354,8 @@ public class Joueur {
 		} while (depart.getJoueur() != null || 
 				depart.getTypeSysteme().equals(EnumTypeSysteme.NEBULEUSE) || depart.getTypeSysteme().equals(EnumTypeSysteme.TROU_NOIR));
 		
+		depart.generationAnomalieDepat(Project.parametre.getNbMaxAnomalie());
+		
 		Planete planeteDepart = new Planete(EnumTypePlanete.typeHabitable(), Project.parametre.getAbondanceRessource(), depart.getTPlanete().size(), this);
 		Ville ville = new Ville(this, planeteDepart);
 		planeteDepart.setVille(ville);
@@ -361,6 +366,8 @@ public class Joueur {
 		}else {
 			depart.ajoutPlanete(planeteDepart);
 		}
+		
+		
 		
 		depart.setJoueur(this);
 		this.systeme.add(depart);
