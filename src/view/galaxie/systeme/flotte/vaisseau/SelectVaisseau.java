@@ -49,7 +49,7 @@ public class SelectVaisseau extends Window {
 			//TODO Mettre le bon répertoire une fois les fichiers créés
 			try(FileReader file = new FileReader(ville.getJoueur().getNation().getPath() + "/Batiments/Batiments.json")) {
 
-				Vaisseau listeVaisseaux = parser.fromJson(ListBatiment.class, file);
+				ListBatiment listeBatiments = parser.fromJson(ListBatiment.class, file);
 
 				//Récupération des bâtiments déjà construits ou en construction
 				List<String> listeBatimentsVille = new ArrayList<String>();

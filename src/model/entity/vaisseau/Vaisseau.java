@@ -6,7 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.badlogic.gdx.utils.IntMap;
+
 import model.EnumRessource;
+import model.entity.player.Joueur;
+import model.entity.player.Science;
 import model.module.Arme;
 import model.module.Blindage;
 import model.module.Chassie;
@@ -30,13 +34,13 @@ public class Vaisseau implements Cloneable {
 	protected Boolean moteurEndomager;
 	protected Boolean moteurDetruit;
 	protected Boolean bouclierDetruit;
+	protected Joueur joueur;
 	
 	public Vaisseau() {
-		this("Default", null, null, null, null, 0, null,0);
+		this("Default", new Chassie(), new HashMap<Integer, Arme>(), new HashMap<Integer, Blindage>(), new ArrayList<EnumDommageCritique>(), 0, 0, null);
 	}
 	
-	public Vaisseau( String nom, Chassie chassie, int vitesse,
-			Map<EnumRessource, Integer> cout, int techNecessaire) {
+	public Vaisseau( String nom, Chassie chassie, int vitesse, int techNecessaire, Joueur joueur) {
 		
 		this.puissance = 0;
 		this.techNecessaire = techNecessaire;
@@ -51,7 +55,7 @@ public class Vaisseau implements Cloneable {
 		this.dommageCritique = new ArrayList<EnumDommageCritique>();
 		this.vitesse = vitesse;
 		this.fire = 0;
-		this.cout = cout;
+		this.cout = new HashMap<EnumRessource,Integer>();
 		this.moteurDetruit=false;
 		this.moteurEndomager=false;
 		this.bouclierDetruit=false;
@@ -59,8 +63,8 @@ public class Vaisseau implements Cloneable {
 	}
 
 	public Vaisseau(String nom, Chassie chassie, Map<Integer, Arme> armes, Map<Integer,
-			Blindage> blindages, List<EnumDommageCritique> dommageCritique, int vitesse, Map<EnumRessource,
-			Integer> cout, int techNecessaire) {
+			Blindage> blindages, List<EnumDommageCritique> dommageCritique, int vitesse,
+			int techNecessaire, Joueur joueur) {
 		
 		this.techNecessaire = techNecessaire;
 		this.puissance = 0;
@@ -75,7 +79,7 @@ public class Vaisseau implements Cloneable {
 		this.vitesse = vitesse;
 		this.dommageCritique = dommageCritique;
 		this.fire = 0;
-		this.cout = cout;
+		this.cout = new HashMap<EnumRessource,Integer>();;
 		this.moteurDetruit=false;
 		this.moteurEndomager=false;
 		this.bouclierDetruit=false;
@@ -108,13 +112,18 @@ public class Vaisseau implements Cloneable {
 	public void addCout() {
 		for (Entry<Integer, Blindage> blindage : blindages.entrySet()) {
 			for (Entry<EnumRessource, Integer> coutBlindage : blindage.getValue().getCout().entrySet()) {
-				cout.put(coutBlindage.getKey(), coutBlindage.getValue()+cout.get(coutBlindage.getKey()));
+				cout.put(coutBlindage.getKey(), coutBlindage.getValue());
 			}
 		}
 		for (Entry<Integer, Arme> arme : armes.entrySet()) {
 			for (Entry<EnumRessource, Integer> coutArme : arme.getValue().getCout().entrySet()) {
 				cout.put(coutArme.getKey(), coutArme.getValue()+cout.get(coutArme.getKey()));
 			}
+		}
+		if(!chassie.getCout().isEmpty()) {
+			for (EnumRessource e : EnumRessource.values()) {
+				cout.put(e, chassie.getCout().get(e)+cout.get(e));
+			}			
 		}
 	}
 	
@@ -190,9 +199,16 @@ public class Vaisseau implements Cloneable {
 	
 	@Override
 	public Vaisseau clone() throws CloneNotSupportedException {
-		Vaisseau clone = new Vaisseau(this.nom, this.chassie, this.armes, this.blindages, this.dommageCritique, this.vitesse, this.cout, this.techNecessaire);
+		Vaisseau clone = new Vaisseau(this.nom, this.chassie, this.armes, this.blindages, this.dommageCritique, this.vitesse, this.techNecessaire, this.joueur);
+		clone.setCout(this.cout);
 		return clone;
+		
 	}
+	
+	public IntMap<Science> getScienceMilitaire(){
+		return this.joueur.getTechnology().getScienceMillitaire();
+	}
+	
 	
 	//-------------------------------------------------------------------------------------------------------------------------
 
@@ -320,5 +336,11 @@ public class Vaisseau implements Cloneable {
 	}
 	public void setTechNecessaire(int techNecessaire) {
 		this.techNecessaire = techNecessaire;
+	}
+	public Joueur getJoueur() {
+		return joueur;
+	}
+	public void setJoueur(Joueur joueur) {
+		this.joueur = joueur;
 	}
 }

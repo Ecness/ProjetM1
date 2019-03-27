@@ -16,7 +16,7 @@ public class AffichageRessources extends HorizontalGroup {
 		setName("afficheur_ressources");
 
 		for (EnumRessource ressource : EnumRessource.values()) {
-			if (ressource != EnumRessource.PRODUCTION) {
+			if (ressource != EnumRessource.PRODUCTION && ressource != EnumRessource.PUISSANCE) {
 				//Création d'un groupe contenant image et quantité de la ressource
 				HorizontalGroup ensemble = new HorizontalGroup();
 				ensemble.setName("group_" + ressource.toString());
@@ -27,7 +27,7 @@ public class AffichageRessources extends HorizontalGroup {
 
 				String text = "" + joueur.getTRessource().get(ressource);
 
-				if (ressource != EnumRessource.SCIENCE && ressource != EnumRessource.PRODUCTION) {
+				if (ressource != EnumRessource.SCIENCE && ressource != EnumRessource.PRODUCTION && ressource != EnumRessource.PUISSANCE) {
 					text += " / " + joueur.getTRessourceMax().get(ressource);
 				}
 
@@ -53,13 +53,13 @@ public class AffichageRessources extends HorizontalGroup {
 	 */
 	public void update(Joueur joueur) {
 		for (EnumRessource ressource : EnumRessource.values()) {
-			if (ressource != EnumRessource.PRODUCTION) {
+			if (ressource != EnumRessource.PRODUCTION && ressource != EnumRessource.PUISSANCE) {
 				HorizontalGroup group = findActor("group_" + ressource.toString());
 				Label quantity = group.findActor("quantity_" + ressource.toString());
 
 				String text = "" + joueur.getTRessource().get(ressource);
 
-				if (ressource != EnumRessource.SCIENCE && ressource != EnumRessource.PRODUCTION) {
+				if (ressource != EnumRessource.SCIENCE && ressource != EnumRessource.PRODUCTION && ressource != EnumRessource.PUISSANCE) {
 					text += " / " + joueur.getTRessourceMax().get(ressource);
 				}
 

@@ -26,8 +26,8 @@ public class Ville {
 	
 	public Ville(Joueur joueur, Planete planete) {
 
-		this.puissance = 0;
-		this.puissanceTotal = 0;
+		this.puissance = 50;
+		this.puissanceTotal = 50;
 		this.joueur = joueur;
 		if(joueur.getTVille()==null) {
 			this.id=0;
@@ -37,6 +37,10 @@ public class Ville {
 		this.TRessource = new HashMap<EnumRessource, Integer>();
 		for (Entry<EnumRessource, Integer> t : planete.getTRessource().entrySet()) {
 			TRessource.put(t.getKey(), t.getValue());
+			if(t.getKey().equals(EnumRessource.PUISSANCE)) {
+				puissanceTotal+=t.getValue();
+				puissance+=t.getValue();
+			}
 		}
 		limitRessources();
 		this.TBatimentVille = new ArrayList<BatimentVille>();
@@ -46,7 +50,7 @@ public class Ville {
 
 	public void regenerationPuissance() {
 		if(puissance<puissanceTotal) {
-			puissance+=(int)(puissanceTotal/10);
+			puissance+=(int)(puissanceTotal*0.1);
 		}
 		if(puissance>puissanceTotal) {
 			puissance=puissanceTotal;
@@ -182,10 +186,7 @@ public class Ville {
 		if(TRessource.get(EnumRessource.PRODUCTION)>0 && !fileDeConstructionBatiment.isEmpty()) {		
 			fileDeConstructionBatiment.get(0).setCout(fileDeConstructionBatiment.get(0).getCout()-TRessource.get(EnumRessource.PRODUCTION));
 			if(fileDeConstructionBatiment.get(0).getCout()<=0) {
-				for(EnumRessource e : EnumRessource.values()) {
-					TRessource.put(e, TRessource.get(e)+fileDeConstructionBatiment.get(0).getBonus().get(e));
-				}
-				limitRessources();
+				ajoutBonusBatiment(fileDeConstructionBatiment.get(0));
 				TBatimentVille.add(fileDeConstructionBatiment.get(0));
 				fileDeConstructionBatiment.remove(0);
 				reDrawFilesBatiments = true;
@@ -196,13 +197,36 @@ public class Ville {
 		return false;
 	}
 	
-	public boolean destructionBatiment(BatimentVille batiment) {
+	/**
+	 * Ajoute les bonnus d'un batiment à la ville
+	 * 
+	 * @param batimentVille
+	 * 						: Batiment dont les bonus doivent étre ajouter
+	 */
+	public void ajoutBonusBatiment(BatimentVille batimentVille) {
+		for(EnumRessource e : EnumRessource.values()) {
+			if (e.equals(EnumRessource.PUISSANCE)) {
+				puissanceTotal+=batimentVille.getBonus().get(e);
+				puissance+=batimentVille.getBonus().get(e);
+			} else {
+				TRessource.put(e, TRessource.get(e)+batimentVille.getBonus().get(e));
+			}
+		}
+		limitRessources();
+	}
+	
+	public boolean destructionBatiment(BatimentVille batimentVille) {
 		//Si la ville possède le bâtiment concerné
-		if (TBatimentVille.contains(batiment)) {
-			TBatimentVille.remove(batiment);
+		if (TBatimentVille.contains(batimentVille)) {
+			TBatimentVille.remove(batimentVille);
 			
 			for (EnumRessource ressource : EnumRessource.values()) {
-				TRessource.put(ressource, TRessource.get(ressource) - batiment.getBonus().get(ressource));
+				if (ressource.equals(EnumRessource.PUISSANCE)) {
+					puissanceTotal-=batimentVille.getBonus().get(ressource);
+					puissance-=batimentVille.getBonus().get(ressource);
+				} else {
+					TRessource.put(ressource, TRessource.get(ressource)-batimentVille.getBonus().get(ressource));
+				}
 			}
 			
 			limitRessources();

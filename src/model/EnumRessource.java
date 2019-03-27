@@ -9,10 +9,11 @@ public enum EnumRessource {
 	GAZ(3),
 	ACIER(4),
 	CRISTAL(5),
-	PRODUCTION(6);
+	PRODUCTION(6),
+	PUISSANCE(7);
 	
 	private int numero;
-	private static int nbRessource = 6;
+	private static int nbRessource = 7;
 	
 	private EnumRessource(int numero) {
 		this.numero=numero;

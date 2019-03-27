@@ -18,15 +18,17 @@ public class Arme{
 	private Map<EnumRessource, Integer> cout;
 	private Boolean utilisable;
 	private Boolean endomager;
+	private EnumTypeArme typeArme;
 	
 	public Arme() {
-		this("Default", "", 0, 0, 0, 0, 0, 0, new HashMap<EnumRessource, Integer>());
+		this("Default", "", 0, 0, 0, 0, 0, 0, new HashMap<EnumRessource, Integer>(), null);
 		this.utilisable=true;
 		this.endomager=false;
 	}
 	
 	public Arme(String nom, String description, int dommage, int precision, int nbTire,
-			int tauxFeu, int critique, int point, Map<EnumRessource, Integer> cout) {
+			int tauxFeu, int critique, int point, Map<EnumRessource, Integer> cout,
+			EnumTypeArme typeArme) {
 		this.nom = nom;
 		this.description = description;
 		this.dommage = dommage;
@@ -38,6 +40,7 @@ public class Arme{
 		this.cout=cout;
 		this.utilisable=true;
 		this.endomager=false;
+		this.typeArme=typeArme;
 	}
 	
 	//--------------------------------------------------------------------------------------------------------------------------------------------
@@ -110,5 +113,11 @@ public class Arme{
 	}
 	public void setEndomager(Boolean endomager) {
 		this.endomager = endomager;
+	}
+	public EnumTypeArme getTypeArme() {
+		return typeArme;
+	}
+	public void setTypeArme(EnumTypeArme typeArme) {
+		this.typeArme = typeArme;
 	}
 }

@@ -11,7 +11,6 @@ import com.badlogic.gdx.utils.IntMap.Entry;
 import model.EnumRessource;
 import model.carte.combat.DetailCombat;
 import model.carte.combat.PhaseCombat;
-import model.entity.vaisseau.Corvette;
 import model.entity.vaisseau.Croiseur;
 import model.entity.vaisseau.EnumDommageCritique;
 import model.entity.vaisseau.Flotte;
@@ -19,13 +18,14 @@ import model.entity.vaisseau.ListVaisseaux;
 import model.entity.vaisseau.Vaisseau;
 import model.module.Arme;
 import model.module.Blindage;
+import model.module.Chassie;
 import model.module.ListeModule;
 
 
 
 public class test {
 
-	public static Map<EnumRessource, Integer> setRessource(int gaz, int science, int cristal, int production, int credit, int acier){
+	public static Map<EnumRessource, Integer> setRessource(int gaz, int science, int cristal, int production, int credit, int acier, int puissance){
 		Map<EnumRessource, Integer> ressources = new HashMap<EnumRessource, Integer>();
 		ressources.put(EnumRessource.GAZ, gaz);
 		ressources.put(EnumRessource.SCIENCE, science);
@@ -33,6 +33,7 @@ public class test {
 		ressources.put(EnumRessource.PRODUCTION, production);
 		ressources.put(EnumRessource.CREDIT, credit);
 		ressources.put(EnumRessource.ACIER, acier);	
+		ressources.put(EnumRessource.PUISSANCE, puissance);	
 		return ressources;
 	}
 	
@@ -82,9 +83,20 @@ public class test {
 				}
 				arme.value.setCout(cout);
 			}
+			for (Entry<Chassie> chassie : module.getChassie().entries()) {
+				//Correction type lecture json (de String vers EnumRessource)
+				Map<EnumRessource, Integer> cout = new HashMap<EnumRessource, Integer>();
+				
+				for (EnumRessource ressource : EnumRessource.values()) {
+					cout.put(ressource, chassie.value.getCout().get(ressource.name()));
+				}
+				chassie.value.setCout(cout);
+			}
 		    listModule=module;
 		    
 		} catch (Exception e) {
+			System.out.println(e.toString() + "### ERREUR : Modules_Vaiseaux.json ###");
+			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 		
@@ -107,7 +119,7 @@ public class test {
 			listVaisseau=vaisseaux;
 		    
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			System.out.println(e.toString() + "### ERREUR : Vaisseaux.json ###");
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
@@ -141,8 +153,8 @@ public class test {
 		blindages2.put(2, listModule.getBlindage().get(3));
 		blindages2.put(3, listModule.getBlindage().get(3));
 		
-		Croiseur croiseurTest = new Croiseur("Universe", listModule.getChassie().get(4), armes, blindages, 0, setRessource(0, 0, 0, 0, 0, 0),0);
-		Croiseur croiseurTest2 = new Croiseur("Ulysse", listModule.getChassie().get(4), armes2, blindages2, 0, setRessource(0, 0, 0, 0, 0, 0),0);
+		Croiseur croiseurTest = new Croiseur("Universe", listModule.getChassie().get(4), armes, blindages, 0, 0, null);
+		Croiseur croiseurTest2 = new Croiseur("Ulysse", listModule.getChassie().get(4), armes2, blindages2, 0, 0, null);
 		Flotte flotte = new Flotte();
 		flotte.addVaisseau(0, croiseurTest);
 		Flotte flotte2 = new Flotte();
@@ -155,7 +167,6 @@ public class test {
 		flottePirate.addVaisseau(1, listVaisseau.getVaisseaux().get(0));
 		flottePirate.addVaisseau(2, listVaisseau.getVaisseaux().get(0));
 		flottePirate.addVaisseau(3, listVaisseau.getVaisseaux().get(0));
-
 		flottePirate.addVaisseau(4, listVaisseau.getVaisseaux().get(1));
 		flottePirate.addVaisseau(5, listVaisseau.getVaisseaux().get(1));
 		
@@ -165,7 +176,7 @@ public class test {
 		
 		do {
 			for (java.util.Map.Entry<Integer, Vaisseau> vaisseau : flotte2.getTVaisseau().entrySet()) {
-				DetailCombat detail = phaseCombat.infligerDommage(vaisseau.getValue(), flotte.getTVaisseau().get(0), 0);
+				DetailCombat detail = phaseCombat.endommageVaisseau(vaisseau.getValue(), flotte.getTVaisseau().get(0), 0);
 				System.out.println("\n Tire\n"+vaisseau.getValue().toString());
 				TimeUnit.SECONDS.sleep(1);
 				System.out.println("\n\nRapport\n"+detail.toString());

@@ -36,7 +36,11 @@ public class Planete {
 		this.typePlanete = typePlanete;
 		this.TRessource = new HashMap<EnumRessource, Integer>();
 		for (EnumRessource t : EnumRessource.values()) {
-			TRessource.put(t, 2+ressource.getmodificateur());
+			if (!t.equals(EnumRessource.PUISSANCE)) {
+				TRessource.put(t, 2+ressource.getmodificateur());				
+			} else {
+				TRessource.put(t, 0);
+			}
 		}
 		TBatiment = new BatimentPlanete[2];
 		this.ville = null;

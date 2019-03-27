@@ -1,9 +1,59 @@
 {
 "batimentsPlanete": {
-	"size": 2,
-	"keyTable": [ 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+	"size": 8,
+	"keyTable": [ 0, 1, 2, 3, 4, 5, 6, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
 	"valueTable": [
 		null,
+		{
+			"class": "model.batiment.BatimentPlanete",
+			"nom": "Mine de metal",
+			"description": "Am√©liore la production d'acier",
+			"bonus": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 0,
+				"SCIENCE": 0,
+				"CREDIT": 0,
+				"ACIER": 2,
+				"GAZ": 0,
+				"PRODUCTION": 0
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 0,
+				"SCIENCE": 0,
+				"CREDIT": 50,
+				"ACIER": 10,
+				"GAZ": 0,
+				"PRODUCTION": 0
+			}
+		},
+		{
+			"class": "model.batiment.BatimentPlanete",
+			"nom": "Extracteur de gaz",
+			"description": "Am√©liore la production de gaz",
+			"bonus": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 0,
+				"SCIENCE": 0,
+				"CREDIT": 0,
+				"ACIER": 0,
+				"GAZ": 2,
+				"PRODUCTION": 0
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 0,
+				"SCIENCE": 0,
+				"CREDIT": 50,
+				"ACIER": 10,
+				"GAZ": 0,
+				"PRODUCTION": 0
+			}
+		},
 		{
 			"class": "model.batiment.BatimentPlanete",
 			"nom": "Centre de recherche xenos",
@@ -11,29 +61,129 @@
 			"techNecessaire": 4,
 			"bonus": {
 				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
 				"CRISTAL": 0,
 				"SCIENCE": 5,
 				"CREDIT": -2,
 				"ACIER": 0,
 				"GAZ": 0,
-				"PRODUCTION": 1
+				"PRODUCTION": 0
 			},
 			"cout": {
 				"class": "java.util.HashMap",
-				"CRISTAL": 5,
+				"PUISSANCE": 0,
+				"CRISTAL": 50,
 				"SCIENCE": 0,
-				"CREDIT": 50,
-				"ACIER": 5,
-				"GAZ": 1,
+				"CREDIT": 80,
+				"ACIER": 50,
+				"GAZ": 10,
 				"PRODUCTION": 0
 			}
 		},
-		null,
-		null,
-		null,
-		null,
-		null,
-		null,
+		{
+			"class": "model.batiment.BatimentPlanete",
+			"nom": "Spatioport",
+			"description": "Am√©liore les echanges avec les autre colonie",
+			"techNecessaire": 3,
+			"bonus": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 1,
+				"SCIENCE": 0,
+				"CREDIT": 5,
+				"ACIER": 1,
+				"GAZ": 1,
+				"PRODUCTION": 0
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 5,
+				"SCIENCE": 0,
+				"CREDIT": 50,
+				"ACIER": 20,
+				"GAZ": 5,
+				"PRODUCTION": 0
+			}
+		},
+		{
+			"class": "model.batiment.BatimentPlanete",
+			"nom": "Exploitation de cristal",
+			"description": "Am√©liore la production de cristal",
+			"techNecessaire": 1,
+			"bonus": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 4,
+				"SCIENCE": 0,
+				"CREDIT": 0,
+				"ACIER": 0,
+				"GAZ": 0,
+				"PRODUCTION": 0
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 20,
+				"SCIENCE": 0,
+				"CREDIT": 75,
+				"ACIER": 50,
+				"GAZ": 0,
+				"PRODUCTION": 0
+			}
+		},
+		{
+			"class": "model.batiment.BatimentPlanete",
+			"nom": "Exploitation de metal",
+			"description": "Am√©liore la production d'acier",
+			"techNecessaire": 1,
+			"bonus": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 0,
+				"SCIENCE": 0,
+				"CREDIT": 0,
+				"ACIER": 4,
+				"GAZ": 0,
+				"PRODUCTION": 0
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 50,
+				"SCIENCE": 0,
+				"CREDIT": 75,
+				"ACIER": 50,
+				"GAZ": 0,
+				"PRODUCTION": 0
+			}
+		},
+		{
+			"class": "model.batiment.BatimentPlanete",
+			"nom": "Exploitation de gaz",
+			"description": "Am√©liore la production de gaz",
+			"techNecessaire": 1,
+			"bonus": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 0,
+				"SCIENCE": 0,
+				"CREDIT": 0,
+				"ACIER": 0,
+				"GAZ": 4,
+				"PRODUCTION": 0
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 50,
+				"SCIENCE": 0,
+				"CREDIT": 75,
+				"ACIER": 50,
+				"GAZ": 0,
+				"PRODUCTION": 0
+			}
+		},
 		null,
 		null,
 		null,
@@ -103,33 +253,34 @@
 	],
 	"zeroValue": {
 		"class": "model.batiment.BatimentPlanete",
-		"nom": "Spatioport",
-		"description": "AmÈliore les echanges avec les autre colonie",
-		"techNecessaire": 3,
+		"nom": "Mine de cristal",
+		"description": "Am√©liore la production de cristal",
 		"bonus": {
 			"class": "java.util.HashMap",
-			"CRISTAL": 0,
+			"PUISSANCE": 0,
+			"CRISTAL": 2,
 			"SCIENCE": 0,
-			"CREDIT": 5,
-			"ACIER": 1,
+			"CREDIT": 0,
+			"ACIER": 0,
 			"GAZ": 0,
-			"PRODUCTION": 1
+			"PRODUCTION": 0
 		},
 		"cout": {
 			"class": "java.util.HashMap",
-			"CRISTAL": 2,
+			"PUISSANCE": 0,
+			"CRISTAL": 0,
 			"SCIENCE": 0,
-			"CREDIT": 20,
-			"ACIER": 2,
-			"GAZ": 1,
+			"CREDIT": 50,
+			"ACIER": 10,
+			"GAZ": 0,
 			"PRODUCTION": 0
 		}
 	},
 	"hasZeroValue": true
 },
 "batimentsVille": {
-	"size": 5,
-	"keyTable": [ 0, 1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+	"size": 6,
+	"keyTable": [ 0, 1, 2, 3, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
 	"valueTable": [
 		null,
 		{
@@ -139,22 +290,24 @@
 			"techNecessaire": 1,
 			"bonus": {
 				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
 				"CRISTAL": 2,
 				"SCIENCE": 0,
 				"CREDIT": -2,
 				"ACIER": 2,
 				"GAZ": 2,
-				"PRODUCTION": 2
+				"PRODUCTION": 1
 			},
-			"cout": 50
+			"cout": 200
 		},
 		{
 			"class": "model.batiment.BatimentVille",
 			"nom": "Usine Robotique",
-			"description": "Usine de crÈation robotique",
+			"description": "Usine de cr√©ation robotique",
 			"techNecessaire": 1,
 			"bonus": {
 				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
 				"CRISTAL": 1,
 				"SCIENCE": 0,
 				"CREDIT": -1,
@@ -162,15 +315,16 @@
 				"GAZ": 0,
 				"PRODUCTION": 1
 			},
-			"cout": 20
+			"cout": 150
 		},
 		{
 			"class": "model.batiment.BatimentVille",
-			"nom": "Batrie PlanÈtaire",
-			"description": "Batrie de defense planÈtaire",
-			"techNecessaire": 0,
+			"nom": "Batrie Plan√©taire",
+			"description": "Batrie de defense plan√©taire",
+			"techNecessaire": 2,
 			"bonus": {
 				"class": "java.util.HashMap",
+				"PUISSANCE": 50,
 				"CRISTAL": 0,
 				"SCIENCE": 0,
 				"CREDIT": -2,
@@ -178,15 +332,31 @@
 				"GAZ": 0,
 				"PRODUCTION": -1
 			},
-			"cout": 20
+			"cout": 100
 		},
 		{
 			"class": "model.batiment.BatimentVille",
-			"nom": "Banque central planÈtaire",
-			"description": "Centralise les fonts de la colonie",
-			"techNecessaire": 0,
+			"nom": "Centre de recherche",
+			"description": "Petit centre de recherche",
 			"bonus": {
 				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 0,
+				"SCIENCE": 2,
+				"CREDIT": -1,
+				"ACIER": 0,
+				"GAZ": 0,
+				"PRODUCTION": -1
+			},
+			"cout": 50
+		},
+		{
+			"class": "model.batiment.BatimentVille",
+			"nom": "Banque central planÔøΩtaire",
+			"description": "Centralise les fonts de la colonie",
+			"bonus": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
 				"CRISTAL": 0,
 				"SCIENCE": 0,
 				"CREDIT": 10,
@@ -194,9 +364,8 @@
 				"GAZ": 0,
 				"PRODUCTION": -1
 			},
-			"cout": 20
+			"cout": 80
 		},
-		null,
 		null,
 		null,
 		null,
@@ -269,16 +438,16 @@
 	"zeroValue": {
 		"class": "model.batiment.BatimentVille",
 		"nom": "Quartier ouvrier",
-		"description": "Quartier rÈsidentelle peu luxueux",
-		"techNecessaire": 0,
+		"description": "Quartier r√©sidentelle peu luxueux",
 		"bonus": {
 			"class": "java.util.HashMap",
+			"PUISSANCE": 0,
 			"CRISTAL": 0,
 			"SCIENCE": 0,
 			"CREDIT": 2,
 			"ACIER": 0,
 			"GAZ": 0,
-			"PRODUCTION": 5
+			"PRODUCTION": 2
 		},
 		"cout": 20
 	},

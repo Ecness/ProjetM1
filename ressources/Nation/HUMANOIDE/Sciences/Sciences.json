@@ -7,7 +7,7 @@
 		{
 			"class": "model.entity.player.Science",
 			"nom": "Vaiseau de defence",
-			"description": "Premier vaiseau conçue pour la defence de la colonie",
+			"description": "Premier vaiseau conï¿½ue pour la defence de la colonie",
 			"cout": 20,
 			"dependanceUn": 0,
 			"dependanceDeux": 0
@@ -31,7 +31,7 @@
 		{
 			"class": "model.entity.player.Science",
 			"nom": "RailGun",
-			"description": "Permet la construction d'un canon éléctrique",
+			"description": "Permet la construction d'un canon ï¿½lï¿½ctrique",
 			"cout": 100,
 			"dependanceUn": 3,
 			"dependanceDeux": 0
@@ -39,7 +39,7 @@
 		{
 			"class": "model.entity.player.Science",
 			"nom": "Vaisseau d'escorte",
-			"description": "Délock les vaisseau de tier 2",
+			"description": "Dï¿½lock les vaisseau de tier 2",
 			"cout": 60,
 			"dependanceUn": 1,
 			"dependanceDeux": 2
@@ -47,7 +47,7 @@
 		{
 			"class": "model.entity.player.Science",
 			"nom": "Croiseur stailaire",
-			"description": "Délock les vaisseau de tier 3",
+			"description": "Dï¿½lock les vaisseau de tier 3",
 			"cout": 150,
 			"dependanceUn": 4,
 			"dependanceDeux": 5
@@ -123,7 +123,7 @@
 	"zeroValue": {
 		"class": "model.entity.player.Science",
 		"nom": "Sonde",
-		"description": "Début de la découverte spacial",
+		"description": "DÃ©but de la conquÃ©te spacial",
 		"rechercher": true,
 		"cout": 0,
 		"dependanceUn": 0,
@@ -146,8 +146,8 @@
 		},
 		{
 			"class": "model.entity.player.Science",
-			"nom": "Defence planétaire",
-			"description": "Delock la construction de defence planétaire",
+			"nom": "Defence planï¿½taire",
+			"description": "Delock la construction de defence planï¿½taire",
 			"cout": 20,
 			"dependanceUn": 0,
 			"dependanceDeux": 0
@@ -265,7 +265,7 @@
 		{
 			"class": "model.entity.player.Science",
 			"nom": "Module d'arme perforante",
-			"description": "Auguemente de 10% les dommages des armes cinétique",
+			"description": "Auguemente de 10% les dommages des armes cinï¿½tique",
 			"cout": 50,
 			"dependanceUn": 0,
 			"dependanceDeux": 0
@@ -352,7 +352,7 @@
 	"zeroValue": {
 		"class": "model.entity.player.Science",
 		"nom": "Recherche des modules basic",
-		"description": "Le commencement des améliorations",
+		"description": "Le commencement des amï¿½liorations",
 		"rechercher": true,
 		"cout": 0,
 		"dependanceUn": 0,

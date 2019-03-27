@@ -6,6 +6,7 @@ import model.carte.combat.obstacle.EnumListObstacle;
 import model.entity.vaisseau.EnumDommageCritique;
 import model.entity.vaisseau.Vaisseau;
 import model.module.Arme;
+import model.module.EnumTypeArme;
 
 public class PhaseCombat {
 
@@ -62,41 +63,117 @@ public class PhaseCombat {
 
 	}
 	
-	
 	/**
+	 * Verifie l'ajout d'un feu au vaisseau
 	 * @param vaisseauAttaquan
 	 * @param vaisseauDefensseur
-	 * @return true si le vaiseau defensseur est détruit
+	 * @param arme
+	 * @param detail
+	 * @return	DetailCombat
+	 * 			: Le detail du combat.
 	 */
-	public DetailCombat infligerDommage(Vaisseau vaisseauAttaquan, Vaisseau vaisseauDefensseur, int bonnusPrecision) {
+	private DetailCombat verifAjoutFeu(Vaisseau vaisseauAttaquan, Vaisseau vaisseauDefensseur, Arme arme, DetailCombat detail) {
+		// bonus pour les bonnus de science
+		int bonus=0;
+		
+		if (arme.getTauxFeu()+bonus>(int)(100*Math.random()+1)) {
+			vaisseauDefensseur.addFire();
+			detail.addFeu();
+		}
+		return detail;
+	}
+	
+	/**
+	 * Verifie l'ajout d'un dommage critique au vaisseau
+	 * @param vaisseauAttaquan
+	 * @param vaisseauDefensseur
+	 * @param arme
+	 * @param detail
+	 * @return	DetailCombat
+	 * 			: Le detail du combat.
+	 */
+	private DetailCombat verifAjoutDommageCritique(Vaisseau vaisseauAttaquan, Vaisseau vaisseauDefensseur, Arme arme, DetailCombat detail) {
+		// bonus pour les bonnus de science
+		double bonus=0;
+		
+		if (arme.getCritique()>(int)(100*Math.random()+1)) {
+			EnumDommageCritique dommageCritique = EnumDommageCritique.getDammage();
+			detail = ajoutDommageCritique(dommageCritique, vaisseauDefensseur, detail);
+		}
+		return detail;
+	}
+	
+	/**
+	 * Verifie si le vaisseau a des bouclier pour l'ajout des feux et des dommages critiques
+	 * @param vaisseauAttaquan
+	 * @param vaisseauDefensseur
+	 * @param arme
+	 * @param detail
+	 * @return DetailCombat
+	 * 			: Le detail du combat.
+	 */
+	private DetailCombat verifBouclier(Vaisseau vaisseauAttaquan, Vaisseau vaisseauDefensseur, Arme arme, DetailCombat detail) {
+		// bonus pour les bonnus de science
+		double bonus=0;
+		if(vaisseauDefensseur.getBouclier()==0){							
+			detail = verifAjoutFeu(vaisseauAttaquan, vaisseauDefensseur, arme, detail);
+			detail = verifAjoutDommageCritique(vaisseauAttaquan, vaisseauDefensseur, arme, detail);
+			if(vaisseauDefensseur.getSante()==0) {
+				detail.detruit=true;
+			}
+		}
+		return detail;
+	}
+	
+	/**
+	 * permet d'infliger les dommages a un vaisseau
+	 * @param vaisseauAttaquan
+	 * @param vaisseauDefensseur
+	 * @param arme
+	 * @param detail
+	 * @param bonnusPrecision
+	 * @return DetailCombat
+	 * 						: Le detail du combat.
+	 */
+	private DetailCombat infligerDommage(Vaisseau vaisseauAttaquan, Vaisseau vaisseauDefensseur, Arme arme, DetailCombat detail, int bonnusPrecision) {
+		// bonus pour les bonnus de science
+		double bonusDommage=0;
+		if(vaisseauAttaquan.getJoueur() != null) {
+			if(arme.getTypeArme() == EnumTypeArme.CINETIQUE && vaisseauAttaquan.getScienceMilitaire().get(2).isRechercher()) {
+				bonusDommage=0.1;
+			}
+			if(arme.getTypeArme() == EnumTypeArme.LASER && vaisseauAttaquan.getScienceMilitaire().get(1).isRechercher()) {
+				bonnusPrecision+=10;
+			}
+		}
+		
+		if(arme.getPrecision()+bonnusPrecision>(int)(100*Math.random()+1)) {
+			detail.addDommage((int)(arme.getDommage()*bonusDommage));
+			vaisseauDefensseur.prendreDommage(arme.getDommage());
+			if(vaisseauDefensseur.getSante()==0) {
+				detail.detruit=true;
+				return detail;
+			}
+			detail = verifBouclier(vaisseauAttaquan, vaisseauDefensseur, arme, detail);
+		}	
+		return detail;
+	}
+	
+	/**
+	 * permet a un vaisseau d'endommager un autre vaisseau
+	 * @param vaisseauAttaquan
+	 * @param vaisseauDefensseur
+	 * @return	DetailCombat
+	 * 			: Le detail du combat.
+	 */
+	public DetailCombat endommageVaisseau(Vaisseau vaisseauAttaquan, Vaisseau vaisseauDefensseur, int bonnusPrecision) {		
 		
 		DetailCombat detail = new DetailCombat();
 		for (Entry<Integer, Arme> armes : vaisseauAttaquan.getArmes().entrySet()) {
 			Arme arme = armes.getValue();
 			if (arme.getUtilisable()==true) {
 				for (int i=0; i < arme.getNbTire(); i++) {
-					if(arme.getPrecision()+bonnusPrecision>(int)(100*Math.random()+1)) {
-						detail.addDommage(arme.getDommage());
-						vaisseauDefensseur.prendreDommage(arme.getDommage());
-						if(vaisseauDefensseur.getSante()==0) {
-							detail.detruit=true;
-							return detail;
-						}
-						if(vaisseauDefensseur.getBouclier()==0){							
-							if (arme.getTauxFeu()>(int)(100*Math.random()+1)) {
-								vaisseauDefensseur.addFire();
-								detail.addFeu();
-							}
-							if (arme.getCritique()>(int)(100*Math.random()+1)) {
-								EnumDommageCritique dommageCritique = EnumDommageCritique.getDammage();
-								detail = ajoutDommageCritique(dommageCritique, vaisseauDefensseur, detail);
-							}
-							if(vaisseauDefensseur.getSante()==0) {
-								detail.detruit=true;
-								return detail;
-							}
-						}
-					}					
+					detail = infligerDommage(vaisseauAttaquan, vaisseauDefensseur, arme, detail, bonnusPrecision);
 				}
 			}
 		}
@@ -109,8 +186,10 @@ public class PhaseCombat {
 	/**
 	 * @param dommage
 	 * @param vaisseau
+	 * @return	
+	 * 			: Le detail du combat.
 	 */
-	public DetailCombat ajoutDommageCritique(EnumDommageCritique dommage, Vaisseau vaisseau, DetailCombat detail) {
+	private DetailCombat ajoutDommageCritique(EnumDommageCritique dommage, Vaisseau vaisseau, DetailCombat detail) {
 
 		int id = (int)(vaisseau.getArmes().size()*Math.random());
 		switch (dommage) {
