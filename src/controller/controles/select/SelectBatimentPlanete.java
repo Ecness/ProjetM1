@@ -24,9 +24,9 @@ import model.batiment.ListBatiment;
 import model.carte.stellaire.Planete;
 import view.launcher.Project;
 
-public class SelectBatimentPlanete2 extends Window {
+public class SelectBatimentPlanete extends Window {
 	@SuppressWarnings("unlikely-arg-type")
-	public SelectBatimentPlanete2(Planete planete, int emplacement, Skin skin) {
+	public SelectBatimentPlanete(Planete planete, int emplacement, Skin skin) {
 		super("Selection Batiment", skin);
 		setSize(Project.width / 4, Project.height / 4);
 		setPosition(Project.width / 2 - getWidth() / 2, Project.height / 2 - getHeight() / 2);
@@ -63,7 +63,7 @@ public class SelectBatimentPlanete2 extends Window {
 
 				for (Entry<BatimentPlanete> batiment : listeBatiments.getBatimentsPlanete().entries()) {
 					if (!listeBatimentsPlanete.contains(batiment.value.getNom()) && 
-							(planete.getJoueur().getTechnology().getScienceBatiment().get(listeBatiments.getBatimentsVille().get(batiment.key).getTechNecessaire()).isRechercher())) {
+							(planete.getJoueur().getTechnology().getScienceBatiment().get(listeBatiments.getBatimentsPlanete().get(batiment.key).getTechNecessaire()).isRechercher())) {
 						//Correction type lecture json (de String vers EnumRessource)
 						Map<EnumRessource, Integer> bonus = new HashMap<EnumRessource, Integer>();
 						Map<EnumRessource, Integer> cout = new HashMap<EnumRessource, Integer>();
