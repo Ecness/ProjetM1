@@ -24,12 +24,12 @@ import model.batiment.ListBatiment;
 import model.carte.stellaire.Ville;
 import view.launcher.Project;
 
-public class SelectBatimentVille2 extends Window {
+public class SelectBatimentVille extends Window {
 
 	@SuppressWarnings("unlikely-arg-type")
-	public SelectBatimentVille2(Ville ville, Skin skin) {
+	public SelectBatimentVille(Ville ville, Skin skin) {
 		super("Selection batiment", skin);
-		setSize(Project.width / 4, Project.height / 4);
+		setSize(Project.width / 2, Project.height / 2);
 		setPosition(Project.width / 2 - getWidth() / 2, Project.height / 2 - getHeight() / 2);
 		
 		ScrollPane container = new ScrollPane(null, skin);
@@ -63,7 +63,7 @@ public class SelectBatimentVille2 extends Window {
 				for (BatimentVille batiment : ville.getFileDeConstructionBatiment()) {
 					listeBatimentsVille.add(batiment.getNom());
 				}
-
+				
 				for (Entry<BatimentVille> batiment : listeBatiments.getBatimentsVille().entries()) {
 					//Empêche de sélectionner des bâtiments déjà construits ou en construction ainsi que ceux dont la technologie n'est pas débloquée
 					if (!listeBatimentsVille.contains(batiment.value.getNom()) && 
@@ -78,7 +78,10 @@ public class SelectBatimentVille2 extends Window {
 						batiment.value.setBonus(bonus);
 
 						String text = batiment.value.getNom() + "\nTour(s) : " + (int) Math.ceil((double) batiment.value.getCout() / (double) ville.getTRessource().get(EnumRessource.PRODUCTION));
-						TextButton button = new TextButton(text, Project.skin);
+						TextButton button = new TextButton("", Project.skin);
+						button.add(batiment.value.getNom());
+						button.add(batiment.value.getDescription());
+						button.add("Tour(s) : " + (int) Math.ceil((double) batiment.value.getCout() / (double) ville.getTRessource().get(EnumRessource.PRODUCTION)));
 						//Le bouton est nommé selon sa clé dans la liste des batiments
 						button.setName("" + batiment.key);
 
