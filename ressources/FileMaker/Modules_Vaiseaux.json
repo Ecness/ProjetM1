@@ -7,7 +7,7 @@
 		{
 			"class": "model.module.Arme",
 			"nom": "Laser MKII",
-			"description": "Version am�lior� du laser MKI",
+			"description": "Version amélioré du laser MKI",
 			"point": 15,
 			"dommage": 5,
 			"precision": 75,
@@ -17,10 +17,10 @@
 			"cout": {
 				"class": "java.util.HashMap",
 				"PUISSANCE": 0,
-				"CRISTAL": 2,
+				"CRISTAL": 10,
 				"SCIENCE": 0,
-				"CREDIT": 10,
-				"ACIER": 1,
+				"CREDIT": 100,
+				"ACIER": 10,
 				"GAZ": 0,
 				"PRODUCTION": 0
 			},
@@ -112,10 +112,10 @@
 		"cout": {
 			"class": "java.util.HashMap",
 			"PUISSANCE": 0,
-			"CRISTAL": 1,
+			"CRISTAL": 5,
 			"SCIENCE": 0,
-			"CREDIT": 10,
-			"ACIER": 1,
+			"CREDIT": 50,
+			"ACIER": 5,
 			"GAZ": 0,
 			"PRODUCTION": 0
 		},
@@ -130,8 +130,8 @@
 		null,
 		{
 			"class": "model.module.Arme",
-			"nom": "Fusil Plasma jumel�",
-			"description": "Arme plasma jumel�",
+			"nom": "Fusil Plasma jumelé",
+			"description": "Arme plasma jumelé",
 			"point": 30,
 			"dommage": 30,
 			"precision": 20,
@@ -143,9 +143,9 @@
 				"PUISSANCE": 0,
 				"CRISTAL": 0,
 				"SCIENCE": 0,
-				"CREDIT": 60,
-				"ACIER": 1,
-				"GAZ": 3,
+				"CREDIT": 120,
+				"ACIER": 10,
+				"GAZ": 30,
 				"PRODUCTION": 0
 			},
 			"typeArme": "PLASMA"
@@ -238,9 +238,9 @@
 			"PUISSANCE": 0,
 			"CRISTAL": 0,
 			"SCIENCE": 0,
-			"CREDIT": 50,
-			"ACIER": 1,
-			"GAZ": 2,
+			"CREDIT": 100,
+			"ACIER": 10,
+			"GAZ": 20,
 			"PRODUCTION": 0
 		},
 		"typeArme": "PLASMA"
@@ -255,7 +255,7 @@
 		{
 			"class": "model.module.Arme",
 			"nom": "Type 490/2",
-			"description": "Version modifier de notre pr�c�dent canon",
+			"description": "Version modifier de notre précédent canon",
 			"point": 25,
 			"dommage": 20,
 			"precision": 75,
@@ -265,10 +265,10 @@
 			"cout": {
 				"class": "java.util.HashMap",
 				"PUISSANCE": 0,
-				"CRISTAL": 1,
+				"CRISTAL": 10,
 				"SCIENCE": 0,
-				"CREDIT": 10,
-				"ACIER": 3,
+				"CREDIT": 100,
+				"ACIER": 30,
 				"GAZ": 0,
 				"PRODUCTION": 0
 			},
@@ -276,8 +276,8 @@
 		},
 		{
 			"class": "model.module.Arme",
-			"nom": "Canon �lectrique",
-			"description": "Une arme � projectile acc�l�r� par une force �lectromagn�tique",
+			"nom": "Canon électrique",
+			"description": "Une arme é projectile accéléré par une force électromagnétique",
 			"point": 70,
 			"dommage": 70,
 			"precision": 85,
@@ -286,11 +286,11 @@
 			"cout": {
 				"class": "java.util.HashMap",
 				"PUISSANCE": 0,
-				"CRISTAL": 2,
+				"CRISTAL": 20,
 				"SCIENCE": 0,
-				"CREDIT": 50,
-				"ACIER": 5,
-				"GAZ": 1,
+				"CREDIT": 250,
+				"ACIER": 50,
+				"GAZ": 10,
 				"PRODUCTION": 0
 			},
 			"typeArme": "CINETIQUE"
@@ -382,8 +382,8 @@
 			"PUISSANCE": 0,
 			"CRISTAL": 0,
 			"SCIENCE": 0,
-			"CREDIT": 10,
-			"ACIER": 3,
+			"CREDIT": 100,
+			"ACIER": 30,
 			"GAZ": 0,
 			"PRODUCTION": 0
 		},
@@ -399,7 +399,7 @@
 		{
 			"class": "model.module.Blindage",
 			"nom": "Alliage Composite",
-			"description": "Melange de mat�riaux diver",
+			"description": "Melange de matériaux diver",
 			"point": 10,
 			"valeurBlindage": 150,
 			"valeurBlouclier": 80,
@@ -408,8 +408,8 @@
 				"PUISSANCE": 0,
 				"CRISTAL": 0,
 				"SCIENCE": 0,
-				"CREDIT": 60,
-				"ACIER": 3,
+				"CREDIT": 150,
+				"ACIER": 30,
 				"GAZ": 0,
 				"PRODUCTION": 0
 			}
@@ -417,16 +417,16 @@
 		{
 			"class": "model.module.Blindage",
 			"nom": "Arc electrique",
-			"description": "Des arc electrifi� pour r�duire les chance de frape directe",
+			"description": "Des arc electrifié pour réduire les chance de frape directe",
 			"point": 10,
 			"valeurBlouclier": 120,
 			"cout": {
 				"class": "java.util.HashMap",
 				"PUISSANCE": 0,
-				"CRISTAL": 1,
+				"CRISTAL": 10,
 				"SCIENCE": 0,
-				"CREDIT": 50,
-				"ACIER": 2,
+				"CREDIT": 100,
+				"ACIER": 20,
 				"GAZ": 0,
 				"PRODUCTION": 0
 			}
@@ -434,17 +434,17 @@
 		{
 			"class": "model.module.Blindage",
 			"nom": "Aliage composite MKII",
-			"description": "Blindage renforc�",
+			"description": "Blindage renforcé",
 			"point": 20,
 			"valeurBlindage": 200,
 			"valeurBlouclier": 110,
 			"cout": {
 				"class": "java.util.HashMap",
 				"PUISSANCE": 0,
-				"CRISTAL": 1,
+				"CRISTAL": 10,
 				"SCIENCE": 0,
-				"CREDIT": 50,
-				"ACIER": 6,
+				"CREDIT": 200,
+				"ACIER": 60,
 				"GAZ": 0,
 				"PRODUCTION": 0
 			}
@@ -522,7 +522,7 @@
 	],
 	"zeroValue": {
 		"class": "model.module.Blindage",
-		"nom": "Alliage m�talique",
+		"nom": "Alliage métalique",
 		"description": "Blindage sommaire",
 		"point": 5,
 		"valeurBlindage": 80,
@@ -532,8 +532,8 @@
 			"PUISSANCE": 0,
 			"CRISTAL": 0,
 			"SCIENCE": 0,
-			"CREDIT": 50,
-			"ACIER": 2,
+			"CREDIT": 100,
+			"ACIER": 20,
 			"GAZ": 0,
 			"PRODUCTION": 0
 		}
@@ -548,7 +548,7 @@
 		{
 			"class": "model.module.Chassie",
 			"nom": "Classe WarHound",
-			"description": "Con�u pour les petit vaisseaux",
+			"description": "Conéu pour les petit vaisseaux",
 			"point": 50,
 			"sante": 150,
 			"santeMax": 150,
@@ -562,9 +562,9 @@
 				"PUISSANCE": 0,
 				"CRISTAL": 0,
 				"SCIENCE": 0,
-				"CREDIT": 0,
-				"ACIER": 0,
-				"GAZ": 0,
+				"CREDIT": 50,
+				"ACIER": 10,
+				"GAZ": 5,
 				"PRODUCTION": 0
 			}
 		},
@@ -583,11 +583,11 @@
 			"cout": {
 				"class": "java.util.HashMap",
 				"PUISSANCE": 0,
-				"CRISTAL": 0,
+				"CRISTAL": 5,
 				"SCIENCE": 0,
-				"CREDIT": 0,
-				"ACIER": 0,
-				"GAZ": 0,
+				"CREDIT": 100,
+				"ACIER": 20,
+				"GAZ": 5,
 				"PRODUCTION": 0
 			}
 		},
@@ -606,11 +606,11 @@
 			"cout": {
 				"class": "java.util.HashMap",
 				"PUISSANCE": 0,
-				"CRISTAL": 0,
+				"CRISTAL": 10,
 				"SCIENCE": 0,
-				"CREDIT": 0,
-				"ACIER": 0,
-				"GAZ": 0,
+				"CREDIT": 200,
+				"ACIER": 50,
+				"GAZ": 10,
 				"PRODUCTION": 0
 			}
 		},
@@ -629,11 +629,11 @@
 			"cout": {
 				"class": "java.util.HashMap",
 				"PUISSANCE": 0,
-				"CRISTAL": 0,
+				"CRISTAL": 20,
 				"SCIENCE": 0,
-				"CREDIT": 0,
-				"ACIER": 0,
-				"GAZ": 0,
+				"CREDIT": 500,
+				"ACIER": 100,
+				"GAZ": 50,
 				"PRODUCTION": 0
 			}
 		},
@@ -710,7 +710,7 @@
 	"zeroValue": {
 		"class": "model.module.Chassie",
 		"nom": "Sonde",
-		"description": "Parfaite pour explor� l'espace en s�curit�",
+		"description": "Parfaite pour exploré l'espace en sécurité",
 		"point": 1,
 		"sante": 1,
 		"santeMax": 1,
@@ -719,7 +719,7 @@
 			"PUISSANCE": 0,
 			"CRISTAL": 0,
 			"SCIENCE": 0,
-			"CREDIT": 0,
+			"CREDIT": 20,
 			"ACIER": 0,
 			"GAZ": 0,
 			"PRODUCTION": 0

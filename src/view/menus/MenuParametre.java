@@ -62,7 +62,9 @@ public class MenuParametre {
 			
 			SelectBox<String> couleur = new SelectBox<String>(skin);
 			couleur.setName("color_" + i);
-			couleur.setItems(Colors.getColors().keys().toArray());
+			
+			
+			couleur.setItems(EnumCouleurs.getCouleur());
 			
 			joueurs.add(name).expand();
 			joueurs.add(nation).expand();

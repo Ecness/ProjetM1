@@ -56,13 +56,20 @@ public class GenerationRessourceEtAnomalie {
 				anomalieSysteme.get(t).add(EnumAnomalie.PIRATE);
 				break;
 				
-			default:
+			case SYSTEME_PLANETAIRE:
 				anomalieSysteme.put(t, new ArrayList<EnumAnomalie>());
 				
 				anomalieSysteme.get(t).add(EnumAnomalie.ASTEROIDE);
 				anomalieSysteme.get(t).add(EnumAnomalie.COMETE);
 				anomalieSysteme.get(t).add(EnumAnomalie.EPAVE);
 				anomalieSysteme.get(t).add(EnumAnomalie.PIRATE);
+				break;
+			default:
+				anomalieSysteme.put(t, new ArrayList<EnumAnomalie>());
+				
+				anomalieSysteme.get(t).add(EnumAnomalie.ASTEROIDE);
+				anomalieSysteme.get(t).add(EnumAnomalie.COMETE);
+				anomalieSysteme.get(t).add(EnumAnomalie.EPAVE);
 				break;
 			}
 		}
@@ -124,9 +131,16 @@ public class GenerationRessourceEtAnomalie {
 	
 	public EnumAnomalie generationAnomalieSysteme(EnumTypeSysteme type) {
 		
-		int ressource = (int) ((anomalieSysteme.get(type).size())*Math.random());	
+		int anomalie = (int) ((anomalieSysteme.get(type).size())*Math.random());	
 		
-		return anomalieSysteme.get(type).get(ressource);
+		return anomalieSysteme.get(type).get(anomalie);
+	}
+	
+	public EnumAnomalie generationAnomalieSystemeDepart() {
+		
+		int anomalie = (int) ((anomalieSysteme.get(EnumTypeSysteme.DEPART).size())*Math.random());	
+		
+		return anomalieSysteme.get(EnumTypeSysteme.DEPART).get(anomalie);
 	}
 	
 }

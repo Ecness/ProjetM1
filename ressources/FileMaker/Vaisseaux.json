@@ -1,115 +1,9 @@
 {
 "vaisseaux": {
-	"size": 5,
-	"keyTable": [ 0, 1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+	"size": 11,
+	"keyTable": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
 	"valueTable": [
 		null,
-		{
-			"class": "model.entity.vaisseau.Corvette",
-			"puissance": 35,
-			"sante": 110,
-			"santeMax": 110,
-			"bouclier": 30,
-			"bouclierMax": 30,
-			"nom": "Specter",
-			"chassie": {
-				"nom": "Specter",
-				"description": "Cargo civil modifier",
-				"point": 5,
-				"sante": 30,
-				"santeMax": 30,
-				"nbArme": 1,
-				"nbBlindage": 1,
-				"cout": {
-					"class": "java.util.HashMap",
-					"PUISSANCE": 0,
-					"CRISTAL": 2,
-					"SCIENCE": 0,
-					"CREDIT": 200,
-					"ACIER": 2,
-					"GAZ": 2,
-					"PRODUCTION": 0
-				}
-			},
-			"armes": {
-				"class": "java.util.HashMap",
-				"0": {
-					"nom": "Fusil Plasma",
-					"description": "Cette arme a un fort potentielle destructeur",
-					"point": 25,
-					"dommage": 60,
-					"precision": 10,
-					"critique": 50,
-					"nbTire": 1,
-					"tauxFeu": 60,
-					"cout": {
-						"class": "java.util.HashMap",
-						"PUISSANCE": 0,
-						"CRISTAL": 0,
-						"SCIENCE": 0,
-						"CREDIT": 50,
-						"ACIER": 1,
-						"GAZ": 2,
-						"PRODUCTION": 0
-					},
-					"typeArme": "PLASMA"
-				}
-			},
-			"blindages": {
-				"class": "java.util.HashMap",
-				"0": {
-					"nom": "Alliage m�talique",
-					"description": "Blindage sommaire",
-					"point": 5,
-					"valeurBlindage": 80,
-					"valeurBlouclier": 30,
-					"cout": {
-						"class": "java.util.HashMap",
-						"PUISSANCE": 0,
-						"CRISTAL": 0,
-						"SCIENCE": 0,
-						"CREDIT": 50,
-						"ACIER": 2,
-						"GAZ": 0,
-						"PRODUCTION": 0
-					}
-				}
-			},
-			"cout": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 2,
-				"SCIENCE": 0,
-				"CREDIT": 300,
-				"ACIER": 5,
-				"GAZ": 4,
-				"PRODUCTION": 0
-			}
-		},
-		{
-			"class": "model.entity.vaisseau.VaisseauCivil",
-			"puissance": 1,
-			"sante": 1,
-			"santeMax": 1,
-			"nom": "Sonde",
-			"chassie": {
-				"nom": "Sonde",
-				"description": "Créé pour l'exploration spacial",
-				"point": 1,
-				"sante": 1,
-				"santeMax": 1,
-				"cout": {
-					"class": "java.util.HashMap",
-					"PUISSANCE": 0,
-					"CRISTAL": 1,
-					"SCIENCE": 0,
-					"CREDIT": 50,
-					"ACIER": 1,
-					"GAZ": 1,
-					"PRODUCTION": 0
-				}
-			}
-		},
 		{
 			"class": "model.entity.vaisseau.VaisseauCivil",
 			"puissance": 1,
@@ -136,76 +30,145 @@
 		},
 		{
 			"class": "model.entity.vaisseau.Croiseur",
-			"puissance": 230,
-			"sante": 260,
-			"santeMax": 260,
-			"bouclier": 110,
-			"bouclierMax": 110,
-			"nom": "Pillager",
+			"techNecessaire": 6,
+			"puissance": 600,
+			"sante": 1100,
+			"santeMax": 1100,
+			"bouclier": 560,
+			"bouclierMax": 560,
+			"nom": "Universe",
 			"chassie": {
-				"nom": "Pillager",
-				"description": "Conçue pour piller",
-				"point": 5,
-				"sante": 30,
-				"santeMax": 30,
-				"nbArme": 3,
-				"nbBlindage": 2,
+				"nom": "Classe NightBringer",
+				"description": "Chassie pour les vaisseaux de combat",
+				"point": 350,
+				"sante": 500,
+				"santeMax": 500,
+				"bouclier": 110,
+				"bouclierMax": 110,
+				"nbArme": 6,
+				"nbBlindage": 4,
+				"nbModule": 3,
 				"cout": {
 					"class": "java.util.HashMap",
 					"PUISSANCE": 0,
-					"CRISTAL": 5,
+					"CRISTAL": 20,
 					"SCIENCE": 0,
 					"CREDIT": 500,
-					"ACIER": 5,
-					"GAZ": 5,
+					"ACIER": 100,
+					"GAZ": 50,
 					"PRODUCTION": 0
 				}
 			},
 			"armes": {
 				"class": "java.util.HashMap",
 				"0": {
-					"nom": "Canon �lectrique",
-					"description": "Une arme � projectile acc�l�r� par une force �lectromagn�tique",
-					"point": 70,
-					"dommage": 70,
-					"precision": 85,
-					"critique": 25,
-					"nbTire": 1,
+					"nom": "Laser MKII",
+					"description": "Version amélioré du laser MKI",
+					"point": 15,
+					"dommage": 5,
+					"precision": 75,
+					"critique": 5,
+					"nbTire": 6,
+					"tauxFeu": 45,
 					"cout": {
 						"class": "java.util.HashMap",
 						"PUISSANCE": 0,
-						"CRISTAL": 2,
+						"CRISTAL": 10,
 						"SCIENCE": 0,
-						"CREDIT": 50,
-						"ACIER": 5,
-						"GAZ": 1,
+						"CREDIT": 100,
+						"ACIER": 10,
+						"GAZ": 0,
 						"PRODUCTION": 0
 					},
-					"typeArme": "CINETIQUE"
+					"typeArme": "LASER"
 				},
 				"1": {
-					"nom": "Canon �lectrique",
-					"description": "Une arme � projectile acc�l�r� par une force �lectromagn�tique",
-					"point": 70,
-					"dommage": 70,
-					"precision": 85,
-					"critique": 25,
-					"nbTire": 1,
+					"nom": "Laser MKII",
+					"description": "Version amélioré du laser MKI",
+					"point": 15,
+					"dommage": 5,
+					"precision": 75,
+					"critique": 5,
+					"nbTire": 6,
+					"tauxFeu": 45,
 					"cout": {
 						"class": "java.util.HashMap",
 						"PUISSANCE": 0,
-						"CRISTAL": 2,
+						"CRISTAL": 10,
 						"SCIENCE": 0,
-						"CREDIT": 50,
-						"ACIER": 5,
-						"GAZ": 1,
+						"CREDIT": 100,
+						"ACIER": 10,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					},
+					"typeArme": "LASER"
+				},
+				"2": {
+					"nom": "Type 490/2",
+					"description": "Version modifier de notre précédent canon",
+					"point": 25,
+					"dommage": 20,
+					"precision": 75,
+					"critique": 10,
+					"nbTire": 2,
+					"tauxFeu": 5,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 30,
+						"GAZ": 0,
 						"PRODUCTION": 0
 					},
 					"typeArme": "CINETIQUE"
 				},
-				"2": {
-					"nom": "Canon �lectrique",
-					"description": "Une arme � projectile acc�l�r� par une force �lectromagn�tique",
+				"3": {
+					"nom": "Type 490/2",
+					"description": "Version modifier de notre précédent canon",
+					"point": 25,
+					"dommage": 20,
+					"precision": 75,
+					"critique": 10,
+					"nbTire": 2,
+					"tauxFeu": 5,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					},
+					"typeArme": "CINETIQUE"
+				},
+				"4": {
+					"nom": "Fusil Plasma jumelé",
+					"description": "Arme plasma jumelé",
+					"point": 30,
+					"dommage": 30,
+					"precision": 20,
+					"critique": 25,
+					"nbTire": 2,
+					"tauxFeu": 60,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 120,
+						"ACIER": 10,
+						"GAZ": 30,
+						"PRODUCTION": 0
+					},
+					"typeArme": "PLASMA"
+				},
+				"5": {
+					"nom": "Canon électrique",
+					"description": "Une arme é projectile accéléré par une force électromagnétique",
 					"point": 70,
 					"dommage": 70,
 					"precision": 85,
@@ -214,11 +177,11 @@
 					"cout": {
 						"class": "java.util.HashMap",
 						"PUISSANCE": 0,
-						"CRISTAL": 2,
+						"CRISTAL": 20,
 						"SCIENCE": 0,
-						"CREDIT": 50,
-						"ACIER": 5,
-						"GAZ": 1,
+						"CREDIT": 250,
+						"ACIER": 50,
+						"GAZ": 10,
 						"PRODUCTION": 0
 					},
 					"typeArme": "CINETIQUE"
@@ -227,7 +190,164 @@
 			"blindages": {
 				"class": "java.util.HashMap",
 				"0": {
-					"nom": "Alliage m�talique",
+					"nom": "Arc electrique",
+					"description": "Des arc electrifié pour réduire les chance de frape directe",
+					"point": 10,
+					"valeurBlouclier": 120,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 20,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				},
+				"1": {
+					"nom": "Aliage composite MKII",
+					"description": "Blindage renforcé",
+					"point": 20,
+					"valeurBlindage": 200,
+					"valeurBlouclier": 110,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 200,
+						"ACIER": 60,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				},
+				"2": {
+					"nom": "Aliage composite MKII",
+					"description": "Blindage renforcé",
+					"point": 20,
+					"valeurBlindage": 200,
+					"valeurBlouclier": 110,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 200,
+						"ACIER": 60,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				},
+				"3": {
+					"nom": "Aliage composite MKII",
+					"description": "Blindage renforcé",
+					"point": 20,
+					"valeurBlindage": 200,
+					"valeurBlouclier": 110,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 200,
+						"ACIER": 60,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				}
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 90,
+				"SCIENCE": 0,
+				"CREDIT": 1470,
+				"ACIER": 300,
+				"GAZ": 90,
+				"PRODUCTION": 0
+			}
+		},
+		{
+			"class": "model.entity.vaisseau.Corvette",
+			"techNecessaire": 1,
+			"puissance": 95,
+			"sante": 230,
+			"santeMax": 230,
+			"bouclier": 50,
+			"bouclierMax": 50,
+			"nom": "Unexpected A",
+			"chassie": {
+				"nom": "Classe WarHound",
+				"description": "Conéu pour les petit vaisseaux",
+				"point": 50,
+				"sante": 150,
+				"santeMax": 150,
+				"bouclier": 20,
+				"bouclierMax": 20,
+				"nbArme": 2,
+				"nbBlindage": 1,
+				"nbModule": 1,
+				"cout": {
+					"class": "java.util.HashMap",
+					"PUISSANCE": 0,
+					"CRISTAL": 0,
+					"SCIENCE": 0,
+					"CREDIT": 50,
+					"ACIER": 10,
+					"GAZ": 5,
+					"PRODUCTION": 0
+				}
+			},
+			"armes": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Type 490/3",
+					"description": "Des canon de la marine modifier pour l'environement spacial",
+					"point": 20,
+					"dommage": 20,
+					"precision": 60,
+					"critique": 10,
+					"nbTire": 3,
+					"tauxFeu": 5,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					},
+					"typeArme": "CINETIQUE"
+				},
+				"1": {
+					"nom": "Type 490/3",
+					"description": "Des canon de la marine modifier pour l'environement spacial",
+					"point": 20,
+					"dommage": 20,
+					"precision": 60,
+					"critique": 10,
+					"nbTire": 3,
+					"tauxFeu": 5,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					},
+					"typeArme": "CINETIQUE"
+				}
+			},
+			"blindages": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Alliage métalique",
 					"description": "Blindage sommaire",
 					"point": 5,
 					"valeurBlindage": 80,
@@ -237,25 +357,8 @@
 						"PUISSANCE": 0,
 						"CRISTAL": 0,
 						"SCIENCE": 0,
-						"CREDIT": 50,
-						"ACIER": 2,
-						"GAZ": 0,
-						"PRODUCTION": 0
-					}
-				},
-				"1": {
-					"nom": "Alliage Composite",
-					"description": "Melange de mat�riaux diver",
-					"point": 10,
-					"valeurBlindage": 150,
-					"valeurBlouclier": 80,
-					"cout": {
-						"class": "java.util.HashMap",
-						"PUISSANCE": 0,
-						"CRISTAL": 0,
-						"SCIENCE": 0,
-						"CREDIT": 60,
-						"ACIER": 3,
+						"CREDIT": 100,
+						"ACIER": 20,
 						"GAZ": 0,
 						"PRODUCTION": 0
 					}
@@ -264,20 +367,894 @@
 			"cout": {
 				"class": "java.util.HashMap",
 				"PUISSANCE": 0,
-				"CRISTAL": 11,
+				"CRISTAL": 0,
 				"SCIENCE": 0,
-				"CREDIT": 710,
-				"ACIER": 23,
-				"GAZ": 8,
+				"CREDIT": 350,
+				"ACIER": 90,
+				"GAZ": 5,
 				"PRODUCTION": 0
 			}
 		},
-		null,
-		null,
-		null,
-		null,
-		null,
-		null,
+		{
+			"class": "model.entity.vaisseau.Corvette",
+			"puissance": 85,
+			"sante": 230,
+			"santeMax": 230,
+			"bouclier": 50,
+			"bouclierMax": 50,
+			"nom": "Unexpected B",
+			"chassie": {
+				"nom": "Classe WarHound",
+				"description": "Conéu pour les petit vaisseaux",
+				"point": 50,
+				"sante": 150,
+				"santeMax": 150,
+				"bouclier": 20,
+				"bouclierMax": 20,
+				"nbArme": 2,
+				"nbBlindage": 1,
+				"nbModule": 1,
+				"cout": {
+					"class": "java.util.HashMap",
+					"PUISSANCE": 0,
+					"CRISTAL": 0,
+					"SCIENCE": 0,
+					"CREDIT": 50,
+					"ACIER": 10,
+					"GAZ": 5,
+					"PRODUCTION": 0
+				}
+			},
+			"armes": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Type 490/3",
+					"description": "Des canon de la marine modifier pour l'environement spacial",
+					"point": 20,
+					"dommage": 20,
+					"precision": 60,
+					"critique": 10,
+					"nbTire": 3,
+					"tauxFeu": 5,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					},
+					"typeArme": "CINETIQUE"
+				},
+				"1": {
+					"nom": "Laser MKI",
+					"description": "Petit module d'arme laser",
+					"point": 10,
+					"dommage": 5,
+					"precision": 90,
+					"critique": 5,
+					"nbTire": 3,
+					"tauxFeu": 45,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 5,
+						"SCIENCE": 0,
+						"CREDIT": 50,
+						"ACIER": 5,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					},
+					"typeArme": "LASER"
+				}
+			},
+			"blindages": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Alliage métalique",
+					"description": "Blindage sommaire",
+					"point": 5,
+					"valeurBlindage": 80,
+					"valeurBlouclier": 30,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 20,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				}
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 5,
+				"SCIENCE": 0,
+				"CREDIT": 300,
+				"ACIER": 65,
+				"GAZ": 5,
+				"PRODUCTION": 0
+			}
+		},
+		{
+			"class": "model.entity.vaisseau.Corvette",
+			"techNecessaire": 1,
+			"puissance": 105,
+			"sante": 230,
+			"santeMax": 230,
+			"bouclier": 50,
+			"bouclierMax": 50,
+			"nom": "Unexpected C",
+			"chassie": {
+				"nom": "Classe WarHound",
+				"description": "Conéu pour les petit vaisseaux",
+				"point": 50,
+				"sante": 150,
+				"santeMax": 150,
+				"bouclier": 20,
+				"bouclierMax": 20,
+				"nbArme": 2,
+				"nbBlindage": 1,
+				"nbModule": 1,
+				"cout": {
+					"class": "java.util.HashMap",
+					"PUISSANCE": 0,
+					"CRISTAL": 0,
+					"SCIENCE": 0,
+					"CREDIT": 50,
+					"ACIER": 10,
+					"GAZ": 5,
+					"PRODUCTION": 0
+				}
+			},
+			"armes": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Fusil Plasma",
+					"description": "Cette arme a un fort potentielle destructeur",
+					"point": 25,
+					"dommage": 60,
+					"precision": 10,
+					"critique": 50,
+					"nbTire": 1,
+					"tauxFeu": 60,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 10,
+						"GAZ": 20,
+						"PRODUCTION": 0
+					},
+					"typeArme": "PLASMA"
+				},
+				"1": {
+					"nom": "Fusil Plasma",
+					"description": "Cette arme a un fort potentielle destructeur",
+					"point": 25,
+					"dommage": 60,
+					"precision": 10,
+					"critique": 50,
+					"nbTire": 1,
+					"tauxFeu": 60,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 10,
+						"GAZ": 20,
+						"PRODUCTION": 0
+					},
+					"typeArme": "PLASMA"
+				}
+			},
+			"blindages": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Alliage métalique",
+					"description": "Blindage sommaire",
+					"point": 5,
+					"valeurBlindage": 80,
+					"valeurBlouclier": 30,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 20,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				}
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 0,
+				"SCIENCE": 0,
+				"CREDIT": 350,
+				"ACIER": 50,
+				"GAZ": 45,
+				"PRODUCTION": 0
+			}
+		},
+		{
+			"class": "model.entity.vaisseau.Corvette",
+			"techNecessaire": 3,
+			"puissance": 130,
+			"sante": 350,
+			"santeMax": 350,
+			"bouclier": 110,
+			"bouclierMax": 110,
+			"nom": "FireBird A",
+			"chassie": {
+				"nom": "Classe DauntLess",
+				"description": "Chassie pour les vaisseaux de reconaissance",
+				"point": 70,
+				"sante": 200,
+				"santeMax": 200,
+				"bouclier": 30,
+				"bouclierMax": 30,
+				"nbArme": 3,
+				"nbBlindage": 1,
+				"nbModule": 2,
+				"cout": {
+					"class": "java.util.HashMap",
+					"PUISSANCE": 0,
+					"CRISTAL": 5,
+					"SCIENCE": 0,
+					"CREDIT": 100,
+					"ACIER": 20,
+					"GAZ": 5,
+					"PRODUCTION": 0
+				}
+			},
+			"armes": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Type 490/2",
+					"description": "Version modifier de notre précédent canon",
+					"point": 25,
+					"dommage": 20,
+					"precision": 75,
+					"critique": 10,
+					"nbTire": 2,
+					"tauxFeu": 5,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					},
+					"typeArme": "CINETIQUE"
+				},
+				"1": {
+					"nom": "Type 490/2",
+					"description": "Version modifier de notre précédent canon",
+					"point": 25,
+					"dommage": 20,
+					"precision": 75,
+					"critique": 10,
+					"nbTire": 2,
+					"tauxFeu": 5,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					},
+					"typeArme": "CINETIQUE"
+				}
+			},
+			"blindages": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Alliage Composite",
+					"description": "Melange de matériaux diver",
+					"point": 10,
+					"valeurBlindage": 150,
+					"valeurBlouclier": 80,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 150,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				}
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 25,
+				"SCIENCE": 0,
+				"CREDIT": 450,
+				"ACIER": 110,
+				"GAZ": 5,
+				"PRODUCTION": 0
+			}
+		},
+		{
+			"class": "model.entity.vaisseau.Corvette",
+			"techNecessaire": 3,
+			"puissance": 120,
+			"sante": 350,
+			"santeMax": 350,
+			"bouclier": 110,
+			"bouclierMax": 110,
+			"nom": "FireBird B",
+			"chassie": {
+				"nom": "Classe DauntLess",
+				"description": "Chassie pour les vaisseaux de reconaissance",
+				"point": 70,
+				"sante": 200,
+				"santeMax": 200,
+				"bouclier": 30,
+				"bouclierMax": 30,
+				"nbArme": 3,
+				"nbBlindage": 1,
+				"nbModule": 2,
+				"cout": {
+					"class": "java.util.HashMap",
+					"PUISSANCE": 0,
+					"CRISTAL": 5,
+					"SCIENCE": 0,
+					"CREDIT": 100,
+					"ACIER": 20,
+					"GAZ": 5,
+					"PRODUCTION": 0
+				}
+			},
+			"armes": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Type 490/2",
+					"description": "Version modifier de notre précédent canon",
+					"point": 25,
+					"dommage": 20,
+					"precision": 75,
+					"critique": 10,
+					"nbTire": 2,
+					"tauxFeu": 5,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					},
+					"typeArme": "CINETIQUE"
+				},
+				"1": {
+					"nom": "Laser MKII",
+					"description": "Version amélioré du laser MKI",
+					"point": 15,
+					"dommage": 5,
+					"precision": 75,
+					"critique": 5,
+					"nbTire": 6,
+					"tauxFeu": 45,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 10,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					},
+					"typeArme": "LASER"
+				}
+			},
+			"blindages": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Alliage Composite",
+					"description": "Melange de matériaux diver",
+					"point": 10,
+					"valeurBlindage": 150,
+					"valeurBlouclier": 80,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 150,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				}
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 25,
+				"SCIENCE": 0,
+				"CREDIT": 450,
+				"ACIER": 90,
+				"GAZ": 5,
+				"PRODUCTION": 0
+			}
+		},
+		{
+			"class": "model.entity.vaisseau.Croiseur",
+			"techNecessaire": 5,
+			"puissance": 180,
+			"sante": 300,
+			"santeMax": 300,
+			"bouclier": 170,
+			"bouclierMax": 170,
+			"nom": "Lightning A",
+			"chassie": {
+				"nom": "Classe StarLight",
+				"description": "Chassie pour les vaisseaux de ligne ou d'escorte",
+				"point": 120,
+				"sante": 300,
+				"santeMax": 300,
+				"bouclier": 50,
+				"bouclierMax": 50,
+				"nbArme": 4,
+				"nbBlindage": 2,
+				"nbModule": 2,
+				"cout": {
+					"class": "java.util.HashMap",
+					"PUISSANCE": 0,
+					"CRISTAL": 10,
+					"SCIENCE": 0,
+					"CREDIT": 200,
+					"ACIER": 50,
+					"GAZ": 10,
+					"PRODUCTION": 0
+				}
+			},
+			"armes": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Type 490/2",
+					"description": "Version modifier de notre précédent canon",
+					"point": 25,
+					"dommage": 20,
+					"precision": 75,
+					"critique": 10,
+					"nbTire": 2,
+					"tauxFeu": 5,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					},
+					"typeArme": "CINETIQUE"
+				},
+				"1": {
+					"nom": "Type 490/2",
+					"description": "Version modifier de notre précédent canon",
+					"point": 25,
+					"dommage": 20,
+					"precision": 75,
+					"critique": 10,
+					"nbTire": 2,
+					"tauxFeu": 5,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					},
+					"typeArme": "CINETIQUE"
+				}
+			},
+			"blindages": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Arc electrique",
+					"description": "Des arc electrifié pour réduire les chance de frape directe",
+					"point": 10,
+					"valeurBlouclier": 120,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 20,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				}
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 40,
+				"SCIENCE": 0,
+				"CREDIT": 500,
+				"ACIER": 130,
+				"GAZ": 10,
+				"PRODUCTION": 0
+			}
+		},
+		{
+			"class": "model.entity.vaisseau.Croiseur",
+			"techNecessaire": 5,
+			"puissance": 190,
+			"sante": 450,
+			"santeMax": 450,
+			"bouclier": 130,
+			"bouclierMax": 130,
+			"nom": "Lightning B",
+			"chassie": {
+				"nom": "Classe StarLight",
+				"description": "Chassie pour les vaisseaux de ligne ou d'escorte",
+				"point": 120,
+				"sante": 300,
+				"santeMax": 300,
+				"bouclier": 50,
+				"bouclierMax": 50,
+				"nbArme": 4,
+				"nbBlindage": 2,
+				"nbModule": 2,
+				"cout": {
+					"class": "java.util.HashMap",
+					"PUISSANCE": 0,
+					"CRISTAL": 10,
+					"SCIENCE": 0,
+					"CREDIT": 200,
+					"ACIER": 50,
+					"GAZ": 10,
+					"PRODUCTION": 0
+				}
+			},
+			"armes": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Fusil Plasma jumelé",
+					"description": "Arme plasma jumelé",
+					"point": 30,
+					"dommage": 30,
+					"precision": 20,
+					"critique": 25,
+					"nbTire": 2,
+					"tauxFeu": 60,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 120,
+						"ACIER": 10,
+						"GAZ": 30,
+						"PRODUCTION": 0
+					},
+					"typeArme": "PLASMA"
+				},
+				"1": {
+					"nom": "Fusil Plasma jumelé",
+					"description": "Arme plasma jumelé",
+					"point": 30,
+					"dommage": 30,
+					"precision": 20,
+					"critique": 25,
+					"nbTire": 2,
+					"tauxFeu": 60,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 120,
+						"ACIER": 10,
+						"GAZ": 30,
+						"PRODUCTION": 0
+					},
+					"typeArme": "PLASMA"
+				}
+			},
+			"blindages": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Alliage Composite",
+					"description": "Melange de matériaux diver",
+					"point": 10,
+					"valeurBlindage": 150,
+					"valeurBlouclier": 80,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 150,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				}
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 10,
+				"SCIENCE": 0,
+				"CREDIT": 590,
+				"ACIER": 100,
+				"GAZ": 70,
+				"PRODUCTION": 0
+			}
+		},
+		{
+			"class": "model.entity.vaisseau.Croiseur",
+			"techNecessaire": 4,
+			"puissance": 555,
+			"sante": 850,
+			"santeMax": 850,
+			"bouclier": 540,
+			"bouclierMax": 540,
+			"nom": "Ulysse",
+			"chassie": {
+				"nom": "Classe NightBringer",
+				"description": "Chassie pour les vaisseaux de combat",
+				"point": 350,
+				"sante": 500,
+				"santeMax": 500,
+				"bouclier": 110,
+				"bouclierMax": 110,
+				"nbArme": 6,
+				"nbBlindage": 4,
+				"nbModule": 3,
+				"cout": {
+					"class": "java.util.HashMap",
+					"PUISSANCE": 0,
+					"CRISTAL": 20,
+					"SCIENCE": 0,
+					"CREDIT": 500,
+					"ACIER": 100,
+					"GAZ": 50,
+					"PRODUCTION": 0
+				}
+			},
+			"armes": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Type 490/2",
+					"description": "Version modifier de notre précédent canon",
+					"point": 25,
+					"dommage": 20,
+					"precision": 75,
+					"critique": 10,
+					"nbTire": 2,
+					"tauxFeu": 5,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					},
+					"typeArme": "CINETIQUE"
+				},
+				"1": {
+					"nom": "Type 490/2",
+					"description": "Version modifier de notre précédent canon",
+					"point": 25,
+					"dommage": 20,
+					"precision": 75,
+					"critique": 10,
+					"nbTire": 2,
+					"tauxFeu": 5,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					},
+					"typeArme": "CINETIQUE"
+				},
+				"2": {
+					"nom": "Type 490/2",
+					"description": "Version modifier de notre précédent canon",
+					"point": 25,
+					"dommage": 20,
+					"precision": 75,
+					"critique": 10,
+					"nbTire": 2,
+					"tauxFeu": 5,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					},
+					"typeArme": "CINETIQUE"
+				},
+				"3": {
+					"nom": "Type 490/2",
+					"description": "Version modifier de notre précédent canon",
+					"point": 25,
+					"dommage": 20,
+					"precision": 75,
+					"critique": 10,
+					"nbTire": 2,
+					"tauxFeu": 5,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					},
+					"typeArme": "CINETIQUE"
+				},
+				"4": {
+					"nom": "Type 490/2",
+					"description": "Version modifier de notre précédent canon",
+					"point": 25,
+					"dommage": 20,
+					"precision": 75,
+					"critique": 10,
+					"nbTire": 2,
+					"tauxFeu": 5,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					},
+					"typeArme": "CINETIQUE"
+				},
+				"5": {
+					"nom": "Fusil Plasma jumelé",
+					"description": "Arme plasma jumelé",
+					"point": 30,
+					"dommage": 30,
+					"precision": 20,
+					"critique": 25,
+					"nbTire": 2,
+					"tauxFeu": 60,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 120,
+						"ACIER": 10,
+						"GAZ": 30,
+						"PRODUCTION": 0
+					},
+					"typeArme": "PLASMA"
+				}
+			},
+			"blindages": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Alliage Composite",
+					"description": "Melange de matériaux diver",
+					"point": 10,
+					"valeurBlindage": 150,
+					"valeurBlouclier": 80,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 0,
+						"SCIENCE": 0,
+						"CREDIT": 150,
+						"ACIER": 30,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				},
+				"1": {
+					"nom": "Aliage composite MKII",
+					"description": "Blindage renforcé",
+					"point": 20,
+					"valeurBlindage": 200,
+					"valeurBlouclier": 110,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 200,
+						"ACIER": 60,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				},
+				"2": {
+					"nom": "Arc electrique",
+					"description": "Des arc electrifié pour réduire les chance de frape directe",
+					"point": 10,
+					"valeurBlouclier": 120,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 20,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				},
+				"3": {
+					"nom": "Arc electrique",
+					"description": "Des arc electrifié pour réduire les chance de frape directe",
+					"point": 10,
+					"valeurBlouclier": 120,
+					"cout": {
+						"class": "java.util.HashMap",
+						"PUISSANCE": 0,
+						"CRISTAL": 10,
+						"SCIENCE": 0,
+						"CREDIT": 100,
+						"ACIER": 20,
+						"GAZ": 0,
+						"PRODUCTION": 0
+					}
+				}
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 80,
+				"SCIENCE": 0,
+				"CREDIT": 1220,
+				"ACIER": 280,
+				"GAZ": 80,
+				"PRODUCTION": 0
+			}
+		},
 		null,
 		null,
 		null,
@@ -343,108 +1320,27 @@
 		null
 	],
 	"zeroValue": {
-		"class": "model.entity.vaisseau.Corvette",
-		"puissance": 55,
-		"sante": 140,
-		"santeMax": 140,
-		"bouclier": 50,
-		"bouclierMax": 50,
-		"nom": "Reaper",
+		"class": "model.entity.vaisseau.VaisseauCivil",
+		"puissance": 1,
+		"sante": 1,
+		"santeMax": 1,
+		"nom": "Sonde",
 		"chassie": {
-			"nom": "Reaper",
-			"description": "Chassie petit et rapide",
-			"point": 20,
-			"sante": 60,
-			"santeMax": 60,
-			"bouclier": 20,
-			"bouclierMax": 20,
-			"nbArme": 2,
-			"nbBlindage": 1,
+			"nom": "Sonde",
+			"description": "Créé pour l'exploration spacial",
+			"point": 1,
+			"sante": 1,
+			"santeMax": 1,
 			"cout": {
 				"class": "java.util.HashMap",
 				"PUISSANCE": 0,
-				"CRISTAL": 5,
+				"CRISTAL": 1,
 				"SCIENCE": 0,
-				"CREDIT": 500,
-				"ACIER": 5,
-				"GAZ": 5,
+				"CREDIT": 50,
+				"ACIER": 1,
+				"GAZ": 1,
 				"PRODUCTION": 0
 			}
-		},
-		"armes": {
-			"class": "java.util.HashMap",
-			"0": {
-				"nom": "Laser MKI",
-				"description": "Petit module d'arme laser",
-				"point": 10,
-				"dommage": 5,
-				"precision": 90,
-				"critique": 5,
-				"nbTire": 3,
-				"tauxFeu": 45,
-				"cout": {
-					"class": "java.util.HashMap",
-					"PUISSANCE": 0,
-					"CRISTAL": 1,
-					"SCIENCE": 0,
-					"CREDIT": 10,
-					"ACIER": 1,
-					"GAZ": 0,
-					"PRODUCTION": 0
-				},
-				"typeArme": "LASER"
-			},
-			"1": {
-				"nom": "Type 490/3",
-				"description": "Des canon de la marine modifier pour l'environement spacial",
-				"point": 20,
-				"dommage": 20,
-				"precision": 60,
-				"critique": 10,
-				"nbTire": 3,
-				"tauxFeu": 5,
-				"cout": {
-					"class": "java.util.HashMap",
-					"PUISSANCE": 0,
-					"CRISTAL": 0,
-					"SCIENCE": 0,
-					"CREDIT": 10,
-					"ACIER": 3,
-					"GAZ": 0,
-					"PRODUCTION": 0
-				},
-				"typeArme": "CINETIQUE"
-			}
-		},
-		"blindages": {
-			"class": "java.util.HashMap",
-			"0": {
-				"nom": "Alliage m�talique",
-				"description": "Blindage sommaire",
-				"point": 5,
-				"valeurBlindage": 80,
-				"valeurBlouclier": 30,
-				"cout": {
-					"class": "java.util.HashMap",
-					"PUISSANCE": 0,
-					"CRISTAL": 0,
-					"SCIENCE": 0,
-					"CREDIT": 50,
-					"ACIER": 2,
-					"GAZ": 0,
-					"PRODUCTION": 0
-				}
-			}
-		},
-		"cout": {
-			"class": "java.util.HashMap",
-			"PUISSANCE": 0,
-			"CRISTAL": 6,
-			"SCIENCE": 0,
-			"CREDIT": 570,
-			"ACIER": 11,
-			"GAZ": 5,
-			"PRODUCTION": 0
 		}
 	},
 	"hasZeroValue": true

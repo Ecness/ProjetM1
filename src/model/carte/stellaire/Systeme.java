@@ -1,20 +1,26 @@
 package model.carte.stellaire;
 
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.IntMap.Entry;
 
 import model.EnumRessource;
 import model.batiment.BatimentPlanete;
 import model.batiment.BatimentVille;
 import model.entity.player.Joueur;
 import model.entity.vaisseau.Flotte;
+import model.entity.vaisseau.ListVaisseaux;
+import model.entity.vaisseau.Vaisseau;
 import model.parametre.EnumAbondanceRessource;
 import model.util.Coordonnees;
 import view.launcher.Project;
@@ -49,6 +55,7 @@ public class Systeme {
 			generationSystem(nbRessource, maxPlanete);
 		}
 		generationAnomalie(maxAnomalie);
+		
 		liens = new HashMap<Systeme, Vector2>();
 		nbLiensMax = generationNbLiens();
 		bouton = new Button(Project.skin);
@@ -281,6 +288,48 @@ public class Systeme {
 		for( int i=0; i<nbAnomalie; i++) {
 			TAnomalie.add(new Anomalie(ressourceEtAnomalie.generationAnomalieSysteme(typeSysteme)));
 		}	
+	}
+	
+	public void generationAnomalieDepat(int maxAnomalie) {
+		
+		int nbAnomalie = (int) (maxAnomalie*Math.random());
+		
+		TAnomalie = new ArrayList<Anomalie>();
+		
+		for( int i=0; i<nbAnomalie; i++) {
+			TAnomalie.add(new Anomalie(ressourceEtAnomalie.generationAnomalieSystemeDepart()));
+		}	
+	}
+	
+	
+	@SuppressWarnings("unlikely-arg-type")
+	private void generationFlotePirate() {
+		
+		ListVaisseaux listVaisseau = new ListVaisseaux();
+		Json parser = new Json();
+		
+		try(FileReader file = new FileReader("Ressources/Nation/PIRATE/Vaisseaux.json")) {
+			
+			ListVaisseaux vaisseaux = parser.fromJson(ListVaisseaux.class, file);
+		
+			for (Entry<Vaisseau> vaisseau : vaisseaux.getVaisseaux().entries()) {
+				//Correction type lecture json (de String vers EnumRessource)
+				Map<EnumRessource, Integer> cout = new HashMap<EnumRessource, Integer>();
+				
+				for (EnumRessource ressource : EnumRessource.values()) {
+					cout.put(ressource, vaisseau.value.getCout().get(ressource.name()));
+				}
+				vaisseau.value.setCout(cout);
+			}
+			listVaisseau=vaisseaux;
+		    
+		} catch (Exception e) {
+			System.out.println(e.toString() + "### ERREUR : /n FILE:\"Ressources/Nation/PIRATE/Vaisseaux.json\" ###");
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 	/**Fait le lien avec un autre système (distance aléatoire)*/
