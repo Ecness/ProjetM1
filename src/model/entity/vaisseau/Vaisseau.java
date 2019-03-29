@@ -60,6 +60,7 @@ public class Vaisseau implements Cloneable {
 		this.moteurEndomager=false;
 		this.bouclierDetruit=false;
 		calculPuissanceTotal();
+		addCout();
 	}
 
 	public Vaisseau(String nom, Chassie chassie, Map<Integer, Arme> armes, Map<Integer,
@@ -122,7 +123,11 @@ public class Vaisseau implements Cloneable {
 		}
 		if(!chassie.getCout().isEmpty()) {
 			for (EnumRessource e : EnumRessource.values()) {
-				cout.put(e, chassie.getCout().get(e)+cout.get(e));
+				if(cout.get(e)!=null) {
+					cout.put(e, chassie.getCout().get(e)+cout.get(e));
+				}else {
+					cout.put(e, chassie.getCout().get(e));
+				}
 			}			
 		}
 	}

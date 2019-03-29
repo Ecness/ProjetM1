@@ -26,6 +26,16 @@
 					"GAZ": 0,
 					"PRODUCTION": 0
 				}
+			},
+			"cout": {
+				"class": "java.util.HashMap",
+				"PUISSANCE": 0,
+				"CRISTAL": 0,
+				"CREDIT": 1000,
+				"SCIENCE": 0,
+				"ACIER": 5,
+				"GAZ": 0,
+				"PRODUCTION": 0
 			}
 		},
 		{
@@ -1341,6 +1351,16 @@
 				"GAZ": 1,
 				"PRODUCTION": 0
 			}
+		},
+		"cout": {
+			"class": "java.util.HashMap",
+			"PUISSANCE": 0,
+			"CRISTAL": 1,
+			"CREDIT": 50,
+			"SCIENCE": 0,
+			"ACIER": 1,
+			"GAZ": 1,
+			"PRODUCTION": 0
 		}
 	},
 	"hasZeroValue": true
