@@ -5,7 +5,8 @@ public enum EnumGrade {
 	NOVIS(0,250,500),
 	LIEUTENANT(1,500,1000),
 	COMMANDANT(2,750,2000),
-	AMIRAL(3,1000,4000);
+	VICE_AMIRAL(3,1000,4000),
+	AMIRAL(3,2000,6000);
 	
 	private int numero;
 	private int maxPower;

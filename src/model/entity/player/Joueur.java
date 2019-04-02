@@ -57,7 +57,6 @@ public class Joueur {
 			TRessource.put(t, 0);
 		}
 		TRessourceMax = new HashMap<EnumRessource, Integer>();
-		//TODO Définir le montant maximum de ressource de départ
 		for (EnumRessource t : EnumRessource.values()) {
 			if (t != EnumRessource.SCIENCE && t != EnumRessource.PRODUCTION) {
 				TRessourceMax.put(t, 500);
@@ -88,6 +87,15 @@ public class Joueur {
 		}
 	}
 	
+	public void creationNewFlotte(Vaisseau vaisseau) {
+		Flotte flotte = new Flotte();
+		flotte.addVaisseau(0, vaisseau);
+		TFlotte.add(flotte);
+	}
+	
+	public void ajoutVaisseauFlotte(Flotte flotte, Vaisseau vaisseau) {
+		flotte.addVaisseau(flotte.getTVaisseau().size(), vaisseau);
+	}
 	
 	public void ressourceDepart(EnumRessourceDepart e) {
 		

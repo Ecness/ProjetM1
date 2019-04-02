@@ -103,6 +103,8 @@ public class Systeme {
 		});
 	}
 	
+	//--------------------------------------
+	
 	public boolean presenceVille() {
 		for (Planete planete : TPlanete) {
 			if(planete.getVille() != null) {
@@ -148,6 +150,10 @@ public class Systeme {
 			return ville.testFinConstruction();
 		}
 		return false;
+	}
+	
+	public void AjoutFlotte(Flotte flotte) {
+		flottes.add(flotte);
 	}
 	
 	//--------------------------------------
@@ -302,6 +308,7 @@ public class Systeme {
 	}
 	
 	
+	//TODO 
 	@SuppressWarnings("unlikely-arg-type")
 	private void generationFlotePirate() {
 		
@@ -324,11 +331,10 @@ public class Systeme {
 			listVaisseau=vaisseaux;
 		    
 		} catch (Exception e) {
-			System.out.println(e.toString() + "### ERREUR : /n FILE:\"Ressources/Nation/PIRATE/Vaisseaux.json\" ###");
+			System.out.println(e.toString() + "### ERREUR : FILE:\"Ressources/Nation/PIRATE/Vaisseaux.json\" ###");
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-		
 		
 	}
 	

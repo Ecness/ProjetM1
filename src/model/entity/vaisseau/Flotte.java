@@ -18,6 +18,14 @@ public class Flotte {
 		TVaisseau = new HashMap<Integer, Vaisseau>();
 		this.general = null;
 	}
+	public Flotte(Flotte flotte) {
+		this.puissance = flotte.getPuissance();
+		TVaisseau = new HashMap<Integer, Vaisseau>();
+		for (Entry<Integer, Vaisseau> vaisseau : flotte.getTVaisseau().entrySet()) {
+			TVaisseau.put(vaisseau.getKey(), vaisseau.getValue());
+		}
+		this.general = flotte.general;
+	}
 	
 	//------------------------------------------------------------------------------------------------------
 	
