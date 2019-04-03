@@ -71,6 +71,7 @@ public class Anomalie {
 				joueur.setScienceDepart(e.getValue()+joueur.getScienceDepart());
 			}else {				
 				joueur.getTRessource().put(e.getKey(), e.getValue()+joueur.getTRessource().get(e.getKey()));
+				joueur.limitRessources();
 			}
 		}
 		
