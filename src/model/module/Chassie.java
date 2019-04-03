@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import model.EnumRessource;
+import model.util.MapRessource;
 
 public class Chassie {
 
@@ -17,14 +18,14 @@ public class Chassie {
 	private int nbArme;
 	private int nbBlindage;
 	private int nbModule;
-	private Map<EnumRessource, Integer> cout;
+	private MapRessource cout;
 	
 	public Chassie() {
-		this("Default","", 0, 0, 0, 0, 0, 0, 0, 0, new HashMap<EnumRessource, Integer>());
+		this("Default","", 0, 0, 0, 0, 0, 0, 0, 0, new MapRessource());
 	}
 	
 	public Chassie(String nom, String description, int point, int sante, int santeMax, int bouclier, int bouclierMax,
-			int nbArme, int nbBlindage, int nbModule, Map<EnumRessource, Integer> cout) {
+			int nbArme, int nbBlindage, int nbModule, MapRessource cout) {
 		this.nom = nom;
 		this.description = description;
 		this.point = point;
@@ -103,10 +104,10 @@ public class Chassie {
 	public void setNbModule(int nbModule) {
 		this.nbModule = nbModule;
 	}
-	public Map<EnumRessource, Integer> getCout() {
+	public MapRessource getCout() {
 		return cout;
 	}
-	public void setCout(Map<EnumRessource, Integer> cout) {
+	public void setCout(MapRessource cout) {
 		this.cout = cout;
 	}
 }

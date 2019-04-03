@@ -14,6 +14,8 @@ import model.entity.player.Science;
 import model.module.Arme;
 import model.module.Blindage;
 import model.module.Chassie;
+import model.util.MapRessource;
+import model.util.Sauvegarde;
 
 public class Vaisseau implements Cloneable {
 
@@ -30,7 +32,7 @@ public class Vaisseau implements Cloneable {
 	protected List<EnumDommageCritique> dommageCritique;
 	protected int vitesse;
 	protected int fire;
-	protected Map<EnumRessource, Integer> cout;
+	protected MapRessource cout;
 	protected Boolean moteurEndomager;
 	protected Boolean moteurDetruit;
 	protected Boolean bouclierDetruit;
@@ -55,7 +57,7 @@ public class Vaisseau implements Cloneable {
 		this.dommageCritique = new ArrayList<EnumDommageCritique>();
 		this.vitesse = vitesse;
 		this.fire = 0;
-		this.cout = new HashMap<EnumRessource,Integer>();
+		this.cout = new MapRessource();
 		this.moteurDetruit=false;
 		this.moteurEndomager=false;
 		this.bouclierDetruit=false;
@@ -80,7 +82,7 @@ public class Vaisseau implements Cloneable {
 		this.vitesse = vitesse;
 		this.dommageCritique = dommageCritique;
 		this.fire = 0;
-		this.cout = new HashMap<EnumRessource,Integer>();;
+		this.cout = new MapRessource();;
 		this.moteurDetruit=false;
 		this.moteurEndomager=false;
 		this.bouclierDetruit=false;
@@ -112,16 +114,22 @@ public class Vaisseau implements Cloneable {
 	
 	public void addCout() {
 		for (Entry<Integer, Blindage> blindage : blindages.entrySet()) {
+			//Correction des coûts liée au chargement du fichier JSON
+//			blindage.getValue().setCout(Sauvegarde.convert(blindage.getValue().getCout()));
 			for (Entry<EnumRessource, Integer> coutBlindage : blindage.getValue().getCout().entrySet()) {
 				cout.put(coutBlindage.getKey(), coutBlindage.getValue());
 			}
 		}
 		for (Entry<Integer, Arme> arme : armes.entrySet()) {
+			//Correction des coûts liée au chargement du fichier JSON
+//			arme.getValue().setCout(Sauvegarde.convert(arme.getValue().getCout()));
 			for (Entry<EnumRessource, Integer> coutArme : arme.getValue().getCout().entrySet()) {
 				cout.put(coutArme.getKey(), coutArme.getValue()+cout.get(coutArme.getKey()));
 			}
 		}
 		if(!chassie.getCout().isEmpty()) {
+			//Correction des coûts liée au chargement du fichier JSON
+//			chassie.setCout(Sauvegarde.convert(chassie.getCout()));
 			for (EnumRessource e : EnumRessource.values()) {
 				if(cout.get(e)!=null) {
 					cout.put(e, chassie.getCout().get(e)+cout.get(e));
@@ -312,10 +320,10 @@ public class Vaisseau implements Cloneable {
 	public void setDommageCritique(List<EnumDommageCritique> dommageCritique) {
 		this.dommageCritique = dommageCritique;
 	}
-	public Map<EnumRessource, Integer> getCout() {
+	public MapRessource getCout() {
 		return cout;
 	}
-	public void setCout(Map<EnumRessource, Integer> cout) {
+	public void setCout(MapRessource cout) {
 		this.cout = cout;
 	}
 	public Boolean getMoteurDetruit() {

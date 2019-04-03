@@ -5,8 +5,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import controller.controles.buttons.planete.ButtonAddBatimentPlanete;
 import controller.controles.buttons.planete.ButtonRemoveBatimentPlanete;
+import controller.controles.buttons.planete.ButtonSelectBatimentPlanete;
 import model.carte.stellaire.Planete;
 
 public class AffichageBatimentsPlanete extends Table {
@@ -26,7 +26,7 @@ public class AffichageBatimentsPlanete extends Table {
 		Button action1;
 		if (planete.getTBatiment()[0] == null) {
 			//Si pas de bâtiment, on peut en créer un
-			action1 = new ButtonAddBatimentPlanete(planete, 0, skin);
+			action1 = new ButtonSelectBatimentPlanete(planete, 0, skin);
 		} else {
 			//Sinon, on peut le détruire
 			action1 = new ButtonRemoveBatimentPlanete(planete, 0, skin);
@@ -47,7 +47,7 @@ public class AffichageBatimentsPlanete extends Table {
 		Button action2;
 		if (planete.getTBatiment()[1] == null) {
 			//Si pas de bâtiment, on peut en créer un
-			action2 = new ButtonAddBatimentPlanete(planete, 1, skin);
+			action2 = new ButtonSelectBatimentPlanete(planete, 1, skin);
 		} else {
 			//Sinon, on peut le détruire
 			action2 = new ButtonRemoveBatimentPlanete(planete, 1, skin);
@@ -62,7 +62,7 @@ public class AffichageBatimentsPlanete extends Table {
 			if (planete.getTBatiment()[0] == null) {
 				((Label) findActor("name1")).setText("Aucun batiment");
 //				((AffichageDescriptionBatimentPlanete) findActor("description1")).update(planete.getTBatiment()[0]);
-				Button add = new ButtonAddBatimentPlanete(planete, 0, skin);
+				Button add = new ButtonSelectBatimentPlanete(planete, 0, skin);
 				add.setName("action1");
 				getCell(findActor("action1")).setActor(add);
 			} else {
@@ -77,7 +77,7 @@ public class AffichageBatimentsPlanete extends Table {
 			if (planete.getTBatiment()[1] == null) {
 				((Label) findActor("name2")).setText("Aucun batiment");
 //				((AffichageDescriptionBatimentPlanete) findActor("description2")).update(planete.getTBatiment()[1]);
-				Button add = new ButtonAddBatimentPlanete(planete, 1, skin);
+				Button add = new ButtonSelectBatimentPlanete(planete, 1, skin);
 				add.setName("action2");
 				getCell(findActor("action2")).setActor(add);
 			} else {

@@ -7,11 +7,12 @@ import model.EnumRessource;
 import model.batiment.BatimentPlanete;
 import model.entity.player.Joueur;
 import model.parametre.EnumAbondanceRessource;
+import model.util.MapRessource;
 
 public class Planete {
 	private int id;
 	private EnumTypePlanete typePlanete;
-	private Map<EnumRessource, Integer> TRessource;
+	private MapRessource TRessource;
 	private BatimentPlanete[] TBatiment;
 	private Ville ville;
 	private Joueur joueur;
@@ -20,7 +21,7 @@ public class Planete {
 	public Planete(EnumTypePlanete typePlanete, EnumAbondanceRessource ressource, GenerationRessourceEtAnomalie ressourcePlanete, int id) {
 		this.id = id;
 		this.typePlanete = typePlanete;
-		this.TRessource = new HashMap<EnumRessource, Integer>();
+		this.TRessource = new MapRessource();
 		for (EnumRessource t : EnumRessource.values()) {
 			TRessource.put(t, 0);
 		}
@@ -34,7 +35,7 @@ public class Planete {
 	public Planete(EnumTypePlanete typePlanete, EnumAbondanceRessource ressource, int id, Joueur joueur) {
 		this.id = id;
 		this.typePlanete = typePlanete;
-		this.TRessource = new HashMap<EnumRessource, Integer>();
+		this.TRessource = new MapRessource();
 		for (EnumRessource t : EnumRessource.values()) {
 			if (!t.equals(EnumRessource.PUISSANCE)) {
 				TRessource.put(t, 2+ressource.getmodificateur());				
@@ -208,10 +209,10 @@ public class Planete {
 	public void setTypePlanete(EnumTypePlanete typePlanete) {
 		this.typePlanete = typePlanete;
 	}
-	public Map<EnumRessource, Integer> getTRessource() {
+	public MapRessource getTRessource() {
 		return TRessource;
 	}
-	public void setTRessource(Map<EnumRessource, Integer> tRessource) {
+	public void setTRessource(MapRessource tRessource) {
 		TRessource = tRessource;
 	}
 	public BatimentPlanete[] getTBatiment() {

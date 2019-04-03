@@ -4,20 +4,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 import model.EnumRessource;
+import model.util.MapRessource;
 
 public class BatimentVille {
 
 	private String nom;
 	private String description;
 	private int techNecessaire;
-	private Map<EnumRessource, Integer> bonus;
+	private MapRessource bonus;
 	private int cout;
 	
 	public BatimentVille() {
-		this("Default", "", 0, new HashMap<EnumRessource, Integer>(), 0);
+		this("Default", "", 0, new MapRessource(), 0);
 	}
 	
-	public BatimentVille(String nom, String description, int techNecessaire, Map<EnumRessource, Integer> bonus, int cout) {
+	public BatimentVille(String nom, String description, int techNecessaire, MapRessource bonus, int cout) {
 		super();
 		this.nom = nom;
 		this.description = description;
@@ -52,12 +53,17 @@ public class BatimentVille {
 		this.cout = cout;
 	}
 
-	public Map<EnumRessource, Integer> getBonus() {
+	public MapRessource getBonus() {
 		return bonus;
 	}
 
-	public void setBonus(Map<EnumRessource, Integer> bonus) {
+	public void setBonus(MapRessource bonus) {
 		this.bonus = bonus;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return nom.equals(((BatimentVille) obj).getNom());
 	}
 
 }

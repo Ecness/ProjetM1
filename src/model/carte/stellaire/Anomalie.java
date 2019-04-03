@@ -6,12 +6,13 @@ import java.util.Map.Entry;
 
 import model.EnumRessource;
 import model.entity.player.Joueur;
+import model.util.MapRessource;
 
 public class Anomalie {
 
 	private boolean decouverte;
 	private EnumAnomalie anomalie;
-	private Map<EnumRessource, Integer> bonus;
+	private MapRessource bonus;
 	
 	public Anomalie(EnumAnomalie anomalie) {
 		super();
@@ -21,7 +22,7 @@ public class Anomalie {
 			this.decouverte = true;
 			// todo ajouter une flote de pirate sur le syst�me 			
 		}else {			
-			bonus = new HashMap<EnumRessource, Integer>();
+			bonus = new MapRessource();
 			bonus();
 		}
 	}
@@ -87,10 +88,10 @@ public class Anomalie {
 	public void setAnomalie(EnumAnomalie anomalie) {
 		this.anomalie = anomalie;
 	}
-	public Map<EnumRessource, Integer> getBonus() {
+	public MapRessource getBonus() {
 		return bonus;
 	}
-	public void setBonus(Map<EnumRessource, Integer> bonus) {
+	public void setBonus(MapRessource bonus) {
 		this.bonus = bonus;
 	}
 	

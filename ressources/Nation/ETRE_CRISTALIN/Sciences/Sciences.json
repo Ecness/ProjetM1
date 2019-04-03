@@ -126,8 +126,8 @@
 		"description": "Début de la conquéte spacial",
 		"rechercher": true,
 		"cout": 0,
-		"dependanceUn": 0,
-		"dependanceDeux": 0
+		"dependanceUn": -1,
+		"dependanceDeux": -1
 	},
 	"hasZeroValue": true
 },
@@ -244,8 +244,8 @@
 		"description": "Le Commencement",
 		"rechercher": true,
 		"cout": 0,
-		"dependanceUn": 0,
-		"dependanceDeux": 0
+		"dependanceUn": -1,
+		"dependanceDeux": -1
 	},
 	"hasZeroValue": true
 },
@@ -355,8 +355,8 @@
 		"description": "Le commencement des am�liorations",
 		"rechercher": true,
 		"cout": 0,
-		"dependanceUn": 0,
-		"dependanceDeux": 0
+		"dependanceUn": -1,
+		"dependanceDeux": -1
 	},
 	"hasZeroValue": true
 }

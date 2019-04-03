@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import controller.confirm.Confirm;
 import model.batiment.BatimentVille;
 import model.carte.stellaire.Ville;
+import view.launcher.Project;
 
 public class ConfirmationAnnulationBatimentVille extends Confirm {
 
@@ -30,8 +31,9 @@ public class ConfirmationAnnulationBatimentVille extends Confirm {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				ville.annulationBatiment(batiment);
+				ville.setBatimentAnnule(true);
 				ville.setReDrawFilesBatiments(true);
-//				ville.setConstructionAnnulee(true);
+				Project.displayHasChanged = true;
 				getParent().remove();
 			}
 			

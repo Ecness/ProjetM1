@@ -9,7 +9,9 @@ import java.util.Map.Entry;
 import model.EnumRessource;
 import model.batiment.BatimentVille;
 import model.entity.player.Joueur;
+import model.entity.vaisseau.Flotte;
 import model.entity.vaisseau.Vaisseau;
+import model.util.MapRessource;
 
 public class Ville {
 
@@ -17,13 +19,14 @@ public class Ville {
 	private int puissance;
 	private int puissanceTotal;
 	private Joueur joueur;
-	private Map<EnumRessource, Integer> TRessource;
+	private MapRessource TRessource;
 	private List<BatimentVille> TBatimentVille;
 	private List<BatimentVille> fileDeConstructionBatiment;
 	private List<Vaisseau> fileDeConstructionUnite;
-//	private boolean constructionTerminee, constructionAnnulee;
-	private boolean reDrawBatiments, reDrawFilesBatiments, reDrawFilesVaisseaux;
-	
+	private boolean batimentTermine, batimentAnnule, batimentCommence;
+	private boolean vaisseauTermine, vaisseauAnnule, vaisseauCommence;
+	private boolean reDraw, reDrawBatiments, reDrawFilesBatiments, reDrawFilesVaisseaux;
+
 	public Ville(Joueur joueur, Planete planete) {
 
 		this.puissance = 50;
@@ -34,7 +37,7 @@ public class Ville {
 		}else {			
 			this.id=joueur.getTVille().size();
 		}
-		this.TRessource = new HashMap<EnumRessource, Integer>();
+		this.TRessource = new MapRessource();
 		for (Entry<EnumRessource, Integer> t : planete.getTRessource().entrySet()) {
 			TRessource.put(t.getKey(), t.getValue());
 			if(t.getKey().equals(EnumRessource.PUISSANCE)) {
@@ -48,6 +51,8 @@ public class Ville {
 		this.fileDeConstructionUnite = new ArrayList<Vaisseau>();
 	}
 
+	//-----------------------------------------------------------------------------------------------------------------------------
+
 	public void regenerationPuissance() {
 		if(puissance<puissanceTotal) {
 			puissance+=(int)(puissanceTotal*0.1);
@@ -57,16 +62,13 @@ public class Ville {
 		}
 	}
 
-	//-----------------------------------------------------------------------------------------------------------------------------
-
 	/**
 	 *  Verifie si le joueur a la tech nécessaire
-	 * @param batiment 
-	 * 					: batiment à tester
+	 * @param batiment	batiment à tester
 	 * @return
 	 * 					: true si le joueur a la tech necessaire, false sinon
 	 */
-	public boolean isBatimentDebloquer(BatimentVille batiment) {
+	public boolean isBuildingUnlocked(BatimentVille batiment) {
 		return joueur.getTechnology().getScienceBatiment().get(batiment.getTechNecessaire()).isRechercher();
 	}
 
@@ -80,21 +82,16 @@ public class Ville {
 	public boolean isVaisseauDebloquer(Vaisseau vaisseau) {
 		return joueur.getTechnology().getScienceMillitaire().get(vaisseau.getTechNecessaire()).isRechercher();
 	}
-	
+
 	/**
-	 * Verifie si le batiment est déjà construit
+	 * Verifie si le batiment est déjà construit ou en construction
 	 * @param batiment
 	 * 					: Batiment à tester
 	 * @return
-	 * 					: true si déjà construit, false sinon
+	 * 					: true si déjà construit ou en construction, false sinon
 	 */
 	public boolean presenceBatiment(BatimentVille batiment) {
-		for (BatimentVille b : TBatimentVille) {
-			if(b.getNom().equals(batiment.getNom())) {
-				return true;
-			}
-		}
-		return false;
+		return TBatimentVille.contains(batiment) || fileDeConstructionBatiment.contains(batiment);
 	}
 
 	/**
@@ -106,7 +103,8 @@ public class Ville {
 	 */
 	public boolean constructionBatiment(BatimentVille batiment) {
 
-		if(isBatimentDebloquer(batiment) && !presenceBatiment(batiment)) {
+		if(isBuildingUnlocked(batiment) && !presenceBatiment(batiment)) {
+			batimentCommence = true;
 			fileDeConstructionBatiment.add(new BatimentVille(batiment.getNom(), batiment.getDescription(), 
 					batiment.getTechNecessaire(), batiment.getBonus(), batiment.getCout()));
 			reDrawFilesBatiments = true;
@@ -129,7 +127,7 @@ public class Ville {
 		}
 		return true; 
 	}
-	
+
 	/**
 	 * Teste la possibiliter de construire un vaisseau
 	 * @param vaisseau
@@ -141,6 +139,7 @@ public class Ville {
 
 		if(isVaisseauDebloquer(vaisseau) && ressourceDisponible(vaisseau)) {
 			try {
+				vaisseauCommence = true;
 				this.fileDeConstructionUnite.add(vaisseau.clone());
 			} catch (CloneNotSupportedException e) {
 				e.printStackTrace();
@@ -150,7 +149,7 @@ public class Ville {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * teste si la production de la ville est supérieur a 0
 	 * @return
@@ -176,27 +175,58 @@ public class Ville {
 		}
 	}
 
-	/**
-	 * teste la fin de la construction d'un batiment
-	 * @return
-	 * 			: true si un batiment a fini de se construire, false sinon
-	 */
-	public boolean testFinConstruction() {
-		reDrawFilesBatiments = true;
-		if(TRessource.get(EnumRessource.PRODUCTION)>0 && !fileDeConstructionBatiment.isEmpty()) {		
+//	/**
+//	 * teste la fin de la construction d'un batiment
+//	 * @return
+//	 * 			: true si un batiment a fini de se construire, false sinon
+//	 */
+//	public boolean testFinConstruction() {
+//		if (!fileDeConstructionBatiment.isEmpty()) {
+//			reDrawFilesBatiments = true;
+//			reDraw = true;
+//			fileDeConstructionBatiment.get(0).setCout(fileDeConstructionBatiment.get(0).getCout()-TRessource.get(EnumRessource.PRODUCTION));
+//			if(fileDeConstructionBatiment.get(0).getCout()<=0) {
+//				ajoutBonusBatiment(fileDeConstructionBatiment.get(0));
+//				TBatimentVille.add(fileDeConstructionBatiment.get(0));
+//				fileDeConstructionBatiment.remove(0);
+//				batimentTermine = true;
+//				reDrawBatiments = true;
+//				return true;
+//			}
+//		}
+//
+//		return false;
+//	}
+	
+	public void testFinConstruction() {
+		if (!fileDeConstructionBatiment.isEmpty()) {
+			reDrawFilesBatiments = true;
+			reDraw = true;
 			fileDeConstructionBatiment.get(0).setCout(fileDeConstructionBatiment.get(0).getCout()-TRessource.get(EnumRessource.PRODUCTION));
 			if(fileDeConstructionBatiment.get(0).getCout()<=0) {
 				ajoutBonusBatiment(fileDeConstructionBatiment.get(0));
 				TBatimentVille.add(fileDeConstructionBatiment.get(0));
 				fileDeConstructionBatiment.remove(0);
+				batimentTermine = true;
 				reDrawBatiments = true;
-				return true;
 			}
 		}
 		
-		return false;
+		if (!fileDeConstructionUnite.isEmpty()) {
+			reDrawFilesVaisseaux = true;
+			reDraw = true;
+			fileDeConstructionUnite.get(0).getCout().put(EnumRessource.PRODUCTION, fileDeConstructionUnite.get(0).getCout().get(EnumRessource.PRODUCTION)-TRessource.get(EnumRessource.PRODUCTION));
+			if(fileDeConstructionUnite.get(0).getCout().get(EnumRessource.PRODUCTION)<=0) {
+//				systeme.getFlottes().add(new Flotte())
+//				TBatimentVille.add(fileDeConstructionBatiment.get(0));
+//				fileDeConstructionBatiment.remove(0);
+//				batimentTermine = true;
+//				reDrawBatiments = true;
+			}
+		}
+
 	}
-	
+
 	/**
 	 * Ajoute les bonnus d'un batiment à la ville
 	 * 
@@ -214,12 +244,12 @@ public class Ville {
 		}
 		limitRessources();
 	}
-	
+
 	public boolean destructionBatiment(BatimentVille batimentVille) {
 		//Si la ville possède le bâtiment concerné
 		if (TBatimentVille.contains(batimentVille)) {
 			TBatimentVille.remove(batimentVille);
-			
+
 			for (EnumRessource ressource : EnumRessource.values()) {
 				if (ressource.equals(EnumRessource.PUISSANCE)) {
 					puissanceTotal-=batimentVille.getBonus().get(ressource);
@@ -228,23 +258,23 @@ public class Ville {
 					TRessource.put(ressource, TRessource.get(ressource)-batimentVille.getBonus().get(ressource));
 				}
 			}
-			
+
 			limitRessources();
-			
+
 			reDrawBatiments = true;
 			return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	public boolean annulationBatiment(BatimentVille batiment) {
 		if (fileDeConstructionBatiment.contains(batiment)) {
 			fileDeConstructionBatiment.remove(batiment);
 			reDrawFilesBatiments = true;
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -253,7 +283,7 @@ public class Ville {
 	 */
 	public void limitRessources() {
 		joueur.limitRessources();
-		
+
 		//Minimum de Production d'une ville à 1
 		if (TRessource.get(EnumRessource.PRODUCTION) <= 0) {
 			TRessource.put(EnumRessource.PRODUCTION, 1);
@@ -262,12 +292,12 @@ public class Ville {
 
 	//-----------------------------------------------------------------------------------------------------------------------------
 
-	public Map<EnumRessource, Integer> getTRessource() {
+	public MapRessource getTRessource() {
 		return TRessource;
 	}
 
 
-	public void setTRessource(Map<EnumRessource, Integer> tRessource) {
+	public void setTRessource(MapRessource tRessource) {
 		TRessource = tRessource;
 	}
 
@@ -336,24 +366,64 @@ public class Ville {
 		this.puissanceTotal = puissanceTotal;
 	}
 
-//	public boolean isConstructionTerminee() {
-//		return constructionTerminee;
-//	}
-//
-//	public void setConstructionTerminee(boolean constructionTerminee) {
-//		this.constructionTerminee = constructionTerminee;
-//	}
-//
-//	public boolean isConstructionAnnulee() {
-//		return constructionAnnulee;
-//	}
-//
-//	public void setConstructionAnnulee(boolean constructionAnnulee) {
-//		this.constructionAnnulee = constructionAnnulee;
-//	}
+	public boolean isBatimentTermine() {
+		return batimentTermine;
+	}
+
+	public void setBatimentTermine(boolean batimentTermine) {
+		this.batimentTermine = batimentTermine;
+	}
+
+	public boolean isBatimentAnnule() {
+		return batimentAnnule;
+	}
+
+	public void setBatimentAnnule(boolean batimentAnnule) {
+		this.batimentAnnule = batimentAnnule;
+	}
+
+	public boolean isBatimentCommence() {
+		return batimentCommence;
+	}
+
+	public void setBatimentCommence(boolean batimentCommence) {
+		this.batimentCommence = batimentCommence;
+	}
+
+	public boolean isVaisseauTermine() {
+		return vaisseauTermine;
+	}
+
+	public void setVaisseauTermine(boolean vaisseauTermine) {
+		this.vaisseauTermine = vaisseauTermine;
+	}
+
+	public boolean isVaisseauAnnule() {
+		return vaisseauAnnule;
+	}
+
+	public void setVaisseauAnnule(boolean vaisseauAnnule) {
+		this.vaisseauAnnule = vaisseauAnnule;
+	}
+
+	public boolean isVaisseauCommence() {
+		return vaisseauCommence;
+	}
+
+	public void setVaisseauCommence(boolean vaisseauCommence) {
+		this.vaisseauCommence = vaisseauCommence;
+	}
 
 	public boolean isReDrawBatiments() {
 		return reDrawBatiments;
+	}
+
+	public boolean isReDraw() {
+		return reDraw;
+	}
+
+	public void setReDraw(boolean reDraw) {
+		this.reDraw = reDraw;
 	}
 
 	public void setReDrawBatiments(boolean reDrawBatiments) {

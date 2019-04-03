@@ -20,13 +20,14 @@ import model.module.Arme;
 import model.module.Blindage;
 import model.module.Chassie;
 import model.module.ListeModule;
+import model.util.MapRessource;
 
 
 
 public class test {
 
-	public static Map<EnumRessource, Integer> setRessource(int gaz, int science, int cristal, int production, int credit, int acier, int puissance){
-		Map<EnumRessource, Integer> ressources = new HashMap<EnumRessource, Integer>();
+	public static MapRessource setRessource(int gaz, int science, int cristal, int production, int credit, int acier, int puissance){
+		MapRessource ressources = new MapRessource();
 		ressources.put(EnumRessource.GAZ, gaz);
 		ressources.put(EnumRessource.SCIENCE, science);
 		ressources.put(EnumRessource.CRISTAL, cristal);
@@ -49,7 +50,7 @@ public class test {
 			
 			for (Entry<Arme> arme : module.getArmeCinetique().entries()) {
 				//Correction type lecture json (de String vers EnumRessource)
-				Map<EnumRessource, Integer> cout = new HashMap<EnumRessource, Integer>();
+				MapRessource cout = new MapRessource();
 				
 				for (EnumRessource ressource : EnumRessource.values()) {
 					cout.put(ressource, arme.value.getCout().get(ressource.name()));
@@ -58,7 +59,7 @@ public class test {
 			}
 			for (Entry<Arme> arme : module.getArmeLaser().entries()) {
 				//Correction type lecture json (de String vers EnumRessource)
-				Map<EnumRessource, Integer> cout = new HashMap<EnumRessource, Integer>();
+				MapRessource cout = new MapRessource();
 				
 				for (EnumRessource ressource : EnumRessource.values()) {
 					cout.put(ressource, arme.value.getCout().get(ressource.name()));
@@ -67,7 +68,7 @@ public class test {
 			}
 			for (Entry<Arme> arme : module.getArmePlasma().entries()) {
 				//Correction type lecture json (de String vers EnumRessource)
-				Map<EnumRessource, Integer> cout = new HashMap<EnumRessource, Integer>();
+				MapRessource cout = new MapRessource();
 				
 				for (EnumRessource ressource : EnumRessource.values()) {
 					cout.put(ressource, arme.value.getCout().get(ressource.name()));
@@ -76,7 +77,7 @@ public class test {
 			}
 			for (Entry<Blindage> arme : module.getBlindage().entries()) {
 				//Correction type lecture json (de String vers EnumRessource)
-				Map<EnumRessource, Integer> cout = new HashMap<EnumRessource, Integer>();
+				MapRessource cout = new MapRessource();
 				
 				for (EnumRessource ressource : EnumRessource.values()) {
 					cout.put(ressource, arme.value.getCout().get(ressource.name()));
@@ -85,7 +86,7 @@ public class test {
 			}
 			for (Entry<Chassie> chassie : module.getChassie().entries()) {
 				//Correction type lecture json (de String vers EnumRessource)
-				Map<EnumRessource, Integer> cout = new HashMap<EnumRessource, Integer>();
+				MapRessource cout = new MapRessource();
 				
 				for (EnumRessource ressource : EnumRessource.values()) {
 					cout.put(ressource, chassie.value.getCout().get(ressource.name()));
@@ -109,7 +110,7 @@ public class test {
 		
 			for (Entry<Vaisseau> vaisseau : vaisseaux.getVaisseaux().entries()) {
 				//Correction type lecture json (de String vers EnumRessource)
-				Map<EnumRessource, Integer> cout = new HashMap<EnumRessource, Integer>();
+				MapRessource cout = new MapRessource();
 				
 				for (EnumRessource ressource : EnumRessource.values()) {
 					cout.put(ressource, vaisseau.value.getCout().get(ressource.name()));

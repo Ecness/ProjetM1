@@ -85,6 +85,8 @@ public class AffichagePlanete extends VerticalGroup {
 			if (planete.getVille().isReDrawFilesBatiments() || planete.getVille().isReDrawFilesVaisseaux()) {
 				((AffichageVille) getChildren().peek()).updateFile(planete.getVille(), skin);
 			}
+			
+			planete.getVille().setReDraw(false);
 		} else {
 			((AffichageBatimentsPlanete) getChildren().peek()).update(planete, skin);
 		}

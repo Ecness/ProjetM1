@@ -2,10 +2,7 @@ package controller.controles.select;
 
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
@@ -17,15 +14,15 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.IntMap.Entry;
 
-import controller.error.Error;
-import model.EnumRessource;
+import controller.controles.buttons.planete.ButtonAddBatimentPlanete;
 import model.batiment.BatimentPlanete;
 import model.batiment.ListBatiment;
 import model.carte.stellaire.Planete;
+import model.util.Sauvegarde;
 import view.launcher.Project;
 
 public class SelectBatimentPlanete extends Window {
-	@SuppressWarnings("unlikely-arg-type")
+	
 	public SelectBatimentPlanete(Planete planete, int emplacement, Skin skin) {
 		super("Selection Batiment", skin);
 		setSize(Project.width / 4, Project.height / 4);
@@ -64,45 +61,11 @@ public class SelectBatimentPlanete extends Window {
 				for (Entry<BatimentPlanete> batiment : listeBatiments.getBatimentsPlanete().entries()) {
 					if (!listeBatimentsPlanete.contains(batiment.value.getNom()) && 
 							(planete.getJoueur().getTechnology().getScienceBatiment().get(listeBatiments.getBatimentsPlanete().get(batiment.key).getTechNecessaire()).isRechercher())) {
-						//Correction type lecture json (de String vers EnumRessource)
-						Map<EnumRessource, Integer> bonus = new HashMap<EnumRessource, Integer>();
-						Map<EnumRessource, Integer> cout = new HashMap<EnumRessource, Integer>();
+						//Correction des Map<EnumRessource, Integer> après lecture JSON
+//						batiment.value.setBonus(Sauvegarde.convert(batiment.value.getBonus()));
+//						batiment.value.setCout(Sauvegarde.convert(batiment.value.getCout()));
 
-						for (EnumRessource ressource : EnumRessource.values()) {
-							bonus.put(ressource, batiment.value.getBonus().get(ressource.name()));
-							cout.put(ressource, batiment.value.getCout().get(ressource.name()));
-						}
-
-						batiment.value.setBonus(bonus);
-						batiment.value.setCout(cout);
-
-						TextButton button = new TextButton(batiment.value.getNom(), Project.skin);
-						//Le bouton est nommé selon sa clé dans la liste des batiments
-						button.setName("" + batiment.key);
-
-						button.addListener(new ClickListener() {
-
-							@Override
-							public void clicked(InputEvent event, float x, float y) {
-								//Récupération du bâtiment selon son nom (clé de la map)
-								if (planete.verifConstructionBatiment(listeBatiments.getBatimentsPlanete().get(Integer.parseInt(button.getName())), emplacement)) {
-									planete.constructionBatiment(listeBatiments.getBatimentsPlanete().get(Integer.parseInt(button.getName())), emplacement);
-									remove();
-									if (emplacement == 0) {
-										planete.setReDrawBuild1(true); 
-									} else {
-										planete.setReDrawBuild2(true);
-									}
-									planete.setReDraw(true);
-								} else {
-									//Gestion du bouton d'erreur en cas de ressources insuffisantes
-									new Error("Ressources manquantes", 
-												"Pas assez de ressources", 
-												skin);
-								}
-							}
-
-						});
+						TextButton button = new ButtonAddBatimentPlanete(this, planete, emplacement, batiment.value, skin);
 
 						batiments.addActor(button);
 					}

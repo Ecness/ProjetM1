@@ -48,6 +48,7 @@ public class Project extends ApplicationAdapter {
 	public static boolean clicked, changeSysteme;
 	public static boolean finTour;
 	public static boolean pause;
+	public static boolean displayHasChanged;
 
 	private AffichageGalaxie afficheurGalaxie;
 
@@ -125,7 +126,6 @@ public class Project extends ApplicationAdapter {
 			if (afficheurGalaxie == null) {
 				afficheurGalaxie = new AffichageGalaxie(partie.getGalaxie(), skin);
 			}
-			//			clicked = Gdx.input.isTouched();
 			afficheurGalaxie.render();
 		}
 

@@ -1,9 +1,5 @@
 package model.entity.vaisseau;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import model.EnumRessource;
 import model.entity.player.Joueur;
 import model.module.Chassie;
 

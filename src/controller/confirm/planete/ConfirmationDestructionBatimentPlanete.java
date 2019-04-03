@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import controller.confirm.Confirm;
 import model.carte.stellaire.Planete;
+import view.launcher.Project;
 
 public class ConfirmationDestructionBatimentPlanete extends Confirm {
 
@@ -35,6 +36,7 @@ public class ConfirmationDestructionBatimentPlanete extends Confirm {
 					planete.setReDrawBuild2(true);
 				}
 				planete.setReDraw(true);
+				Project.displayHasChanged = true;
 				getParent().remove();
 			}
 			

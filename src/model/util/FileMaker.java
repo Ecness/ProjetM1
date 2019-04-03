@@ -36,8 +36,8 @@ public class FileMaker {
 	 * @param puissance
 	 * @return
 	 */
-	public static Map<EnumRessource, Integer> setRessource(int gaz, int science, int cristal, int production, int credit, int acier, int puissance){
-		Map<EnumRessource, Integer> ressources = new HashMap<EnumRessource, Integer>();
+	public static MapRessource setRessource(int gaz, int science, int cristal, int production, int credit, int acier, int puissance){
+		MapRessource ressources = new MapRessource();
 		ressources.put(EnumRessource.GAZ, gaz);
 		ressources.put(EnumRessource.SCIENCE, science);
 		ressources.put(EnumRessource.CRISTAL, cristal);
@@ -119,20 +119,20 @@ public class FileMaker {
 		Technologie listTech = new Technologie();
 		
 		//new Science(nom, description, rechercher, cout, dependanceUn, dependanceDeux)
-		listTech.addScienceBatiment(0, new Science("Voyage Spacial", "Le Commencement", true, 0, 0, 0));
+		listTech.addScienceBatiment(0, new Science("Voyage Spacial", "Le Commencement", true, 0, -1, -1));
 		listTech.addScienceBatiment(1, new Science("Mega-usine", "Delock la construction de Mega-usine", false, 50, 0, 0));
 		listTech.addScienceBatiment(2, new Science("Defence planétaire", "Delock la construction de defence planétaire", false, 20, 0, 0));
 		listTech.addScienceBatiment(3, new Science("Spatioport", "Delock la construction de spatioport", false, 80, 1, 2));
 		listTech.addScienceBatiment(4, new Science("Centre de recherche", "Delock la construction de centre de recherche medium", false, 80, 1, 0));
 		
 		//new Science(nom, description, rechercher, cout, dependanceUn, dependanceDeux)
-		listTech.addScienceBonus(0, new Science("Recherche des modules basic", "Le commencement des améliorations", true, 0, 0, 0));
+		listTech.addScienceBonus(0, new Science("Recherche des modules basic", "Le commencement des améliorations", true, 0, -1, -1));
 		listTech.addScienceBonus(1, new Science("Module d'arme Laser Booster", "Ameliore de 10% la prescision des armes laser", false, 50, 0, 0));
 		listTech.addScienceBonus(2, new Science("Module d'arme perforante", "Auguemente de 10% les dommages des armes cinétique", false, 50, 0, 0));
 		listTech.addScienceBonus(3, new Science("Holochamp", "Réduit les chances de se faire toucher des 10%", false, 100, 2, 3));
 		
 		//new Science(nom, description, rechercher, cout, dependanceUn, dependanceDeux)
-		listTech.addScienceMillitaire(0, new Science("Sonde", "Début de la conquéte spacial", true, 0, 0, 0));
+		listTech.addScienceMillitaire(0, new Science("Sonde", "Début de la conquéte spacial", true, 0, -1, -1));
 		listTech.addScienceMillitaire(1, new Science("Vaiseau de defence", "Premier vaiseau conue pour la defence de la colonie", false, 20, 0, 0));
 		listTech.addScienceMillitaire(2, new Science("Fusion solaire controler", "Permet la construction d'arme Plasma", false, 50, 1, 0));
 		listTech.addScienceMillitaire(3, new Science("Module MKII", "Delock les armes tier 2", false, 50, 1, 2));

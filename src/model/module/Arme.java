@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import model.EnumRessource;
+import model.util.MapRessource;
 
 public class Arme{
 
@@ -15,19 +16,19 @@ public class Arme{
 	private int critique;
 	private int nbTire;
 	private int tauxFeu;
-	private Map<EnumRessource, Integer> cout;
+	private MapRessource cout;
 	private Boolean utilisable;
 	private Boolean endomager;
 	private EnumTypeArme typeArme;
 	
 	public Arme() {
-		this("Default", "", 0, 0, 0, 0, 0, 0, new HashMap<EnumRessource, Integer>(), null);
+		this("Default", "", 0, 0, 0, 0, 0, 0, new MapRessource(), null);
 		this.utilisable=true;
 		this.endomager=false;
 	}
 	
 	public Arme(String nom, String description, int dommage, int precision, int nbTire,
-			int tauxFeu, int critique, int point, Map<EnumRessource, Integer> cout,
+			int tauxFeu, int critique, int point, MapRessource cout,
 			EnumTypeArme typeArme) {
 		this.nom = nom;
 		this.description = description;
@@ -96,10 +97,10 @@ public class Arme{
 	public void setCritique(int critique) {
 		this.critique = critique;
 	}
-	public Map<EnumRessource, Integer> getCout() {
+	public MapRessource getCout() {
 		return cout;
 	}
-	public void setCout(Map<EnumRessource, Integer> cout) {
+	public void setCout(MapRessource cout) {
 		this.cout = cout;
 	}
 	public Boolean getUtilisable() {

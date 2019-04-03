@@ -3,7 +3,6 @@ package model.carte.combat;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.carte.combat.obstacle.CeintureAsteroide;
 import model.carte.combat.obstacle.ChampAsteroide;
 import model.carte.combat.obstacle.Debrit;
 import model.carte.combat.obstacle.EnumListObstacle;

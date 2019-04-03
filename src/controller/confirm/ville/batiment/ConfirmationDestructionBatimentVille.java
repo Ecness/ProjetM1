@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import controller.confirm.Confirm;
 import model.batiment.BatimentVille;
 import model.carte.stellaire.Ville;
+import view.launcher.Project;
 
 public class ConfirmationDestructionBatimentVille extends Confirm {
 
@@ -31,6 +32,7 @@ public class ConfirmationDestructionBatimentVille extends Confirm {
 			public void clicked(InputEvent event, float x, float y) {
 				ville.destructionBatiment(batiment);
 				ville.setReDrawBatiments(true);
+				Project.displayHasChanged = true;
 				getParent().remove();
 			}
 			

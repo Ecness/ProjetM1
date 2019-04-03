@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import model.EnumRessource;
 import model.entity.player.Joueur;
 import model.module.Arme;
 import model.module.Blindage;
@@ -15,7 +14,6 @@ public class Croiseur extends Vaisseau {
 	public Croiseur(String nom, Chassie chassie, Map<Integer, Arme> armes, 
 			Map<Integer, Blindage> blindages, int vitesse,  int techNecessaire, Joueur joueur) {
 		super( nom, chassie, armes, blindages, new ArrayList<EnumDommageCritique>() , vitesse, techNecessaire, joueur);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Croiseur() {

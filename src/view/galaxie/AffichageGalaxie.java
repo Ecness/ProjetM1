@@ -13,10 +13,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import controller.controles.buttons.tech.ButtonMenuTech;
 import model.carte.stellaire.Carte;
 import model.carte.stellaire.Systeme;
+import model.entity.player.Science;
 import view.galaxie.systeme.AffichageSysteme;
-import view.galaxie.systeme.planete.AffichagePlanete;
 import view.launcher.Project;
 import view.menus.MenuPartie;
 
@@ -46,9 +47,6 @@ public class AffichageGalaxie {
 		boutonMenu.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-//				Project.change = true;
-//				Project.menu = 0;
-//				Project.affichageGalaxie = false;
 				Project.clicked = false;
 				Project.staticStage.addActor(new MenuPartie(skin));
 				Project.pause = true;
@@ -76,9 +74,11 @@ public class AffichageGalaxie {
 		afficheurHaut.addActor(ressources);
 		afficheurHaut.addActor(finTour);
 		afficheurHaut.addActor(cptTour);
+		afficheurHaut.addActor(new AffichageRecherche(Project.partie.getTJoueur()[0], skin));
+		
 		afficheurHaut.setPosition(0,  Project.staticStage.getCamera().viewportHeight - afficheurHaut.getPrefHeight());
 
-		afficheurDroite.setPosition(Project.staticStage.getCamera().viewportWidth - Project.staticStage.getCamera().viewportWidth / 10, Project.staticStage.getCamera().viewportHeight - afficheurHaut.getHeight());
+		afficheurDroite.setPosition(Project.staticStage.getCamera().viewportWidth - Project.staticStage.getCamera().viewportWidth / 10, Project.staticStage.getCamera().viewportHeight - afficheurHaut.getPrefHeight());
 
 		Project.staticStage.addActor(afficheurHaut);
 		Project.staticStage.addActor(afficheurDroite);
@@ -111,20 +111,26 @@ public class AffichageGalaxie {
 		cptTour.setText("Tour " + Project.cptTours);
 
 		//Affichage du système sélectionné
-		if (Project.systemeSelectionne != null && Project.changeSysteme) {
-			Project.changeSysteme = false;
-			afficheurDroite.clear();
-			AffichageSysteme systeme = new AffichageSysteme(Project.systemeSelectionne, Project.skin);
-			afficheurDroite.addActor(systeme);
-		}
+		if (Project.displayHasChanged) {
+			if (Project.systemeSelectionne != null) {
+				Project.displayHasChanged = false;
+				if (afficheurDroite.findActor("afficheur_systeme") != null) {
+					((AffichageSysteme) afficheurDroite.findActor("afficheur_systeme")).update(Project.systemeSelectionne, Project.skin);
+				} else {
+					afficheurDroite.clear();
+					AffichageSysteme systeme = new AffichageSysteme(Project.systemeSelectionne, Project.skin);
+					afficheurDroite.addActor(systeme);
+				}
 
-		//Mise à jour du système et de la planète sélectionnés
-		if (Project.planeteSelectionne != null && (Project.planeteSelectionne.isReDraw() || 
-				(Project.planeteSelectionne.getVille() != null && 
-					(Project.planeteSelectionne.getVille().isReDrawBatiments() || Project.planeteSelectionne.getVille().isReDrawFilesBatiments())))) {
-			((AffichagePlanete) afficheurDroite.findActor("afficheur_planete")).update(Project.planeteSelectionne, Project.skin);
-			Project.planeteSelectionne.setReDraw(false);
-//			((AffichageSysteme) afficheurDroite.findActor("afficheur_systeme")).update(Project.systemeSelectionne);
+			}
+			((AffichageRecherche) afficheurHaut.findActor("group_tech")).update(Project.partie.getTJoueur()[0], Project.skin);
+			
+//			if (Project.partie.getTJoueur()[0].isTechHasChanged()) {
+//				String techLabel = Project.partie.getTJoueur()[0].getSearchingTech() != null ?
+//						Project.partie.getTJoueur()[0].getSearchingTech().getNom() : "Aucune recherche";
+//				((Label) afficheurHaut.findActor("label_tech")).setText(techLabel);
+//			}
+//			Project.changeSysteme = false;
 		}
 	}
 }

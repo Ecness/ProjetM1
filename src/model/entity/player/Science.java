@@ -58,4 +58,13 @@ public class Science {
 	public void setDependanceDeux(int dependanceDeux) {
 		this.dependanceDeux = dependanceDeux;
 	}
+	
+	public int getMaxDependance() {
+		return dependanceUn < dependanceDeux ? dependanceDeux : dependanceUn;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return nom.equals(((Science) obj).getNom());
+	}
 }

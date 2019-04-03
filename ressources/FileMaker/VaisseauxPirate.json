@@ -21,14 +21,34 @@
 				"nbArme": 1,
 				"nbBlindage": 1,
 				"cout": {
-					"class": "java.util.HashMap",
-					"PUISSANCE": 0,
-					"CRISTAL": 2,
-					"SCIENCE": 0,
-					"CREDIT": 200,
-					"ACIER": 2,
-					"GAZ": 2,
-					"PRODUCTION": 0
+					"PUISSANCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"CRISTAL": {
+						"class": "java.lang.Integer",
+						"value": 2
+					},
+					"SCIENCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"CREDIT": {
+						"class": "java.lang.Integer",
+						"value": 200
+					},
+					"ACIER": {
+						"class": "java.lang.Integer",
+						"value": 2
+					},
+					"GAZ": {
+						"class": "java.lang.Integer",
+						"value": 2
+					},
+					"PRODUCTION": {
+						"class": "java.lang.Integer",
+						"value": 0
+					}
 				}
 			},
 			"armes": {
@@ -43,14 +63,34 @@
 					"nbTire": 1,
 					"tauxFeu": 60,
 					"cout": {
-						"class": "java.util.HashMap",
-						"PUISSANCE": 0,
-						"CRISTAL": 0,
-						"SCIENCE": 0,
-						"CREDIT": 100,
-						"ACIER": 10,
-						"GAZ": 20,
-						"PRODUCTION": 0
+						"PUISSANCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"CRISTAL": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"SCIENCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"CREDIT": {
+							"class": "java.lang.Integer",
+							"value": 100
+						},
+						"ACIER": {
+							"class": "java.lang.Integer",
+							"value": 10
+						},
+						"GAZ": {
+							"class": "java.lang.Integer",
+							"value": 20
+						},
+						"PRODUCTION": {
+							"class": "java.lang.Integer",
+							"value": 0
+						}
 					},
 					"typeArme": "PLASMA"
 				}
@@ -64,26 +104,66 @@
 					"valeurBlindage": 80,
 					"valeurBlouclier": 30,
 					"cout": {
-						"class": "java.util.HashMap",
-						"PUISSANCE": 0,
-						"CRISTAL": 0,
-						"SCIENCE": 0,
-						"CREDIT": 100,
-						"ACIER": 20,
-						"GAZ": 0,
-						"PRODUCTION": 0
+						"PUISSANCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"CRISTAL": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"SCIENCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"CREDIT": {
+							"class": "java.lang.Integer",
+							"value": 100
+						},
+						"ACIER": {
+							"class": "java.lang.Integer",
+							"value": 20
+						},
+						"GAZ": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"PRODUCTION": {
+							"class": "java.lang.Integer",
+							"value": 0
+						}
 					}
 				}
 			},
 			"cout": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 2,
-				"SCIENCE": 0,
-				"CREDIT": 400,
-				"ACIER": 32,
-				"GAZ": 22,
-				"PRODUCTION": 0
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 2
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 400
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 32
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 22
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			}
 		},
 		{
@@ -103,14 +183,34 @@
 				"nbArme": 3,
 				"nbBlindage": 2,
 				"cout": {
-					"class": "java.util.HashMap",
-					"PUISSANCE": 0,
-					"CRISTAL": 5,
-					"SCIENCE": 0,
-					"CREDIT": 500,
-					"ACIER": 5,
-					"GAZ": 5,
-					"PRODUCTION": 0
+					"PUISSANCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"CRISTAL": {
+						"class": "java.lang.Integer",
+						"value": 5
+					},
+					"SCIENCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"CREDIT": {
+						"class": "java.lang.Integer",
+						"value": 500
+					},
+					"ACIER": {
+						"class": "java.lang.Integer",
+						"value": 5
+					},
+					"GAZ": {
+						"class": "java.lang.Integer",
+						"value": 5
+					},
+					"PRODUCTION": {
+						"class": "java.lang.Integer",
+						"value": 0
+					}
 				}
 			},
 			"armes": {
@@ -124,14 +224,34 @@
 					"critique": 25,
 					"nbTire": 1,
 					"cout": {
-						"class": "java.util.HashMap",
-						"PUISSANCE": 0,
-						"CRISTAL": 20,
-						"SCIENCE": 0,
-						"CREDIT": 250,
-						"ACIER": 50,
-						"GAZ": 10,
-						"PRODUCTION": 0
+						"PUISSANCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"CRISTAL": {
+							"class": "java.lang.Integer",
+							"value": 20
+						},
+						"SCIENCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"CREDIT": {
+							"class": "java.lang.Integer",
+							"value": 250
+						},
+						"ACIER": {
+							"class": "java.lang.Integer",
+							"value": 50
+						},
+						"GAZ": {
+							"class": "java.lang.Integer",
+							"value": 10
+						},
+						"PRODUCTION": {
+							"class": "java.lang.Integer",
+							"value": 0
+						}
 					},
 					"typeArme": "CINETIQUE"
 				},
@@ -144,14 +264,34 @@
 					"critique": 25,
 					"nbTire": 1,
 					"cout": {
-						"class": "java.util.HashMap",
-						"PUISSANCE": 0,
-						"CRISTAL": 20,
-						"SCIENCE": 0,
-						"CREDIT": 250,
-						"ACIER": 50,
-						"GAZ": 10,
-						"PRODUCTION": 0
+						"PUISSANCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"CRISTAL": {
+							"class": "java.lang.Integer",
+							"value": 20
+						},
+						"SCIENCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"CREDIT": {
+							"class": "java.lang.Integer",
+							"value": 250
+						},
+						"ACIER": {
+							"class": "java.lang.Integer",
+							"value": 50
+						},
+						"GAZ": {
+							"class": "java.lang.Integer",
+							"value": 10
+						},
+						"PRODUCTION": {
+							"class": "java.lang.Integer",
+							"value": 0
+						}
 					},
 					"typeArme": "CINETIQUE"
 				},
@@ -164,14 +304,34 @@
 					"critique": 25,
 					"nbTire": 1,
 					"cout": {
-						"class": "java.util.HashMap",
-						"PUISSANCE": 0,
-						"CRISTAL": 20,
-						"SCIENCE": 0,
-						"CREDIT": 250,
-						"ACIER": 50,
-						"GAZ": 10,
-						"PRODUCTION": 0
+						"PUISSANCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"CRISTAL": {
+							"class": "java.lang.Integer",
+							"value": 20
+						},
+						"SCIENCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"CREDIT": {
+							"class": "java.lang.Integer",
+							"value": 250
+						},
+						"ACIER": {
+							"class": "java.lang.Integer",
+							"value": 50
+						},
+						"GAZ": {
+							"class": "java.lang.Integer",
+							"value": 10
+						},
+						"PRODUCTION": {
+							"class": "java.lang.Integer",
+							"value": 0
+						}
 					},
 					"typeArme": "CINETIQUE"
 				}
@@ -185,14 +345,34 @@
 					"valeurBlindage": 80,
 					"valeurBlouclier": 30,
 					"cout": {
-						"class": "java.util.HashMap",
-						"PUISSANCE": 0,
-						"CRISTAL": 0,
-						"SCIENCE": 0,
-						"CREDIT": 100,
-						"ACIER": 20,
-						"GAZ": 0,
-						"PRODUCTION": 0
+						"PUISSANCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"CRISTAL": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"SCIENCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"CREDIT": {
+							"class": "java.lang.Integer",
+							"value": 100
+						},
+						"ACIER": {
+							"class": "java.lang.Integer",
+							"value": 20
+						},
+						"GAZ": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"PRODUCTION": {
+							"class": "java.lang.Integer",
+							"value": 0
+						}
 					}
 				},
 				"1": {
@@ -202,26 +382,66 @@
 					"valeurBlindage": 150,
 					"valeurBlouclier": 80,
 					"cout": {
-						"class": "java.util.HashMap",
-						"PUISSANCE": 0,
-						"CRISTAL": 0,
-						"SCIENCE": 0,
-						"CREDIT": 150,
-						"ACIER": 30,
-						"GAZ": 0,
-						"PRODUCTION": 0
+						"PUISSANCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"CRISTAL": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"SCIENCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"CREDIT": {
+							"class": "java.lang.Integer",
+							"value": 150
+						},
+						"ACIER": {
+							"class": "java.lang.Integer",
+							"value": 30
+						},
+						"GAZ": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"PRODUCTION": {
+							"class": "java.lang.Integer",
+							"value": 0
+						}
 					}
 				}
 			},
 			"cout": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 65,
-				"SCIENCE": 0,
-				"CREDIT": 1400,
-				"ACIER": 185,
-				"GAZ": 35,
-				"PRODUCTION": 0
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 65
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 1400
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 185
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 35
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			}
 		},
 		null,
@@ -315,14 +535,34 @@
 			"nbArme": 2,
 			"nbBlindage": 1,
 			"cout": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 5,
-				"SCIENCE": 0,
-				"CREDIT": 500,
-				"ACIER": 5,
-				"GAZ": 5,
-				"PRODUCTION": 0
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 5
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 500
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 5
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 5
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			}
 		},
 		"armes": {
@@ -337,14 +577,34 @@
 				"nbTire": 3,
 				"tauxFeu": 45,
 				"cout": {
-					"class": "java.util.HashMap",
-					"PUISSANCE": 0,
-					"CRISTAL": 5,
-					"SCIENCE": 0,
-					"CREDIT": 50,
-					"ACIER": 5,
-					"GAZ": 0,
-					"PRODUCTION": 0
+					"PUISSANCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"CRISTAL": {
+						"class": "java.lang.Integer",
+						"value": 5
+					},
+					"SCIENCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"CREDIT": {
+						"class": "java.lang.Integer",
+						"value": 50
+					},
+					"ACIER": {
+						"class": "java.lang.Integer",
+						"value": 5
+					},
+					"GAZ": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"PRODUCTION": {
+						"class": "java.lang.Integer",
+						"value": 0
+					}
 				},
 				"typeArme": "LASER"
 			},
@@ -358,14 +618,34 @@
 				"nbTire": 3,
 				"tauxFeu": 5,
 				"cout": {
-					"class": "java.util.HashMap",
-					"PUISSANCE": 0,
-					"CRISTAL": 0,
-					"SCIENCE": 0,
-					"CREDIT": 100,
-					"ACIER": 30,
-					"GAZ": 0,
-					"PRODUCTION": 0
+					"PUISSANCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"CRISTAL": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"SCIENCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"CREDIT": {
+						"class": "java.lang.Integer",
+						"value": 100
+					},
+					"ACIER": {
+						"class": "java.lang.Integer",
+						"value": 30
+					},
+					"GAZ": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"PRODUCTION": {
+						"class": "java.lang.Integer",
+						"value": 0
+					}
 				},
 				"typeArme": "CINETIQUE"
 			}
@@ -379,26 +659,66 @@
 				"valeurBlindage": 80,
 				"valeurBlouclier": 30,
 				"cout": {
-					"class": "java.util.HashMap",
-					"PUISSANCE": 0,
-					"CRISTAL": 0,
-					"SCIENCE": 0,
-					"CREDIT": 100,
-					"ACIER": 20,
-					"GAZ": 0,
-					"PRODUCTION": 0
+					"PUISSANCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"CRISTAL": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"SCIENCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"CREDIT": {
+						"class": "java.lang.Integer",
+						"value": 100
+					},
+					"ACIER": {
+						"class": "java.lang.Integer",
+						"value": 20
+					},
+					"GAZ": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"PRODUCTION": {
+						"class": "java.lang.Integer",
+						"value": 0
+					}
 				}
 			}
 		},
 		"cout": {
-			"class": "java.util.HashMap",
-			"PUISSANCE": 0,
-			"CRISTAL": 10,
-			"SCIENCE": 0,
-			"CREDIT": 750,
-			"ACIER": 60,
-			"GAZ": 5,
-			"PRODUCTION": 0
+			"PUISSANCE": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"CRISTAL": {
+				"class": "java.lang.Integer",
+				"value": 10
+			},
+			"SCIENCE": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"CREDIT": {
+				"class": "java.lang.Integer",
+				"value": 750
+			},
+			"ACIER": {
+				"class": "java.lang.Integer",
+				"value": 60
+			},
+			"GAZ": {
+				"class": "java.lang.Integer",
+				"value": 5
+			},
+			"PRODUCTION": {
+				"class": "java.lang.Integer",
+				"value": 0
+			}
 		}
 	},
 	"hasZeroValue": true

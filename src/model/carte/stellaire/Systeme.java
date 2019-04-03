@@ -16,13 +16,13 @@ import com.badlogic.gdx.utils.IntMap.Entry;
 
 import model.EnumRessource;
 import model.batiment.BatimentPlanete;
-import model.batiment.BatimentVille;
 import model.entity.player.Joueur;
 import model.entity.vaisseau.Flotte;
 import model.entity.vaisseau.ListVaisseaux;
 import model.entity.vaisseau.Vaisseau;
 import model.parametre.EnumAbondanceRessource;
 import model.util.Coordonnees;
+import model.util.MapRessource;
 import view.launcher.Project;
 
 public class Systeme {
@@ -67,8 +67,11 @@ public class Systeme {
 
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				if (Project.systemeSelectionne != null) {
+					Project.changeSysteme = true;
+				}
 				Project.systemeSelectionne = sys;
-				Project.changeSysteme = true;
+				Project.displayHasChanged = true;
 			}
 			
 		});
@@ -97,7 +100,11 @@ public class Systeme {
 
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				if (Project.systemeSelectionne != null) {
+					Project.changeSysteme = true;
+				}
 				Project.systemeSelectionne = sys;
+				Project.displayHasChanged = true;
 			}
 			
 		});
@@ -134,21 +141,21 @@ public class Systeme {
 	
 	//--------------------------------------
 	
-	public boolean constructionBatimentVille(Joueur joueur, BatimentVille batiment, Ville ville) {
-		
-		if(joueur.getName()==this.joueur.getName() && ville.getJoueur().getName()==this.joueur.getName()) {
-			return ville.constructionBatiment(batiment);
-		}
-		return false;
-	}
-	
-	public boolean testFinConstructionVille(Joueur joueur, Ville ville) {
-		
-		if(joueur.getName()==this.joueur.getName()&& ville.getJoueur().getName()==this.joueur.getName()) {
-			return ville.testFinConstruction();
-		}
-		return false;
-	}
+//	public boolean constructionBatimentVille(Joueur joueur, BatimentVille batiment, Ville ville) {
+//		
+//		if(joueur.getName()==this.joueur.getName() && ville.getJoueur().getName()==this.joueur.getName()) {
+//			return ville.constructionBatiment(batiment);
+//		}
+//		return false;
+//	}
+//	
+//	public boolean testFinConstructionVille(Joueur joueur, Ville ville) {
+//		
+//		if(joueur.getName()==this.joueur.getName()&& ville.getJoueur().getName()==this.joueur.getName()) {
+//			return ville.testFinConstruction();
+//		}
+//		return false;
+//	}
 	
 	//--------------------------------------
 	
@@ -314,7 +321,7 @@ public class Systeme {
 		
 			for (Entry<Vaisseau> vaisseau : vaisseaux.getVaisseaux().entries()) {
 				//Correction type lecture json (de String vers EnumRessource)
-				Map<EnumRessource, Integer> cout = new HashMap<EnumRessource, Integer>();
+				MapRessource cout = new MapRessource();
 				
 				for (EnumRessource ressource : EnumRessource.values()) {
 					cout.put(ressource, vaisseau.value.getCout().get(ressource.name()));

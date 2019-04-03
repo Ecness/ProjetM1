@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import model.EnumRessource;
+import model.util.MapRessource;
 
 public class Blindage {
 	
@@ -12,15 +13,15 @@ public class Blindage {
 	private int point;
 	private int valeurBlindage;
 	private int valeurBlouclier;
-	private Map<EnumRessource, Integer> cout;
+	private MapRessource cout;
 	
 	
 	public Blindage() {
-		this("Default", "", 0, 0, 0, new HashMap<EnumRessource, Integer>());
+		this("Default", "", 0, 0, 0, new MapRessource());
 	}
 	
 	public Blindage(String nom, String description, int point, int valeurBlindage, int valeurBlouclier,
-			 Map<EnumRessource, Integer> cout) {
+			 MapRessource cout) {
 		this.nom = nom;
 		this.description = description;
 		this.point = point;
@@ -64,10 +65,10 @@ public class Blindage {
 	public void setValeurBlouclier(int valeurBlouclier) {
 		this.valeurBlouclier = valeurBlouclier;
 	}
-	public Map<EnumRessource, Integer> getCout() {
+	public MapRessource getCout() {
 		return cout;
 	}
-	public void setCout(Map<EnumRessource, Integer> cout) {
+	public void setCout(MapRessource cout) {
 		this.cout = cout;
 	}
 }
