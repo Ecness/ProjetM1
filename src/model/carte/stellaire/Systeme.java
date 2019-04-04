@@ -23,6 +23,7 @@ import model.entity.vaisseau.Vaisseau;
 import model.parametre.EnumAbondanceRessource;
 import model.util.Coordonnees;
 import model.util.MapRessource;
+import model.util.Sauvegarde;
 import view.launcher.Project;
 
 public class Systeme {
@@ -320,32 +321,13 @@ public class Systeme {
 	@SuppressWarnings("unlikely-arg-type")
 	private void generationFlotePirate() {
 		
-		ListVaisseaux listVaisseau = new ListVaisseaux();
-		Json parser = new Json();
+		ListVaisseaux listVaisseau = (ListVaisseaux) Sauvegarde.loadFromFile(ListVaisseaux.class, "Ressources/Nation/PIRATE/VaisseauxPirate.json");
 		
-		try(FileReader file = new FileReader("Ressources/Nation/PIRATE/Vaisseaux.json")) {
-			
-			ListVaisseaux vaisseaux = parser.fromJson(ListVaisseaux.class, file);
-		
-			for (Entry<Vaisseau> vaisseau : vaisseaux.getVaisseaux().entries()) {
-				//Correction type lecture json (de String vers EnumRessource)
-				MapRessource cout = new MapRessource();
+		for (Anomalie anomalie : TAnomalie) {
+			if(anomalie.equals(EnumAnomalie.PETITE_FLOTTE_PIRATE)) {
 				
-				for (EnumRessource ressource : EnumRessource.values()) {
-					cout.put(ressource, vaisseau.value.getCout().get(ressource.name()));
-				}
-				vaisseau.value.setCout(cout);
 			}
-			listVaisseau=vaisseaux;
-		    
-		} catch (Exception e) {
-			System.out.println(e.toString() + "### ERREUR : FILE:\"Ressources/Nation/PIRATE/Vaisseaux.json\" ###");
-			System.out.println(e.getMessage());
-			e.printStackTrace();
 		}
-		
-		
-		
 		
 	}
 	

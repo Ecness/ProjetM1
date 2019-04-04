@@ -52,6 +52,7 @@ public class Sauvegarde {
 			list = parser.fromJson(Class.forName(objectClass.getName()), file);
 
 		} catch (Exception e) {
+			System.out.println(e.toString() + "### ERREUR : FILE:\""+path+"\" ###");
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 
