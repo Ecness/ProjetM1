@@ -29,17 +29,17 @@ public class AffichageListePlanetes extends VerticalGroup {
 		grow();
 	}
 	
-	public void update(Systeme systeme) {
-		for (Planete planete : systeme.getTPlanete()) {
-			String text = "Type : " + planete.getTypePlanete() + "\n";
-
-			for (EnumRessource ressource : EnumRessource.values()) {
-				int value = planete.getVille() != null ? planete.getVille().getTRessource().get(ressource)
-													: planete.getTRessource().get(ressource);
-				text += " " + ressource.toString().substring(0, 1) + value;
-			}
-			
-			((TextButton) findActor("planete_" + planete.getId())).setText(text);
-		}
-	}
+//	public void update(Systeme systeme) {
+//		for (Planete planete : systeme.getTPlanete()) {
+//			String text = "Type : " + planete.getTypePlanete() + "\n";
+//
+//			for (EnumRessource ressource : EnumRessource.values()) {
+//				int value = planete.getVille() != null ? planete.getVille().getTRessource().get(ressource)
+//													: planete.getTRessource().get(ressource);
+//				text += " " + ressource.toString().substring(0, 1) + value;
+//			}
+//			
+//			((TextButton) findActor("planete_" + planete.getId())).setText(text);
+//		}
+//	}
 }

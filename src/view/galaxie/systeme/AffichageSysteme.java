@@ -28,10 +28,14 @@ public class AffichageSysteme extends VerticalGroup {
 			Project.changeSysteme = false;
 			if (findActor("afficheur_informations_systeme") != null && findActor("afficheur_liste_planetes") != null) {
 				((AffichageInformationsSysteme) findActor("afficheur_informations_systeme")).update(systeme, skin);
-				((AffichageListePlanetes) findActor("afficheur_liste_planetes")).update(systeme);
+//				((AffichageListePlanetes) findActor("afficheur_liste_planetes")).update(systeme);
+				findActor("afficheur_liste_planetes").remove();
+				addActorAfter(findActor("afficheur_informations_systeme"), new AffichageListePlanetes(systeme, skin));
 			} else {
 				clear();
-				addActor(new AffichageSysteme(systeme, skin));
+				addActor(new AffichageInformationsSysteme(systeme, skin));
+				addActor(new AffichageListePlanetes(systeme, skin));
+				addActor(new AffichageFlottes(systeme, skin));
 			}
 		} else {
 			if (findActor("afficheur_planete") != null) {
