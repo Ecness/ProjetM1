@@ -187,7 +187,7 @@ public class PhaseCombat {
 				}
 			}
 		}
-		if(vaisseauDefensseur.getSante()==0) {
+		if(!detail.detruit && vaisseauDefensseur.getSante()==0) {
 			detail.detruit=true;
 		}
 		return detail;

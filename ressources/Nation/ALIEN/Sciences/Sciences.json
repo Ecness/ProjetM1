@@ -7,7 +7,7 @@
 		{
 			"class": "model.entity.player.Science",
 			"nom": "Vaiseau de defence",
-			"description": "Premier vaiseau con�ue pour la defence de la colonie",
+			"description": "Premier vaiseau conue pour la defence de la colonie",
 			"cout": 20,
 			"dependanceUn": 0,
 			"dependanceDeux": 0
@@ -31,23 +31,23 @@
 		{
 			"class": "model.entity.player.Science",
 			"nom": "RailGun",
-			"description": "Permet la construction d'un canon �l�ctrique",
+			"description": "Permet la construction d'un canon éléctrique",
 			"cout": 100,
+			"dependanceUn": 3,
+			"dependanceDeux": 5
+		},
+		{
+			"class": "model.entity.player.Science",
+			"nom": "Vaisseau d'escorte",
+			"description": "Délock les vaisseaux tier 2",
+			"cout": 60,
 			"dependanceUn": 3,
 			"dependanceDeux": 0
 		},
 		{
 			"class": "model.entity.player.Science",
-			"nom": "Vaisseau d'escorte",
-			"description": "D�lock les vaisseau de tier 2",
-			"cout": 60,
-			"dependanceUn": 1,
-			"dependanceDeux": 2
-		},
-		{
-			"class": "model.entity.player.Science",
 			"nom": "Croiseur stailaire",
-			"description": "D�lock les vaisseau de tier 3",
+			"description": "Délock les vaisseaux tier 3",
 			"cout": 150,
 			"dependanceUn": 4,
 			"dependanceDeux": 5
@@ -125,9 +125,7 @@
 		"nom": "Sonde",
 		"description": "Début de la conquéte spacial",
 		"rechercher": true,
-		"cout": 0,
-		"dependanceUn": 0,
-		"dependanceDeux": 0
+		"cout": 0
 	},
 	"hasZeroValue": true
 },
@@ -146,8 +144,8 @@
 		},
 		{
 			"class": "model.entity.player.Science",
-			"nom": "Defence plan�taire",
-			"description": "Delock la construction de defence plan�taire",
+			"nom": "Defence planétaire",
+			"description": "Delock la construction de defence planétaire",
 			"cout": 20,
 			"dependanceUn": 0,
 			"dependanceDeux": 0
@@ -243,9 +241,7 @@
 		"nom": "Voyage Spacial",
 		"description": "Le Commencement",
 		"rechercher": true,
-		"cout": 0,
-		"dependanceUn": 0,
-		"dependanceDeux": 0
+		"cout": 0
 	},
 	"hasZeroValue": true
 },
@@ -265,15 +261,15 @@
 		{
 			"class": "model.entity.player.Science",
 			"nom": "Module d'arme perforante",
-			"description": "Auguemente de 10% les dommages des armes cin�tique",
+			"description": "Auguemente de 10% les dommages des armes cinétique",
 			"cout": 50,
 			"dependanceUn": 0,
 			"dependanceDeux": 0
 		},
 		{
 			"class": "model.entity.player.Science",
-			"nom": "Module d'arme suplementaire",
-			"description": "Ajoute un slot d'arme",
+			"nom": "Holochamp",
+			"description": "Réduit les chances de se faire toucher des 10%",
 			"cout": 100,
 			"dependanceUn": 2,
 			"dependanceDeux": 3
@@ -352,11 +348,9 @@
 	"zeroValue": {
 		"class": "model.entity.player.Science",
 		"nom": "Recherche des modules basic",
-		"description": "Le commencement des am�liorations",
+		"description": "Le commencement des améliorations",
 		"rechercher": true,
-		"cout": 0,
-		"dependanceUn": 0,
-		"dependanceDeux": 0
+		"cout": 0
 	},
 	"hasZeroValue": true
 }

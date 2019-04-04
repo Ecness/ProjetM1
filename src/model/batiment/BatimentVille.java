@@ -61,9 +61,9 @@ public class BatimentVille {
 		this.bonus = bonus;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		return nom.equals(((BatimentVille) obj).getNom());
-	}
+//	@Override
+//	public boolean equals(Object obj) {
+//		return nom.equals(((BatimentVille) obj).getNom());
+//	}
 
 }

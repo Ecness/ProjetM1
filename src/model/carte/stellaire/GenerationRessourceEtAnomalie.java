@@ -38,8 +38,11 @@ public class GenerationRessourceEtAnomalie {
 				anomalieSysteme.get(t).add(EnumAnomalie.COMETE);
 				anomalieSysteme.get(t).add(EnumAnomalie.EPAVE);
 				anomalieSysteme.get(t).add(EnumAnomalie.EPAVE);
-				anomalieSysteme.get(t).add(EnumAnomalie.PIRATE);
-				anomalieSysteme.get(t).add(EnumAnomalie.PIRATE);
+				anomalieSysteme.get(t).add(EnumAnomalie.PETITE_FLOTTE_PIRATE);
+				anomalieSysteme.get(t).add(EnumAnomalie.MOYENNE_FLOTTE_PIRATE);
+				anomalieSysteme.get(t).add(EnumAnomalie.MOYENNE_FLOTTE_PIRATE);
+				anomalieSysteme.get(t).add(EnumAnomalie.GRANDE_FLOTTE_PIRATE);
+				anomalieSysteme.get(t).add(EnumAnomalie.GRANDE_FLOTTE_PIRATE);
 				break;
 			
 			case SYSTEME_DOUBLE_ETOILE:
@@ -52,17 +55,25 @@ public class GenerationRessourceEtAnomalie {
 				anomalieSysteme.get(t).add(EnumAnomalie.COMETE);
 				anomalieSysteme.get(t).add(EnumAnomalie.EPAVE);
 				anomalieSysteme.get(t).add(EnumAnomalie.EPAVE);
-				anomalieSysteme.get(t).add(EnumAnomalie.PIRATE);
-				anomalieSysteme.get(t).add(EnumAnomalie.PIRATE);
+				anomalieSysteme.get(t).add(EnumAnomalie.PETITE_FLOTTE_PIRATE);
+				anomalieSysteme.get(t).add(EnumAnomalie.MOYENNE_FLOTTE_PIRATE);
+				anomalieSysteme.get(t).add(EnumAnomalie.MOYENNE_FLOTTE_PIRATE);
+				anomalieSysteme.get(t).add(EnumAnomalie.GRANDE_FLOTTE_PIRATE);
+				anomalieSysteme.get(t).add(EnumAnomalie.GRANDE_FLOTTE_PIRATE);
 				break;
 				
 			case SYSTEME_PLANETAIRE:
 				anomalieSysteme.put(t, new ArrayList<EnumAnomalie>());
-				
+
+				anomalieSysteme.get(t).add(EnumAnomalie.ASTEROIDE);
 				anomalieSysteme.get(t).add(EnumAnomalie.ASTEROIDE);
 				anomalieSysteme.get(t).add(EnumAnomalie.COMETE);
+				anomalieSysteme.get(t).add(EnumAnomalie.COMETE);
 				anomalieSysteme.get(t).add(EnumAnomalie.EPAVE);
-				anomalieSysteme.get(t).add(EnumAnomalie.PIRATE);
+				anomalieSysteme.get(t).add(EnumAnomalie.EPAVE);
+				anomalieSysteme.get(t).add(EnumAnomalie.PETITE_FLOTTE_PIRATE);
+				anomalieSysteme.get(t).add(EnumAnomalie.PETITE_FLOTTE_PIRATE);
+				anomalieSysteme.get(t).add(EnumAnomalie.MOYENNE_FLOTTE_PIRATE);
 				break;
 			default:
 				anomalieSysteme.put(t, new ArrayList<EnumAnomalie>());

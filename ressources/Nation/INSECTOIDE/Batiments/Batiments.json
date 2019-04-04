@@ -9,24 +9,24 @@
 			"nom": "Mine de metal",
 			"description": "Améliore la production d'acier",
 			"bonus": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 0,
-				"SCIENCE": 0,
+				"class": "model.util.MapRessource",
 				"CREDIT": 0,
-				"ACIER": 2,
 				"GAZ": 0,
-				"PRODUCTION": 0
+				"ACIER": 2,
+				"CRISTAL": 0,
+				"PRODUCTION": 0,
+				"SCIENCE": 0,
+				"PUISSANCE": 0
 			},
 			"cout": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 0,
-				"SCIENCE": 0,
+				"class": "model.util.MapRessource",
 				"CREDIT": 50,
-				"ACIER": 10,
 				"GAZ": 0,
-				"PRODUCTION": 0
+				"ACIER": 10,
+				"CRISTAL": 0,
+				"PRODUCTION": 0,
+				"SCIENCE": 0,
+				"PUISSANCE": 0
 			}
 		},
 		{
@@ -34,24 +34,24 @@
 			"nom": "Extracteur de gaz",
 			"description": "Améliore la production de gaz",
 			"bonus": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 0,
-				"SCIENCE": 0,
+				"class": "model.util.MapRessource",
 				"CREDIT": 0,
-				"ACIER": 0,
 				"GAZ": 2,
-				"PRODUCTION": 0
+				"ACIER": 0,
+				"CRISTAL": 0,
+				"PRODUCTION": 0,
+				"SCIENCE": 0,
+				"PUISSANCE": 0
 			},
 			"cout": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 0,
-				"SCIENCE": 0,
+				"class": "model.util.MapRessource",
 				"CREDIT": 50,
-				"ACIER": 10,
 				"GAZ": 0,
-				"PRODUCTION": 0
+				"ACIER": 10,
+				"CRISTAL": 0,
+				"PRODUCTION": 0,
+				"SCIENCE": 0,
+				"PUISSANCE": 0
 			}
 		},
 		{
@@ -60,24 +60,24 @@
 			"description": "Recherche sur les forme de vie extra-planetaire",
 			"techNecessaire": 4,
 			"bonus": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 0,
-				"SCIENCE": 5,
+				"class": "model.util.MapRessource",
 				"CREDIT": -2,
-				"ACIER": 0,
 				"GAZ": 0,
-				"PRODUCTION": 0
+				"ACIER": 0,
+				"CRISTAL": 0,
+				"PRODUCTION": 0,
+				"SCIENCE": 5,
+				"PUISSANCE": 0
 			},
 			"cout": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 50,
-				"SCIENCE": 0,
+				"class": "model.util.MapRessource",
 				"CREDIT": 80,
-				"ACIER": 50,
 				"GAZ": 10,
-				"PRODUCTION": 0
+				"ACIER": 50,
+				"CRISTAL": 50,
+				"PRODUCTION": 0,
+				"SCIENCE": 0,
+				"PUISSANCE": 0
 			}
 		},
 		{
@@ -86,24 +86,24 @@
 			"description": "Améliore les echanges avec les autre colonie",
 			"techNecessaire": 3,
 			"bonus": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 1,
-				"SCIENCE": 0,
+				"class": "model.util.MapRessource",
 				"CREDIT": 5,
-				"ACIER": 1,
 				"GAZ": 1,
-				"PRODUCTION": 0
+				"ACIER": 1,
+				"CRISTAL": 1,
+				"PRODUCTION": 0,
+				"SCIENCE": 0,
+				"PUISSANCE": 0
 			},
 			"cout": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 5,
-				"SCIENCE": 0,
+				"class": "model.util.MapRessource",
 				"CREDIT": 50,
-				"ACIER": 20,
 				"GAZ": 5,
-				"PRODUCTION": 0
+				"ACIER": 20,
+				"CRISTAL": 5,
+				"PRODUCTION": 0,
+				"SCIENCE": 0,
+				"PUISSANCE": 0
 			}
 		},
 		{
@@ -112,24 +112,24 @@
 			"description": "Améliore la production de cristal",
 			"techNecessaire": 1,
 			"bonus": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 4,
-				"SCIENCE": 0,
+				"class": "model.util.MapRessource",
 				"CREDIT": 0,
-				"ACIER": 0,
 				"GAZ": 0,
-				"PRODUCTION": 0
+				"ACIER": 0,
+				"CRISTAL": 4,
+				"PRODUCTION": 0,
+				"SCIENCE": 0,
+				"PUISSANCE": 0
 			},
 			"cout": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 20,
-				"SCIENCE": 0,
+				"class": "model.util.MapRessource",
 				"CREDIT": 75,
-				"ACIER": 50,
 				"GAZ": 0,
-				"PRODUCTION": 0
+				"ACIER": 50,
+				"CRISTAL": 20,
+				"PRODUCTION": 0,
+				"SCIENCE": 0,
+				"PUISSANCE": 0
 			}
 		},
 		{
@@ -138,50 +138,50 @@
 			"description": "Améliore la production d'acier",
 			"techNecessaire": 1,
 			"bonus": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 0,
-				"SCIENCE": 0,
+				"class": "model.util.MapRessource",
 				"CREDIT": 0,
-				"ACIER": 4,
 				"GAZ": 0,
-				"PRODUCTION": 0
+				"ACIER": 4,
+				"CRISTAL": 0,
+				"PRODUCTION": 0,
+				"SCIENCE": 0,
+				"PUISSANCE": 0
 			},
 			"cout": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 50,
-				"SCIENCE": 0,
+				"class": "model.util.MapRessource",
 				"CREDIT": 75,
-				"ACIER": 50,
 				"GAZ": 0,
-				"PRODUCTION": 0
+				"ACIER": 50,
+				"CRISTAL": 50,
+				"PRODUCTION": 0,
+				"SCIENCE": 0,
+				"PUISSANCE": 0
 			}
 		},
 		{
 			"class": "model.batiment.BatimentPlanete",
-			"nom": "Exploitation de gaz",
+			"nom": "Extracteur amélioré de gaz",
 			"description": "Améliore la production de gaz",
 			"techNecessaire": 1,
 			"bonus": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 0,
-				"SCIENCE": 0,
+				"class": "model.util.MapRessource",
 				"CREDIT": 0,
-				"ACIER": 0,
 				"GAZ": 4,
-				"PRODUCTION": 0
+				"ACIER": 0,
+				"CRISTAL": 0,
+				"PRODUCTION": 0,
+				"SCIENCE": 0,
+				"PUISSANCE": 0
 			},
 			"cout": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 50,
-				"SCIENCE": 0,
+				"class": "model.util.MapRessource",
 				"CREDIT": 75,
-				"ACIER": 50,
 				"GAZ": 0,
-				"PRODUCTION": 0
+				"ACIER": 50,
+				"CRISTAL": 50,
+				"PRODUCTION": 0,
+				"SCIENCE": 0,
+				"PUISSANCE": 0
 			}
 		},
 		null,
@@ -256,24 +256,24 @@
 		"nom": "Mine de cristal",
 		"description": "Améliore la production de cristal",
 		"bonus": {
-			"class": "java.util.HashMap",
-			"PUISSANCE": 0,
-			"CRISTAL": 2,
-			"SCIENCE": 0,
+			"class": "model.util.MapRessource",
 			"CREDIT": 0,
-			"ACIER": 0,
 			"GAZ": 0,
-			"PRODUCTION": 0
+			"ACIER": 0,
+			"CRISTAL": 2,
+			"PRODUCTION": 0,
+			"SCIENCE": 0,
+			"PUISSANCE": 0
 		},
 		"cout": {
-			"class": "java.util.HashMap",
-			"PUISSANCE": 0,
-			"CRISTAL": 0,
-			"SCIENCE": 0,
+			"class": "model.util.MapRessource",
 			"CREDIT": 50,
-			"ACIER": 10,
 			"GAZ": 0,
-			"PRODUCTION": 0
+			"ACIER": 10,
+			"CRISTAL": 0,
+			"PRODUCTION": 0,
+			"SCIENCE": 0,
+			"PUISSANCE": 0
 		}
 	},
 	"hasZeroValue": true
@@ -289,14 +289,34 @@
 			"description": "Usine de la taille d'une ville servant a traiter les ressources",
 			"techNecessaire": 1,
 			"bonus": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 2,
-				"SCIENCE": 0,
-				"CREDIT": -2,
-				"ACIER": 2,
-				"GAZ": 2,
-				"PRODUCTION": 1
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": -2
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 2
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 2
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 2
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 1
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			},
 			"cout": 200
 		},
@@ -306,14 +326,34 @@
 			"description": "Usine de création robotique",
 			"techNecessaire": 1,
 			"bonus": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 1,
-				"SCIENCE": 0,
-				"CREDIT": -1,
-				"ACIER": 2,
-				"GAZ": 0,
-				"PRODUCTION": 1
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": -1
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 2
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 1
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 1
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			},
 			"cout": 150
 		},
@@ -323,14 +363,34 @@
 			"description": "Batrie de defense planétaire",
 			"techNecessaire": 2,
 			"bonus": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 50,
-				"CRISTAL": 0,
-				"SCIENCE": 0,
-				"CREDIT": -2,
-				"ACIER": -1,
-				"GAZ": 0,
-				"PRODUCTION": -1
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": -2
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": -1
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": -1
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 50
+				}
 			},
 			"cout": 100
 		},
@@ -339,30 +399,70 @@
 			"nom": "Centre de recherche",
 			"description": "Petit centre de recherche",
 			"bonus": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 0,
-				"SCIENCE": 2,
-				"CREDIT": -1,
-				"ACIER": 0,
-				"GAZ": 0,
-				"PRODUCTION": -1
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": -1
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": -1
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 2
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			},
 			"cout": 50
 		},
 		{
 			"class": "model.batiment.BatimentVille",
-			"nom": "Banque central plan�taire",
+			"nom": "Banque central planétaire",
 			"description": "Centralise les fonts de la colonie",
 			"bonus": {
-				"class": "java.util.HashMap",
-				"PUISSANCE": 0,
-				"CRISTAL": 0,
-				"SCIENCE": 0,
-				"CREDIT": 10,
-				"ACIER": 0,
-				"GAZ": 0,
-				"PRODUCTION": -1
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 10
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": -1
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			},
 			"cout": 80
 		},
@@ -440,14 +540,34 @@
 		"nom": "Quartier ouvrier",
 		"description": "Quartier résidentelle peu luxueux",
 		"bonus": {
-			"class": "java.util.HashMap",
-			"PUISSANCE": 0,
-			"CRISTAL": 0,
-			"SCIENCE": 0,
-			"CREDIT": 2,
-			"ACIER": 0,
-			"GAZ": 0,
-			"PRODUCTION": 2
+			"CREDIT": {
+				"class": "java.lang.Integer",
+				"value": 2
+			},
+			"GAZ": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"ACIER": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"CRISTAL": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"PRODUCTION": {
+				"class": "java.lang.Integer",
+				"value": 2
+			},
+			"SCIENCE": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"PUISSANCE": {
+				"class": "java.lang.Integer",
+				"value": 0
+			}
 		},
 		"cout": 20
 	},

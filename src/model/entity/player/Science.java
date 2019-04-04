@@ -63,8 +63,8 @@ public class Science {
 		return dependanceUn < dependanceDeux ? dependanceDeux : dependanceUn;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		return nom.equals(((Science) obj).getNom());
-	}
+//	@Override
+//	public boolean equals(Object obj) {
+//		return nom.equals(((Science) obj).getNom());
+//	}
 }

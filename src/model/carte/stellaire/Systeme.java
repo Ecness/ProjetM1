@@ -55,7 +55,7 @@ public class Systeme {
 			generationSystem(nbRessource, maxPlanete);
 		}
 		generationAnomalie(maxAnomalie);
-		
+		generationFlotePirate();
 		liens = new HashMap<Systeme, Vector2>();
 		nbLiensMax = generationNbLiens();
 		bouton = new Button(Project.skin);
@@ -90,6 +90,7 @@ public class Systeme {
 			generationSystem(nbRessource, maxPlanete);
 		}
 		generationAnomalie(maxAnomalie);
+		generationFlotePirate();
 		liens = new HashMap<Systeme, Vector2>();
 		nbLiensMax = generationNbLiens();
 		bouton = new Button(Project.skin);
@@ -342,6 +343,9 @@ public class Systeme {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
+		
+		
+		
 		
 	}
 	

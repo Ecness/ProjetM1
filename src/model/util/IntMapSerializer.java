@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.JsonValue;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class IntMapSerializer implements Json.Serializer<IntMap> {
-    @Override
+	@Override
     public void write(Json json, IntMap object, Class knownType) {
         json.writeObjectStart();
         for(IntMap.Entry entry : (IntMap.Entries<?>) object.entries())

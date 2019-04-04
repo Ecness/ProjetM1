@@ -18,7 +18,7 @@ public class Anomalie {
 		super();
 		this.decouverte = false;
 		this.anomalie = anomalie;
-		if(this.anomalie==EnumAnomalie.PIRATE) {
+		if(this.anomalie==EnumAnomalie.GRANDE_FLOTTE_PIRATE || this.anomalie==EnumAnomalie.PETITE_FLOTTE_PIRATE || this.anomalie==EnumAnomalie.MOYENNE_FLOTTE_PIRATE) {
 			this.decouverte = true;
 			// todo ajouter une flote de pirate sur le syst�me 			
 		}else {			
