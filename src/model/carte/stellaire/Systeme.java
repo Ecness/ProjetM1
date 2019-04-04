@@ -68,7 +68,7 @@ public class Systeme {
 
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				if (Project.systemeSelectionne != null) {
+				if (Project.systemeSelectionne != null && !Project.systemeSelectionne.equals(sys)) {
 					Project.changeSysteme = true;
 				}
 				Project.systemeSelectionne = sys;
@@ -102,7 +102,7 @@ public class Systeme {
 
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				if (Project.systemeSelectionne != null) {
+				if (Project.systemeSelectionne != null && !Project.systemeSelectionne.equals(sys)) {
 					Project.changeSysteme = true;
 				}
 				Project.systemeSelectionne = sys;
