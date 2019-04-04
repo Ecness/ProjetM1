@@ -300,6 +300,7 @@ public class Joueur {
 		ajoutRessourcePlanete();
 		testScience();
 		regenerationVille();
+		Project.displayHasChanged = true;
 	}
 
 	public void regenerationVille() {
