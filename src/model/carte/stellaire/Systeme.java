@@ -1,28 +1,22 @@
 package model.carte.stellaire;
 
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.IntMap.Entry;
 
 import model.EnumRessource;
 import model.batiment.BatimentPlanete;
 import model.entity.player.Joueur;
 import model.entity.vaisseau.Flotte;
 import model.entity.vaisseau.ListVaisseaux;
-import model.entity.vaisseau.Vaisseau;
 import model.parametre.EnumAbondanceRessource;
 import model.util.Coordonnees;
-import model.util.MapRessource;
 import model.util.Sauvegarde;
 import view.launcher.Project;
 
@@ -325,7 +319,27 @@ public class Systeme {
 		
 		for (Anomalie anomalie : TAnomalie) {
 			if(anomalie.equals(EnumAnomalie.PETITE_FLOTTE_PIRATE)) {
-				
+				Flotte flotte = new Flotte();
+				flotte.addVaisseau(0, listVaisseau.getVaisseaux().get(0));
+				flotte.addVaisseau(1, listVaisseau.getVaisseaux().get(1));
+				this.AjoutFlotte(flotte);
+			}
+			if(anomalie.equals(EnumAnomalie.MOYENNE_FLOTTE_PIRATE)) {
+				Flotte flotte = new Flotte();
+				flotte.addVaisseau(0, listVaisseau.getVaisseaux().get(0));
+				flotte.addVaisseau(1, listVaisseau.getVaisseaux().get(1));
+				flotte.addVaisseau(2, listVaisseau.getVaisseaux().get(0));
+				flotte.addVaisseau(3, listVaisseau.getVaisseaux().get(1));
+				this.AjoutFlotte(flotte);
+			}
+			if(anomalie.equals(EnumAnomalie.GRANDE_FLOTTE_PIRATE)) {
+				Flotte flotte = new Flotte();
+				flotte.addVaisseau(0, listVaisseau.getVaisseaux().get(0));
+				flotte.addVaisseau(1, listVaisseau.getVaisseaux().get(1));
+				flotte.addVaisseau(2, listVaisseau.getVaisseaux().get(1));
+				flotte.addVaisseau(3, listVaisseau.getVaisseaux().get(0));
+				flotte.addVaisseau(4, listVaisseau.getVaisseaux().get(2));
+				this.AjoutFlotte(flotte);
 			}
 		}
 		
