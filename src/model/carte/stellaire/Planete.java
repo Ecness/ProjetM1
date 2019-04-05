@@ -1,8 +1,5 @@
 package model.carte.stellaire;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import model.EnumRessource;
 import model.batiment.BatimentPlanete;
 import model.entity.player.Joueur;
