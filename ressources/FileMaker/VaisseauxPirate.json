@@ -1,0 +1,726 @@
+{
+"vaisseaux": {
+	"size": 3,
+	"keyTable": [ 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+	"valueTable": [
+		null,
+		{
+			"class": "model.entity.vaisseau.Corvette",
+			"puissance": 35,
+			"sante": 110,
+			"santeMax": 110,
+			"bouclier": 30,
+			"bouclierMax": 30,
+			"nom": "Specter",
+			"chassie": {
+				"nom": "Specter",
+				"description": "Cargo civil modifier",
+				"point": 5,
+				"sante": 30,
+				"santeMax": 30,
+				"nbArme": 1,
+				"nbBlindage": 1,
+				"cout": {
+					"CREDIT": {
+						"class": "java.lang.Integer",
+						"value": 200
+					},
+					"GAZ": {
+						"class": "java.lang.Integer",
+						"value": 2
+					},
+					"ACIER": {
+						"class": "java.lang.Integer",
+						"value": 2
+					},
+					"CRISTAL": {
+						"class": "java.lang.Integer",
+						"value": 2
+					},
+					"PRODUCTION": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"SCIENCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"PUISSANCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					}
+				}
+			},
+			"armes": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Fusil Plasma",
+					"description": "Cette arme a un fort potentielle destructeur",
+					"point": 25,
+					"dommage": 60,
+					"precision": 10,
+					"critique": 50,
+					"nbTire": 1,
+					"tauxFeu": 60,
+					"cout": {
+						"CREDIT": {
+							"class": "java.lang.Integer",
+							"value": 100
+						},
+						"GAZ": {
+							"class": "java.lang.Integer",
+							"value": 20
+						},
+						"ACIER": {
+							"class": "java.lang.Integer",
+							"value": 10
+						},
+						"CRISTAL": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"PRODUCTION": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"SCIENCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"PUISSANCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						}
+					},
+					"typeArme": "PLASMA"
+				}
+			},
+			"blindages": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Alliage métalique",
+					"description": "Blindage sommaire",
+					"point": 5,
+					"valeurBlindage": 80,
+					"valeurBlouclier": 30,
+					"cout": {
+						"CREDIT": {
+							"class": "java.lang.Integer",
+							"value": 100
+						},
+						"GAZ": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"ACIER": {
+							"class": "java.lang.Integer",
+							"value": 20
+						},
+						"CRISTAL": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"PRODUCTION": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"SCIENCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"PUISSANCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						}
+					}
+				}
+			},
+			"cout": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 400
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 22
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 32
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 2
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			}
+		},
+		{
+			"class": "model.entity.vaisseau.Croiseur",
+			"puissance": 230,
+			"sante": 260,
+			"santeMax": 260,
+			"bouclier": 110,
+			"bouclierMax": 110,
+			"nom": "Pillager",
+			"chassie": {
+				"nom": "Pillager",
+				"description": "Conçue pour piller",
+				"point": 5,
+				"sante": 30,
+				"santeMax": 30,
+				"nbArme": 3,
+				"nbBlindage": 2,
+				"cout": {
+					"CREDIT": {
+						"class": "java.lang.Integer",
+						"value": 500
+					},
+					"GAZ": {
+						"class": "java.lang.Integer",
+						"value": 5
+					},
+					"ACIER": {
+						"class": "java.lang.Integer",
+						"value": 5
+					},
+					"CRISTAL": {
+						"class": "java.lang.Integer",
+						"value": 5
+					},
+					"PRODUCTION": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"SCIENCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"PUISSANCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					}
+				}
+			},
+			"armes": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Canon électrique",
+					"description": "Une arme é projectile accéléré par une force électromagnétique",
+					"point": 70,
+					"dommage": 70,
+					"precision": 85,
+					"critique": 25,
+					"nbTire": 1,
+					"cout": {
+						"CREDIT": {
+							"class": "java.lang.Integer",
+							"value": 250
+						},
+						"GAZ": {
+							"class": "java.lang.Integer",
+							"value": 10
+						},
+						"ACIER": {
+							"class": "java.lang.Integer",
+							"value": 50
+						},
+						"CRISTAL": {
+							"class": "java.lang.Integer",
+							"value": 20
+						},
+						"PRODUCTION": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"SCIENCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"PUISSANCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						}
+					},
+					"typeArme": "CINETIQUE"
+				},
+				"1": {
+					"nom": "Canon électrique",
+					"description": "Une arme é projectile accéléré par une force électromagnétique",
+					"point": 70,
+					"dommage": 70,
+					"precision": 85,
+					"critique": 25,
+					"nbTire": 1,
+					"cout": {
+						"CREDIT": {
+							"class": "java.lang.Integer",
+							"value": 250
+						},
+						"GAZ": {
+							"class": "java.lang.Integer",
+							"value": 10
+						},
+						"ACIER": {
+							"class": "java.lang.Integer",
+							"value": 50
+						},
+						"CRISTAL": {
+							"class": "java.lang.Integer",
+							"value": 20
+						},
+						"PRODUCTION": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"SCIENCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"PUISSANCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						}
+					},
+					"typeArme": "CINETIQUE"
+				},
+				"2": {
+					"nom": "Canon électrique",
+					"description": "Une arme é projectile accéléré par une force électromagnétique",
+					"point": 70,
+					"dommage": 70,
+					"precision": 85,
+					"critique": 25,
+					"nbTire": 1,
+					"cout": {
+						"CREDIT": {
+							"class": "java.lang.Integer",
+							"value": 250
+						},
+						"GAZ": {
+							"class": "java.lang.Integer",
+							"value": 10
+						},
+						"ACIER": {
+							"class": "java.lang.Integer",
+							"value": 50
+						},
+						"CRISTAL": {
+							"class": "java.lang.Integer",
+							"value": 20
+						},
+						"PRODUCTION": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"SCIENCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"PUISSANCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						}
+					},
+					"typeArme": "CINETIQUE"
+				}
+			},
+			"blindages": {
+				"class": "java.util.HashMap",
+				"0": {
+					"nom": "Alliage métalique",
+					"description": "Blindage sommaire",
+					"point": 5,
+					"valeurBlindage": 80,
+					"valeurBlouclier": 30,
+					"cout": {
+						"CREDIT": {
+							"class": "java.lang.Integer",
+							"value": 100
+						},
+						"GAZ": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"ACIER": {
+							"class": "java.lang.Integer",
+							"value": 20
+						},
+						"CRISTAL": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"PRODUCTION": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"SCIENCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"PUISSANCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						}
+					}
+				},
+				"1": {
+					"nom": "Alliage Composite",
+					"description": "Melange de matériaux diver",
+					"point": 10,
+					"valeurBlindage": 150,
+					"valeurBlouclier": 80,
+					"cout": {
+						"CREDIT": {
+							"class": "java.lang.Integer",
+							"value": 150
+						},
+						"GAZ": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"ACIER": {
+							"class": "java.lang.Integer",
+							"value": 30
+						},
+						"CRISTAL": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"PRODUCTION": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"SCIENCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						},
+						"PUISSANCE": {
+							"class": "java.lang.Integer",
+							"value": 0
+						}
+					}
+				}
+			},
+			"cout": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 1400
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 35
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 185
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 65
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			}
+		},
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null
+	],
+	"zeroValue": {
+		"class": "model.entity.vaisseau.Corvette",
+		"puissance": 55,
+		"sante": 140,
+		"santeMax": 140,
+		"bouclier": 50,
+		"bouclierMax": 50,
+		"nom": "Reaper",
+		"chassie": {
+			"nom": "Reaper",
+			"description": "Chassie petit et rapide",
+			"point": 20,
+			"sante": 60,
+			"santeMax": 60,
+			"bouclier": 20,
+			"bouclierMax": 20,
+			"nbArme": 2,
+			"nbBlindage": 1,
+			"cout": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 500
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 5
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 5
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 5
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			}
+		},
+		"armes": {
+			"class": "java.util.HashMap",
+			"0": {
+				"nom": "Laser MKI",
+				"description": "Petit module d'arme laser",
+				"point": 10,
+				"dommage": 5,
+				"precision": 90,
+				"critique": 5,
+				"nbTire": 3,
+				"tauxFeu": 45,
+				"cout": {
+					"CREDIT": {
+						"class": "java.lang.Integer",
+						"value": 50
+					},
+					"GAZ": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"ACIER": {
+						"class": "java.lang.Integer",
+						"value": 5
+					},
+					"CRISTAL": {
+						"class": "java.lang.Integer",
+						"value": 5
+					},
+					"PRODUCTION": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"SCIENCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"PUISSANCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					}
+				},
+				"typeArme": "LASER"
+			},
+			"1": {
+				"nom": "Type 490/3",
+				"description": "Des canon de la marine modifier pour l'environement spacial",
+				"point": 20,
+				"dommage": 20,
+				"precision": 60,
+				"critique": 10,
+				"nbTire": 3,
+				"tauxFeu": 5,
+				"cout": {
+					"CREDIT": {
+						"class": "java.lang.Integer",
+						"value": 100
+					},
+					"GAZ": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"ACIER": {
+						"class": "java.lang.Integer",
+						"value": 30
+					},
+					"CRISTAL": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"PRODUCTION": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"SCIENCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"PUISSANCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					}
+				},
+				"typeArme": "CINETIQUE"
+			}
+		},
+		"blindages": {
+			"class": "java.util.HashMap",
+			"0": {
+				"nom": "Alliage métalique",
+				"description": "Blindage sommaire",
+				"point": 5,
+				"valeurBlindage": 80,
+				"valeurBlouclier": 30,
+				"cout": {
+					"CREDIT": {
+						"class": "java.lang.Integer",
+						"value": 100
+					},
+					"GAZ": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"ACIER": {
+						"class": "java.lang.Integer",
+						"value": 20
+					},
+					"CRISTAL": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"PRODUCTION": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"SCIENCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					},
+					"PUISSANCE": {
+						"class": "java.lang.Integer",
+						"value": 0
+					}
+				}
+			}
+		},
+		"cout": {
+			"CREDIT": {
+				"class": "java.lang.Integer",
+				"value": 750
+			},
+			"GAZ": {
+				"class": "java.lang.Integer",
+				"value": 5
+			},
+			"ACIER": {
+				"class": "java.lang.Integer",
+				"value": 60
+			},
+			"CRISTAL": {
+				"class": "java.lang.Integer",
+				"value": 10
+			},
+			"PRODUCTION": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"SCIENCE": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"PUISSANCE": {
+				"class": "java.lang.Integer",
+				"value": 0
+			}
+		}
+	},
+	"hasZeroValue": true
+}
+}
