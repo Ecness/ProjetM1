@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.JsonWriter.OutputType;
 
 import model.EnumRessource;
@@ -433,6 +434,35 @@ public class FileMaker {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
+		
+		System.out.println("  * TEST");
+		MapRessource test = new MapRessource();
+		test.put(EnumRessource.ACIER, 20);
+		test.put(EnumRessource.CREDIT, 50);
+		try(FileWriter file = new FileWriter("Ressources/FileMaker/Test.json")){
+			
+//			json.setSerializer(MapRessource.class, new Json.Serializer<MapRessource>() {
+//				   public void write (Json json, MapRessource number, Class knownType) {
+//				      json.writeObjectStart();
+//				      json.writeValue(number.keySet().toString(), number.values());
+//				      json.writeObjectEnd();
+//				   }
+//
+//				   public MapRessource read (Json json, JsonValue jsonData, Class type) {
+//				      MapRessource number = new MapRessource();
+//				      number.put(EnumRessource.valueOf(jsonData.child().name()), jsonData.child().asInt());
+//				      return number;
+//				   }
+//				});
+			
+			file.write(json.toJson(test));
+			file.flush();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+		
 		System.out.println("### End File Generation ###");
 	}
 }
