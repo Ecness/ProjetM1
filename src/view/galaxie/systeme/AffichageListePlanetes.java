@@ -6,7 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.utils.Align;
 
 import controller.controles.buttons.systeme.SelectPlanete;
-import model.EnumRessource;
 import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
 
@@ -28,18 +27,4 @@ public class AffichageListePlanetes extends VerticalGroup {
 		align(Align.center);
 		grow();
 	}
-	
-//	public void update(Systeme systeme) {
-//		for (Planete planete : systeme.getTPlanete()) {
-//			String text = "Type : " + planete.getTypePlanete() + "\n";
-//
-//			for (EnumRessource ressource : EnumRessource.values()) {
-//				int value = planete.getVille() != null ? planete.getVille().getTRessource().get(ressource)
-//													: planete.getTRessource().get(ressource);
-//				text += " " + ressource.toString().substring(0, 1) + value;
-//			}
-//			
-//			((TextButton) findActor("planete_" + planete.getId())).setText(text);
-//		}
-//	}
 }

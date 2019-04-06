@@ -1,17 +1,10 @@
 package model.entity.player;
 
-import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.utils.IntMap;
-import com.badlogic.gdx.utils.IntMap.Entry;
-import com.badlogic.gdx.utils.Json;
-
 import model.EnumRessource;
 import model.carte.stellaire.EnumTypePlanete;
 import model.carte.stellaire.EnumTypeSysteme;
@@ -19,7 +12,6 @@ import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
 import model.carte.stellaire.Ville;
 import model.entity.general.General;
-import model.entity.player.donnee.EnumTech;
 import model.entity.player.donnee.Technologie;
 import model.entity.vaisseau.Flotte;
 import model.entity.vaisseau.Vaisseau;
@@ -78,19 +70,6 @@ public class Joueur {
 			e.printStackTrace();
 		}
 	}
-
-	//	private void loadTechFile(String path) {
-	//		Json parser = new Json();
-	//		try(FileReader file = new FileReader(path)) {
-	//			
-	//			Technologie tech = parser.fromJson(Technologie.class, file);
-	//			
-	//		    this.technology=tech;
-	//		    
-	//		} catch (Exception e) {
-	//			e.printStackTrace();
-	//		}
-	//	}
 
 	private void loadTechFile() {
 		technology = (Technologie) Sauvegarde.loadFromFile(Technologie.class, nation.getPath() + "/Sciences/Sciences.json");
@@ -198,36 +177,6 @@ public class Joueur {
 			break;
 		}
 	}
-//
-//	public boolean addRechercheMilitaire(int numero) {
-//
-//		if(technology.getScienceMillitaire().get(numero).isRechercher()==false) {
-//			if(technology.getScienceMillitaire().get(technology.getScienceMillitaire().get(numero).getDependanceDeux()).isRechercher()==true
-//					&& technology.getScienceMillitaire().get(technology.getScienceMillitaire().get(numero).getDependanceUn()).isRechercher()==true) {
-//				fileTechnology.add(technology.getScienceMillitaire().get(numero));
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-//	public boolean addRechercheBonus(int numero) {
-//
-//		if(technology.getScienceBonus().get(numero).isRechercher()==false) {
-//			if(technology.getScienceBonus().get(technology.getScienceBonus().get(numero).getDependanceDeux()).isRechercher()==true
-//					&& technology.getScienceBonus().get(technology.getScienceBonus().get(numero).getDependanceUn()).isRechercher()==true) {
-//				fileTechnology.add(technology.getScienceBonus().get(numero));
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-//	public boolean addRechercheBatiment(Science tech) {
-//		if(!tech.isRechercher() && isBatimentTechUnlockable(tech)) {
-//			fileTechnology.add(tech);
-//			return true;
-//		}
-//		return false;
-//	}
 
 	public boolean isBatimentTechUnlockable(Science tech) {
 		return technology.getScienceBatiment().get(tech.getDependanceDeux()).isRechercher()
@@ -243,21 +192,6 @@ public class Joueur {
 		return technology.getScienceBonus().get(tech.getDependanceDeux()).isRechercher()
 				&& technology.getScienceBonus().get(tech.getDependanceUn()).isRechercher();
 	}
-
-//	public boolean testFinRechercheBonusScience(int bonus) {
-//
-//		if(!fileTechnology.isEmpty()) {	
-//
-//			fileTechnology.get(0).setCout(fileTechnology.get(0).getCout()-bonus);
-//
-//			if(fileTechnology.get(0).getCout()<=0) {
-//				fileTechnology.get(0).setRechercher(true);
-//				fileTechnology.remove(0);
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
 
 	public boolean testFinRecherche() {
 		if(TRessource.get(EnumRessource.SCIENCE)>0 && searchingTech != null) {	
@@ -511,10 +445,6 @@ public class Joueur {
 	public void setScienceDepart(int scienceDepart) {
 		this.scienceDepart = scienceDepart;
 	}
-
-//	public void setFileTechnology(List<Science> fileTechnology) {
-//		this.fileTechnology = fileTechnology;
-//	}
 
 	public Science getSearchingTech() {
 		return searchingTech;

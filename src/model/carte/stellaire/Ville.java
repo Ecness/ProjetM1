@@ -1,15 +1,12 @@
 package model.carte.stellaire;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import model.EnumRessource;
 import model.batiment.BatimentVille;
 import model.entity.player.Joueur;
-import model.entity.vaisseau.Flotte;
 import model.entity.vaisseau.Vaisseau;
 import model.util.MapRessource;
 
@@ -175,29 +172,6 @@ public class Ville {
 		}
 	}
 
-//	/**
-//	 * teste la fin de la construction d'un batiment
-//	 * @return
-//	 * 			: true si un batiment a fini de se construire, false sinon
-//	 */
-//	public boolean testFinConstruction() {
-//		if (!fileDeConstructionBatiment.isEmpty()) {
-//			reDrawFilesBatiments = true;
-//			reDraw = true;
-//			fileDeConstructionBatiment.get(0).setCout(fileDeConstructionBatiment.get(0).getCout()-TRessource.get(EnumRessource.PRODUCTION));
-//			if(fileDeConstructionBatiment.get(0).getCout()<=0) {
-//				ajoutBonusBatiment(fileDeConstructionBatiment.get(0));
-//				TBatimentVille.add(fileDeConstructionBatiment.get(0));
-//				fileDeConstructionBatiment.remove(0);
-//				batimentTermine = true;
-//				reDrawBatiments = true;
-//				return true;
-//			}
-//		}
-//
-//		return false;
-//	}
-	
 	public void testFinConstruction() {
 		if (!fileDeConstructionBatiment.isEmpty()) {
 			reDrawFilesBatiments = true;
@@ -212,6 +186,7 @@ public class Ville {
 			}
 		}
 		
+		//TODO Gérer la file de contruction des vaisseaux en back
 		if (!fileDeConstructionUnite.isEmpty()) {
 			reDrawFilesVaisseaux = true;
 			reDraw = true;

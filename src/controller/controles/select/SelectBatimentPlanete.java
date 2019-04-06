@@ -18,7 +18,6 @@ import controller.controles.buttons.planete.ButtonAddBatimentPlanete;
 import model.batiment.BatimentPlanete;
 import model.batiment.ListBatiment;
 import model.carte.stellaire.Planete;
-import model.util.Sauvegarde;
 import view.launcher.Project;
 
 public class SelectBatimentPlanete extends Window {
@@ -61,9 +60,6 @@ public class SelectBatimentPlanete extends Window {
 				for (Entry<BatimentPlanete> batiment : listeBatiments.getBatimentsPlanete().entries()) {
 					if (!listeBatimentsPlanete.contains(batiment.value.getNom()) && 
 							(planete.getJoueur().getTechnology().getScienceBatiment().get(listeBatiments.getBatimentsPlanete().get(batiment.key).getTechNecessaire()).isRechercher())) {
-						//Correction des Map<EnumRessource, Integer> après lecture JSON
-//						batiment.value.setBonus(Sauvegarde.convert(batiment.value.getBonus()));
-//						batiment.value.setCout(Sauvegarde.convert(batiment.value.getCout()));
 
 						TextButton button = new ButtonAddBatimentPlanete(this, planete, emplacement, batiment.value, skin);
 

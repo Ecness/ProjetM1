@@ -8,7 +8,6 @@ import java.util.Map.Entry;
 
 import com.badlogic.gdx.math.Vector2;
 
-import model.carte.stellaire.Carte;
 import model.carte.stellaire.Systeme;
 import model.entity.general.General;
 

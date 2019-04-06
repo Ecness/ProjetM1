@@ -18,7 +18,6 @@ import com.badlogic.gdx.utils.IntMap.Entry;
 import model.carte.stellaire.Ville;
 import model.entity.vaisseau.ListVaisseaux;
 import model.entity.vaisseau.Vaisseau;
-import model.util.Sauvegarde;
 import view.launcher.Project;
 
 public class SelectVaisseau extends Window {

@@ -16,7 +16,6 @@ import controller.controles.buttons.ville.ButtonAddBatimentVille;
 import model.batiment.BatimentVille;
 import model.batiment.ListBatiment;
 import model.carte.stellaire.Ville;
-import model.util.Sauvegarde;
 import view.launcher.Project;
 
 public class SelectBatimentVille extends Window {
@@ -52,8 +51,6 @@ public class SelectBatimentVille extends Window {
 				for (Entry<BatimentVille> batiment : listeBatiments.getBatimentsVille().entries()) {
 					//Empêche de sélectionner des bâtiments déjà construits ou en construction ainsi que ceux dont la technologie n'est pas débloquée
 					if (!ville.presenceBatiment(batiment.value) && (ville.isBuildingUnlocked(batiment.value))) {
-						//Correction des Map<EnumRessource, Integer> après lecture JSON
-//						batiment.value.setBonus(Sauvegarde.convert(batiment.value.getBonus()));
 						
 						TextButton button = new ButtonAddBatimentVille(this, ville, batiment.value, skin);
 						//Le bouton est nommé selon le nom du bâtiment

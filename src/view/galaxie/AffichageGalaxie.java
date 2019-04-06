@@ -13,10 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import controller.controles.buttons.tech.ButtonMenuTech;
 import model.carte.stellaire.Carte;
 import model.carte.stellaire.Systeme;
-import model.entity.player.Science;
 import view.galaxie.systeme.AffichageSysteme;
 import view.launcher.Project;
 import view.menus.MenuPartie;
@@ -124,13 +122,6 @@ public class AffichageGalaxie {
 
 			}
 			((AffichageRecherche) afficheurHaut.findActor("group_tech")).update(Project.partie.getTJoueur()[0], Project.skin);
-			
-//			if (Project.partie.getTJoueur()[0].isTechHasChanged()) {
-//				String techLabel = Project.partie.getTJoueur()[0].getSearchingTech() != null ?
-//						Project.partie.getTJoueur()[0].getSearchingTech().getNom() : "Aucune recherche";
-//				((Label) afficheurHaut.findActor("label_tech")).setText(techLabel);
-//			}
-//			Project.changeSysteme = false;
 		}
 	}
 }

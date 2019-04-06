@@ -8,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import controller.controles.buttons.tech.ButtonMenuTech;
 import model.EnumRessource;
 import model.entity.player.Joueur;
-import view.launcher.Project;
 
 public class AffichageRecherche extends HorizontalGroup {
 

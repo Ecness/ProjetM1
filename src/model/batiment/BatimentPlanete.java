@@ -1,9 +1,5 @@
 package model.batiment;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import model.EnumRessource;
 import model.util.MapRessource;
 
 public class BatimentPlanete {

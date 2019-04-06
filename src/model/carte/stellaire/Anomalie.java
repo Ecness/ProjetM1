@@ -1,7 +1,5 @@
 package model.carte.stellaire;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import model.EnumRessource;

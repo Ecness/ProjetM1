@@ -15,7 +15,6 @@ import model.module.Arme;
 import model.module.Blindage;
 import model.module.Chassie;
 import model.util.MapRessource;
-import model.util.Sauvegarde;
 
 public class Vaisseau implements Cloneable {
 
@@ -37,13 +36,13 @@ public class Vaisseau implements Cloneable {
 	protected Boolean moteurDetruit;
 	protected Boolean bouclierDetruit;
 	protected Joueur joueur;
-	
+
 	public Vaisseau() {
 		this("Default", new Chassie(), new HashMap<Integer, Arme>(), new HashMap<Integer, Blindage>(), new ArrayList<EnumDommageCritique>(), 0, 0, null);
 	}
-	
+
 	public Vaisseau( String nom, Chassie chassie, int vitesse, int techNecessaire, Joueur joueur) {
-		
+
 		this.puissance = 0;
 		this.techNecessaire = techNecessaire;
 		this.nom = nom;
@@ -68,7 +67,7 @@ public class Vaisseau implements Cloneable {
 	public Vaisseau(String nom, Chassie chassie, Map<Integer, Arme> armes, Map<Integer,
 			Blindage> blindages, List<EnumDommageCritique> dommageCritique, int vitesse,
 			int techNecessaire, Joueur joueur) {
-		
+
 		this.techNecessaire = techNecessaire;
 		this.puissance = 0;
 		this.nom = nom;
@@ -92,7 +91,7 @@ public class Vaisseau implements Cloneable {
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------------
-	
+
 	public void calculPuissanceTotal() {
 		for (Entry<Integer, Blindage> blindage : blindages.entrySet()) {
 			puissance += blindage.getValue().getPoint();
@@ -102,7 +101,7 @@ public class Vaisseau implements Cloneable {
 		}
 		puissance += chassie.getPoint();
 	}
-	
+
 	public void addBlindage() {
 		for (Entry<Integer, Blindage> blindage : blindages.entrySet()) {
 			santeMax += blindage.getValue().getValeurBlindage();
@@ -111,25 +110,19 @@ public class Vaisseau implements Cloneable {
 		sante = santeMax;
 		bouclier = bouclierMax;
 	}
-	
+
 	public void addCout() {
 		for (Entry<Integer, Blindage> blindage : blindages.entrySet()) {
-			//Correction des coûts liée au chargement du fichier JSON
-//			blindage.getValue().setCout(Sauvegarde.convert(blindage.getValue().getCout()));
 			for (Entry<EnumRessource, Integer> coutBlindage : blindage.getValue().getCout().entrySet()) {
 				cout.put(coutBlindage.getKey(), coutBlindage.getValue());
 			}
 		}
 		for (Entry<Integer, Arme> arme : armes.entrySet()) {
-			//Correction des coûts liée au chargement du fichier JSON
-//			arme.getValue().setCout(Sauvegarde.convert(arme.getValue().getCout()));
 			for (Entry<EnumRessource, Integer> coutArme : arme.getValue().getCout().entrySet()) {
 				cout.put(coutArme.getKey(), coutArme.getValue()+cout.get(coutArme.getKey()));
 			}
 		}
 		if(!chassie.getCout().isEmpty()) {
-			//Correction des coûts liée au chargement du fichier JSON
-//			chassie.setCout(Sauvegarde.convert(chassie.getCout()));
 			for (EnumRessource e : EnumRessource.values()) {
 				if(cout.get(e)!=null) {
 					cout.put(e, chassie.getCout().get(e)+cout.get(e));
@@ -139,16 +132,16 @@ public class Vaisseau implements Cloneable {
 			}			
 		}
 	}
-	
+
 	public void addArme(int id, Arme arme) {
 		armes.put(id, arme);
 	}
 	public void addBlindage(int id, Blindage blindage) {
 		blindages.put(id, blindage);
 	}
-	
+
 	public void prendreDommage(int dommage){
-		
+
 		if(bouclier>0) {
 			if(bouclier>=dommage) {
 				bouclier-=dommage;
@@ -164,65 +157,65 @@ public class Vaisseau implements Cloneable {
 			sante=0;
 		}
 	}
-	
+
 	public void regeneBouclier() {
-		
+
 		bouclier += (int)(bouclierMax*0.1);
-		
+
 		if(bouclier>bouclierMax) {
 			bouclier=bouclierMax;
 		}
 	}
-	
+
 	public void reparationVaisseau() {
-		
+
 		if(fire>0) {
 			fire--;
 		}else {
 			sante += (int)(santeMax*0.05);
-			
+
 			if(sante>santeMax) {
 				sante=santeMax;
 			}
 		}
 	}
-	
+
 	public void reparationCritique() {
-		
+
 		if(!dommageCritique.isEmpty()){
 			int id = (int)(dommageCritique.size()*Math.random());
 			dommageCritique.remove(id);
 		}
 	}
-	
+
 	public void dommageFire() {
-	
+
 		sante-=(int)(santeMax*0.05)*fire;
 		if(sante<0) {
 			sante=0;
 		}
 	}
-	
+
 	public void addFire() {
-		
+
 		if(fire<3) {
 			fire ++;
 		}
 	}
-	
+
 	@Override
 	public Vaisseau clone() throws CloneNotSupportedException {
 		Vaisseau clone = new Vaisseau(this.nom, this.chassie, this.armes, this.blindages, this.dommageCritique, this.vitesse, this.techNecessaire, this.joueur);
 		clone.setCout(this.cout);
 		return clone;
-		
+
 	}
-	
+
 	public IntMap<Science> getScienceMilitaire(){
 		return this.joueur.getTechnology().getScienceMillitaire();
 	}
-	
-	
+
+
 	//-------------------------------------------------------------------------------------------------------------------------
 
 	public int getPuissance() {
