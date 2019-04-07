@@ -1,6 +1,5 @@
 package controller.controles.select;
 
-import java.io.FileReader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
@@ -9,14 +8,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.IntMap.Entry;
 
 import controller.controles.buttons.ville.ButtonAddBatimentVille;
 import model.batiment.BatimentVille;
-import model.batiment.ListBatiment;
 import model.carte.stellaire.Ville;
-import model.entity.player.Joueur;
 import view.launcher.Project;
 
 public class SelectBatimentVille extends Window {

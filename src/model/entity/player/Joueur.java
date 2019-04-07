@@ -437,14 +437,6 @@ public class Joueur {
 		this.technology = technology;
 	}
 
-//	public List<Science> getFileTechnology() {
-//		return fileTechnology;
-//	}
-//
-//	public void setFileTechnology(ArrayList<Science> fileTechnology) {
-//		this.fileTechnology = fileTechnology;
-//	}
-
 	public ListBatiment getBuildings() {
 		return buildings;
 	}

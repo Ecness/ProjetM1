@@ -77,10 +77,4 @@ public class BatimentVille {
 	public void setEnConstruction(boolean enConstruction) {
 		this.enConstruction = enConstruction;
 	}
-
-//	@Override
-//	public boolean equals(Object obj) {
-//		return nom.equals(((BatimentVille) obj).getNom());
-//	}
-
 }
