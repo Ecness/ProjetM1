@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import model.EnumRessource;
 import model.batiment.BatimentVille;
 import model.entity.player.Joueur;
+import model.entity.vaisseau.Flotte;
 import model.entity.vaisseau.Vaisseau;
 import model.util.MapRessource;
 
@@ -16,6 +17,7 @@ public class Ville {
 	private int puissance;
 	private int puissanceTotal;
 	private Joueur joueur;
+	private Planete planete;
 	private MapRessource TRessource;
 	private List<BatimentVille> TBatimentVille;
 	private List<BatimentVille> fileDeConstructionBatiment;
@@ -29,6 +31,7 @@ public class Ville {
 		this.puissance = 50;
 		this.puissanceTotal = 50;
 		this.joueur = joueur;
+		this.planete = planete;
 		if(joueur.getTVille()==null) {
 			this.id=0;
 		}else {			
@@ -88,7 +91,7 @@ public class Ville {
 	 * 					: true si déjà construit ou en construction, false sinon
 	 */
 	public boolean presenceBatiment(BatimentVille batiment) {
-		return TBatimentVille.contains(batiment) || fileDeConstructionBatiment.contains(batiment);
+		return batiment.isConstruit() || batiment.isEnConstruction();
 	}
 
 	/**
@@ -102,8 +105,8 @@ public class Ville {
 
 		if(isBuildingUnlocked(batiment) && !presenceBatiment(batiment)) {
 			batimentCommence = true;
-			fileDeConstructionBatiment.add(new BatimentVille(batiment.getNom(), batiment.getDescription(), 
-					batiment.getTechNecessaire(), batiment.getBonus(), batiment.getCout()));
+			batiment.setEnConstruction(true);
+			fileDeConstructionBatiment.add(batiment);
 			reDrawFilesBatiments = true;
 			return true;
 		}
@@ -178,25 +181,26 @@ public class Ville {
 			reDraw = true;
 			fileDeConstructionBatiment.get(0).setCout(fileDeConstructionBatiment.get(0).getCout()-TRessource.get(EnumRessource.PRODUCTION));
 			if(fileDeConstructionBatiment.get(0).getCout()<=0) {
+				batimentTermine = true;
+				fileDeConstructionBatiment.get(0).setConstruit(true);
+				fileDeConstructionBatiment.get(0).setEnConstruction(false);
 				ajoutBonusBatiment(fileDeConstructionBatiment.get(0));
 				TBatimentVille.add(fileDeConstructionBatiment.get(0));
 				fileDeConstructionBatiment.remove(0);
-				batimentTermine = true;
 				reDrawBatiments = true;
 			}
 		}
 		
-		//TODO Gérer la file de contruction des vaisseaux en back
 		if (!fileDeConstructionUnite.isEmpty()) {
 			reDrawFilesVaisseaux = true;
 			reDraw = true;
 			fileDeConstructionUnite.get(0).getCout().put(EnumRessource.PRODUCTION, fileDeConstructionUnite.get(0).getCout().get(EnumRessource.PRODUCTION)-TRessource.get(EnumRessource.PRODUCTION));
-			if(fileDeConstructionUnite.get(0).getCout().get(EnumRessource.PRODUCTION)<=0) {
-//				systeme.getFlottes().add(new Flotte())
-//				TBatimentVille.add(fileDeConstructionBatiment.get(0));
-//				fileDeConstructionBatiment.remove(0);
-//				batimentTermine = true;
-//				reDrawBatiments = true;
+			if(fileDeConstructionUnite.get(0).getCout().get(EnumRessource.PRODUCTION) <= 0) {
+				Flotte flotte = new Flotte();
+				flotte.addVaisseau(fileDeConstructionUnite.get(0));
+				planete.getSysteme().getFlottes().add(flotte);
+				fileDeConstructionUnite.remove(0);
+				vaisseauTermine = true;
 			}
 		}
 
@@ -223,6 +227,8 @@ public class Ville {
 	public boolean destructionBatiment(BatimentVille batimentVille) {
 		//Si la ville possède le bâtiment concerné
 		if (TBatimentVille.contains(batimentVille)) {
+			batimentVille.setConstruit(false);
+			batimentVille.setCout(batimentVille.getBaseProdCost());
 			TBatimentVille.remove(batimentVille);
 
 			for (EnumRessource ressource : EnumRessource.values()) {
@@ -245,6 +251,8 @@ public class Ville {
 
 	public boolean annulationBatiment(BatimentVille batiment) {
 		if (fileDeConstructionBatiment.contains(batiment)) {
+			batiment.setEnConstruction(false);
+			batiment.setCout(batiment.getBaseProdCost());
 			fileDeConstructionBatiment.remove(batiment);
 			reDrawFilesBatiments = true;
 			return true;
@@ -315,6 +323,9 @@ public class Ville {
 		this.joueur = joueur;
 	}
 
+	public Planete getPlanete() {
+		return planete;
+	}
 
 	public List<Vaisseau> getFileDeConstructionUnite() {
 		return fileDeConstructionUnite;

@@ -261,7 +261,7 @@ public class Systeme {
 		} while(y > (1-Math.pow((((2*x)/maxPlanete )-1),2)));
 		
 		for(int i=0; i<(int)x;i++) {				
-			TPlanete.add(new Planete(EnumTypePlanete.type(),nbRessource,this.ressourceEtAnomalie, i));
+			TPlanete.add(new Planete(this, EnumTypePlanete.type(),nbRessource,this.ressourceEtAnomalie, i));
 		}		
 	}
 	
@@ -320,25 +320,25 @@ public class Systeme {
 		for (Anomalie anomalie : TAnomalie) {
 			if(anomalie.equals(EnumAnomalie.PETITE_FLOTTE_PIRATE)) {
 				Flotte flotte = new Flotte();
-				flotte.addVaisseau(0, listVaisseau.getVaisseaux().get(0));
-				flotte.addVaisseau(1, listVaisseau.getVaisseaux().get(1));
+				flotte.addVaisseau(listVaisseau.getVaisseaux().get(0));
+				flotte.addVaisseau(listVaisseau.getVaisseaux().get(1));
 				this.AjoutFlotte(flotte);
 			}
 			if(anomalie.equals(EnumAnomalie.MOYENNE_FLOTTE_PIRATE)) {
 				Flotte flotte = new Flotte();
-				flotte.addVaisseau(0, listVaisseau.getVaisseaux().get(0));
-				flotte.addVaisseau(1, listVaisseau.getVaisseaux().get(1));
-				flotte.addVaisseau(2, listVaisseau.getVaisseaux().get(0));
-				flotte.addVaisseau(3, listVaisseau.getVaisseaux().get(1));
+				flotte.addVaisseau(listVaisseau.getVaisseaux().get(0));
+				flotte.addVaisseau(listVaisseau.getVaisseaux().get(1));
+				flotte.addVaisseau(listVaisseau.getVaisseaux().get(0));
+				flotte.addVaisseau(listVaisseau.getVaisseaux().get(1));
 				this.AjoutFlotte(flotte);
 			}
 			if(anomalie.equals(EnumAnomalie.GRANDE_FLOTTE_PIRATE)) {
 				Flotte flotte = new Flotte();
-				flotte.addVaisseau(0, listVaisseau.getVaisseaux().get(0));
-				flotte.addVaisseau(1, listVaisseau.getVaisseaux().get(1));
-				flotte.addVaisseau(2, listVaisseau.getVaisseaux().get(1));
-				flotte.addVaisseau(3, listVaisseau.getVaisseaux().get(0));
-				flotte.addVaisseau(4, listVaisseau.getVaisseaux().get(2));
+				flotte.addVaisseau(listVaisseau.getVaisseaux().get(0));
+				flotte.addVaisseau(listVaisseau.getVaisseaux().get(1));
+				flotte.addVaisseau(listVaisseau.getVaisseaux().get(1));
+				flotte.addVaisseau(listVaisseau.getVaisseaux().get(0));
+				flotte.addVaisseau(listVaisseau.getVaisseaux().get(2));
 				this.AjoutFlotte(flotte);
 			}
 		}

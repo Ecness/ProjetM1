@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.badlogic.gdx.graphics.Color;
 import model.EnumRessource;
+import model.batiment.ListBatiment;
 import model.carte.stellaire.EnumTypePlanete;
 import model.carte.stellaire.EnumTypeSysteme;
 import model.carte.stellaire.Planete;
@@ -30,6 +31,7 @@ public class Joueur {
 	private List<Flotte> TFlotte;
 	private List<Ville> TVille;
 	private Technologie technology;
+	private ListBatiment buildings;
 	private List<General> TGeneral;
 	private Vaisseau[] patternVaisseau;
 	private List<Systeme> systeme;
@@ -66,6 +68,7 @@ public class Joueur {
 		ressourceDepart(ressourceDepart);
 		try{
 			loadTechFile();
+			loadBuildingFile();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -75,14 +78,18 @@ public class Joueur {
 		technology = (Technologie) Sauvegarde.loadFromFile(Technologie.class, nation.getPath() + "/Sciences/Sciences.json");
 	}
 	
+	private void loadBuildingFile() {
+		buildings = (ListBatiment) Sauvegarde.loadFromFile(ListBatiment.class, nation.getPath() + "/Batiments/Batiments.json");
+	}
+	
 	public void creationNewFlotte(Vaisseau vaisseau) {
 		Flotte flotte = new Flotte();
-		flotte.addVaisseau(0, vaisseau);
+		flotte.addVaisseau(vaisseau);
 		TFlotte.add(flotte);
 	}
 	
 	public void ajoutVaisseauFlotte(Flotte flotte, Vaisseau vaisseau) {
-		flotte.addVaisseau(flotte.getTVaisseau().size(), vaisseau);
+		flotte.addVaisseau(vaisseau);
 	}
 	
 	public void ressourceDepart(EnumRessourceDepart e) {
@@ -321,7 +328,7 @@ public class Joueur {
 
 		depart.generationAnomalieDepat(Project.parametre.getNbMaxAnomalie());
 
-		Planete planeteDepart = new Planete(EnumTypePlanete.typeHabitable(), Project.parametre.getAbondanceRessource(), depart.getTPlanete().size(), this);
+		Planete planeteDepart = new Planete(depart, EnumTypePlanete.typeHabitable(), Project.parametre.getAbondanceRessource(), depart.getTPlanete().size(), this);
 		Ville ville = new Ville(this, planeteDepart);
 		planeteDepart.setVille(ville);
 		this.TVille.add(ville);
@@ -437,6 +444,10 @@ public class Joueur {
 //	public void setFileTechnology(ArrayList<Science> fileTechnology) {
 //		this.fileTechnology = fileTechnology;
 //	}
+
+	public ListBatiment getBuildings() {
+		return buildings;
+	}
 
 	public int getScienceDepart() {
 		return scienceDepart;

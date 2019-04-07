@@ -35,9 +35,9 @@ public class Flotte {
 	
 	//------------------------------------------------------------------------------------------------------
 	
-	public void addVaisseau(int id, Vaisseau vaisseau) {
+	public void addVaisseau(Vaisseau vaisseau) {
 		
-		TVaisseau.put(id, vaisseau);
+		TVaisseau.put(TVaisseau.size(), vaisseau);
 		puissance += vaisseau.getPuissance();
 	}
 	

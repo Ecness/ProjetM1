@@ -8,7 +8,8 @@ public class BatimentVille {
 	private String description;
 	private int techNecessaire;
 	private MapRessource bonus;
-	private int cout;
+	private int cout, baseProdCost;
+	private boolean construit, enConstruction;
 	
 	public BatimentVille() {
 		this("Default", "", 0, new MapRessource(), 0);
@@ -20,7 +21,7 @@ public class BatimentVille {
 		this.description = description;
 		this.techNecessaire = techNecessaire;
 		this.bonus = bonus;
-		this.cout = cout;
+		this.cout = this.baseProdCost = cout;
 	}
 	
 	public String getNom() {
@@ -48,6 +49,10 @@ public class BatimentVille {
 	public void setCout(int cout) {
 		this.cout = cout;
 	}
+	
+	public int getBaseProdCost() {
+		return baseProdCost;
+	}
 
 	public MapRessource getBonus() {
 		return bonus;
@@ -55,6 +60,22 @@ public class BatimentVille {
 
 	public void setBonus(MapRessource bonus) {
 		this.bonus = bonus;
+	}
+
+	public boolean isConstruit() {
+		return construit;
+	}
+
+	public void setConstruit(boolean construit) {
+		this.construit = construit;
+	}
+
+	public boolean isEnConstruction() {
+		return enConstruction;
+	}
+
+	public void setEnConstruction(boolean enConstruction) {
+		this.enConstruction = enConstruction;
 	}
 
 //	@Override

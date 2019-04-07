@@ -157,19 +157,19 @@ public class test {
 		Croiseur croiseurTest = new Croiseur("Universe", listModule.getChassie().get(4), armes, blindages, 0, 0, null);
 		Croiseur croiseurTest2 = new Croiseur("Ulysse", listModule.getChassie().get(4), armes2, blindages2, 0, 0, null);
 		Flotte flotte = new Flotte();
-		flotte.addVaisseau(0, croiseurTest);
+		flotte.addVaisseau(croiseurTest);
 		Flotte flotte2 = new Flotte();
-		flotte2.addVaisseau(0, croiseurTest2);
+		flotte2.addVaisseau(croiseurTest2);
 
 		System.out.println(flotte.toString());
 
 		Flotte flottePirate = new Flotte();
-		flottePirate.addVaisseau(0, listVaisseau.getVaisseaux().get(0));
-		flottePirate.addVaisseau(1, listVaisseau.getVaisseaux().get(0));
-		flottePirate.addVaisseau(2, listVaisseau.getVaisseaux().get(0));
-		flottePirate.addVaisseau(3, listVaisseau.getVaisseaux().get(0));
-		flottePirate.addVaisseau(4, listVaisseau.getVaisseaux().get(1));
-		flottePirate.addVaisseau(5, listVaisseau.getVaisseaux().get(1));
+		flottePirate.addVaisseau(listVaisseau.getVaisseaux().get(0));
+		flottePirate.addVaisseau(listVaisseau.getVaisseaux().get(0));
+		flottePirate.addVaisseau(listVaisseau.getVaisseaux().get(0));
+		flottePirate.addVaisseau(listVaisseau.getVaisseaux().get(0));
+		flottePirate.addVaisseau(listVaisseau.getVaisseaux().get(1));
+		flottePirate.addVaisseau(listVaisseau.getVaisseaux().get(1));
 
 		System.out.println(flottePirate.toString());
 

@@ -13,10 +13,12 @@ public class Planete {
 	private BatimentPlanete[] TBatiment;
 	private Ville ville;
 	private Joueur joueur;
+	private Systeme systeme;
 	private boolean reDraw, reDrawBuild1, reDrawBuild2;
 	
-	public Planete(EnumTypePlanete typePlanete, EnumAbondanceRessource ressource, GenerationRessourceEtAnomalie ressourcePlanete, int id) {
+	public Planete(Systeme systeme, EnumTypePlanete typePlanete, EnumAbondanceRessource ressource, GenerationRessourceEtAnomalie ressourcePlanete, int id) {
 		this.id = id;
+		this.systeme = systeme;
 		this.typePlanete = typePlanete;
 		this.TRessource = new MapRessource();
 		for (EnumRessource t : EnumRessource.values()) {
@@ -29,8 +31,9 @@ public class Planete {
 	}
 	
 	
-	public Planete(EnumTypePlanete typePlanete, EnumAbondanceRessource ressource, int id, Joueur joueur) {
+	public Planete(Systeme systeme, EnumTypePlanete typePlanete, EnumAbondanceRessource ressource, int id, Joueur joueur) {
 		this.id = id;
+		this.systeme = systeme;
 		this.typePlanete = typePlanete;
 		this.TRessource = new MapRessource();
 		for (EnumRessource t : EnumRessource.values()) {
@@ -233,6 +236,11 @@ public class Planete {
 	public void setJoueur(Joueur joueur) {
 		this.joueur = joueur;
 	}
+
+	public Systeme getSysteme() {
+		return systeme;
+	}
+
 
 	public boolean isReDraw() {
 		return reDraw;

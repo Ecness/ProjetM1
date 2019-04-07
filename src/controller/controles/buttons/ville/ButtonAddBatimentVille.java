@@ -23,9 +23,8 @@ public class ButtonAddBatimentVille extends TextButton {
 			public void clicked(InputEvent event, float x, float y) {
 				super.clicked(event, x, y);
 				
-				//Test si le joueur a débloqué la technologie nécessaire
-				if (ville.isBuildingUnlocked(batiment)) {
-					//Récupération du bâtiment selon son nom (clé de la map)
+				//Test si le joueur a débloqué la technologie nécessaire et si le bâtiment est déjà présent
+				if (!ville.presenceBatiment(batiment) && ville.isBuildingUnlocked(batiment)) {
 					ville.constructionBatiment(batiment);
 					ville.setReDrawFilesBatiments(true);
 					ville.setReDraw(true);
