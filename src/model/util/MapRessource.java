@@ -20,13 +20,7 @@ public class MapRessource extends HashMap<EnumRessource, Integer> implements Jso
 	@Override
 	public void read (Json json, JsonValue jsonData) {
 		for(JsonValue entry = jsonData.child; entry != null; entry = entry.next) {
-			System.out.println("\n"+entry.name + ":" + entry.child().next().asInt());
-			String nom = entry.name;
-			Object value = json.readValue(jsonData.child().next().name, null, jsonData);
-			System.out.println(value);
-			Integer val = entry.child().next().asInt();
-			System.out.println(nom +"+"+val);
-			put(EnumRessource.valueOf(nom), val);
+			put(EnumRessource.valueOf(entry.name), entry.child().next().asInt());
 		}
 	}
 }
