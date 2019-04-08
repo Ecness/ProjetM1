@@ -9,6 +9,7 @@ public class BatimentPlanete {
 	private int techNecessaire;
 	private MapRessource bonus;
 	private MapRessource cout;
+	private boolean construit;
 	
 	public BatimentPlanete() {
 		this("Default", "", 0, new MapRessource(), new MapRessource());
@@ -52,5 +53,13 @@ public class BatimentPlanete {
 	}
 	public void setCout(MapRessource cout) {
 		this.cout = cout;
+	}
+
+	public boolean isConstruit() {
+		return construit;
+	}
+
+	public void setConstruit(boolean construit) {
+		this.construit = construit;
 	}
 }

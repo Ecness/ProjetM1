@@ -99,6 +99,7 @@ public class Planete {
 				TRessource.put(e, TRessource.get(e) - TBatiment[emplacement].getBonus().get(e));
 			}
 			
+			TBatiment[emplacement].setConstruit(false);
 			TBatiment[emplacement] = null;
 			limitRessources();
 			
@@ -111,7 +112,7 @@ public class Planete {
 	public boolean constructionBatiment(BatimentPlanete batiment, int emplacement) {
 		//Si pas de bâtiment ni de ville et suffisamment de ressources
 		if (verifConstructionBatiment(batiment, emplacement) && ville == null) {
-
+			batiment.setConstruit(true);
 			TBatiment[emplacement] = batiment;
 			//Retrait des ressources et ajout des bonus du bâtiment
 			for (EnumRessource e : EnumRessource.values()) {
@@ -197,6 +198,16 @@ public class Planete {
 		default:
 			break;
 		}	
+	}
+	
+	/**
+	 *  Verifie si le joueur a la tech nécessaire
+	 * @param batiment	batiment à tester
+	 * @return
+	 * 					: true si le joueur a la tech necessaire, false sinon
+	 */
+	public boolean isBuildingUnlocked(BatimentPlanete batiment) {
+		return joueur.getTechnology().getScienceBatiment().get(batiment.getTechNecessaire()).isRechercher();
 	}
 	
 	public int getId() {
