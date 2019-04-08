@@ -40,7 +40,7 @@ public class SelectBatimentPlanete extends Window {
 		batiments.addActor(annuler);
 
 		if (planete.getJoueur() != null) {
-			for (Entry<BatimentPlanete> batiment : planete.getJoueur().getBuildings().getBatimentsPlanete().entries()) {
+			for (Entry<BatimentPlanete> batiment : planete.getBuildings().getBatimentsPlanete().entries()) {
 				//Empêche de sélectionner des bâtiments déjà construitsainsi que ceux dont la technologie n'est pas débloquée
 				if (!batiment.value.isConstruit() && (planete.isBuildingUnlocked(batiment.value))) {
 

@@ -24,6 +24,14 @@ public class BatimentVille {
 		this.cout = this.baseProdCost = cout;
 	}
 	
+	public BatimentVille(BatimentVille batiment) {
+		this.nom = new String(batiment.getNom());
+		this.description = new String(batiment.getDescription());
+		this.techNecessaire = batiment.getTechNecessaire();
+		this.bonus = new MapRessource(batiment.getBonus());
+		this.cout = this.baseProdCost = batiment.getBaseProdCost();
+	}
+	
 	public String getNom() {
 		return nom;
 	}

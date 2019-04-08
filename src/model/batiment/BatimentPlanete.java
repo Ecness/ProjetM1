@@ -24,6 +24,14 @@ public class BatimentPlanete {
 		this.cout = cout;
 	}
 	
+	public BatimentPlanete(BatimentPlanete batiment) {
+		this.nom = new String(batiment.getNom());
+		this.description = new String(batiment.getDescription());
+		this.techNecessaire = batiment.getTechNecessaire();
+		this.bonus = new MapRessource(batiment.getBonus());
+		this.cout = new MapRessource(batiment.getCout());
+	}
+	
 	public String getNom() {
 		return nom;
 	}

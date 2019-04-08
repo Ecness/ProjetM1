@@ -1,6 +1,7 @@
 package model.batiment;
 
 import com.badlogic.gdx.utils.IntMap;
+import com.badlogic.gdx.utils.IntMap.Entry;
 
 
 public class ListBatiment {
@@ -11,6 +12,19 @@ public class ListBatiment {
 	public ListBatiment() {
 		this.batimentsPlanete = new IntMap<BatimentPlanete>();
 		this.batimentsVille = new IntMap<BatimentVille>();
+	}
+	
+	public ListBatiment(ListBatiment buildings) {
+		this.batimentsPlanete = new IntMap<BatimentPlanete>();
+		this.batimentsVille = new IntMap<BatimentVille>();
+		
+		for (Entry<BatimentPlanete> value : buildings.getBatimentsPlanete()) {
+			batimentsPlanete.put(value.key, new BatimentPlanete(value.value));
+		}
+		
+		for (Entry<BatimentVille> value : buildings.getBatimentsVille()) {
+			batimentsVille.put(value.key, new BatimentVille(value.value));
+		}
 	}
 
 	//--------------------------------------------------------------------------------------------------------------------------------------------

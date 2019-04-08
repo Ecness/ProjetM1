@@ -64,14 +64,14 @@ public class Joueur {
 				TRessourceMax.put(t, 5000);
 			}
 		}
-		placementInitial();
-		ressourceDepart(ressourceDepart);
 		try{
 			loadTechFile();
 			loadBuildingFile();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		placementInitial();
+		ressourceDepart(ressourceDepart);
 	}
 
 	private void loadTechFile() {
@@ -339,10 +339,12 @@ public class Joueur {
 			depart.ajoutPlanete(planeteDepart);
 		}
 
-
-
 		depart.setJoueur(this);
 		this.systeme.add(depart);
+		
+		for (Planete planetes : depart.getTPlanete()) {
+			planetes.setBuildings(new ListBatiment(buildings));
+		}
 	}
 
 	public String getName() {

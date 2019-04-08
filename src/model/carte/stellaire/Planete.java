@@ -2,6 +2,7 @@ package model.carte.stellaire;
 
 import model.EnumRessource;
 import model.batiment.BatimentPlanete;
+import model.batiment.ListBatiment;
 import model.entity.player.Joueur;
 import model.parametre.EnumAbondanceRessource;
 import model.util.MapRessource;
@@ -14,6 +15,7 @@ public class Planete {
 	private Ville ville;
 	private Joueur joueur;
 	private Systeme systeme;
+	private ListBatiment buildings;
 	private boolean reDraw, reDrawBuild1, reDrawBuild2;
 	
 	public Planete(Systeme systeme, EnumTypePlanete typePlanete, EnumAbondanceRessource ressource, GenerationRessourceEtAnomalie ressourcePlanete, int id) {
@@ -252,6 +254,13 @@ public class Planete {
 		return systeme;
 	}
 
+	public ListBatiment getBuildings() {
+		return buildings;
+	}
+
+	public void setBuildings(ListBatiment buildings) {
+		this.buildings = buildings;
+	}
 
 	public boolean isReDraw() {
 		return reDraw;

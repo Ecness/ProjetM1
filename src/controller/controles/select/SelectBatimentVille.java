@@ -41,7 +41,7 @@ public class SelectBatimentVille extends Window {
 
 		if (ville.getJoueur() != null) {
 
-			for (Entry<BatimentVille> batiment : ville.getJoueur().getBuildings().getBatimentsVille().entries()) {
+			for (Entry<BatimentVille> batiment : ville.getPlanete().getBuildings().getBatimentsVille().entries()) {
 				//Empêche de sélectionner des bâtiments déjà construits ou en construction ainsi que ceux dont la technologie n'est pas débloquée
 				if (!ville.presenceBatiment(batiment.value) && (ville.isBuildingUnlocked(batiment.value))) {
 

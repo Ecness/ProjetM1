@@ -10,6 +10,15 @@ import model.EnumRessource;
 @SuppressWarnings({ "serial" })
 public class MapRessource extends HashMap<EnumRessource, Integer> implements Json.Serializable {
 
+	public MapRessource() {
+	}
+	
+	public MapRessource(MapRessource map) {
+		for (Entry<EnumRessource, Integer> value : map.entrySet()) {
+			this.put(value.getKey(), value.getValue());
+		}
+	}
+	
 	@Override
 	public void write (Json json) {
 		for (Entry<EnumRessource, Integer> ressource : entrySet()) {
