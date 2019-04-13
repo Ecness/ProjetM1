@@ -260,6 +260,15 @@ public class Ville {
 
 		return false;
 	}
+	
+	public boolean annulationVaisseau(Vaisseau vaisseau) {
+		if (fileDeConstructionUnite.contains(vaisseau)) {
+			fileDeConstructionUnite.remove(vaisseau);
+			reDrawFilesVaisseaux = true;
+		}
+		
+		return false;
+	}
 
 	/**
 	 * Limitation des ressources

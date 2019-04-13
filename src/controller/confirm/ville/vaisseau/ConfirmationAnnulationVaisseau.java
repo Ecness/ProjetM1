@@ -29,10 +29,9 @@ public class ConfirmationAnnulationVaisseau extends Confirm {
 
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				//TODO Implémenter les méthodes vaisseau
-//				ville.annulationBatiment(batiment);
+				ville.annulationVaisseau(vaisseau);
+				ville.setVaisseauAnnule(true);
 				ville.setReDrawFilesVaisseaux(true);
-//				ville.setConstructionAnnulee(true);
 				getParent().remove();
 			}
 			
