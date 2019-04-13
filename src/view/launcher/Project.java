@@ -4,6 +4,7 @@ package view.launcher;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -80,7 +81,7 @@ public class Project extends ApplicationAdapter {
 		affichageGalaxie = false;
 		clicked = false;
 
-		skin = new Skin(Gdx.files.internal("uiskin.json"));
+		skin = new Skin(new FileHandle("Ressources/Skin/default/uiskin.json"));
 
 		Gdx.input.setInputProcessor(inputManager);
 
