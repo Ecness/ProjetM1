@@ -38,6 +38,7 @@ public class FileDeConstructionVaisseau extends VerticalGroup {
 		}
 
 		TextButton add = new TextButton("+", skin);
+		add.setName("add");
 		add.addListener(new ClickListener() {
 
 			@Override
