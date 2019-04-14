@@ -17,14 +17,15 @@ public class AffichageDetailFlotte extends ScrollPane {
 		Table table = new Table(skin);
 		table.setName("table_detail_flotte");
 		
-		int i = 1;
+		int i = 0;
 		for (Entry<Integer, Vaisseau> vaisseau : flotte.getTVaisseau().entrySet()) {
 			if (i == 3) {
 				table.row();
-				i = 1;
+				i = 0;
 			}
 			
 			table.add(new ButtonVaisseau(vaisseau.getValue(), skin));
+			i++;
 		}
 		
 		setActor(table);
@@ -34,14 +35,15 @@ public class AffichageDetailFlotte extends ScrollPane {
 		Table table = ((Table) findActor("table_detail_flotte"));
 		table.reset();
 		
-		int i = 1;
+		int i = 0;
 		for (Entry<Integer, Vaisseau> vaisseau : flotte.getTVaisseau().entrySet()) {
 			if (i == 3) {
 				table.row();
-				i = 1;
+				i = 0;
 			}
 			
 			table.add(new ButtonVaisseau(vaisseau.getValue(), skin));
+			i++;
 		}
 	}
 }
