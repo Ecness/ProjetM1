@@ -20,11 +20,13 @@ public class Flotte {
 	private List<Systeme> path;
 	
 	public Flotte() {
+		this.nom = "Flotte";
 		this.puissance = 0;
 		TVaisseau = new HashMap<Integer, Vaisseau>();
 		this.general = null;
 	}
 	public Flotte(Flotte flotte) {
+		this.nom = flotte.getNom();
 		this.puissance = flotte.getPuissance();
 		TVaisseau = new HashMap<Integer, Vaisseau>();
 		for (Entry<Integer, Vaisseau> vaisseau : flotte.getTVaisseau().entrySet()) {
