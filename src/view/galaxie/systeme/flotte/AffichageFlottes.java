@@ -19,11 +19,11 @@ public class AffichageFlottes extends ScrollPane {
 		Table table = new Table(skin);
 		table.setName("table_afficheur_flottes");
 		
-		int i = 1;
+		int i = 0;
 		for (Flotte flotte : systeme.getFlottes()) {
 			if (i == 3) {
 				table.row();
-				i = 1;
+				i = 0;
 			}
 			
 			TextButton button = new TextButton(flotte.getNom(), skin);
@@ -40,6 +40,7 @@ public class AffichageFlottes extends ScrollPane {
 			});
 			
 			table.add(button);
+			i++;
 		}
 		
 		setActor(table);
