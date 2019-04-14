@@ -32,7 +32,7 @@ public class AffichagePlanete extends VerticalGroup {
 				Group parent = getParent();
 				parent.clear();
 				Project.planeteSelectionne = null;
-				parent.addActor(new AffichageSysteme(systeme, skin));
+				((AffichageSysteme) parent).update(systeme, skin);
 			}
 			
 		});

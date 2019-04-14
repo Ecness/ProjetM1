@@ -26,10 +26,14 @@ public class AffichageSysteme extends VerticalGroup {
 	public void update(Systeme systeme, Skin skin) {
 		if (Project.planeteSelectionne == null || Project.changeSysteme) {
 			Project.changeSysteme = false;
-			if (findActor("afficheur_informations_systeme") != null && findActor("afficheur_liste_planetes") != null) {
+			if (findActor("afficheur_informations_systeme") != null
+					&& findActor("afficheur_liste_planetes") != null
+					&& findActor("afficheur_flottes") != null) {
 				((AffichageInformationsSysteme) findActor("afficheur_informations_systeme")).update(systeme, skin);
 				findActor("afficheur_liste_planetes").remove();
+				findActor("afficheur_flottes").remove();
 				addActorAfter(findActor("afficheur_informations_systeme"), new AffichageListePlanetes(systeme, skin));
+				addActorAfter(findActor("afficheur_liste_planetes"), new AffichageFlottes(systeme, skin));
 			} else {
 				clear();
 				addActor(new AffichageInformationsSysteme(systeme, skin));
