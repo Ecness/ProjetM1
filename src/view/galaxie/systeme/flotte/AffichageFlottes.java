@@ -10,19 +10,16 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import model.carte.stellaire.Systeme;
 import model.entity.vaisseau.Flotte;
 
-public class AffichageFlottes extends ScrollPane {
+public class AffichageFlottes extends Table {
 
-	public AffichageFlottes(Systeme systeme, Skin skin) {
-		super(null, skin);
-		setName("afficheur_flottes");
-		
-		Table table = new Table(skin);
-		table.setName("table_afficheur_flottes");
+	public AffichageFlottes(ScrollPane container, Systeme systeme, Skin skin) {
+		super(skin);
+		setName("table_afficheur_flottes");
 		
 		int i = 0;
 		for (Flotte flotte : systeme.getFlottes()) {
 			if (i == 3) {
-				table.row();
+				row();
 				i = 0;
 			}
 			
@@ -33,20 +30,18 @@ public class AffichageFlottes extends ScrollPane {
 				public void clicked(InputEvent event, float x, float y) {
 					super.clicked(event, x, y);
 					
-					clear();
-					setActor(new AffichageDetailFlotte(flotte, skin));
+					remove();
+					container.setActor(new AffichageDetailFlotte(container, flotte, systeme, skin));
 				}
 				
 			});
 			
-			table.add(button);
+			add(button);
 			i++;
 		}
-		
-		setActor(table);
 	}
 	
-	public void update(Systeme systeme, Skin skin) {
+	public void update(ScrollPane container, Systeme systeme, Skin skin) {
 		Table table = ((Table) findActor("table_afficheur_flottes"));
 		table.reset();
 		
@@ -64,8 +59,8 @@ public class AffichageFlottes extends ScrollPane {
 				public void clicked(InputEvent event, float x, float y) {
 					super.clicked(event, x, y);
 					
-					clear();
-					setActor(new AffichageDetailFlotte(flotte, skin));
+					remove();
+					container.setActor(new AffichageDetailFlotte(container, flotte, systeme, skin));
 				}
 				
 			});

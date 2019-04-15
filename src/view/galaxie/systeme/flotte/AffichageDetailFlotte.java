@@ -5,30 +5,31 @@ import java.util.Map.Entry;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+
+import controller.controles.buttons.vaisseau.ButtonReturnToFlotte;
+import model.carte.stellaire.Systeme;
 import model.entity.vaisseau.Flotte;
 import model.entity.vaisseau.Vaisseau;
 
-public class AffichageDetailFlotte extends ScrollPane {
+public class AffichageDetailFlotte extends Table {
 
-	public AffichageDetailFlotte(Flotte flotte, Skin skin) {
-		super(null, skin);
-		setName("detail_flotte");
-		
-		Table table = new Table(skin);
-		table.setName("table_detail_flotte");
+	public AffichageDetailFlotte(ScrollPane container, Flotte flotte, Systeme systeme, Skin skin) {
+		super(skin);
+		setName("table_detail_flotte");
 		
 		int i = 0;
 		for (Entry<Integer, Vaisseau> vaisseau : flotte.getTVaisseau().entrySet()) {
 			if (i == 3) {
-				table.row();
+				row();
 				i = 0;
 			}
 			
-			table.add(new ButtonVaisseau(vaisseau.getValue(), skin));
+			add(new ButtonVaisseau(vaisseau.getValue(), skin));
 			i++;
 		}
 		
-		setActor(table);
+		row();
+		add(new ButtonReturnToFlotte(container, systeme, skin));
 	}
 	
 	public void update(Flotte flotte, Skin skin) {

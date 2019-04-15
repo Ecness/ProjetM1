@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.utils.Align;
 
 import model.carte.stellaire.Systeme;
-import view.galaxie.systeme.flotte.AffichageFlottes;
+import view.galaxie.systeme.flotte.ContainerFlottes;
 import view.galaxie.systeme.planete.AffichagePlanete;
 import view.launcher.Project;
 
@@ -17,7 +17,7 @@ public class AffichageSysteme extends VerticalGroup {
 		
 		addActor(new AffichageInformationsSysteme(systeme, skin));
 		addActor(new AffichageListePlanetes(systeme, skin));
-		addActor(new AffichageFlottes(systeme, skin));
+		addActor(new ContainerFlottes(systeme, skin));
 		
 		align(Align.center);
 		grow();
@@ -33,12 +33,12 @@ public class AffichageSysteme extends VerticalGroup {
 				findActor("afficheur_liste_planetes").remove();
 				findActor("afficheur_flottes").remove();
 				addActorAfter(findActor("afficheur_informations_systeme"), new AffichageListePlanetes(systeme, skin));
-				addActorAfter(findActor("afficheur_liste_planetes"), new AffichageFlottes(systeme, skin));
+				addActorAfter(findActor("afficheur_liste_planetes"), new ContainerFlottes(systeme, skin));
 			} else {
 				clear();
 				addActor(new AffichageInformationsSysteme(systeme, skin));
 				addActor(new AffichageListePlanetes(systeme, skin));
-				addActor(new AffichageFlottes(systeme, skin));
+				addActor(new ContainerFlottes(systeme, skin));
 			}
 		} else {
 			if (findActor("afficheur_planete") != null) {
