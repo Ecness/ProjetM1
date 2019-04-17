@@ -25,6 +25,7 @@ public class PanelFusionFlotte extends Window {
 		groupCible.setName("group_cible");
 		PanelActions actions = new PanelActions(systeme, groupSource, groupCible, skin);
 
+		//Annulation des modifications
 		TextButton cancel = new TextButton("Annuler", skin);
 		cancel.addListener(new ClickListener() {
 			@Override
@@ -36,6 +37,8 @@ public class PanelFusionFlotte extends Window {
 				remove();
 			}
 		});
+		
+		//Validation des modifications
 		TextButton valider = new TextButton("Valider", skin);
 		valider.addListener(new ClickListener() {
 			@Override
@@ -55,6 +58,8 @@ public class PanelFusionFlotte extends Window {
 				remove();
 			}
 		});
+		
+		//Placement et ajout des acteurs
 		buttons.addActor(cancel);
 		buttons.addActor(valider);
 		buttons.setBounds(getOriginX(), getOriginY(), getWidth(), buttons.getPrefHeight());

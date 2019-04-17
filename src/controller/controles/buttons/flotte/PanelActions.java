@@ -20,28 +20,21 @@ public class PanelActions extends VerticalGroup {
 			public void clicked(InputEvent event, float x, float y) {
 				super.clicked(event, x, y);
 
+				//Vérification si vaisseaux sélectionnés et flotte cible sélectionnée
 				if (!source.getVaisseauSelected().isEmpty() && cible.getFlotteSelected() != null) {
+					//Transfert des vaisseaux
 					for (Vaisseau vaisseau : source.getVaisseauSelected()) {
 						cible.getFlotteSelected().addVaisseau(vaisseau);
 						source.getFlotteSelected().removeVaisseau(vaisseau);
 					}
+					//Vidage de la liste des vaisseaux sélectionnés
 					source.getVaisseauSelected().clear();
-//					if (source.isNouvelleFlotte()) {
-//						source.setNouvelleFlotte(false);
-////						systeme.getFlottes().add(source.getFlotteSelected());
-//						SelectFlotteToMerge.addFlotte(source.getFlotteSelected());
-//					}
+					//Si la cible est une nouvelle flotte, on la crée
 					if (cible.isNouvelleFlotte()) {
 						cible.setNouvelleFlotte(false);
-//						systeme.getFlottes().add(cible.getFlotteSelected());
 						SelectFlotteToMerge.addFlotte(cible.getFlotteSelected());
 					}
-					//TODO A ajouter sur une validation
-//					for (Flotte flotte : systeme.getFlottes()) {
-//						if (flotte.getTVaisseau().isEmpty()) {
-//							systeme.getFlottes().remove(flotte);
-//						}
-//					}
+					//Mise à jour des afficheurs flottes
 					source.update(systeme, skin);
 					cible.update(systeme, skin);
 				}
@@ -54,28 +47,21 @@ public class PanelActions extends VerticalGroup {
 			public void clicked(InputEvent event, float x, float y) {
 				super.clicked(event, x, y);
 
+				//Vérification si vaisseaux sélectionnés et flotte source sélectionnée
 				if (!cible.getVaisseauSelected().isEmpty() && source.getFlotteSelected() != null) {
+					//Transfert des vaisseaux
 					for (Vaisseau vaisseau : cible.getVaisseauSelected()) {
 						source.getFlotteSelected().addVaisseau(vaisseau);
 						cible.getFlotteSelected().removeVaisseau(vaisseau);
 					}
+					//Vidage de la liste des vaisseaux sélectionnés
 					cible.getVaisseauSelected().clear();
+					//Si la source est une nouvelle flotte, on la crée
 					if (source.isNouvelleFlotte()) {
 						source.setNouvelleFlotte(false);
-//						systeme.getFlottes().add(source.getFlotteSelected());
 						SelectFlotteToMerge.addFlotte(source.getFlotteSelected());
 					}
-//					if (cible.isNouvelleFlotte()) {
-//						cible.setNouvelleFlotte(false);
-////						systeme.getFlottes().add(cible.getFlotteSelected());
-//						SelectFlotteToMerge.addFlotte(cible.getFlotteSelected());
-//					}
-					//TODO A ajouter sur une validation
-//					for (Flotte flotte : systeme.getFlottes()) {
-//						if (flotte.getTVaisseau().isEmpty()) {
-//							systeme.getFlottes().remove(flotte);
-//						}
-//					}
+					//Mise à jour des afficheurs flottes
 					source.update(systeme, skin);
 					cible.update(systeme, skin);
 				}

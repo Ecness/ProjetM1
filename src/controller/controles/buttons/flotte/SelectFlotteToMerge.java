@@ -14,22 +14,29 @@ import model.entity.vaisseau.Flotte;
 import model.entity.vaisseau.Vaisseau;
 
 public class SelectFlotteToMerge extends ScrollPane {
+	/**Ensemble des flottes sélectionnées pour fusion**/
 	private static List<Flotte> allFlotteSelected;
+	/**Copie des flottes du système pour modification**/
 	private static List<Flotte> copyFlotte;
+	/**Indique si une nouvelle flotte est en cours de création**/
 	private static boolean nouvelleFlotte;
 
+	/**Flotte sélectionnée pour fusion**/
 	private Flotte flotteSelected;
+	/**Liste des vaisseaux sélectionnés pour transfert**/
 	private List<Vaisseau> vaisseauSelected;
 
 	public SelectFlotteToMerge(Systeme systeme, Skin skin) {
 		super(null, skin);
 		setName("source");
+		//Initialisations
 		if (allFlotteSelected == null) {
 			allFlotteSelected = new ArrayList<Flotte>();
 		}
 		if (copyFlotte == null) {
 			copyFlotte = new ArrayList<Flotte>();
 		}
+		//Copie des flottes du système pour modification
 		if (copyFlotte.isEmpty()) {
 			for (Flotte flotte : systeme.getFlottes()) {
 				copyFlotte.add(new Flotte(flotte));
@@ -37,12 +44,14 @@ public class SelectFlotteToMerge extends ScrollPane {
 		}
 		vaisseauSelected = new ArrayList<Vaisseau>();
 		
+		//Groupe contenant les boutons
 		VerticalGroup group = new VerticalGroup();
 		group.setName("group");
 		group.clear();
 
+		//Affichage des flottes si aucune sélectionnée
 		if (flotteSelected == null) {
-			for (Flotte flotte : copyFlotte/*systeme.getFlottes()*/) {
+			for (Flotte flotte : copyFlotte) {
 				if (!allFlotteSelected.contains(flotte)) {
 					TextButton button = new TextButton(flotte.getNom(), skin);
 					button.addListener(new ClickListener() {
@@ -61,6 +70,7 @@ public class SelectFlotteToMerge extends ScrollPane {
 				}
 				
 			}
+			//Affichage d'un bouton de création d'une nouvelle flotte si pas déjà enclenché (contexte static)
 			if (!nouvelleFlotte) {
 				TextButton buttonNewFlotte = new TextButton("Nouvelle Flotte", skin);
 				buttonNewFlotte.setName("nouvelle_flotte");
@@ -80,6 +90,7 @@ public class SelectFlotteToMerge extends ScrollPane {
 				group.addActor(buttonNewFlotte);
 			}
 		} else {
+			//Si flotte sélectionnée, affichage des vaisseaux
 			for (Vaisseau vaisseau : flotteSelected.getTVaisseau()) {
 				TextButton button = new TextButton(vaisseau.getNom(), skin);
 				button.addListener(new ClickListener() {
@@ -95,6 +106,7 @@ public class SelectFlotteToMerge extends ScrollPane {
 				group.addActor(button);
 			}
 			
+			//Retour à la sélection des flottes
 			TextButton retour = new TextButton("Retour", skin);
 			retour.addListener(new ClickListener() {
 
@@ -115,10 +127,12 @@ public class SelectFlotteToMerge extends ScrollPane {
 	}
 
 	public void update(Systeme systeme, Skin skin) {
+		//Groupe contenant les boutons
 		VerticalGroup group = findActor("group");
 		group.clear();
+		//Affichage des flottes si aucune sélectionnée
 		if (flotteSelected == null) {
-			for (Flotte flotte : copyFlotte/*systeme.getFlottes()*/) {
+			for (Flotte flotte : copyFlotte) {
 				if (!allFlotteSelected.contains(flotte)) {
 					TextButton button = new TextButton(flotte.getNom(), skin);
 					button.addListener(new ClickListener() {
@@ -136,6 +150,7 @@ public class SelectFlotteToMerge extends ScrollPane {
 					group.addActor(button);
 				}
 			}
+			//Affichage d'un bouton de création d'une nouvelle flotte si pas déjà enclenché (contexte static)
 			if (!nouvelleFlotte) {
 				TextButton buttonNewFlotte = new TextButton("Nouvelle Flotte", skin);
 				buttonNewFlotte.setName("nouvelle_flotte");
@@ -155,6 +170,7 @@ public class SelectFlotteToMerge extends ScrollPane {
 				group.addActor(buttonNewFlotte);
 			}
 		} else {
+			//Si flotte sélectionnée, affichage des vaisseaux
 			vaisseauSelected = new ArrayList<Vaisseau>();
 			for (Vaisseau vaisseau : flotteSelected.getTVaisseau()) {
 				TextButton button = new TextButton(vaisseau.getNom(), skin);
@@ -170,6 +186,8 @@ public class SelectFlotteToMerge extends ScrollPane {
 				});
 				group.addActor(button);
 			}
+			
+			//Retour à la sélection des flottes
 			TextButton retour = new TextButton("Retour", skin);
 			retour.addListener(new ClickListener() {
 
