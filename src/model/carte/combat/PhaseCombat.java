@@ -200,12 +200,12 @@ public class PhaseCombat {
 	public DetailCombat combatFlotte(Flotte flotteAttaquante, Flotte flotteDefensseur,int bonnusPrecision) {
 		
 		List<Vaisseau> copieFlotteAttaquante = new ArrayList<>();
-		for (Entry<Integer, Vaisseau> vaisseau : flotteAttaquante.getTVaisseau().entrySet()) {
-			copieFlotteAttaquante.add(vaisseau.getValue());
+		for (Vaisseau vaisseau : flotteAttaquante.getTVaisseau()) {
+			copieFlotteAttaquante.add(vaisseau);
 		}
 		List<Vaisseau> copieFlotteDefenseur = new ArrayList<>();
-		for (Entry<Integer, Vaisseau> vaisseau : flotteDefensseur.getTVaisseau().entrySet()) {
-			copieFlotteDefenseur.add(vaisseau.getValue());
+		for (Vaisseau vaisseau : flotteDefensseur.getTVaisseau()) {
+			copieFlotteDefenseur.add(vaisseau);
 		}
 		DetailCombat detailTotal = new DetailCombat();
 		while (!copieFlotteAttaquante.isEmpty()) {

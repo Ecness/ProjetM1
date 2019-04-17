@@ -1,9 +1,7 @@
 package model.entity.vaisseau;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import com.badlogic.gdx.math.Vector2;
@@ -15,22 +13,23 @@ public class Flotte {
 
 	private String nom;
 	private int puissance;
-	private Map<Integer, Vaisseau> TVaisseau;
+	private List<Vaisseau> TVaisseau;
 	private General general;
 	private List<Systeme> path;
 	
 	public Flotte() {
 		this.nom = "Flotte";
 		this.puissance = 0;
-		TVaisseau = new HashMap<Integer, Vaisseau>();
+		TVaisseau = new ArrayList<Vaisseau>();
 		this.general = null;
 	}
 	public Flotte(Flotte flotte) {
-		this.nom = flotte.getNom();
+		this.nom = new String(flotte.getNom());
 		this.puissance = flotte.getPuissance();
-		TVaisseau = new HashMap<Integer, Vaisseau>();
-		for (Entry<Integer, Vaisseau> vaisseau : flotte.getTVaisseau().entrySet()) {
-			TVaisseau.put(vaisseau.getKey(), vaisseau.getValue());
+		TVaisseau = new ArrayList<Vaisseau>();
+		for (Vaisseau vaisseau : flotte.getTVaisseau()) {
+			//TODO Vérifier si risque de modification par référence avec la fusion des flottes
+			TVaisseau.add(vaisseau);
 		}
 		this.general = flotte.general;
 	}
@@ -39,8 +38,13 @@ public class Flotte {
 	
 	public void addVaisseau(Vaisseau vaisseau) {
 		
-		TVaisseau.put(TVaisseau.size(), vaisseau);
+		TVaisseau.add(vaisseau);
 		puissance += vaisseau.getPuissance();
+	}
+	
+	public void removeVaisseau(Vaisseau vaisseau) {
+		TVaisseau.remove(vaisseau);
+		puissance -= vaisseau.getPuissance();
 	}
 	
 	/**
@@ -114,8 +118,8 @@ public class Flotte {
 	@Override
 	public String toString() {
 		String string="Flotte de puissance :" + puissance + "\n";
-		for (Entry<Integer, Vaisseau> vaisseau : TVaisseau.entrySet()) {
-			string += vaisseau.getValue().toString() + "\n\n";	
+		for (Vaisseau vaisseau : TVaisseau) {
+			string += vaisseau.toString() + "\n\n";	
 		}
 		return string;
 	}
@@ -138,11 +142,11 @@ public class Flotte {
 		this.puissance = puissance;
 	}
 
-	public Map<Integer, Vaisseau> getTVaisseau() {
+	public List<Vaisseau> getTVaisseau() {
 		return TVaisseau;
 	}
 
-	public void setTVaisseau(Map<Integer, Vaisseau> tVaisseau) {
+	public void setTVaisseau(List<Vaisseau> tVaisseau) {
 		TVaisseau = tVaisseau;
 	}
 

@@ -1,5 +1,6 @@
 package view.galaxie.systeme.flotte;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -7,8 +8,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import controller.controles.buttons.flotte.PanelChoixActionFlotte;
 import model.carte.stellaire.Systeme;
 import model.entity.vaisseau.Flotte;
+import view.launcher.Project;
 
 public class AffichageFlottes extends Table {
 
@@ -38,6 +41,23 @@ public class AffichageFlottes extends Table {
 			
 			add(button);
 			i++;
+		}
+		
+		if (!systeme.getFlottes().isEmpty()) {
+			row();
+			TextButton option = new TextButton("+", skin);
+			option.addListener(new ClickListener() {
+				
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					super.clicked(event, x, y);
+					
+					Gdx.input.setCursorCatched(false);
+					Project.staticStage.addActor(new PanelChoixActionFlotte(systeme, skin));
+				}
+				
+			});
+			add(option);
 		}
 	}
 	

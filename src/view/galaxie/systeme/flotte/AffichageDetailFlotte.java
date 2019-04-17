@@ -1,7 +1,5 @@
 package view.galaxie.systeme.flotte;
 
-import java.util.Map.Entry;
-
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -18,13 +16,13 @@ public class AffichageDetailFlotte extends Table {
 		setName("table_detail_flotte");
 		
 		int i = 0;
-		for (Entry<Integer, Vaisseau> vaisseau : flotte.getTVaisseau().entrySet()) {
+		for (Vaisseau vaisseau : flotte.getTVaisseau()) {
 			if (i == 3) {
 				row();
 				i = 0;
 			}
 			
-			add(new ButtonVaisseau(vaisseau.getValue(), skin));
+			add(new ButtonVaisseau(vaisseau, skin));
 			i++;
 		}
 		
@@ -37,13 +35,13 @@ public class AffichageDetailFlotte extends Table {
 		table.reset();
 		
 		int i = 0;
-		for (Entry<Integer, Vaisseau> vaisseau : flotte.getTVaisseau().entrySet()) {
+		for (Vaisseau vaisseau : flotte.getTVaisseau()) {
 			if (i == 3) {
 				table.row();
 				i = 0;
 			}
 			
-			table.add(new ButtonVaisseau(vaisseau.getValue(), skin));
+			table.add(new ButtonVaisseau(vaisseau, skin));
 			i++;
 		}
 	}
