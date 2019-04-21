@@ -120,6 +120,7 @@ public class Flotte {
 
 		return path;
 	}
+	//TODO Voir pourquoi la flotte termine son trajet dans le cas d'un changement de destination
 
 	/**
 	 * Set le plus court chemin entre deux systèmes
@@ -129,6 +130,7 @@ public class Flotte {
 	 * @param end		Système d'arrivée
 	 */
 	public void setPath(List<Systeme> graphe, Vector2 begin, Systeme end) {
+		trajet.clear();
 		//Récupération des systèmes à parcourir dans le bon ordre (système actuel vers système cible)
 		List<Systeme> path = pathFinding(graphe, begin, end);
 		for (int i = path.size() - 1; i >= 0; i--) {
@@ -180,7 +182,7 @@ public class Flotte {
 			} else if (Vector2.dst(point.x, point.y, systeme.getX(), systeme.getY()) < min) {
 				//Sinon, on retourne le système le plus proche ayant le point dans ses liens
 				for (Systeme lien : systeme.getLiens().keySet()) {
-					if (Intersector.distanceSegmentPoint(systeme.getCoordonnees(), lien.getCoordonnees(), point) == 0) {
+					if (Intersector.distanceSegmentPoint(systeme.getCoordonnees(), lien.getCoordonnees(), point) <= 0.01) {
 						plusProche = systeme;
 					}
 				}
