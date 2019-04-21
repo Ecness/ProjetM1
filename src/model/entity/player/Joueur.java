@@ -82,9 +82,11 @@ public class Joueur {
 		buildings = (ListBatiment) Sauvegarde.loadFromFile(ListBatiment.class, nation.getPath() + "/Batiments/Batiments.json");
 	}
 	
-	public void creationNewFlotte(Vaisseau vaisseau) {
-		Flotte flotte = new Flotte();
+	public void creationNewFlotte(Systeme systeme, Vaisseau vaisseau) {
+		Flotte flotte = new Flotte(this, systeme);
 		flotte.addVaisseau(vaisseau);
+		flotte.setVitesse(vaisseau.getVitesse());
+		systeme.ajoutFlotte(flotte);
 		TFlotte.add(flotte);
 	}
 	
@@ -236,6 +238,9 @@ public class Joueur {
 		testFinRecherche();
 		for (Ville v : TVille) {
 			v.testFinConstruction();
+		}
+		for (Flotte flotte : TFlotte) {
+			flotte.mouvement();
 		}
 		ajoutRessourceVille();
 		ajoutRessourcePlanete();

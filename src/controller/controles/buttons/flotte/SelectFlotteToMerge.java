@@ -81,7 +81,7 @@ public class SelectFlotteToMerge extends ScrollPane {
 						super.clicked(event, x, y);
 						
 						nouvelleFlotte = true;
-						flotteSelected = new Flotte();
+						flotteSelected = new Flotte(systeme.getJoueur(), systeme);
 						allFlotteSelected.add(flotteSelected);
 						((PanelFusionFlotte) getParent()).update(systeme, skin);
 					}
@@ -161,7 +161,7 @@ public class SelectFlotteToMerge extends ScrollPane {
 						super.clicked(event, x, y);
 						
 						nouvelleFlotte = true;
-						flotteSelected = new Flotte();
+						flotteSelected = new Flotte(systeme.getJoueur(), systeme);
 						allFlotteSelected.add(flotteSelected);
 						((PanelFusionFlotte) getParent()).update(systeme, skin);
 					}

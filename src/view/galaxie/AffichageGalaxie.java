@@ -15,6 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import model.carte.stellaire.Carte;
 import model.carte.stellaire.Systeme;
+import model.entity.player.Joueur;
+import model.entity.vaisseau.Flotte;
 import view.galaxie.systeme.AffichageSysteme;
 import view.launcher.Project;
 import view.menus.MenuPartie;
@@ -92,7 +94,7 @@ public class AffichageGalaxie {
 		for (Systeme sys : carte.getListeSysteme()) {
 			for (Vector2 vect : sys.getLiens().values()) {
 				shapeRenderer.setColor(Color.WHITE);
-				shapeRenderer.line(new Vector2(sys.getCoordonnees().getX(), sys.getCoordonnees().getY()), new Vector2(sys.getCoordonnees().getX() + vect.x, sys.getCoordonnees().getY() + vect.y));
+				shapeRenderer.line(new Vector2(sys.getX(), sys.getY()), new Vector2(sys.getX() + vect.x, sys.getY() + vect.y));
 			}
 			if (sys.getJoueur() == null) {
 				shapeRenderer.setColor(Color.WHITE);
@@ -101,6 +103,12 @@ public class AffichageGalaxie {
 			}
 			shapeRenderer.circle(sys.getX(), sys.getY(), 10);
 			sys.getBouton().setPosition(sys.getX() - 10, sys.getY() - 10);
+		}
+		for (Joueur joueur : Project.partie.getTJoueur()) {
+			shapeRenderer.setColor(joueur.getCouleur());
+			for (Flotte flotte : joueur.getTFlotte()) {
+				shapeRenderer.rect(flotte.getCoordonnees().x, flotte.getCoordonnees().y, 15, 15);
+			}
 		}
 		shapeRenderer.end();
 

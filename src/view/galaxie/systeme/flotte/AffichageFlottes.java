@@ -35,6 +35,7 @@ public class AffichageFlottes extends Table {
 					
 					remove();
 					container.setActor(new AffichageDetailFlotte(container, flotte, systeme, skin));
+					Project.flotteSelectionnee = flotte;
 				}
 				
 			});

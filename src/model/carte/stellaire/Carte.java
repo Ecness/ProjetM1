@@ -25,7 +25,7 @@ public class Carte {
 		
 		Rectangle rectangle = new Rectangle();
 		rectangle.setCenter(0, 0);
-		rectangle.setSize((float) Math.sqrt(Vector2.dst2(0, 0, pls.getCoordonnees().getX(), pls.getCoordonnees().getY())));
+		rectangle.setSize((float) Math.sqrt(Vector2.dst2(0, 0, pls.getX(), pls.getY())));
 		Project.cameraBound = rectangle;
 	}
 
@@ -70,8 +70,8 @@ public class Carte {
 							oppose.rotate(180);
 							listeSysteme.get(listeSysteme.size()-1).getLiens().put(listeSysteme.get(index), oppose);
 							//Mise à jour des nouvelles coordonnées du système
-							systeme.getCoordonnees().set(listeSysteme.get(index).getCoordonnees().getX() + (int) listeSysteme.get(index).getLiens().get(systeme).x, 
-									listeSysteme.get(index).getCoordonnees().getY() + (int) listeSysteme.get(index).getLiens().get(systeme).y);
+							systeme.getCoordonnees().set(listeSysteme.get(index).getX() + (int) listeSysteme.get(index).getLiens().get(systeme).x, 
+									listeSysteme.get(index).getY() + (int) listeSysteme.get(index).getLiens().get(systeme).y);
 							rotation += 45;
 							//Si un tour complet a été fait, la distance est diminuée
 							if (rotation == 360) {
@@ -82,8 +82,8 @@ public class Carte {
 								oppose = new Vector2(nouveauVecteur);
 								oppose.rotate(180);
 								listeSysteme.get(listeSysteme.size()-1).getLiens().put(listeSysteme.get(index), oppose);
-								systeme.getCoordonnees().set(listeSysteme.get(index).getCoordonnees().getX() + (int) listeSysteme.get(index).getLiens().get(systeme).x, 
-										listeSysteme.get(index).getCoordonnees().getY() + (int) listeSysteme.get(index).getLiens().get(systeme).y);
+								systeme.getCoordonnees().set(listeSysteme.get(index).getX() + (int) listeSysteme.get(index).getLiens().get(systeme).x, 
+										listeSysteme.get(index).getY() + (int) listeSysteme.get(index).getLiens().get(systeme).y);
 							}
 
 							valide = verifLiaisonSysteme(listeSysteme.get(index), systeme);
@@ -108,7 +108,7 @@ public class Carte {
 
 				//Calcul du système le plus éloigné du premier système
 				if (!listeSysteme.get(0).equals(listeSysteme.get(listeSysteme.size()-1)) && 
-						(Vector2.dst2(0, 0, pls.getCoordonnees().getX(), pls.getCoordonnees().getY()) < Vector2.dst2(0, 0, listeSysteme.get(listeSysteme.size()-1).getCoordonnees().getX(), listeSysteme.get(listeSysteme.size()-1).getCoordonnees().getY()))) {
+						(Vector2.dst2(0, 0, pls.getX(), pls.getY()) < Vector2.dst2(0, 0, listeSysteme.get(listeSysteme.size()-1).getX(), listeSysteme.get(listeSysteme.size()-1).getY()))) {
 					pls = listeSysteme.get(listeSysteme.size()-1);
 				}
 			}
@@ -153,14 +153,14 @@ public class Carte {
 	 */
 	private boolean verifLiaisonSysteme(Systeme origine, Systeme destination) {
 		Vector2 intersection = new Vector2();
-		Vector2 point1 = new Vector2(origine.getCoordonnees().getX(), origine.getCoordonnees().getY());
-		Vector2 point2 = new Vector2(destination.getCoordonnees().getX(), destination.getCoordonnees().getY());
+		Vector2 point1 = new Vector2(origine.getX(), origine.getY());
+		Vector2 point2 = new Vector2(destination.getX(), destination.getY());
 
 		for (int i = 0; i < listeSysteme.size()-1; i++) {
 			for (int j = 1; j < listeSysteme.size(); j++) {
 				if (listeSysteme.get(i).getLiens().containsKey(listeSysteme.get(j))) {
-					Vector2 point3 = new Vector2(listeSysteme.get(i).getCoordonnees().getX(), listeSysteme.get(i).getCoordonnees().getY());
-					Vector2 point4 = new Vector2(listeSysteme.get(j).getCoordonnees().getX(), listeSysteme.get(j).getCoordonnees().getY());
+					Vector2 point3 = new Vector2(listeSysteme.get(i).getX(), listeSysteme.get(i).getY());
+					Vector2 point4 = new Vector2(listeSysteme.get(j).getX(), listeSysteme.get(j).getY());
 					if (Intersector.intersectSegments(point1, point2, point3, point4, intersection) && 
 							!intersection.equals(point1) && !intersection.equals(point2) && !intersection.equals(point3) && !intersection.equals(point4)) {
 						return false;
@@ -181,8 +181,8 @@ public class Carte {
 	private boolean verifDistanceSysteme(Systeme systeme) {
 		for (Systeme sys : listeSysteme) {
 			if (!sys.equals(systeme)) {
-				Circle circle = new Circle(new Vector2(systeme.getCoordonnees().getX(), systeme.getCoordonnees().getY()), 100);
-				if (circle.contains(sys.getCoordonnees().getX(), sys.getCoordonnees().getY())) {
+				Circle circle = new Circle(new Vector2(systeme.getX(), systeme.getY()), 100);
+				if (circle.contains(sys.getX(), sys.getY())) {
 					return false;
 				}
 			}

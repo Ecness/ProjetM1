@@ -178,7 +178,7 @@ public class FileMaker {
 		}
 		
 		try {
-			listVaisseau.addVaisseau(0, new VaisseauCivil("Sonde", 0, new Chassie("Sonde", "Créé pour l'exploration spacial", 1, 1, 1, 0, 0, 0, 0, 0, setRessource(1, 0, 1, 0, 50, 1, 0)), 0,null));
+			listVaisseau.addVaisseau(0, new VaisseauCivil("Sonde", 200, new Chassie("Sonde", "Créé pour l'exploration spacial", 1, 1, 1, 0, 0, 0, 0, 0, setRessource(1, 0, 1, 0, 50, 1, 0)), 0,null));
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			System.out.println(e.getMessage() + "  # Vaisseau Sonde");

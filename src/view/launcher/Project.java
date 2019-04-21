@@ -23,6 +23,7 @@ import model.carte.stellaire.Carte;
 import model.carte.stellaire.Planete;
 import model.carte.stellaire.Systeme;
 import model.entity.player.Joueur;
+import model.entity.vaisseau.Flotte;
 import view.galaxie.AffichageGalaxie;
 import view.menus.MenuParametre;
 import view.menus.MenuPrincipal;
@@ -57,6 +58,7 @@ public class Project extends ApplicationAdapter {
 
 	public static Systeme systemeSelectionne;
 	public static Planete planeteSelectionne;
+	public static Flotte flotteSelectionnee;
 
 	public static ShapeRenderer shape;
 	Vector2 vector;

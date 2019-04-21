@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -16,12 +17,11 @@ import model.entity.player.Joueur;
 import model.entity.vaisseau.Flotte;
 import model.entity.vaisseau.ListVaisseaux;
 import model.parametre.EnumAbondanceRessource;
-import model.util.Coordonnees;
 import model.util.Sauvegarde;
 import view.launcher.Project;
 
 public class Systeme {
-	private Coordonnees coordonnees;
+	private Vector2 coordonnees;
 	private int idSysteme;
 	private List<Planete> TPlanete;
 	private Joueur joueur;
@@ -38,7 +38,7 @@ public class Systeme {
 	private Button bouton;
 
 	public Systeme(EnumAbondanceRessource nbRessource, int maxPlanete, int maxAnomalie, int idSysteme) {
-		coordonnees = new Coordonnees();
+		coordonnees = new Vector2();
 		this.idSysteme=idSysteme;
 		this.ressourceEtAnomalie=new GenerationRessourceEtAnomalie();
 		this.typeSysteme=EnumTypeSysteme.type();
@@ -62,18 +62,28 @@ public class Systeme {
 
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				if (Project.systemeSelectionne != null) {
-					Project.changeSysteme = true;
+				if (this.getPressedButton() == Buttons.LEFT) {
+					if (Project.systemeSelectionne != null) {
+						Project.changeSysteme = true;
+					}
+					Project.systemeSelectionne = sys;
+					Project.displayHasChanged = true;
 				}
-				Project.systemeSelectionne = sys;
-				Project.displayHasChanged = true;
 			}
 			
+		});
+		bouton.addListener(new ClickListener(Buttons.RIGHT) {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				if (this.getPressedButton() == Buttons.RIGHT && Project.flotteSelectionnee != null) {
+					Project.flotteSelectionnee.setPath(Project.galaxie.getListeSysteme(), Project.flotteSelectionnee.getCoordonnees(), Systeme.this);
+				}
+			}
 		});
 	}
 	
 	public Systeme(int x, int y, EnumAbondanceRessource nbRessource, int maxPlanete, int maxAnomalie, int idSysteme) {
-		coordonnees = new Coordonnees(x, y);
+		coordonnees = new Vector2(x, y);
 		this.idSysteme=idSysteme;
 		this.ressourceEtAnomalie=new GenerationRessourceEtAnomalie();
 		this.typeSysteme=EnumTypeSysteme.type();
@@ -96,13 +106,23 @@ public class Systeme {
 
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				if (Project.systemeSelectionne != null) {
-					Project.changeSysteme = true;
+				if (this.getPressedButton() == Buttons.LEFT) {
+					if (Project.systemeSelectionne != null) {
+						Project.changeSysteme = true;
+					}
+					Project.systemeSelectionne = sys;
+					Project.displayHasChanged = true;
 				}
-				Project.systemeSelectionne = sys;
-				Project.displayHasChanged = true;
 			}
 			
+		});
+		bouton.addListener(new ClickListener(Buttons.RIGHT) {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				if (this.getPressedButton() == Buttons.RIGHT && Project.flotteSelectionnee != null) {
+					Project.flotteSelectionnee.setPath(Project.galaxie.getListeSysteme(), Project.flotteSelectionnee.getCoordonnees(), Systeme.this);
+				}
+			}
 		});
 	}
 	
@@ -155,7 +175,7 @@ public class Systeme {
 //		return false;
 //	}
 	
-	public void AjoutFlotte(Flotte flotte) {
+	public void ajoutFlotte(Flotte flotte) {
 		flottes.add(flotte);
 	}
 	
@@ -319,36 +339,31 @@ public class Systeme {
 		
 		for (Anomalie anomalie : TAnomalie) {
 			if(anomalie.equals(EnumAnomalie.PETITE_FLOTTE_PIRATE)) {
-				Flotte flotte = new Flotte();
+				Flotte flotte = new Flotte(joueur, this);
 				flotte.addVaisseau(listVaisseau.getVaisseaux().get(0));
 				flotte.addVaisseau(listVaisseau.getVaisseaux().get(1));
-				this.AjoutFlotte(flotte);
+				this.ajoutFlotte(flotte);
 			}
 			if(anomalie.equals(EnumAnomalie.MOYENNE_FLOTTE_PIRATE)) {
-				Flotte flotte = new Flotte();
+				Flotte flotte = new Flotte(joueur, this);
 				flotte.addVaisseau(listVaisseau.getVaisseaux().get(0));
 				flotte.addVaisseau(listVaisseau.getVaisseaux().get(1));
 				flotte.addVaisseau(listVaisseau.getVaisseaux().get(0));
 				flotte.addVaisseau(listVaisseau.getVaisseaux().get(1));
-				this.AjoutFlotte(flotte);
+				this.ajoutFlotte(flotte);
 			}
 			if(anomalie.equals(EnumAnomalie.GRANDE_FLOTTE_PIRATE)) {
-				Flotte flotte = new Flotte();
+				Flotte flotte = new Flotte(joueur, this);
 				flotte.addVaisseau(listVaisseau.getVaisseaux().get(0));
 				flotte.addVaisseau(listVaisseau.getVaisseaux().get(1));
 				flotte.addVaisseau(listVaisseau.getVaisseaux().get(1));
 				flotte.addVaisseau(listVaisseau.getVaisseaux().get(0));
 				flotte.addVaisseau(listVaisseau.getVaisseaux().get(2));
-				this.AjoutFlotte(flotte);
+				this.ajoutFlotte(flotte);
 			}
 		}
 		
 	}
-	
-	/**Fait le lien avec un autre système (distance aléatoire)*/
-	/*public void ajouterLien(Systeme systeme) {
-		this.liens.put(systeme, (int) Math.random()*12+1);
-	}*/
 	
 	/**
 	 * Liaison de deux systèmes.
@@ -367,12 +382,12 @@ public class Systeme {
 			vecteur.nor();
 			vecteur.scl(x, y);
 			if (exterieur) {				
-				Vector2 direction = new Vector2(this.getCoordonnees().getX(), this.getCoordonnees().getY());
+				Vector2 direction = new Vector2(this.getX(), this.getY());
 				float angle = direction.angle();
 				vecteur.setAngle(angle);
 			}
 			liens.put(systeme, vecteur);
-			systeme.setCoordonnees(coordonnees.getX() + (int) vecteur.x, coordonnees.getY() + (int) vecteur.y);
+			systeme.setCoordonnees((int) coordonnees.x + (int) vecteur.x, (int) coordonnees.y + (int) vecteur.y);
 			oppose = new Vector2(vecteur);
 			oppose.rotate(180);
 			systeme.getLiens().put(this, oppose);
@@ -394,77 +409,29 @@ public class Systeme {
 		//Normalisation du vecteur
 		vecteur.nor();
 		//Multiplication du vecteur afin d'avoir le vecteur système->système lié
-		vecteur.scl(systeme.coordonnees.getX(), systeme.getCoordonnees().getY());
+		vecteur.scl(systeme.getX(), systeme.getY());
 		liens.put(systeme, vecteur);
 		nbLiens++;
 	}
 	
-	/**Fait le lien (réel) avec un autre système avec une distance prédéfinie (dans les deux sens)*/
-//	public void faireLien(Systeme systeme) {
-//		this.ajouterLien(systeme);
-//		systeme.ajouterLien(this);
-//	}
-	
-	/**
-	 * Récupère la distance entre le système et un autre système.
-	 * Un lien virtuel avec une distance aléatoire (entre 1 et 10) est créé si aucun lien n'existe.
-	 * 
-	 * @param systeme	Système à lier
-	 * 
-	 * @return Distance avec le système
-	 */
-//	public Map<List<Systeme>, Integer> getChemin(Systeme systeme) {
-//		//TODO Implémenter un PCC 1
-//		//Faire une recherche en largeur et une fois un chemin trouvé, continuer la recherche uniquement pour les chemins ayant un coût inférieur
-//		int distance = 0;
-//		Map<List<Systeme>, Integer> listeChemins = new HashMap<List<Systeme>, Integer>();
-//		List<Systeme> marques = new ArrayList<Systeme>();
-//		List<Systeme> chemin = new ArrayList<Systeme>();
-//		Systeme actuel = this;
-//		
-//		chemin.add(actuel);
-//
-//		if (this.equals(systeme)) {
-//			listeChemins.put(chemin , distance);
-//		} else if (liens.containsKey(systeme)) {
-//			chemin.add(systeme);
-//			listeChemins.put(chemin , distance);
-//		} else {
-//			while (!actuel.equals(systeme)) {				
-//				marques.add(actuel);
-//				for (Entry<Systeme, Vector2> sys : actuel.getLiens().entrySet()) {
-//					chemin = 
-//				}
-//			}
-//		}
-//		
-//		
-//		return listeChemins;
-//	}
-	
-	public Coordonnees getCoordonnees() {
+	public Vector2 getCoordonnees() {
 		return coordonnees;
 	}
 
-	public void setCoordonnees(Coordonnees coordonnees) {
+	public void setCoordonnees(Vector2 coordonnees) {
 		this.coordonnees = coordonnees;
 	}
 	
 	public void setCoordonnees(int x, int y) {
-		this.coordonnees.setX(x);
-		this.coordonnees.setY(y);
-	}
-	
-	public void setCoordonneesOnCircle(Systeme sys) {
-		
+		this.coordonnees.set(x, y);
 	}
 	
 	public int getX() {
-		return coordonnees.getX();
+		return (int) coordonnees.x;
 	}
 	
 	public int getY() {
-		return coordonnees.getY();
+		return (int) coordonnees.y;
 	}
 
 	public List<Planete> getTPlanete() {

@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import model.carte.stellaire.Systeme;
 import view.galaxie.systeme.flotte.AffichageFlottes;
+import view.launcher.Project;
 
 public class ButtonReturnToFlotte extends TextButton {
 
@@ -22,6 +23,7 @@ public class ButtonReturnToFlotte extends TextButton {
 
 				container.clear();
 				container.setActor(new AffichageFlottes(container, systeme, skin));
+				Project.flotteSelectionnee = null;
 			}
 			
 		});

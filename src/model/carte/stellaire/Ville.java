@@ -7,7 +7,6 @@ import java.util.Map.Entry;
 import model.EnumRessource;
 import model.batiment.BatimentVille;
 import model.entity.player.Joueur;
-import model.entity.vaisseau.Flotte;
 import model.entity.vaisseau.Vaisseau;
 import model.util.MapRessource;
 
@@ -196,9 +195,7 @@ public class Ville {
 			reDraw = true;
 			fileDeConstructionUnite.get(0).getCout().put(EnumRessource.PRODUCTION, fileDeConstructionUnite.get(0).getCout().get(EnumRessource.PRODUCTION)-TRessource.get(EnumRessource.PRODUCTION));
 			if(fileDeConstructionUnite.get(0).getCout().get(EnumRessource.PRODUCTION) <= 0) {
-				Flotte flotte = new Flotte();
-				flotte.addVaisseau(fileDeConstructionUnite.get(0));
-				planete.getSysteme().getFlottes().add(flotte);
+				joueur.creationNewFlotte(planete.getSysteme(), fileDeConstructionUnite.get(0));
 				fileDeConstructionUnite.remove(0);
 				vaisseauTermine = true;
 			}
