@@ -137,7 +137,7 @@ public class Flotte {
 		}
 		
 		//Retrait de la première étape si la flotte y est déjà
-		if (Vector2.dst(trajet.get(0).getX(), trajet.get(0).getY(), coordonnees.x, coordonnees.y) == 0) {
+		if (!trajet.isEmpty() && Vector2.dst(trajet.get(0).getX(), trajet.get(0).getY(), coordonnees.x, coordonnees.y) == 0) {
 			trajet.remove(0);
 		}
 	}

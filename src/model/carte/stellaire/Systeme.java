@@ -75,7 +75,7 @@ public class Systeme {
 		bouton.addListener(new ClickListener(Buttons.RIGHT) {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				if (this.getPressedButton() == Buttons.RIGHT && Project.flotteSelectionnee != null) {
+				if (this.getPressedButton() == Buttons.RIGHT && Project.flotteSelectionnee != null && !Project.flotteSelectionnee.getCoordonnees().equals(coordonnees)) {
 					Project.flotteSelectionnee.setPath(Project.galaxie.getListeSysteme(), Project.flotteSelectionnee.getCoordonnees(), Systeme.this);
 				}
 			}
@@ -119,7 +119,7 @@ public class Systeme {
 		bouton.addListener(new ClickListener(Buttons.RIGHT) {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				if (this.getPressedButton() == Buttons.RIGHT && Project.flotteSelectionnee != null) {
+				if (this.getPressedButton() == Buttons.RIGHT && Project.flotteSelectionnee != null && !Project.flotteSelectionnee.getCoordonnees().equals(coordonnees)) {
 					Project.flotteSelectionnee.setPath(Project.galaxie.getListeSysteme(), Project.flotteSelectionnee.getCoordonnees(), Systeme.this);
 				}
 			}
