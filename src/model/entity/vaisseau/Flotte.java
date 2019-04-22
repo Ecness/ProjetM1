@@ -17,7 +17,6 @@ public class Flotte {
 	private int puissance;
 	private List<Vaisseau> TVaisseau;
 	private General general;
-	private List<Systeme> path;
 	private Joueur joueur;
 	private int vitesse;
 
@@ -283,11 +282,11 @@ public class Flotte {
 		this.general = general;
 	}
 
-	public List<Systeme> getPath() {
-		return path;
+	public List<Systeme> getTrajet() {
+		return trajet;
 	}
-	public void setPath(List<Systeme> path) {
-		this.path = path;
+	public void setTrajet(List<Systeme> trajet) {
+		this.trajet = trajet;
 	}
 	public Joueur getJoueur() {
 		return joueur;
