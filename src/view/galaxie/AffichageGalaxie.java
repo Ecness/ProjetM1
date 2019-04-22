@@ -112,11 +112,16 @@ public class AffichageGalaxie {
 		}
 		shapeRenderer.end();
 		shapeRenderer.begin(ShapeType.Line);
-		if (Project.flotteSelectionnee != null && !Project.flotteSelectionnee.getTrajet().isEmpty()) {
+		if (Project.flotteSelectionnee != null) {
 			shapeRenderer.setColor(Project.partie.getTJoueur()[0].getCouleur());
-			shapeRenderer.circle(Project.flotteSelectionnee.getTrajet().get(Project.flotteSelectionnee.getTrajet().size()-1).getX(), 
-									Project.flotteSelectionnee.getTrajet().get(Project.flotteSelectionnee.getTrajet().size()-1).getY(), 
-									15);
+			shapeRenderer.circle(Project.flotteSelectionnee.getCoordonnees().x, 
+					Project.flotteSelectionnee.getCoordonnees().y, 
+					15);
+			if (!Project.flotteSelectionnee.getTrajet().isEmpty()) {
+				shapeRenderer.circle(Project.flotteSelectionnee.getTrajet().get(Project.flotteSelectionnee.getTrajet().size()-1).getX(), 
+						Project.flotteSelectionnee.getTrajet().get(Project.flotteSelectionnee.getTrajet().size()-1).getY(), 
+						15);
+			}
 		}
 		shapeRenderer.end();
 
