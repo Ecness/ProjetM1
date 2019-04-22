@@ -63,6 +63,7 @@ public class Systeme {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				if (this.getPressedButton() == Buttons.LEFT) {
+					Project.flotteSelectionnee = null;
 					if (Project.systemeSelectionne != null) {
 						Project.changeSysteme = true;
 					}
@@ -107,6 +108,7 @@ public class Systeme {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				if (this.getPressedButton() == Buttons.LEFT) {
+					Project.flotteSelectionnee = null;
 					if (Project.systemeSelectionne != null) {
 						Project.changeSysteme = true;
 					}
