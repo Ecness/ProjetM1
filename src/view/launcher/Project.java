@@ -120,6 +120,7 @@ public class Project extends ApplicationAdapter {
 				for (Joueur joueur : partie.getTJoueur()) {
 					joueur.debutDeTour();
 				}
+				flotteSelectionnee = null;
 				finTour = false;
 				cptTours++;
 			}
