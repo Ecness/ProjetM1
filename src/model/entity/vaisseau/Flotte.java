@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import model.carte.stellaire.Systeme;
 import model.entity.general.General;
 import model.entity.player.Joueur;
+import view.launcher.Project;
 
 public class Flotte {
 
@@ -196,10 +197,16 @@ public class Flotte {
 	 */
 	public void mouvement() {
 		if (!trajet.isEmpty()) {
+			//Retrait de la flotte du système actuel si elle est dans un système
+			if (systemeActuel != null) {
+				systemeActuel.getFlottes().remove(this);
+			}
 			//Si étape atteinte, on indique que la flotte est dans le système
 			//Si l'étape est dépassée, on remet la flotte dans le système correspondant
 			if (coordonnees.equals(trajet.get(0).getCoordonnees()) || depasse()) {
 				systemeActuel = trajet.get(0);
+				//Ajout de la flotte dans le nouveau système
+				systemeActuel.getFlottes().add(this);
 				coordonnees = new Vector2(systemeActuel.getCoordonnees());
 			} else {
 				//Sinon, on avance vers la prochaine étape
