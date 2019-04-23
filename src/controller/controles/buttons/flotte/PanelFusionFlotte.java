@@ -49,6 +49,7 @@ public class PanelFusionFlotte extends Window {
 				for (Flotte flotte : SelectFlotteToMerge.getCopyFlotte()) {
 					if (!flotte.getTVaisseau().isEmpty()) {
 						systeme.getFlottes().add(flotte);
+						systeme.getJoueur().getTFlotte().add(flotte);
 					}
 				}
 				groupSource.clearAllFlotteSelected();

@@ -10,7 +10,6 @@ import com.badlogic.gdx.math.Vector2;
 import model.carte.stellaire.Systeme;
 import model.entity.general.General;
 import model.entity.player.Joueur;
-import view.launcher.Project;
 
 public class Flotte {
 
@@ -56,7 +55,7 @@ public class Flotte {
 
 		TVaisseau.add(vaisseau);
 		puissance += vaisseau.getPuissance();
-		if (vitesse > vaisseau.getVitesse()) {
+		if (vitesse == 0 || vitesse > vaisseau.getVitesse()) {
 			vitesse = vaisseau.getVitesse();
 		}
 	}
@@ -66,7 +65,7 @@ public class Flotte {
 		puissance -= vaisseau.getPuissance();
 		vitesse = Integer.MAX_VALUE;
 		for (Vaisseau composant : TVaisseau) {
-			if (composant.getVitesse() < vitesse) {
+			if (vitesse == 0 || composant.getVitesse() < vitesse) {
 				vitesse = composant.getVitesse();
 			}
 		}
