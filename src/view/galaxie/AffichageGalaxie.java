@@ -142,6 +142,17 @@ public class AffichageGalaxie {
 				}
 
 			}
+			if (Project.flotteSelectionnee != null) {
+				if (afficheurDroite.findActor("flotte_selectionnee") != null) {
+					((AffichageFlotteSelectionnee) afficheurDroite.findActor("flotte_selectionnee")).update(Project.flotteSelectionnee, Project.skin);
+				} else {
+					afficheurDroite.addActor(new AffichageFlotteSelectionnee(Project.flotteSelectionnee, Project.skin));
+				}
+			} else {
+				if (afficheurDroite.findActor("flotte_selectionnee") != null) {
+					afficheurDroite.findActor("flotte_selectionnee").remove();
+				}
+			}
 			((AffichageRecherche) afficheurHaut.findActor("group_tech")).update(Project.partie.getTJoueur()[0], Project.skin);
 		}
 	}
