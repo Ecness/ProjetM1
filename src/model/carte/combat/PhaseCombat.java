@@ -221,19 +221,17 @@ public class PhaseCombat {
 	
 	/**
 	 * Permet a deux flotte de combatre.
-	 * @return	Boolean
-	 * 					: true si le combat est fini , false sinon.
+	 * Se termine si au moin une flotte est détruite ou si le combat a duréé plus de 30 tours
 	 */
-	public Boolean combat() {
-		combatFlotte(mapCombat.getFlotteJ1(), mapCombat.getFlotteJ2(), (int)(10*Math.random()-5));
-		combatFlotte(mapCombat.getFlotteJ2(), mapCombat.getFlotteJ1(), (int)(10*Math.random()-5));
-		nbtour++;
-		if (mapCombat.getFlotteJ2().getTVaisseau().isEmpty() || mapCombat.getFlotteJ1().getTVaisseau().isEmpty()) {
-			return true;
+	public void combatAutomatique() {
+
+		while (!mapCombat.getFlotteJ2().getTVaisseau().isEmpty() || !mapCombat.getFlotteJ1().getTVaisseau().isEmpty() || nbtour==30) {
+			combatFlotte(mapCombat.getFlotteJ1(), mapCombat.getFlotteJ2(), (int)(10*Math.random()-5));
+			combatFlotte(mapCombat.getFlotteJ2(), mapCombat.getFlotteJ1(), (int)(10*Math.random()-5));
+			actionFinTour(mapCombat.getFlotteJ1());
+			actionFinTour(mapCombat.getFlotteJ2());
+			nbtour++;
 		}
-		actionFinTour(mapCombat.getFlotteJ1());
-		actionFinTour(mapCombat.getFlotteJ2());
-		return false;
 	}
 	
 	/**

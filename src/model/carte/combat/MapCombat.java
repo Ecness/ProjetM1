@@ -42,6 +42,13 @@ public class MapCombat {
 		generation(taille);
 	}
 	
+	public MapCombat(Joueur joueur1, Joueur joueur2, Flotte flotteJ1, Flotte flotteJ2) {
+		this.joueur1 = joueur1;
+		this.joueur2 = joueur2;
+		this.flotteJ1 = flotteJ1;
+		this.flotteJ2 = flotteJ2;
+	}
+	
 	
 	public void generation(EnumTailleMapCombat taille) {
 		
