@@ -1,96 +1,64 @@
 package model.carte.combat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import model.entity.vaisseau.EnumDommageCritique;
 
 public class DetailCombat {
 
-	public Boolean detruit;
-	public String dommage;
-	public int dommageTotal;
-	public int feu;
-	public String dommageCritique;
-	public String vaisseaux;
+	private List<String> combat;
+	private List<String> VaisseauDetruit;
+	private Boolean detruit;
 	
 	public DetailCombat() {
-		detruit = false;
-		dommage = "";
-		feu = 0;
-		dommageTotal=0;
-		dommageCritique = "";
-		vaisseaux = "";
+		combat = new ArrayList<String>();
+		VaisseauDetruit = new ArrayList<String>();
+		detruit=false;
 	}	
 	
-	public void addDetail(DetailCombat detail) {
-		
-		detruit=detail.getDetruit();
-		dommage+=detail.getDommage();
-		feu+=detail.getFeu();
-		dommageTotal+=detail.getDommageTotal();
-		dommageCritique+=detail.getDommageCritique();
-		vaisseaux+=detail.getVaisseaux();
-		
+	public void addBouclier(String vaisseau, int montant) {
+		combat.add("Le vaisseau " + vaisseau + " a récupéré " + montant + " point de bouclier.\n");
 	}
-	
+	public void addReparation(String vaisseau,int montant) {
+		combat.add("Le vaisseau " + vaisseau + " a récupéré " + montant + " point de vie.\n");
+	}
+	public void addReparationFeu(String vaisseau) {
+		combat.add("Le vaisseau " + vaisseau + " a éteind un feu.\n");
+	}
 	public void ajoutNomVaisseau(String vaisseauAttaquant, String vaisseauDefensseur) {
-		vaisseaux+="Le vaisseau " + vaisseauAttaquant + " attaque le vaisseau " + vaisseauDefensseur + ".\n";
+		combat.add("Le vaisseau " + vaisseauAttaquant + " attaque le vaisseau " + vaisseauDefensseur + ".\n");
 	}
 	public void addDommage(int dommage, String nom) {
-		this.dommage+= "L'arme " + nom + " à infliger "+ dommage + " dommage.\n";
-		dommageTotal+=dommage;
+		combat.add("L'arme " + nom + " à infliger "+ dommage + " dommage.\n");
 	}
 	public void pasToucher(String nom) {
-		this.dommage+= "L'arme " + nom + " a rater sa cible.\n";
+		combat.add("L'arme " + nom + " a rater sa cible.\n");
 	}
-	public void addFeu() {
-		feu++;
+	public void addFeu(String vaisseauDefensseur) {
+		combat.add("Le navire " + vaisseauDefensseur +" a un feu qui c'est déclaré.\n");
+	}
+	public void addVaisseauDétruit(String vaisseauDefensseur) {
+		combat.add("Le navire " + vaisseauDefensseur + " a été détruit.\n");
+		detruit=true;
+		VaisseauDetruit.add(vaisseauDefensseur);
 	}
 	public void addDommageCritique(EnumDommageCritique dommageCritique, int dommageSuplementaire) {
-		this.dommageCritique+="Le navire a subie " + dommageCritique + " et il as reçue " + dommageSuplementaire + " de dommage suplaimentaire.\n";
-		dommageTotal+=dommageSuplementaire;
+		combat.add("Le navire a subie " + dommageCritique + " et il as reçue " + dommageSuplementaire + " de dommage suplaimentaire.\n");
 	}
 	
 	@Override
 	public String toString() {
-		String detruit=(this.detruit? "oui" : "non");
-		
-		
-		return "Rapport :\n\n" + vaisseaux + "\nVaisseau detruit : " + detruit + "\n\nDommage subie :\n" + dommage + "\nLe total de dommage subie est de "+ dommageTotal + ".\n\nNombre de feu reçue : " + feu + "\n\nDommagecritique :\n" + dommageCritique;
+		String totalCombat = "";
+		for (String string : combat) {
+			totalCombat+=string;
+		}
+		return "Rapport :\n\n" + totalCombat;
 	}
-	
 	public Boolean getDetruit() {
 		return detruit;
 	}
-	public String getDommage() {
-		return dommage;
-	}
-	public String getDommageCritique() {
-		return dommageCritique;
-	}
-	public int getFeu() {
-		return feu;
-	}
 	public void setDetruit(Boolean detruit) {
 		this.detruit = detruit;
-	}
-	public void setDommage(String dommage) {
-		this.dommage = dommage;
-	}
-	public void setDommageCritique(String dommageCritique) {
-		this.dommageCritique = dommageCritique;
-	}
-	public void setFeu(int feu) {
-		this.feu = feu;
-	}
-	public int getDommageTotal() {
-		return dommageTotal;
-	}
-	public String getVaisseaux() {
-		return vaisseaux;
-	}
-	public void setDommageTotal(int dommageTotal) {
-		this.dommageTotal = dommageTotal;
-	}
-	public void setVaisseaux(String vaisseaux) {
-		this.vaisseaux = vaisseaux;
 	}
 }

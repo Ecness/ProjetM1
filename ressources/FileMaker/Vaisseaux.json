@@ -2592,6 +2592,7 @@
 				}
 			}
 		},
+		"vitesse": 200,
 		"cout": {
 			"CREDIT": {
 				"class": "java.lang.Integer",

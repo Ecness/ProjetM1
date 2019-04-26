@@ -83,7 +83,7 @@ public class Flotte {
 	private List<Systeme> pathFinding(List<Systeme> graphe, Vector2 begin, Systeme end) {
 		List<Systeme> path = new ArrayList<Systeme>();
 
-		//Recherche des plus courts chemins par l'algorithme de Dijkstra (PCC2)
+		//Recherche des plus courts chemins par l'algorithme de Dijkstra (PCC2)	
 		double[] distance = new double[graphe.size()];
 		Systeme[] predecesseur = new Systeme[graphe.size()];
 		for (Systeme sys : graphe) {

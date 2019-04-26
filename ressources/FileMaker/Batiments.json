@@ -9,24 +9,64 @@
 			"nom": "Mine de metal",
 			"description": "Améliore la production d'acier",
 			"bonus": {
-				"class": "model.util.MapRessource",
-				"CREDIT": 0,
-				"GAZ": 0,
-				"ACIER": 2,
-				"CRISTAL": 0,
-				"PRODUCTION": 0,
-				"SCIENCE": 0,
-				"PUISSANCE": 0
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 2
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			},
 			"cout": {
-				"class": "model.util.MapRessource",
-				"CREDIT": 50,
-				"GAZ": 0,
-				"ACIER": 10,
-				"CRISTAL": 0,
-				"PRODUCTION": 0,
-				"SCIENCE": 0,
-				"PUISSANCE": 0
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 10
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			}
 		},
 		{
@@ -34,24 +74,64 @@
 			"nom": "Extracteur de gaz",
 			"description": "Améliore la production de gaz",
 			"bonus": {
-				"class": "model.util.MapRessource",
-				"CREDIT": 0,
-				"GAZ": 2,
-				"ACIER": 0,
-				"CRISTAL": 0,
-				"PRODUCTION": 0,
-				"SCIENCE": 0,
-				"PUISSANCE": 0
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 2
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			},
 			"cout": {
-				"class": "model.util.MapRessource",
-				"CREDIT": 50,
-				"GAZ": 0,
-				"ACIER": 10,
-				"CRISTAL": 0,
-				"PRODUCTION": 0,
-				"SCIENCE": 0,
-				"PUISSANCE": 0
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 10
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			}
 		},
 		{
@@ -60,24 +140,64 @@
 			"description": "Recherche sur les forme de vie extra-planetaire",
 			"techNecessaire": 4,
 			"bonus": {
-				"class": "model.util.MapRessource",
-				"CREDIT": -2,
-				"GAZ": 0,
-				"ACIER": 0,
-				"CRISTAL": 0,
-				"PRODUCTION": 0,
-				"SCIENCE": 5,
-				"PUISSANCE": 0
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": -2
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 5
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			},
 			"cout": {
-				"class": "model.util.MapRessource",
-				"CREDIT": 80,
-				"GAZ": 10,
-				"ACIER": 50,
-				"CRISTAL": 50,
-				"PRODUCTION": 0,
-				"SCIENCE": 0,
-				"PUISSANCE": 0
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 80
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 10
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			}
 		},
 		{
@@ -86,24 +206,64 @@
 			"description": "Améliore les echanges avec les autre colonie",
 			"techNecessaire": 3,
 			"bonus": {
-				"class": "model.util.MapRessource",
-				"CREDIT": 5,
-				"GAZ": 1,
-				"ACIER": 1,
-				"CRISTAL": 1,
-				"PRODUCTION": 0,
-				"SCIENCE": 0,
-				"PUISSANCE": 0
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 5
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 1
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 1
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 1
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			},
 			"cout": {
-				"class": "model.util.MapRessource",
-				"CREDIT": 50,
-				"GAZ": 5,
-				"ACIER": 20,
-				"CRISTAL": 5,
-				"PRODUCTION": 0,
-				"SCIENCE": 0,
-				"PUISSANCE": 0
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 5
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 20
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 5
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			}
 		},
 		{
@@ -112,24 +272,64 @@
 			"description": "Améliore la production de cristal",
 			"techNecessaire": 1,
 			"bonus": {
-				"class": "model.util.MapRessource",
-				"CREDIT": 0,
-				"GAZ": 0,
-				"ACIER": 0,
-				"CRISTAL": 4,
-				"PRODUCTION": 0,
-				"SCIENCE": 0,
-				"PUISSANCE": 0
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 4
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			},
 			"cout": {
-				"class": "model.util.MapRessource",
-				"CREDIT": 75,
-				"GAZ": 0,
-				"ACIER": 50,
-				"CRISTAL": 20,
-				"PRODUCTION": 0,
-				"SCIENCE": 0,
-				"PUISSANCE": 0
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 75
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 20
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			}
 		},
 		{
@@ -138,24 +338,64 @@
 			"description": "Améliore la production d'acier",
 			"techNecessaire": 1,
 			"bonus": {
-				"class": "model.util.MapRessource",
-				"CREDIT": 0,
-				"GAZ": 0,
-				"ACIER": 4,
-				"CRISTAL": 0,
-				"PRODUCTION": 0,
-				"SCIENCE": 0,
-				"PUISSANCE": 0
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 4
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			},
 			"cout": {
-				"class": "model.util.MapRessource",
-				"CREDIT": 75,
-				"GAZ": 0,
-				"ACIER": 50,
-				"CRISTAL": 50,
-				"PRODUCTION": 0,
-				"SCIENCE": 0,
-				"PUISSANCE": 0
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 75
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			}
 		},
 		{
@@ -164,24 +404,64 @@
 			"description": "Améliore la production de gaz",
 			"techNecessaire": 1,
 			"bonus": {
-				"class": "model.util.MapRessource",
-				"CREDIT": 0,
-				"GAZ": 4,
-				"ACIER": 0,
-				"CRISTAL": 0,
-				"PRODUCTION": 0,
-				"SCIENCE": 0,
-				"PUISSANCE": 0
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 4
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			},
 			"cout": {
-				"class": "model.util.MapRessource",
-				"CREDIT": 75,
-				"GAZ": 0,
-				"ACIER": 50,
-				"CRISTAL": 50,
-				"PRODUCTION": 0,
-				"SCIENCE": 0,
-				"PUISSANCE": 0
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 75
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
 			}
 		},
 		null,
@@ -256,24 +536,64 @@
 		"nom": "Mine de cristal",
 		"description": "Améliore la production de cristal",
 		"bonus": {
-			"class": "model.util.MapRessource",
-			"CREDIT": 0,
-			"GAZ": 0,
-			"ACIER": 0,
-			"CRISTAL": 2,
-			"PRODUCTION": 0,
-			"SCIENCE": 0,
-			"PUISSANCE": 0
+			"CREDIT": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"GAZ": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"ACIER": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"CRISTAL": {
+				"class": "java.lang.Integer",
+				"value": 2
+			},
+			"PRODUCTION": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"SCIENCE": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"PUISSANCE": {
+				"class": "java.lang.Integer",
+				"value": 0
+			}
 		},
 		"cout": {
-			"class": "model.util.MapRessource",
-			"CREDIT": 50,
-			"GAZ": 0,
-			"ACIER": 10,
-			"CRISTAL": 0,
-			"PRODUCTION": 0,
-			"SCIENCE": 0,
-			"PUISSANCE": 0
+			"CREDIT": {
+				"class": "java.lang.Integer",
+				"value": 50
+			},
+			"GAZ": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"ACIER": {
+				"class": "java.lang.Integer",
+				"value": 10
+			},
+			"CRISTAL": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"PRODUCTION": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"SCIENCE": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"PUISSANCE": {
+				"class": "java.lang.Integer",
+				"value": 0
+			}
 		}
 	},
 	"hasZeroValue": true
@@ -318,7 +638,8 @@
 					"value": 0
 				}
 			},
-			"cout": 200
+			"cout": 200,
+			"baseProdCost": 200
 		},
 		{
 			"class": "model.batiment.BatimentVille",
@@ -355,7 +676,8 @@
 					"value": 0
 				}
 			},
-			"cout": 150
+			"cout": 150,
+			"baseProdCost": 150
 		},
 		{
 			"class": "model.batiment.BatimentVille",
@@ -392,7 +714,8 @@
 					"value": 50
 				}
 			},
-			"cout": 100
+			"cout": 100,
+			"baseProdCost": 100
 		},
 		{
 			"class": "model.batiment.BatimentVille",
@@ -428,7 +751,8 @@
 					"value": 0
 				}
 			},
-			"cout": 50
+			"cout": 50,
+			"baseProdCost": 50
 		},
 		{
 			"class": "model.batiment.BatimentVille",
@@ -464,7 +788,8 @@
 					"value": 0
 				}
 			},
-			"cout": 80
+			"cout": 80,
+			"baseProdCost": 80
 		},
 		null,
 		null,
@@ -569,7 +894,8 @@
 				"value": 0
 			}
 		},
-		"cout": 20
+		"cout": 20,
+		"baseProdCost": 20
 	},
 	"hasZeroValue": true
 }

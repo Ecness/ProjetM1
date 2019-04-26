@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 import com.badlogic.gdx.utils.IntMap;
 
 import model.EnumRessource;
+import model.carte.combat.DetailCombat;
 import model.entity.player.Joueur;
 import model.entity.player.Science;
 import model.module.Arme;
@@ -158,22 +159,24 @@ public class Vaisseau implements Cloneable {
 		}
 	}
 
-	public void regeneBouclier() {
+	public void regeneBouclier(DetailCombat detailCombat) {
 
 		bouclier += (int)(bouclierMax*0.1);
+		detailCombat.addBouclier(getNom(), (int)(bouclierMax*0.1));
 
 		if(bouclier>bouclierMax) {
 			bouclier=bouclierMax;
 		}
 	}
 
-	public void reparationVaisseau() {
+	public void reparationVaisseau(DetailCombat detailCombat) {
 
 		if(fire>0) {
 			fire--;
+			detailCombat.addReparationFeu(getNom());
 		}else {
 			sante += (int)(santeMax*0.05);
-
+			detailCombat.addReparation(getNom(), (int)(santeMax*0.05));
 			if(sante>santeMax) {
 				sante=santeMax;
 			}

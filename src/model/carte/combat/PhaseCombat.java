@@ -1,6 +1,5 @@
 package model.carte.combat;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -14,9 +13,13 @@ import model.module.EnumTypeArme;
 public class PhaseCombat {
 
 	private MapCombat mapCombat;
+	private DetailCombat detailCombat;
+	private int nbtour;
 	
 	public PhaseCombat(MapCombat mapCombat) {
 		this.setMapCombat(mapCombat);
+		detailCombat = new DetailCombat();
+		nbtour = 0;
 	}
 	
 	//------------------------------------------------------------------------------------------------------------------------------------
@@ -75,15 +78,14 @@ public class PhaseCombat {
 	 * @return	DetailCombat
 	 * 			: Le detail du combat.
 	 */
-	private DetailCombat verifAjoutFeu(Vaisseau vaisseauAttaquant, Vaisseau vaisseauDefensseur, Arme arme, DetailCombat detail) {
+	private void verifAjoutFeu(Vaisseau vaisseauAttaquant, Vaisseau vaisseauDefensseur, Arme arme) {
 		// bonus pour les bonnus de science
 		int bonus=0;
 		
 		if (arme.getTauxFeu()+bonus>(int)(100*Math.random()+1)) {
 			vaisseauDefensseur.addFire();
-			detail.addFeu();
+			detailCombat.addFeu(vaisseauDefensseur.getNom());
 		}
-		return detail;
 	}
 	
 	/**
@@ -95,15 +97,14 @@ public class PhaseCombat {
 	 * @return	DetailCombat
 	 * 			: Le detail du combat.
 	 */
-	private DetailCombat verifAjoutDommageCritique(Vaisseau vaisseauAttaquant, Vaisseau vaisseauDefensseur, Arme arme, DetailCombat detail) {
+	private void verifAjoutDommageCritique(Vaisseau vaisseauAttaquant, Vaisseau vaisseauDefensseur, Arme arme) {
 		// bonus pour les bonnus de science
 		double bonus=0;
 		
 		if (arme.getCritique()>(int)(100*Math.random()+1)) {
 			EnumDommageCritique dommageCritique = EnumDommageCritique.getDammage();
-			detail = ajoutDommageCritique(dommageCritique, vaisseauDefensseur, detail);
+			ajoutDommageCritique(dommageCritique, vaisseauDefensseur);
 		}
-		return detail;
 	}
 	
 	/**
@@ -115,17 +116,16 @@ public class PhaseCombat {
 	 * @return DetailCombat
 	 * 			: Le detail du combat.
 	 */
-	private DetailCombat verifBouclier(Vaisseau vaisseauAttaquant, Vaisseau vaisseauDefensseur, Arme arme, DetailCombat detail) {
+	private void verifBouclier(Vaisseau vaisseauAttaquant, Vaisseau vaisseauDefensseur, Arme arme) {
 		// bonus pour les bonnus de science
 		double bonus=0;
 		if(vaisseauDefensseur.getBouclier()==0){							
-			detail = verifAjoutFeu(vaisseauAttaquant, vaisseauDefensseur, arme, detail);
-			detail = verifAjoutDommageCritique(vaisseauAttaquant, vaisseauDefensseur, arme, detail);
+			verifAjoutFeu(vaisseauAttaquant, vaisseauDefensseur, arme);
+			verifAjoutDommageCritique(vaisseauAttaquant, vaisseauDefensseur, arme);
 			if(vaisseauDefensseur.getSante()==0) {
-				detail.detruit=true;
+				detailCombat.addVaisseauDétruit(vaisseauDefensseur.getNom());
 			}
 		}
-		return detail;
 	}
 	
 	/**
@@ -138,7 +138,7 @@ public class PhaseCombat {
 	 * @return DetailCombat
 	 * 						: Le detail du combat.
 	 */
-	private DetailCombat infligerDommage(Vaisseau vaisseauAttaquant, Vaisseau vaisseauDefensseur, Arme arme, DetailCombat detail, int bonnusPrecision) {
+	private Boolean infligerDommage(Vaisseau vaisseauAttaquant, Vaisseau vaisseauDefensseur, Arme arme, int bonnusPrecision) {
 		// bonus pour les bonnus de science
 		double bonusDommage=1;
 		if(vaisseauAttaquant.getJoueur() != null) {
@@ -154,17 +154,17 @@ public class PhaseCombat {
 		}
 		
 		if(arme.getPrecision()+bonnusPrecision>(int)(100*Math.random()+1)) {
-			detail.addDommage((int)(arme.getDommage()*bonusDommage),arme.getNom());
+			detailCombat.addDommage((int)(arme.getDommage()*bonusDommage),arme.getNom());
 			vaisseauDefensseur.prendreDommage((int)(arme.getDommage()*bonusDommage));
 			if(vaisseauDefensseur.getSante()==0) {
-				detail.detruit=true;
-				return detail;
+				detailCombat.addVaisseauDétruit(vaisseauDefensseur.getNom());
+				return true;
 			}
-			detail = verifBouclier(vaisseauAttaquant, vaisseauDefensseur, arme, detail);
+			verifBouclier(vaisseauAttaquant, vaisseauDefensseur, arme);
 		}else {
-			detail.pasToucher(arme.getNom());
+			detailCombat.pasToucher(arme.getNom());
 		}
-		return detail;
+		return false;
 	}
 	
 	/**
@@ -174,50 +174,81 @@ public class PhaseCombat {
 	 * @return	DetailCombat
 	 * 			: Le detail du combat.
 	 */
-	private DetailCombat endommageVaisseau(Vaisseau vaisseauAttaquant, Vaisseau vaisseauDefensseur, int bonnusPrecision, DetailCombat detail) {		
+	private void endommageVaisseau(Vaisseau vaisseauAttaquant, Vaisseau vaisseauDefensseur, int bonnusPrecision) {		
 		
 		
-		detail.ajoutNomVaisseau(vaisseauAttaquant.getNom(), vaisseauDefensseur.getNom());
+		detailCombat.ajoutNomVaisseau(vaisseauAttaquant.getNom(), vaisseauDefensseur.getNom());
 		
 		for (Entry<Integer, Arme> armes : vaisseauAttaquant.getArmes().entrySet()) {
 			Arme arme = armes.getValue();
 			if (arme.getUtilisable()==true) {
 				for (int i=0; i < arme.getNbTire(); i++) {
-					detail = infligerDommage(vaisseauAttaquant, vaisseauDefensseur, arme, detail, bonnusPrecision);
+					infligerDommage(vaisseauAttaquant, vaisseauDefensseur, arme, bonnusPrecision);
 				}
 			}
 		}
-		if(!detail.detruit && vaisseauDefensseur.getSante()==0) {
-			detail.detruit=true;
+		if(!detailCombat.getDetruit() && vaisseauDefensseur.getSante()==0) {
+			detailCombat.addVaisseauDétruit(vaisseauDefensseur.getNom());
 		}
-		return detail;
 	}
 	
-	private int getIdVaisseauAleatoire(List<Vaisseau> ListVaisseau) {
+	private int getVaisseauAleatoire(List<Vaisseau> ListVaisseau) {
 		return (int)(ListVaisseau.size()*Math.random());
 	}
 	
-	public DetailCombat combatFlotte(Flotte flotteAttaquante, Flotte flotteDefensseur,int bonnusPrecision) {
-		
-		List<Vaisseau> copieFlotteAttaquante = new ArrayList<>();
-		for (Vaisseau vaisseau : flotteAttaquante.getTVaisseau()) {
-			copieFlotteAttaquante.add(vaisseau);
+	/**
+	 * Pour chaque vaisseau attaquant , choisie un vaisseaux deffensseur a attaqué.
+	 * @param flotteAttaquante
+	 * @param flotteDefensseur
+	 * @param bonnusPrecision
+	 * @param detail
+	 * @return DetailCombat
+	 * 			: Le detail du combat.
+	 */
+	private void combatFlotte(Flotte flotteAttaquante, Flotte flotteDefensseur,int bonnusPrecision) {
+
+		for (Vaisseau vaisseauAttaquant : flotteAttaquante.getTVaisseau()) {
+			int vaisseauDeffensseur = getVaisseauAleatoire(flotteDefensseur.getTVaisseau());
+			endommageVaisseau(vaisseauAttaquant, flotteDefensseur.getTVaisseau().get(vaisseauDeffensseur), bonnusPrecision);
+			if(detailCombat.getDetruit()) {
+				flotteDefensseur.getTVaisseau().remove(vaisseauDeffensseur);
+			}
+			detailCombat.setDetruit(false);
 		}
-		List<Vaisseau> copieFlotteDefenseur = new ArrayList<>();
-		for (Vaisseau vaisseau : flotteDefensseur.getTVaisseau()) {
-			copieFlotteDefenseur.add(vaisseau);
-		}
-		DetailCombat detailTotal = new DetailCombat();
-		while (!copieFlotteAttaquante.isEmpty()) {
-			DetailCombat detail = new DetailCombat();
-			int vaisseauChoisie = getIdVaisseauAleatoire(copieFlotteAttaquante);
-			copieFlotteAttaquante.remove(vaisseauChoisie);
-			detail=endommageVaisseau(flotteAttaquante.getTVaisseau().get(vaisseauChoisie), flotteDefensseur.getTVaisseau().get(getIdVaisseauAleatoire(copieFlotteDefenseur)), bonnusPrecision, detail);			
-			detailTotal.addDetail(detail);
-		} 
-		
-		return detailTotal;
 	}
+	
+	
+	
+	/**
+	 * Permet a deux flotte de combatre.
+	 * @return	Boolean
+	 * 					: true si le combat est fini , false sinon.
+	 */
+	public Boolean combat() {
+		combatFlotte(mapCombat.getFlotteJ1(), mapCombat.getFlotteJ2(), (int)(10*Math.random()-5));
+		combatFlotte(mapCombat.getFlotteJ2(), mapCombat.getFlotteJ1(), (int)(10*Math.random()-5));
+		nbtour++;
+		if (mapCombat.getFlotteJ2().getTVaisseau().isEmpty() || mapCombat.getFlotteJ1().getTVaisseau().isEmpty()) {
+			return true;
+		}
+		actionFinTour(mapCombat.getFlotteJ1());
+		actionFinTour(mapCombat.getFlotteJ2());
+		return false;
+	}
+	
+	/**
+	 * permet a chaque vaisseau de la flotte de récupéré des dommage subie
+	 * @param flotte
+	 */
+	private void actionFinTour(Flotte flotte) {
+		for (Vaisseau vaisseau : flotte.getTVaisseau()) {
+			if(vaisseau.getDommageCritique().contains(EnumDommageCritique.GENERATEUR_DE_BOUCLIER_DETRUIT)) {
+				vaisseau.regeneBouclier(this.detailCombat);
+			}
+			vaisseau.reparationVaisseau(this.detailCombat);
+		}
+	}
+	
 	
 	/**
 	 * @param dommage
@@ -225,7 +256,7 @@ public class PhaseCombat {
 	 * @return	
 	 * 			: Le detail du combat.
 	 */
-	private DetailCombat ajoutDommageCritique(EnumDommageCritique dommage, Vaisseau vaisseau, DetailCombat detail) {
+	private void ajoutDommageCritique(EnumDommageCritique dommage, Vaisseau vaisseau) {
 
 		int id = (int)(vaisseau.getArmes().size()*Math.random());
 		switch (dommage) {
@@ -234,7 +265,7 @@ public class PhaseCombat {
 				if (!vaisseau.getArmes().get(id).getEndomager() && vaisseau.getArmes().get(id).getUtilisable()) {
 					vaisseau.getArmes().get(id).setEndomager(true);
 					vaisseau.getDommageCritique().add(EnumDommageCritique.ARME_ENDOMMAGER);
-					detail.addDommageCritique(EnumDommageCritique.ARME_ENDOMMAGER,0);
+					detailCombat.addDommageCritique(EnumDommageCritique.ARME_ENDOMMAGER,0);
 					break;
 				}
 			}
@@ -247,21 +278,21 @@ public class PhaseCombat {
 					}
 					vaisseau.getArmes().get(id).setUtilisable(false);
 					vaisseau.getDommageCritique().add(EnumDommageCritique.ARME_DETRUITE);	
-					detail.addDommageCritique(EnumDommageCritique.ARME_DETRUITE,0);
+					detailCombat.addDommageCritique(EnumDommageCritique.ARME_DETRUITE,0);
 				}else {
 					vaisseau.prendreDommage((int)(vaisseau.getSanteMax()*0.1));
-					detail.addDommageCritique(EnumDommageCritique.BREACH_DANS_LA_COQUE,(int)(vaisseau.getSanteMax()*0.1));
+					detailCombat.addDommageCritique(EnumDommageCritique.BREACH_DANS_LA_COQUE,(int)(vaisseau.getSanteMax()*0.1));
 				}
 			}else {
 				vaisseau.prendreDommage((int)(vaisseau.getSanteMax()*0.1));
-				detail.addDommageCritique(EnumDommageCritique.BREACH_DANS_LA_COQUE,(int)(vaisseau.getSanteMax()*0.1));
+				detailCombat.addDommageCritique(EnumDommageCritique.BREACH_DANS_LA_COQUE,(int)(vaisseau.getSanteMax()*0.1));
 			}
 			break;
 		case MOTEUR_ENDOMMAGER:
 			if(!vaisseau.getMoteurEndomager() && !vaisseau.getMoteurDetruit()) {
 				vaisseau.setMoteurEndomager(true);
 				vaisseau.getDommageCritique().add(EnumDommageCritique.MOTEUR_ENDOMMAGER);
-				detail.addDommageCritique(EnumDommageCritique.MOTEUR_ENDOMMAGER,0);
+				detailCombat.addDommageCritique(EnumDommageCritique.MOTEUR_ENDOMMAGER,0);
 				break;
 			}
 		case MOTEUR_DETRUIT:
@@ -272,7 +303,7 @@ public class PhaseCombat {
 				}
 				vaisseau.setMoteurDetruit(true);
 				vaisseau.getDommageCritique().add(EnumDommageCritique.MOTEUR_DETRUIT);	
-				detail.addDommageCritique(EnumDommageCritique.MOTEUR_DETRUIT,0);
+				detailCombat.addDommageCritique(EnumDommageCritique.MOTEUR_DETRUIT,0);
 				break;
 			}
 		case GENERATEUR_DE_BOUCLIER_DETRUIT:
@@ -280,25 +311,24 @@ public class PhaseCombat {
 				vaisseau.setBouclierDetruit(true);
 				vaisseau.setBouclier(0);
 				vaisseau.getDommageCritique().add(EnumDommageCritique.GENERATEUR_DE_BOUCLIER_DETRUIT);
-				detail.addDommageCritique(EnumDommageCritique.GENERATEUR_DE_BOUCLIER_DETRUIT,0);
+				detailCombat.addDommageCritique(EnumDommageCritique.GENERATEUR_DE_BOUCLIER_DETRUIT,0);
 				break;
 			}
 		case BREACH_DANS_LA_COQUE:
 			vaisseau.prendreDommage((int)(vaisseau.getSanteMax()*0.1));
-			detail.addDommageCritique(EnumDommageCritique.BREACH_DANS_LA_COQUE,(int)(vaisseau.getSanteMax()*0.1));
+			detailCombat.addDommageCritique(EnumDommageCritique.BREACH_DANS_LA_COQUE,(int)(vaisseau.getSanteMax()*0.1));
 			break;
 		case STRUCTURE_INTERNE_TOUCHER:
 			vaisseau.prendreDommage((int)(vaisseau.getSanteMax()*0.25));
-			detail.addDommageCritique(EnumDommageCritique.STRUCTURE_INTERNE_TOUCHER,(int)(vaisseau.getSanteMax()*0.25));
+			detailCombat.addDommageCritique(EnumDommageCritique.STRUCTURE_INTERNE_TOUCHER,(int)(vaisseau.getSanteMax()*0.25));
 			break;
 		case MAGASIN_A_MUNITION: 
 			vaisseau.prendreDommage((int)(vaisseau.getSanteMax()*0.5));
-			detail.addDommageCritique(EnumDommageCritique.MAGASIN_A_MUNITION,(int)(vaisseau.getSanteMax()*0.5));
+			detailCombat.addDommageCritique(EnumDommageCritique.MAGASIN_A_MUNITION,(int)(vaisseau.getSanteMax()*0.5));
 			break;
 		default:
 			break;
 		}
-		return detail;
 	}
 	
 	//------------------------------------------------------------------------------------------------------------------------------------
@@ -309,5 +339,11 @@ public class PhaseCombat {
 
 	public void setMapCombat(MapCombat mapCombat) {
 		this.mapCombat = mapCombat;
+	}
+	public int getNbtour() {
+		return nbtour;
+	}
+	public DetailCombat getDetailCombat() {
+		return detailCombat;
 	}
 }
