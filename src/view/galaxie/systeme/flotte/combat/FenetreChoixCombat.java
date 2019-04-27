@@ -68,6 +68,15 @@ public class FenetreChoixCombat extends Window {
 				//Une fois le combat terminé, on affiche les résultats
 				remove();
 				new RapportCombat(combat, skin);
+				if (flotte1.getTVaisseau().isEmpty()) {
+					flotte1.getJoueur().getTFlotte().remove(flotte1);
+					systeme.getFlottes().remove(flotte1);
+				}
+				if (flotte2.getTVaisseau().isEmpty()) {
+					flotte2.getJoueur().getTFlotte().remove(flotte2);
+					systeme.getFlottes().remove(flotte2);
+				}
+				Project.displayHasChanged = true;
 			}
 			
 		});
