@@ -244,7 +244,7 @@ public class FileMaker {
 			
 			//new Croiseur(nom, chassie, armes, blindages, vitesse, techNecessaire, joueur)
 			
-			listVaisseau.addVaisseau(4, new Corvette("Unexpected B", listModule.getChassie().get(1), armes, blindages, 0, 0, null));
+			listVaisseau.addVaisseau(4, new Corvette("Unexpected B", listModule.getChassie().get(1), armes, blindages, 300, 0, null));
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			System.out.println(e.getMessage() + "  # Vaisseau Unexpected B");
