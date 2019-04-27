@@ -3,12 +3,15 @@ package view.galaxie.systeme.flotte.combat;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import model.carte.combat.MapCombat;
+import model.carte.combat.PhaseCombat;
 import model.carte.stellaire.Systeme;
 import model.entity.vaisseau.Flotte;
 import view.launcher.Project;
@@ -55,7 +58,16 @@ public class FenetreChoixCombat extends Window {
 			public void clicked(InputEvent event, float x, float y) {
 				super.clicked(event, x, y);
 				
-				//TODO Intégrer le combat
+				MapCombat map = new MapCombat(flotte1.getJoueur(), flotte2.getJoueur(), flotte1, flotte2, systeme, Project.parametre.getTailleMapCombat());
+				PhaseCombat combat = new PhaseCombat(map);
+				//Tant qu'aucune des deux flottes n'est détruites ou que le combat a duré moins de 20 tours (tours de combat), le conflit continue
+				while(combat.getNbtour() < 20 && !flotte1.getTVaisseau().isEmpty() && !flotte2.getTVaisseau().isEmpty()) {
+					combat.combat();
+				}
+				
+				//Une fois le combat terminé, on affiche les résultats
+				remove();
+				new RapportCombat(combat, skin);
 			}
 			
 		});

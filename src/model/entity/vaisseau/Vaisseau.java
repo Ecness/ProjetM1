@@ -61,6 +61,7 @@ public class Vaisseau implements Cloneable {
 		this.moteurDetruit=false;
 		this.moteurEndomager=false;
 		this.bouclierDetruit=false;
+		this.joueur = joueur;
 		calculPuissanceTotal();
 		addCout();
 	}
@@ -86,6 +87,7 @@ public class Vaisseau implements Cloneable {
 		this.moteurDetruit=false;
 		this.moteurEndomager=false;
 		this.bouclierDetruit=false;
+		this.joueur = joueur;
 		addBlindage();
 		addCout();
 		calculPuissanceTotal();
@@ -351,5 +353,10 @@ public class Vaisseau implements Cloneable {
 	}
 	public void setJoueur(Joueur joueur) {
 		this.joueur = joueur;
+	}
+	
+	@Override
+	public String toString() {
+		return nom;
 	}
 }

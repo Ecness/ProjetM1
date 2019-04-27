@@ -487,4 +487,9 @@ public class Joueur {
 	public void setOnMenuTech(boolean onMenuTech) {
 		this.onMenuTech = onMenuTech;
 	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
 }

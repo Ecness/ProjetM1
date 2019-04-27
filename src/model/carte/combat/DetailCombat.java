@@ -4,16 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.entity.vaisseau.EnumDommageCritique;
+import model.entity.vaisseau.Vaisseau;
 
 public class DetailCombat {
 
 	private List<String> combat;
-	private List<String> VaisseauDetruit;
+	private List<Vaisseau> VaisseauDetruit;
 	private Boolean detruit;
 	
 	public DetailCombat() {
 		combat = new ArrayList<String>();
-		VaisseauDetruit = new ArrayList<String>();
+		VaisseauDetruit = new ArrayList<Vaisseau>();
 		detruit=false;
 	}	
 	
@@ -38,7 +39,7 @@ public class DetailCombat {
 	public void addFeu(String vaisseauDefensseur) {
 		combat.add("Le navire " + vaisseauDefensseur +" a un feu qui c'est déclaré.\n");
 	}
-	public void addVaisseauDétruit(String vaisseauDefensseur) {
+	public void addVaisseauDétruit(Vaisseau vaisseauDefensseur) {
 		combat.add("Le navire " + vaisseauDefensseur + " a été détruit.\n");
 		detruit=true;
 		VaisseauDetruit.add(vaisseauDefensseur);
@@ -60,5 +61,9 @@ public class DetailCombat {
 	}
 	public void setDetruit(Boolean detruit) {
 		this.detruit = detruit;
+	}
+
+	public List<Vaisseau> getVaisseauDetruit() {
+		return VaisseauDetruit;
 	}
 }

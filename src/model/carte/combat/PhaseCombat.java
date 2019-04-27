@@ -123,7 +123,7 @@ public class PhaseCombat {
 			verifAjoutFeu(vaisseauAttaquant, vaisseauDefensseur, arme);
 			verifAjoutDommageCritique(vaisseauAttaquant, vaisseauDefensseur, arme);
 			if(vaisseauDefensseur.getSante()==0) {
-				detailCombat.addVaisseauDétruit(vaisseauDefensseur.getNom());
+				detailCombat.addVaisseauDétruit(vaisseauDefensseur);
 			}
 		}
 	}
@@ -157,7 +157,7 @@ public class PhaseCombat {
 			detailCombat.addDommage((int)(arme.getDommage()*bonusDommage),arme.getNom());
 			vaisseauDefensseur.prendreDommage((int)(arme.getDommage()*bonusDommage));
 			if(vaisseauDefensseur.getSante()==0) {
-				detailCombat.addVaisseauDétruit(vaisseauDefensseur.getNom());
+				detailCombat.addVaisseauDétruit(vaisseauDefensseur);
 				return true;
 			}
 			verifBouclier(vaisseauAttaquant, vaisseauDefensseur, arme);
@@ -188,7 +188,7 @@ public class PhaseCombat {
 			}
 		}
 		if(!detailCombat.getDetruit() && vaisseauDefensseur.getSante()==0) {
-			detailCombat.addVaisseauDétruit(vaisseauDefensseur.getNom());
+			detailCombat.addVaisseauDétruit(vaisseauDefensseur);
 		}
 	}
 	
@@ -271,6 +271,7 @@ public class PhaseCombat {
 			}
 		case ARME_DETRUITE:
 			if (vaisseau.getArmes().size()>0) {
+				//TODO Voir pourquoi NullPointerException
 				if(vaisseau.getArmes().get(id).getUtilisable()) {
 					if(vaisseau.getArmes().get(id).getEndomager()) {
 						vaisseau.getArmes().get(id).setEndomager(false);
