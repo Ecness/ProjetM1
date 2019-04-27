@@ -208,12 +208,14 @@ public class PhaseCombat {
 	private void combatFlotte(Flotte flotteAttaquante, Flotte flotteDefensseur,int bonnusPrecision) {
 
 		for (Vaisseau vaisseauAttaquant : flotteAttaquante.getTVaisseau()) {
-			int vaisseauDeffensseur = getVaisseauAleatoire(flotteDefensseur.getTVaisseau());
-			endommageVaisseau(vaisseauAttaquant, flotteDefensseur.getTVaisseau().get(vaisseauDeffensseur), bonnusPrecision);
-			if(detailCombat.getDetruit()) {
-				flotteDefensseur.getTVaisseau().remove(vaisseauDeffensseur);
+			if (!flotteDefensseur.getTVaisseau().isEmpty()) {
+				int vaisseauDeffensseur = getVaisseauAleatoire(flotteDefensseur.getTVaisseau());
+				endommageVaisseau(vaisseauAttaquant, flotteDefensseur.getTVaisseau().get(vaisseauDeffensseur), bonnusPrecision);
+				if(detailCombat.getDetruit()) {
+					flotteDefensseur.getTVaisseau().remove(vaisseauDeffensseur);
+				}
+				detailCombat.setDetruit(false);
 			}
-			detailCombat.setDetruit(false);
 		}
 	}
 	
