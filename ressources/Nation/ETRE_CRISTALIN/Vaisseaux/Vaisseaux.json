@@ -773,6 +773,7 @@
 			"bouclier": 50,
 			"bouclierMax": 50,
 			"nom": "Unexpected B",
+			"vitesse": 300,
 			"chassie": {
 				"nom": "Classe WarHound",
 				"description": "Conéu pour les petit vaisseaux",

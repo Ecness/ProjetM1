@@ -195,6 +195,7 @@ public class Ville {
 			reDraw = true;
 			fileDeConstructionUnite.get(0).getCout().put(EnumRessource.PRODUCTION, fileDeConstructionUnite.get(0).getCout().get(EnumRessource.PRODUCTION)-TRessource.get(EnumRessource.PRODUCTION));
 			if(fileDeConstructionUnite.get(0).getCout().get(EnumRessource.PRODUCTION) <= 0) {
+				fileDeConstructionUnite.get(0).setJoueur(joueur);
 				joueur.creationNewFlotte(planete.getSysteme(), fileDeConstructionUnite.get(0));
 				fileDeConstructionUnite.remove(0);
 				vaisseauTermine = true;
