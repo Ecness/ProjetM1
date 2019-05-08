@@ -62,7 +62,7 @@ public class FenetreChoixCombat extends Window {
 				PhaseCombat combat = new PhaseCombat(map);
 				//Tant qu'aucune des deux flottes n'est détruites ou que le combat a duré moins de 20 tours (tours de combat), le conflit continue
 				while(combat.getNbtour() < 20 && !flotte1.getTVaisseau().isEmpty() && !flotte2.getTVaisseau().isEmpty()) {
-					combat.combat();
+					combat.combatAutomatique();
 				}
 				
 				//Une fois le combat terminé, on affiche les résultats

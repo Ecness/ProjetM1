@@ -39,7 +39,7 @@ public class DetailCombat {
 	public void addFeu(String vaisseauDefensseur) {
 		combat.add("Le navire " + vaisseauDefensseur +" a un feu qui c'est déclaré.\n");
 	}
-	public void addVaisseauDétruit(Vaisseau vaisseauDefensseur) {
+	public void addVaisseauDetruit(Vaisseau vaisseauDefensseur) {
 		combat.add("Le navire " + vaisseauDefensseur + " a été détruit.\n");
 		detruit=true;
 		VaisseauDetruit.add(vaisseauDefensseur);

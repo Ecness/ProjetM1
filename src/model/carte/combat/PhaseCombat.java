@@ -123,7 +123,7 @@ public class PhaseCombat {
 			verifAjoutFeu(vaisseauAttaquant, vaisseauDefensseur, arme);
 			verifAjoutDommageCritique(vaisseauAttaquant, vaisseauDefensseur, arme);
 			if(vaisseauDefensseur.getSante()==0) {
-				detailCombat.addVaisseauDétruit(vaisseauDefensseur);
+				detailCombat.addVaisseauDetruit(vaisseauDefensseur);
 			}
 		}
 	}
@@ -157,7 +157,7 @@ public class PhaseCombat {
 			detailCombat.addDommage((int)(arme.getDommage()*bonusDommage),arme.getNom());
 			vaisseauDefensseur.prendreDommage((int)(arme.getDommage()*bonusDommage));
 			if(vaisseauDefensseur.getSante()==0) {
-				detailCombat.addVaisseauDétruit(vaisseauDefensseur);
+				detailCombat.addVaisseauDetruit(vaisseauDefensseur);
 				return true;
 			}
 			verifBouclier(vaisseauAttaquant, vaisseauDefensseur, arme);
@@ -188,7 +188,7 @@ public class PhaseCombat {
 			}
 		}
 		if(!detailCombat.getDetruit() && vaisseauDefensseur.getSante()==0) {
-			detailCombat.addVaisseauDétruit(vaisseauDefensseur);
+			detailCombat.addVaisseauDetruit(vaisseauDefensseur);
 		}
 	}
 	
