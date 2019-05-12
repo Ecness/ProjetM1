@@ -59,7 +59,7 @@ public class Carte {
 						Vector2 baseVector = new Vector2(listeSysteme.get(index).getLiens().get(systeme));
 						
 						int rotation = 0, multiplicateur = 1;
-						valide = verifLiaisonSysteme(listeSysteme.get(index), systeme);
+						valide = verifLiaisonSysteme(listeSysteme.get(index), systeme) && verifCoordSysteme(systeme) && verifDistanceSysteme(systeme);
 						Vector2 nouveauVecteur = new Vector2(baseVector);
 						while (!valide && multiplicateur > 0) {
 							//Rotation du vecteur de 10 degrés
@@ -86,7 +86,7 @@ public class Carte {
 										listeSysteme.get(index).getY() + (int) listeSysteme.get(index).getLiens().get(systeme).y);
 							}
 
-							valide = verifLiaisonSysteme(listeSysteme.get(index), systeme);
+							valide = verifLiaisonSysteme(listeSysteme.get(index), systeme) && verifCoordSysteme(systeme) && verifDistanceSysteme(systeme);
 						}
 
 						if (!valide || multiplicateur <= 0) {
@@ -133,7 +133,8 @@ public class Carte {
 	private void liaisonSystemes() {
 		for (Systeme origine : listeSysteme) {
 			for (Systeme destination : listeSysteme) {
-				if (!origine.equals(destination) && origine.getNbLiens() < origine.getNbLiensMax() && destination.getNbLiens() < destination.getNbLiensMax() 
+				if (Vector2.dst(origine.getX(), origine.getY(), destination.getX(), destination.getY()) < 1000
+						&& !origine.equals(destination) && origine.getNbLiens() < origine.getNbLiensMax() && destination.getNbLiens() < destination.getNbLiensMax() 
 						&& !origine.getLiens().containsKey(destination) && verifLiaisonSysteme(origine, destination)) {
 					origine.getLiens().put(destination, new Vector2(destination.getX() - origine.getX(), destination.getY() - origine.getY()));
 					origine.setNbLiens(origine.getNbLiens() + 1);
