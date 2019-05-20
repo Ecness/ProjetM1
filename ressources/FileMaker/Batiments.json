@@ -1,0 +1,902 @@
+{
+"batimentsPlanete": {
+	"size": 8,
+	"keyTable": [ 0, 1, 2, 3, 4, 5, 6, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+	"valueTable": [
+		null,
+		{
+			"class": "model.batiment.BatimentPlanete",
+			"nom": "Mine de metal",
+			"description": "Améliore la production d'acier",
+			"bonus": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 2
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			},
+			"cout": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 10
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			}
+		},
+		{
+			"class": "model.batiment.BatimentPlanete",
+			"nom": "Extracteur de gaz",
+			"description": "Améliore la production de gaz",
+			"bonus": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 2
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			},
+			"cout": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 10
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			}
+		},
+		{
+			"class": "model.batiment.BatimentPlanete",
+			"nom": "Centre de recherche xenos",
+			"description": "Recherche sur les forme de vie extra-planetaire",
+			"techNecessaire": 4,
+			"bonus": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": -2
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 5
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			},
+			"cout": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 80
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 10
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			}
+		},
+		{
+			"class": "model.batiment.BatimentPlanete",
+			"nom": "Spatioport",
+			"description": "Améliore les echanges avec les autre colonie",
+			"techNecessaire": 3,
+			"bonus": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 5
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 1
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 1
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 1
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			},
+			"cout": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 5
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 20
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 5
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			}
+		},
+		{
+			"class": "model.batiment.BatimentPlanete",
+			"nom": "Exploitation de cristal",
+			"description": "Améliore la production de cristal",
+			"techNecessaire": 1,
+			"bonus": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 4
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			},
+			"cout": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 75
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 20
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			}
+		},
+		{
+			"class": "model.batiment.BatimentPlanete",
+			"nom": "Exploitation de metal",
+			"description": "Améliore la production d'acier",
+			"techNecessaire": 1,
+			"bonus": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 4
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			},
+			"cout": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 75
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			}
+		},
+		{
+			"class": "model.batiment.BatimentPlanete",
+			"nom": "Extracteur amélioré de gaz",
+			"description": "Améliore la production de gaz",
+			"techNecessaire": 1,
+			"bonus": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 4
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			},
+			"cout": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 75
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 50
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			}
+		},
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null
+	],
+	"zeroValue": {
+		"class": "model.batiment.BatimentPlanete",
+		"nom": "Mine de cristal",
+		"description": "Améliore la production de cristal",
+		"bonus": {
+			"CREDIT": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"GAZ": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"ACIER": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"CRISTAL": {
+				"class": "java.lang.Integer",
+				"value": 2
+			},
+			"PRODUCTION": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"SCIENCE": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"PUISSANCE": {
+				"class": "java.lang.Integer",
+				"value": 0
+			}
+		},
+		"cout": {
+			"CREDIT": {
+				"class": "java.lang.Integer",
+				"value": 50
+			},
+			"GAZ": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"ACIER": {
+				"class": "java.lang.Integer",
+				"value": 10
+			},
+			"CRISTAL": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"PRODUCTION": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"SCIENCE": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"PUISSANCE": {
+				"class": "java.lang.Integer",
+				"value": 0
+			}
+		}
+	},
+	"hasZeroValue": true
+},
+"batimentsVille": {
+	"size": 6,
+	"keyTable": [ 0, 1, 2, 3, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+	"valueTable": [
+		null,
+		{
+			"class": "model.batiment.BatimentVille",
+			"nom": "Mega-usine",
+			"description": "Usine de la taille d'une ville servant a traiter les ressources",
+			"techNecessaire": 1,
+			"bonus": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": -2
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 2
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 2
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 2
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 1
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			},
+			"cout": 200,
+			"baseProdCost": 200
+		},
+		{
+			"class": "model.batiment.BatimentVille",
+			"nom": "Usine Robotique",
+			"description": "Usine de création robotique",
+			"techNecessaire": 1,
+			"bonus": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": -1
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 2
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 1
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": 1
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			},
+			"cout": 150,
+			"baseProdCost": 150
+		},
+		{
+			"class": "model.batiment.BatimentVille",
+			"nom": "Batrie Planétaire",
+			"description": "Batrie de defense planétaire",
+			"techNecessaire": 2,
+			"bonus": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": -2
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": -1
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": -1
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 50
+				}
+			},
+			"cout": 100,
+			"baseProdCost": 100
+		},
+		{
+			"class": "model.batiment.BatimentVille",
+			"nom": "Centre de recherche",
+			"description": "Petit centre de recherche",
+			"bonus": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": -1
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": -1
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 2
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			},
+			"cout": 50,
+			"baseProdCost": 50
+		},
+		{
+			"class": "model.batiment.BatimentVille",
+			"nom": "Banque central planétaire",
+			"description": "Centralise les fonts de la colonie",
+			"bonus": {
+				"CREDIT": {
+					"class": "java.lang.Integer",
+					"value": 10
+				},
+				"GAZ": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"ACIER": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"CRISTAL": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PRODUCTION": {
+					"class": "java.lang.Integer",
+					"value": -1
+				},
+				"SCIENCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				},
+				"PUISSANCE": {
+					"class": "java.lang.Integer",
+					"value": 0
+				}
+			},
+			"cout": 80,
+			"baseProdCost": 80
+		},
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null
+	],
+	"zeroValue": {
+		"class": "model.batiment.BatimentVille",
+		"nom": "Quartier ouvrier",
+		"description": "Quartier résidentelle peu luxueux",
+		"bonus": {
+			"CREDIT": {
+				"class": "java.lang.Integer",
+				"value": 2
+			},
+			"GAZ": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"ACIER": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"CRISTAL": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"PRODUCTION": {
+				"class": "java.lang.Integer",
+				"value": 2
+			},
+			"SCIENCE": {
+				"class": "java.lang.Integer",
+				"value": 0
+			},
+			"PUISSANCE": {
+				"class": "java.lang.Integer",
+				"value": 0
+			}
+		},
+		"cout": 20,
+		"baseProdCost": 20
+	},
+	"hasZeroValue": true
+}
+}
