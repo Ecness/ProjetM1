@@ -19,33 +19,33 @@ public class DetailCombat {
 	}	
 	
 	public void addBouclier(String vaisseau, int montant) {
-		combat.add("Le vaisseau " + vaisseau + " a récupéré " + montant + " point de bouclier.\n");
+		combat.add("Le vaisseau " + vaisseau + " a récupéré " + montant + " point(s) de bouclier.\n");
 	}
 	public void addReparation(String vaisseau,int montant) {
-		combat.add("Le vaisseau " + vaisseau + " a récupéré " + montant + " point de vie.\n");
+		combat.add("Le vaisseau " + vaisseau + " a récupéré " + montant + " point(s) de vie.\n");
 	}
 	public void addReparationFeu(String vaisseau) {
-		combat.add("Le vaisseau " + vaisseau + " a éteind un feu.\n");
+		combat.add("Le vaisseau " + vaisseau + " a éteint un feu.\n");
 	}
 	public void ajoutNomVaisseau(String vaisseauAttaquant, String vaisseauDefensseur) {
 		combat.add("Le vaisseau " + vaisseauAttaquant + " attaque le vaisseau " + vaisseauDefensseur + ".\n");
 	}
 	public void addDommage(int dommage, String nom) {
-		combat.add("L'arme " + nom + " à infliger "+ dommage + " dommage.\n");
+		combat.add("L'arme " + nom + " a infligé "+ dommage + " dommage(s).\n");
 	}
 	public void pasToucher(String nom) {
-		combat.add("L'arme " + nom + " a rater sa cible.\n");
+		combat.add("L'arme " + nom + " a raté sa cible.\n");
 	}
 	public void addFeu(String vaisseauDefensseur) {
-		combat.add("Le navire " + vaisseauDefensseur +" a un feu qui c'est déclaré.\n");
+		combat.add("Le vaisseau " + vaisseauDefensseur + " a un feu qui s'est déclaré.\n");
 	}
 	public void addVaisseauDetruit(Vaisseau vaisseauDefensseur) {
-		combat.add("Le navire " + vaisseauDefensseur + " a été détruit.\n");
+		combat.add("Le vaisseau " + vaisseauDefensseur + " a été détruit.\n");
 		detruit=true;
 		VaisseauDetruit.add(vaisseauDefensseur);
 	}
 	public void addDommageCritique(EnumDommageCritique dommageCritique, int dommageSuplementaire) {
-		combat.add("Le navire a subie " + dommageCritique + " et il as reçue " + dommageSuplementaire + " de dommage suplaimentaire.\n");
+		combat.add("Le vaisseau a subi " + dommageCritique + " dégât(s) et il a reçu " + dommageSuplementaire + " dégât(s) supplémentaire(s).\n");
 	}
 	
 	@Override
