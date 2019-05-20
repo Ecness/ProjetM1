@@ -183,7 +183,9 @@ public class PhaseCombat {
 			Arme arme = armes.getValue();
 			if (arme.getUtilisable()==true) {
 				for (int i=0; i < arme.getNbTire(); i++) {
-					infligerDommage(vaisseauAttaquant, vaisseauDefensseur, arme, bonnusPrecision);
+					if (vaisseauDefensseur.getSante() > 0) {
+						infligerDommage(vaisseauAttaquant, vaisseauDefensseur, arme, bonnusPrecision);
+					}
 				}
 			}
 		}
@@ -227,7 +229,8 @@ public class PhaseCombat {
 	 */
 	public void combatAutomatique() {
 
-		while (!mapCombat.getFlotteJ2().getTVaisseau().isEmpty() || !mapCombat.getFlotteJ1().getTVaisseau().isEmpty() || nbtour==30) {
+		//Tant qu'aucune des deux flottes n'est détruites ou que le combat a duré moins de 30 tours (tours de combat), le conflit continue
+		while (!mapCombat.getFlotteJ2().getTVaisseau().isEmpty() && !mapCombat.getFlotteJ1().getTVaisseau().isEmpty() && nbtour < 30) {
 			combatFlotte(mapCombat.getFlotteJ1(), mapCombat.getFlotteJ2(), (int)(10*Math.random()-5));
 			combatFlotte(mapCombat.getFlotteJ2(), mapCombat.getFlotteJ1(), (int)(10*Math.random()-5));
 			actionFinTour(mapCombat.getFlotteJ1());
@@ -269,26 +272,26 @@ public class PhaseCombat {
 					break;
 				}
 			}
-		case ARME_DETRUITE:
-			if (vaisseau.getArmes().size()>0) {
-				//TODO Voir pourquoi NullPointerException
-				if(vaisseau.getArmes().get(id).getUtilisable()) {
-					if(vaisseau.getArmes().get(id).getEndomager()) {
-						vaisseau.getArmes().get(id).setEndomager(false);
-						vaisseau.getDommageCritique().remove(EnumDommageCritique.ARME_ENDOMMAGER);
-					}
-					vaisseau.getArmes().get(id).setUtilisable(false);
-					vaisseau.getDommageCritique().add(EnumDommageCritique.ARME_DETRUITE);	
-					detailCombat.addDommageCritique(EnumDommageCritique.ARME_DETRUITE,0);
-				}else {
-					vaisseau.prendreDommage((int)(vaisseau.getSanteMax()*0.1));
-					detailCombat.addDommageCritique(EnumDommageCritique.BREACH_DANS_LA_COQUE,(int)(vaisseau.getSanteMax()*0.1));
-				}
-			}else {
-				vaisseau.prendreDommage((int)(vaisseau.getSanteMax()*0.1));
-				detailCombat.addDommageCritique(EnumDommageCritique.BREACH_DANS_LA_COQUE,(int)(vaisseau.getSanteMax()*0.1));
-			}
-			break;
+//		case ARME_DETRUITE:
+//			if (vaisseau.getArmes().size()>0) {
+//				//TODO Voir pourquoi NullPointerException
+//				if(vaisseau.getArmes().get(id).getUtilisable()) {
+//					if(vaisseau.getArmes().get(id).getEndomager()) {
+//						vaisseau.getArmes().get(id).setEndomager(false);
+//						vaisseau.getDommageCritique().remove(EnumDommageCritique.ARME_ENDOMMAGER);
+//					}
+//					vaisseau.getArmes().get(id).setUtilisable(false);
+//					vaisseau.getDommageCritique().add(EnumDommageCritique.ARME_DETRUITE);	
+//					detailCombat.addDommageCritique(EnumDommageCritique.ARME_DETRUITE,0);
+//				}else {
+//					vaisseau.prendreDommage((int)(vaisseau.getSanteMax()*0.1));
+//					detailCombat.addDommageCritique(EnumDommageCritique.BREACH_DANS_LA_COQUE,(int)(vaisseau.getSanteMax()*0.1));
+//				}
+//			}else {
+//				vaisseau.prendreDommage((int)(vaisseau.getSanteMax()*0.1));
+//				detailCombat.addDommageCritique(EnumDommageCritique.BREACH_DANS_LA_COQUE,(int)(vaisseau.getSanteMax()*0.1));
+//			}
+//			break;
 		case MOTEUR_ENDOMMAGER:
 			if(!vaisseau.getMoteurEndomager() && !vaisseau.getMoteurDetruit()) {
 				vaisseau.setMoteurEndomager(true);

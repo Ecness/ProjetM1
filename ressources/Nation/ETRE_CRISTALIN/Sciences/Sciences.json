@@ -6,16 +6,16 @@
 		null,
 		{
 			"class": "model.entity.player.Science",
-			"nom": "Vaiseau de defence",
-			"description": "Premier vaiseau conue pour la defence de la colonie",
+			"nom": "Vaisseau de défense",
+			"description": "Premier vaisseau connue pour la défense de la colonie",
 			"cout": 20,
 			"dependanceUn": 0,
 			"dependanceDeux": 0
 		},
 		{
 			"class": "model.entity.player.Science",
-			"nom": "Fusion solaire controler",
-			"description": "Permet la construction d'arme Plasma",
+			"nom": "Fusion solaire controllée",
+			"description": "Permet la construction d'armes Plasma",
 			"cout": 50,
 			"dependanceUn": 1,
 			"dependanceDeux": 0
@@ -23,7 +23,7 @@
 		{
 			"class": "model.entity.player.Science",
 			"nom": "Module MKII",
-			"description": "Delock les armes tier 2",
+			"description": "Débloque les armes tier 2",
 			"cout": 50,
 			"dependanceUn": 1,
 			"dependanceDeux": 2
@@ -31,7 +31,7 @@
 		{
 			"class": "model.entity.player.Science",
 			"nom": "RailGun",
-			"description": "Permet la construction d'un canon éléctrique",
+			"description": "Permet la construction d'un canon électrique",
 			"cout": 100,
 			"dependanceUn": 3,
 			"dependanceDeux": 5
@@ -39,15 +39,15 @@
 		{
 			"class": "model.entity.player.Science",
 			"nom": "Vaisseau d'escorte",
-			"description": "Délock les vaisseaux tier 2",
+			"description": "Débloque les vaisseaux tiers 2",
 			"cout": 60,
 			"dependanceUn": 3,
 			"dependanceDeux": 0
 		},
 		{
 			"class": "model.entity.player.Science",
-			"nom": "Croiseur stailaire",
-			"description": "Délock les vaisseaux tier 3",
+			"nom": "Croiseur stellaire",
+			"description": "Débloque les vaisseaux tiers 3",
 			"cout": 150,
 			"dependanceUn": 4,
 			"dependanceDeux": 5
@@ -123,7 +123,7 @@
 	"zeroValue": {
 		"class": "model.entity.player.Science",
 		"nom": "Sonde",
-		"description": "Début de la conquéte spacial",
+		"description": "Début de la conquête spatial",
 		"rechercher": true,
 		"cout": 0
 	},
@@ -136,7 +136,7 @@
 		null,
 		{
 			"class": "model.entity.player.Science",
-			"nom": "Mega-usine",
+			"nom": "Méga-usine",
 			"description": "Delock la construction de Mega-usine",
 			"cout": 50,
 			"dependanceUn": 0,
